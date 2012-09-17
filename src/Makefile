@@ -1,11 +1,11 @@
-#PROTECTED REGION ID(LiberaSP::Makefile) ENABLED START#
+#PROTECTED REGION ID(LiberaSinglePathE::Makefile) ENABLED START#
 #=============================================================================
 #
 # file :        Makefile
 #
 # description : Makefile to generate a TANGO device server.
 #
-# project :     Libera Brillance Single Pass
+# project :     Libera Brillance Single Pass E
 #
 # $Author:  $
 #
@@ -27,7 +27,7 @@ MAKE_ENV = /usr/local/share/pogo/preferences
 #=============================================================================
 # PACKAGE_NAME is the name of the library/device/exe you want to build
 #
-PACKAGE_NAME = LiberaSP
+PACKAGE_NAME = LiberaSinglePathE
 MAJOR_VERS   = 1
 MINOR_VERS   = 0
 RELEASE      = Release_$(MAJOR_VERS)_$(MINOR_VERS)

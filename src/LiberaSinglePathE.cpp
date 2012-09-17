@@ -39,7 +39,7 @@ static const char *RcsId = "$Id:  $";
 /**
  *	LiberaSinglePathE class description:
  *	This Tango class is the interface of the Instrumentation Technologies (IT) Libera
- *	Brillance Single Pass equipment. This class supports only a subset of all the
+ *	Brilliance Single Pass E equipment. This class supports only a subset of all the
  *	equipment features. It is the basic equipment for a Injection and Transfer Efficiency
  *	Measurement System
  */

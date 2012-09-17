@@ -522,7 +522,7 @@ void LiberaSinglePathEClass::write_class_property()
 
 	//	Put title
 	Tango::DbDatum	title("ProjectTitle");
-	string	str_title("Libera Brillance Single Pass");
+	string	str_title("Libera Brillance Single Pass E");
 	title << str_title;
 	data.push_back(title);
 
@@ -530,7 +530,7 @@ void LiberaSinglePathEClass::write_class_property()
 	Tango::DbDatum	description("Description");
 	vector<string>	str_desc;
 	str_desc.push_back("This Tango class is the interface of the Instrumentation Technologies (IT) Libera");
-	str_desc.push_back("Brillance Single Pass equipment. This class supports only a subset of all the");
+	str_desc.push_back("Brilliance Single Pass E equipment. This class supports only a subset of all the");
 	str_desc.push_back("equipment features. It is the basic equipment for a Injection and Transfer Efficiency");
 	str_desc.push_back("Measurement System");
 	description << str_desc;
