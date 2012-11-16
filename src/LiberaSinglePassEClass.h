@@ -1,15 +1,15 @@
-/*----- PROTECTED REGION ID(LiberaSinglePathEClass.h) ENABLED START -----*/
+/*----- PROTECTED REGION ID(LiberaSinglePassEClass.h) ENABLED START -----*/
 //=============================================================================
 //
-// file :        LiberaSinglePathEClass.h
+// file :        LiberaSinglePassEClass.h
 //
-// description : Include for the LiberaSinglePathEClass root class.
+// description : Include for the LiberaSinglePassEClass root class.
 //               This class is the singleton class for.
-//               the LiberaSinglePathE device class..
+//               the LiberaSinglePassE device class..
 //               It contains all properties and methods which the .
-//               LiberaSinglePathE requires only once e.g. the commands.
+//               LiberaSinglePassE requires only once e.g. the commands.
 //
-// project :     Libera Brillance Single Pass.
+// project :     Libera Brillance Single Pass E.
 //
 // $Author:  $
 //
@@ -29,19 +29,19 @@
 //=============================================================================
 
 
-#ifndef LIBERASINGLEPATHECLASS_H
-#define LIBERASINGLEPATHECLASS_H
+#ifndef LIBERASINGLEPASSECLASS_H
+#define LIBERASINGLEPASSECLASS_H
 
 #include <tango.h>
-#include <LiberaSinglePathE.h>
+#include <LiberaSinglePassE.h>
 
 /*----- PROTECTED REGION END -----*/
 
-namespace LiberaSinglePathE_ns
+namespace LiberaSinglePassE_ns
 {
-	/*----- PROTECTED REGION ID(LiberaSinglePathE::classes for dynamic creation) ENABLED START -----*/
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::classes for dynamic creation) ENABLED START -----*/
 
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePathE::classes for dynamic creation
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::classes for dynamic creation
 
 
 
@@ -57,11 +57,11 @@ public:
 	~BufferSizeAttrib() {};
 	
 	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
-		{(static_cast<LiberaSinglePathE *>(dev))->read_BufferSize(att);}
+		{(static_cast<LiberaSinglePassE *>(dev))->read_BufferSize(att);}
 	virtual void write(Tango::DeviceImpl *dev,Tango::WAttribute &att)
-		{(static_cast<LiberaSinglePathE *>(dev))->write_BufferSize(att);}
+		{(static_cast<LiberaSinglePassE *>(dev))->write_BufferSize(att);}
 	virtual bool is_allowed(Tango::DeviceImpl *dev,Tango::AttReqType ty)
-		{return (static_cast<LiberaSinglePathE *>(dev))->is_BufferSize_allowed(ty);}
+		{return (static_cast<LiberaSinglePassE *>(dev))->is_BufferSize_allowed(ty);}
 };
 
 //	Attribute Level class definition
@@ -73,11 +73,11 @@ public:
 	~LevelAttrib() {};
 	
 	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
-		{(static_cast<LiberaSinglePathE *>(dev))->read_Level(att);}
+		{(static_cast<LiberaSinglePassE *>(dev))->read_Level(att);}
 	virtual void write(Tango::DeviceImpl *dev,Tango::WAttribute &att)
-		{(static_cast<LiberaSinglePathE *>(dev))->write_Level(att);}
+		{(static_cast<LiberaSinglePassE *>(dev))->write_Level(att);}
 	virtual bool is_allowed(Tango::DeviceImpl *dev,Tango::AttReqType ty)
-		{return (static_cast<LiberaSinglePathE *>(dev))->is_Level_allowed(ty);}
+		{return (static_cast<LiberaSinglePassE *>(dev))->is_Level_allowed(ty);}
 };
 
 //	Attribute TriggerCounter class definition
@@ -89,9 +89,9 @@ public:
 	~TriggerCounterAttrib() {};
 	
 	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
-		{(static_cast<LiberaSinglePathE *>(dev))->read_TriggerCounter(att);}
+		{(static_cast<LiberaSinglePassE *>(dev))->read_TriggerCounter(att);}
 	virtual bool is_allowed(Tango::DeviceImpl *dev,Tango::AttReqType ty)
-		{return (static_cast<LiberaSinglePathE *>(dev))->is_TriggerCounter_allowed(ty);}
+		{return (static_cast<LiberaSinglePassE *>(dev))->is_TriggerCounter_allowed(ty);}
 };
 
 //	Attribute Fan1Speed class definition
@@ -103,9 +103,9 @@ public:
 	~Fan1SpeedAttrib() {};
 	
 	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
-		{(static_cast<LiberaSinglePathE *>(dev))->read_Fan1Speed(att);}
+		{(static_cast<LiberaSinglePassE *>(dev))->read_Fan1Speed(att);}
 	virtual bool is_allowed(Tango::DeviceImpl *dev,Tango::AttReqType ty)
-		{return (static_cast<LiberaSinglePathE *>(dev))->is_Fan1Speed_allowed(ty);}
+		{return (static_cast<LiberaSinglePassE *>(dev))->is_Fan1Speed_allowed(ty);}
 };
 
 //	Attribute Fan2Speed class definition
@@ -117,9 +117,9 @@ public:
 	~Fan2SpeedAttrib() {};
 	
 	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
-		{(static_cast<LiberaSinglePathE *>(dev))->read_Fan2Speed(att);}
+		{(static_cast<LiberaSinglePassE *>(dev))->read_Fan2Speed(att);}
 	virtual bool is_allowed(Tango::DeviceImpl *dev,Tango::AttReqType ty)
-		{return (static_cast<LiberaSinglePathE *>(dev))->is_Fan2Speed_allowed(ty);}
+		{return (static_cast<LiberaSinglePassE *>(dev))->is_Fan2Speed_allowed(ty);}
 };
 
 //	Attribute Temp1 class definition
@@ -131,9 +131,9 @@ public:
 	~Temp1Attrib() {};
 	
 	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
-		{(static_cast<LiberaSinglePathE *>(dev))->read_Temp1(att);}
+		{(static_cast<LiberaSinglePassE *>(dev))->read_Temp1(att);}
 	virtual bool is_allowed(Tango::DeviceImpl *dev,Tango::AttReqType ty)
-		{return (static_cast<LiberaSinglePathE *>(dev))->is_Temp1_allowed(ty);}
+		{return (static_cast<LiberaSinglePassE *>(dev))->is_Temp1_allowed(ty);}
 };
 
 //	Attribute Temp2 class definition
@@ -145,9 +145,9 @@ public:
 	~Temp2Attrib() {};
 	
 	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
-		{(static_cast<LiberaSinglePathE *>(dev))->read_Temp2(att);}
+		{(static_cast<LiberaSinglePassE *>(dev))->read_Temp2(att);}
 	virtual bool is_allowed(Tango::DeviceImpl *dev,Tango::AttReqType ty)
-		{return (static_cast<LiberaSinglePathE *>(dev))->is_Temp2_allowed(ty);}
+		{return (static_cast<LiberaSinglePassE *>(dev))->is_Temp2_allowed(ty);}
 };
 
 //	Attribute Temp3 class definition
@@ -159,9 +159,9 @@ public:
 	~Temp3Attrib() {};
 	
 	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
-		{(static_cast<LiberaSinglePathE *>(dev))->read_Temp3(att);}
+		{(static_cast<LiberaSinglePassE *>(dev))->read_Temp3(att);}
 	virtual bool is_allowed(Tango::DeviceImpl *dev,Tango::AttReqType ty)
-		{return (static_cast<LiberaSinglePathE *>(dev))->is_Temp3_allowed(ty);}
+		{return (static_cast<LiberaSinglePassE *>(dev))->is_Temp3_allowed(ty);}
 };
 
 //	Attribute Up class definition
@@ -173,9 +173,9 @@ public:
 	~UpAttrib() {};
 	
 	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
-		{(static_cast<LiberaSinglePathE *>(dev))->read_Up(att);}
+		{(static_cast<LiberaSinglePassE *>(dev))->read_Up(att);}
 	virtual bool is_allowed(Tango::DeviceImpl *dev,Tango::AttReqType ty)
-		{return (static_cast<LiberaSinglePathE *>(dev))->is_Up_allowed(ty);}
+		{return (static_cast<LiberaSinglePassE *>(dev))->is_Up_allowed(ty);}
 };
 
 //	Attribute Down class definition
@@ -187,9 +187,9 @@ public:
 	~DownAttrib() {};
 	
 	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
-		{(static_cast<LiberaSinglePathE *>(dev))->read_Down(att);}
+		{(static_cast<LiberaSinglePassE *>(dev))->read_Down(att);}
 	virtual bool is_allowed(Tango::DeviceImpl *dev,Tango::AttReqType ty)
-		{return (static_cast<LiberaSinglePathE *>(dev))->is_Down_allowed(ty);}
+		{return (static_cast<LiberaSinglePassE *>(dev))->is_Down_allowed(ty);}
 };
 
 //	Attribute Left class definition
@@ -201,9 +201,9 @@ public:
 	~LeftAttrib() {};
 	
 	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
-		{(static_cast<LiberaSinglePathE *>(dev))->read_Left(att);}
+		{(static_cast<LiberaSinglePassE *>(dev))->read_Left(att);}
 	virtual bool is_allowed(Tango::DeviceImpl *dev,Tango::AttReqType ty)
-		{return (static_cast<LiberaSinglePathE *>(dev))->is_Left_allowed(ty);}
+		{return (static_cast<LiberaSinglePassE *>(dev))->is_Left_allowed(ty);}
 };
 
 //	Attribute Right class definition
@@ -215,9 +215,9 @@ public:
 	~RightAttrib() {};
 	
 	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
-		{(static_cast<LiberaSinglePathE *>(dev))->read_Right(att);}
+		{(static_cast<LiberaSinglePassE *>(dev))->read_Right(att);}
 	virtual bool is_allowed(Tango::DeviceImpl *dev,Tango::AttReqType ty)
-		{return (static_cast<LiberaSinglePathE *>(dev))->is_Right_allowed(ty);}
+		{return (static_cast<LiberaSinglePassE *>(dev))->is_Right_allowed(ty);}
 };
 
 //	Attribute UpT class definition
@@ -229,9 +229,9 @@ public:
 	~UpTAttrib() {};
 	
 	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
-		{(static_cast<LiberaSinglePathE *>(dev))->read_UpT(att);}
+		{(static_cast<LiberaSinglePassE *>(dev))->read_UpT(att);}
 	virtual bool is_allowed(Tango::DeviceImpl *dev,Tango::AttReqType ty)
-		{return (static_cast<LiberaSinglePathE *>(dev))->is_UpT_allowed(ty);}
+		{return (static_cast<LiberaSinglePassE *>(dev))->is_UpT_allowed(ty);}
 };
 
 //	Attribute DownT class definition
@@ -243,9 +243,9 @@ public:
 	~DownTAttrib() {};
 	
 	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
-		{(static_cast<LiberaSinglePathE *>(dev))->read_DownT(att);}
+		{(static_cast<LiberaSinglePassE *>(dev))->read_DownT(att);}
 	virtual bool is_allowed(Tango::DeviceImpl *dev,Tango::AttReqType ty)
-		{return (static_cast<LiberaSinglePathE *>(dev))->is_DownT_allowed(ty);}
+		{return (static_cast<LiberaSinglePassE *>(dev))->is_DownT_allowed(ty);}
 };
 
 //	Attribute LeftT class definition
@@ -257,9 +257,9 @@ public:
 	~LeftTAttrib() {};
 	
 	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
-		{(static_cast<LiberaSinglePathE *>(dev))->read_LeftT(att);}
+		{(static_cast<LiberaSinglePassE *>(dev))->read_LeftT(att);}
 	virtual bool is_allowed(Tango::DeviceImpl *dev,Tango::AttReqType ty)
-		{return (static_cast<LiberaSinglePathE *>(dev))->is_LeftT_allowed(ty);}
+		{return (static_cast<LiberaSinglePassE *>(dev))->is_LeftT_allowed(ty);}
 };
 
 //	Attribute RightT class definition
@@ -271,9 +271,9 @@ public:
 	~RightTAttrib() {};
 	
 	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
-		{(static_cast<LiberaSinglePathE *>(dev))->read_RightT(att);}
+		{(static_cast<LiberaSinglePassE *>(dev))->read_RightT(att);}
 	virtual bool is_allowed(Tango::DeviceImpl *dev,Tango::AttReqType ty)
-		{return (static_cast<LiberaSinglePathE *>(dev))->is_RightT_allowed(ty);}
+		{return (static_cast<LiberaSinglePassE *>(dev))->is_RightT_allowed(ty);}
 };
 
 //	Attribute Zposition class definition
@@ -285,9 +285,9 @@ public:
 	~ZpositionAttrib() {};
 	
 	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
-		{(static_cast<LiberaSinglePathE *>(dev))->read_Zposition(att);}
+		{(static_cast<LiberaSinglePassE *>(dev))->read_Zposition(att);}
 	virtual bool is_allowed(Tango::DeviceImpl *dev,Tango::AttReqType ty)
-		{return (static_cast<LiberaSinglePathE *>(dev))->is_Zposition_allowed(ty);}
+		{return (static_cast<LiberaSinglePassE *>(dev))->is_Zposition_allowed(ty);}
 };
 
 //	Attribute Xposition class definition
@@ -299,9 +299,9 @@ public:
 	~XpositionAttrib() {};
 	
 	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
-		{(static_cast<LiberaSinglePathE *>(dev))->read_Xposition(att);}
+		{(static_cast<LiberaSinglePassE *>(dev))->read_Xposition(att);}
 	virtual bool is_allowed(Tango::DeviceImpl *dev,Tango::AttReqType ty)
-		{return (static_cast<LiberaSinglePathE *>(dev))->is_Xposition_allowed(ty);}
+		{return (static_cast<LiberaSinglePassE *>(dev))->is_Xposition_allowed(ty);}
 };
 
 //	Attribute Current class definition
@@ -313,9 +313,9 @@ public:
 	~CurrentAttrib() {};
 	
 	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
-		{(static_cast<LiberaSinglePathE *>(dev))->read_Current(att);}
+		{(static_cast<LiberaSinglePassE *>(dev))->read_Current(att);}
 	virtual bool is_allowed(Tango::DeviceImpl *dev,Tango::AttReqType ty)
-		{return (static_cast<LiberaSinglePathE *>(dev))->is_Current_allowed(ty);}
+		{return (static_cast<LiberaSinglePassE *>(dev))->is_Current_allowed(ty);}
 };
 
 //	Attribute SumT class definition
@@ -327,9 +327,9 @@ public:
 	~SumTAttrib() {};
 	
 	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
-		{(static_cast<LiberaSinglePathE *>(dev))->read_SumT(att);}
+		{(static_cast<LiberaSinglePassE *>(dev))->read_SumT(att);}
 	virtual bool is_allowed(Tango::DeviceImpl *dev,Tango::AttReqType ty)
-		{return (static_cast<LiberaSinglePathE *>(dev))->is_SumT_allowed(ty);}
+		{return (static_cast<LiberaSinglePassE *>(dev))->is_SumT_allowed(ty);}
 };
 
 
@@ -359,7 +359,7 @@ public:
 	
 	virtual CORBA::Any *execute (Tango::DeviceImpl *dev, const CORBA::Any &any);
 	virtual bool is_allowed (Tango::DeviceImpl *dev, const CORBA::Any &any)
-	{return (static_cast<LiberaSinglePathE *>(dev))->is_Reset_allowed(any);}
+	{return (static_cast<LiberaSinglePassE *>(dev))->is_Reset_allowed(any);}
 };
 
 //	Command ResetTrigger class definition
@@ -382,7 +382,7 @@ public:
 	
 	virtual CORBA::Any *execute (Tango::DeviceImpl *dev, const CORBA::Any &any);
 	virtual bool is_allowed (Tango::DeviceImpl *dev, const CORBA::Any &any)
-	{return (static_cast<LiberaSinglePathE *>(dev))->is_ResetTrigger_allowed(any);}
+	{return (static_cast<LiberaSinglePassE *>(dev))->is_ResetTrigger_allowed(any);}
 };
 
 
@@ -397,11 +397,11 @@ class
 #ifdef _TG_WINDOWS_
 	__declspec(dllexport)
 #endif
-	LiberaSinglePathEClass : public Tango::DeviceClass
+	LiberaSinglePassEClass : public Tango::DeviceClass
 {
-	/*----- PROTECTED REGION ID(LiberaSinglePathE::Additionnal DServer data members) ENABLED START -----*/
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::Additionnal DServer data members) ENABLED START -----*/
 
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePathE::Additionnal DServer data members
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::Additionnal DServer data members
 
 
 
@@ -419,16 +419,16 @@ public:
 	Tango::DbData	dev_def_prop;
 
 //	Method prototypes
-	static LiberaSinglePathEClass *init(const char *);
-	static LiberaSinglePathEClass *instance();
-	~LiberaSinglePathEClass();
+	static LiberaSinglePassEClass *init(const char *);
+	static LiberaSinglePassEClass *instance();
+	~LiberaSinglePassEClass();
 	Tango::DbDatum	get_class_property(string &);
 	Tango::DbDatum	get_default_device_property(string &);
 	Tango::DbDatum	get_default_class_property(string &);
 	
 protected:
-	LiberaSinglePathEClass(string &);
-	static LiberaSinglePathEClass *_instance;
+	LiberaSinglePassEClass(string &);
+	static LiberaSinglePassEClass *_instance;
 	void command_factory();
 	void attribute_factory(vector<Tango::Attr *> &);
 	void write_class_property();
@@ -448,5 +448,5 @@ private:
 
 }	//	namespace
 
-#endif	//	LIBERASINGLEPATHECLASS_H
+#endif	//	LIBERASINGLEPASSECLASS_H
 

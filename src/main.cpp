@@ -1,15 +1,15 @@
-/*PROTECTED REGION ID(LiberaSinglePathE::main.cpp) ENABLED START*/
+/*PROTECTED REGION ID(LiberaSinglePassE::main.cpp) ENABLED START*/
 static const char *RcsId = "$Id: $";
 //=============================================================================
 //
-// file :        LiberaSinglePathE.cpp
+// file :        LiberaSinglePassE.cpp
 //
-// description : C++ source for the LiberaSinglePathE device server main.
+// description : C++ source for the LiberaSinglePassE device server main.
 //               The main rule is to initialise (and create) the Tango
 //               system and to create the DServerClass singleton.
 //                The main should be the same for every Tango device server.
 //
-// project :     Libera Brillance Single Pass.
+// project :     Libera Brillance Single Pass E.
 //
 // $Author:  $
 //
@@ -30,9 +30,35 @@ static const char *RcsId = "$Id: $";
 
 #include <tango.h>
 
+// MCI includes
+#include <istd/trace.h>
+#include <istd/string.h>
+#include <istd/enum_cast.h>
+#include <mci/mci.h>
+#include <mci/mci_util.h>
+#include <mci/node.h>
+#include <mci/callback.h>
+#include <mci/notification_data.h>
+#include <mci/notification_client.h>
+#include <isig/signal_traits.h>
+#include <istd/enum_cast.h>
+#include <isig/signal_source.h>
+#include <isig/remote_stream.h>
+#include <isig/data_on_demand_remote_source.h>
+
 
 int main(int argc,char *argv[])
 {
+	// Initialize MCI layer
+	try {
+		mci::Init();
+		istd::TraceInit("+", "LSPE-TDS.log");
+		istd::TraceSetLevel(istd::eTrcHigh);
+	} catch (istd::Exception &e) {
+		cout << "Received a MCI Exception" << endl;
+		cout << "Exiting" << endl;
+	}
+
 	Tango::Util *tg = NULL;
 	try
 	{
@@ -40,7 +66,7 @@ int main(int argc,char *argv[])
 		//----------------------------------------
 		tg = Tango::Util::init(argc,argv);
 
-		// Create the device server singleton 
+		// Create the device server singleton
 		//	which will create everything
 		//----------------------------------------
 		tg->server_init(false);
@@ -58,12 +84,22 @@ int main(int argc,char *argv[])
 	catch (CORBA::Exception &e)
 	{
 		Tango::Except::print_exception(e);
-		
+
 		cout << "Received a CORBA_Exception" << endl;
 		cout << "Exiting" << endl;
 	}
 	if (tg!=NULL)
 		tg->server_cleanup();
+
+	// Destroy MCI layer
+	try {
+		istd::TraceStop();
+		mci::Shutdown();
+	} catch (istd::Exception &e) {
+		cout << "Received a MCI Exception" << endl;
+		cout << "Exiting" << endl;
+	}
+
 	return(0);
 }
 /*PROTECTED REGION END*/

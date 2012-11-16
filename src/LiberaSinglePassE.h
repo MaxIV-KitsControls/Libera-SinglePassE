@@ -1,11 +1,11 @@
-/*----- PROTECTED REGION ID(LiberaSinglePathE.h) ENABLED START -----*/
+/*----- PROTECTED REGION ID(LiberaSinglePassE.h) ENABLED START -----*/
 //=============================================================================
 //
-// file :        LiberaSinglePathE.h
+// file :        LiberaSinglePassE.h
 //
-// description : Include for the LiberaSinglePathE class.
+// description : Include for the LiberaSinglePassE class.
 //
-// project :     Libera Brillance Single Pass.
+// project :     Libera Brillance Single Pass E.
 //
 // $Author:  $
 //
@@ -25,41 +25,68 @@
 //=============================================================================
 
 
-#ifndef LIBERASINGLEPATHE_H
-#define LIBERASINGLEPATHE_H
+#ifndef LIBERASINGLEPASSE_H
+#define LIBERASINGLEPASSE_H
 
 
 #include <tango.h>
+
+// MCI includes
+#include <istd/trace.h>
+#include <istd/string.h>
+#include <istd/enum_cast.h>
+#include <mci/mci.h>
+#include <mci/mci_util.h>
+#include <mci/node.h>
+#include <mci/callback.h>
+#include <mci/notification_data.h>
+#include <mci/notification_client.h>
+#include <isig/signal_traits.h>
+#include <istd/enum_cast.h>
+#include <isig/signal_source.h>
+#include <isig/remote_stream.h>
+#include <isig/data_on_demand_remote_source.h>
+
+
+#define			ON_STATUS				"Libera box is up and running"
+
+#define CHECK_ALLOC(ptr) \
+if (ptr == NULL) \
+{ \
+   	Tango::Except::throw_exception ("LiberaSinglePassE_BadAlloc", \
+                                    "Error while allocating memory", \
+                                    "LiberaSinglePassE::init_device"); \
+}
 
 /*----- PROTECTED REGION END -----*/
 
 
 /**
- *	LiberaSinglePathE class Description:
+ *	LiberaSinglePassE class Description:
  *	This Tango class is the interface of the Instrumentation Technologies (IT) Libera
  *	Brilliance Single Pass E equipment. This class supports only a subset of all the
  *	equipment features. It is the basic equipment for a Injection and Transfer Efficiency
  *	Measurement System
  */
 
-namespace LiberaSinglePathE_ns
+namespace LiberaSinglePassE_ns
 {
-	/*----- PROTECTED REGION ID(LiberaSinglePathE::Additional Class Declarations) ENABLED START -----*/
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::Additional Class Declarations) ENABLED START -----*/
 
 		//		Additional Class Declarations
 
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePathE::Additional Class Declarations
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::Additional Class Declarations
 
 
-class LiberaSinglePathE : public Tango::Device_4Impl
+class LiberaSinglePassE : public Tango::Device_4Impl
 {
 
 
-	/*----- PROTECTED REGION ID(LiberaSinglePathE::Data Members) ENABLED START -----*/
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::Data Members) ENABLED START -----*/
 
 	//		Add your own data members
 
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePathE::Data Members
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::Data Members
 
 
 //	Device property data members
@@ -85,7 +112,7 @@ public:		//	LiberaIpAddr:	Libera IP address
 	Tango::DevDouble	currentK;
 	//	CurrentTimeOffset:	Time coefficient used in current computation
 	Tango::DevLong	currentTimeOffset;
-	
+
 
 //	Attribute data members
 public:
@@ -120,14 +147,14 @@ public:
 	 *	@param cl	Class.
 	 *	@param s 	Device Name
 	 */
-	LiberaSinglePathE(Tango::DeviceClass *cl,string &s);
+	LiberaSinglePassE(Tango::DeviceClass *cl,string &s);
 	/**
 	 * Constructs a newly allocated Command object.
 	 *
 	 *	@param cl	Class.
 	 *	@param s 	Device Name
 	 */
-	LiberaSinglePathE(Tango::DeviceClass *cl,const char *s);
+	LiberaSinglePassE(Tango::DeviceClass *cl,const char *s);
 	/**
 	 * Constructs a newly allocated Command object.
 	 *
@@ -135,11 +162,11 @@ public:
 	 *	@param s 	Device name
 	 *	@param d	Device description.
 	 */
-	LiberaSinglePathE(Tango::DeviceClass *cl,const char *s,const char *d);
+	LiberaSinglePassE(Tango::DeviceClass *cl,const char *s,const char *d);
 	/**
 	 * The object destructor.
-	 */	
-	~LiberaSinglePathE() {delete_device();};
+	 */
+	~LiberaSinglePassE() {delete_device();};
 
 
 
@@ -166,7 +193,7 @@ public:
 //	Attribute methods
 public:
 	/**
-	 *	Method      : LiberaSinglePathE::read_attr_hardware()
+	 *	Method      : LiberaSinglePassE::read_attr_hardware()
 	 *	Description : Hardware acquisition for attributes.
 	 */
 	virtual void read_attr_hardware(vector<long> &attr_list);
@@ -177,7 +204,7 @@ public:
 	 *	Description: The Libera box ADC buffer size (between 10 and 8192)
 	 *
 	 *	Data type:	Tango::DevLong
-	 *	Attr type:	Scalar 
+	 *	Attr type:	Scalar
 	 */
 	virtual void read_BufferSize(Tango::Attribute &attr);
 	virtual void write_BufferSize(Tango::WAttribute &attr);
@@ -190,7 +217,7 @@ public:
 	 *	Description: The analog channels level. This attribute allows the user to tune the analog channels\nattenuator. The input is an index within a lookup table in the Libera box
 	 *
 	 *	Data type:	Tango::DevLong
-	 *	Attr type:	Scalar 
+	 *	Attr type:	Scalar
 	 */
 	virtual void read_Level(Tango::Attribute &attr);
 	virtual void write_Level(Tango::WAttribute &attr);
@@ -203,7 +230,7 @@ public:
 	 *	Description: Trigger counter. Incremented at each trigger
 	 *
 	 *	Data type:	Tango::DevULong
-	 *	Attr type:	Scalar 
+	 *	Attr type:	Scalar
 	 */
 	virtual void read_TriggerCounter(Tango::Attribute &attr);
 	virtual bool is_TriggerCounter_allowed(Tango::AttReqType type);
@@ -215,7 +242,7 @@ public:
 	 *	Description: First fan speed
 	 *
 	 *	Data type:	Tango::DevUShort
-	 *	Attr type:	Scalar 
+	 *	Attr type:	Scalar
 	 */
 	virtual void read_Fan1Speed(Tango::Attribute &attr);
 	virtual bool is_Fan1Speed_allowed(Tango::AttReqType type);
@@ -227,7 +254,7 @@ public:
 	 *	Description: Second fan speed
 	 *
 	 *	Data type:	Tango::DevUShort
-	 *	Attr type:	Scalar 
+	 *	Attr type:	Scalar
 	 */
 	virtual void read_Fan2Speed(Tango::Attribute &attr);
 	virtual bool is_Fan2Speed_allowed(Tango::AttReqType type);
@@ -239,7 +266,7 @@ public:
 	 *	Description: The Libera box first temperature
 	 *
 	 *	Data type:	Tango::DevUShort
-	 *	Attr type:	Scalar 
+	 *	Attr type:	Scalar
 	 */
 	virtual void read_Temp1(Tango::Attribute &attr);
 	virtual bool is_Temp1_allowed(Tango::AttReqType type);
@@ -251,7 +278,7 @@ public:
 	 *	Description: The Libera box second temperature
 	 *
 	 *	Data type:	Tango::DevUShort
-	 *	Attr type:	Scalar 
+	 *	Attr type:	Scalar
 	 */
 	virtual void read_Temp2(Tango::Attribute &attr);
 	virtual bool is_Temp2_allowed(Tango::AttReqType type);
@@ -263,7 +290,7 @@ public:
 	 *	Description: The Libera box third temperature
 	 *
 	 *	Data type:	Tango::DevUShort
-	 *	Attr type:	Scalar 
+	 *	Attr type:	Scalar
 	 */
 	virtual void read_Temp3(Tango::Attribute &attr);
 	virtual bool is_Temp3_allowed(Tango::AttReqType type);
@@ -415,13 +442,13 @@ public:
 
 
 	/**
-	 *	Method      : LiberaSinglePathE::add_dynamic_attributes()
+	 *	Method      : LiberaSinglePassE::add_dynamic_attributes()
 	 *	Description : Add dynamic attributes if any.
 	 */
 		void add_dynamic_attributes();
 
 //	Command related methods
-public: 
+public:
 
 
 	/**
@@ -438,20 +465,34 @@ public:
 
 
 
-	/*----- PROTECTED REGION ID(LiberaSinglePathE::Additional Method prototypes) ENABLED START -----*/
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::Additional Method prototypes) ENABLED START -----*/
 
 	//	Additional Method prototypes
+protected:
+	mci::Node mci_AppRootNode;
+	mci::Node mci_PlatRootNode;
 
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePathE::Additional Method prototypes
+	/* Application daemon nodes */
+	mci::Node mci_TriggerCounterNode;
+
+	/* Platform daemon nodes */
+	mci::Node mci_LevelNode;
+	mci::Node mci_Temp1Node;
+	mci::Node mci_Temp2Node;
+	mci::Node mci_Temp3Node;
+	mci::Node mci_Fan1Node;
+	mci::Node mci_Fan2Node;
+
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::Additional Method prototypes
 
 };
 
-	/*----- PROTECTED REGION ID(LiberaSinglePathE::Additional Classes Definitions) ENABLED START -----*/
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::Additional Classes Definitions) ENABLED START -----*/
 
 	//	Additional Classes definitions
 
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePathE::Additional Classes Definitions
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::Additional Classes Definitions
 
 } //	namespace
 
-#endif	//	LIBERASINGLEPATHE_H
+#endif	//	LIBERASINGLEPASSE_H

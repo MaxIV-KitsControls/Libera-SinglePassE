@@ -1,4 +1,4 @@
-/*----- PROTECTED REGION ID(LiberaSinglePathEClass.cpp) ENABLED START -----*/
+/*----- PROTECTED REGION ID(LiberaSinglePassEClass.cpp) ENABLED START -----*/
 static const char *RcsId      = "$Id:  $";
 static const char *TagName    = "$Name:  $";
 static const char *CvsPath    = "$Source:  $";
@@ -6,14 +6,14 @@ static const char *SvnPath    = "$HeadURL:  $";
 static const char *HttpServer = "http://www.esrf.eu/computing/cs/tango/tango_doc/ds_doc/";
 //=============================================================================
 //
-// file :        LiberaSinglePathEClass.cpp
+// file :        LiberaSinglePassEClass.cpp
 //
-// description : C++ source for the LiberaSinglePathEClass. A singleton
+// description : C++ source for the LiberaSinglePassEClass. A singleton
 //               class derived from DeviceClass. It implements the
 //               command list and all properties and methods required
 //               by the «name» once per process.
 //
-// project :     Libera Brillance Single Pass.
+// project :     Libera Brillance Single Pass E.
 //
 // $Author:  $
 //
@@ -33,13 +33,13 @@ static const char *HttpServer = "http://www.esrf.eu/computing/cs/tango/tango_doc
 //=============================================================================
 
 
-#include <LiberaSinglePathEClass.h>
+#include <LiberaSinglePassEClass.h>
 
 /*----- PROTECTED REGION END -----*/
 
 //-------------------------------------------------------------------
 /**
- *	Create LiberaSinglePathEClass singleton and
+ *	Create LiberaSinglePassEClass singleton and
  *	return it in a C function for Python usage
  */
 //-------------------------------------------------------------------
@@ -50,55 +50,55 @@ __declspec(dllexport)
 
 #endif
 
-	Tango::DeviceClass *_create_LiberaSinglePathE_class(const char *name) {
-		return LiberaSinglePathE_ns::LiberaSinglePathEClass::init(name);
+	Tango::DeviceClass *_create_LiberaSinglePassE_class(const char *name) {
+		return LiberaSinglePassE_ns::LiberaSinglePassEClass::init(name);
 	}
 }
 
 
-namespace LiberaSinglePathE_ns
+namespace LiberaSinglePassE_ns
 {
 
 
 //===================================================================
 //	Initialize pointer for singleton pattern
 //===================================================================
-LiberaSinglePathEClass *LiberaSinglePathEClass::_instance = NULL;
+LiberaSinglePassEClass *LiberaSinglePassEClass::_instance = NULL;
 
 //--------------------------------------------------------
 /**
- * method : 		LiberaSinglePathEClass::LiberaSinglePathEClass(string &s)
- * description : 	constructor for the LiberaSinglePathEClass
+ * method : 		LiberaSinglePassEClass::LiberaSinglePassEClass(string &s)
+ * description : 	constructor for the LiberaSinglePassEClass
  *
  * @param s	The class name
  */
 //--------------------------------------------------------
-LiberaSinglePathEClass::LiberaSinglePathEClass(string &s):DeviceClass(s)
+LiberaSinglePassEClass::LiberaSinglePassEClass(string &s):DeviceClass(s)
 {
-	cout2 << "Entering LiberaSinglePathEClass constructor" << endl;
+	cout2 << "Entering LiberaSinglePassEClass constructor" << endl;
 	set_default_property();
 	get_class_property();
 	write_class_property();
 
-	/*----- PROTECTED REGION ID(LiberaSinglePathE::Class::constructor) ENABLED START -----*/
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::Class::constructor) ENABLED START -----*/
 
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePathE::Class::constructor
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::Class::constructor
 
-	cout2 << "Leaving LiberaSinglePathEClass constructor" << endl;
+	cout2 << "Leaving LiberaSinglePassEClass constructor" << endl;
 }
 
 
 //--------------------------------------------------------
 /**
- * method : 		LiberaSinglePathEClass::~LiberaSinglePathEClass()
- * description : 	destructor for the LiberaSinglePathEClass
+ * method : 		LiberaSinglePassEClass::~LiberaSinglePassEClass()
+ * description : 	destructor for the LiberaSinglePassEClass
  */
 //--------------------------------------------------------
-LiberaSinglePathEClass::~LiberaSinglePathEClass()
+LiberaSinglePassEClass::~LiberaSinglePassEClass()
 {
-	/*----- PROTECTED REGION ID(LiberaSinglePathE::Class::destructor) ENABLED START -----*/
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::Class::destructor) ENABLED START -----*/
 
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePathE::Class::destructor
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::Class::destructor
 
 	_instance = NULL;
 }
@@ -106,21 +106,21 @@ LiberaSinglePathEClass::~LiberaSinglePathEClass()
 
 //--------------------------------------------------------
 /**
- * method : 		LiberaSinglePathEClass::init
+ * method : 		LiberaSinglePassEClass::init
  * description : 	Create the object if not already done.
  *                  Otherwise, just return a pointer to the object
  *
  * @param	name	The class name
  */
 //--------------------------------------------------------
-LiberaSinglePathEClass *LiberaSinglePathEClass::init(const char *name)
+LiberaSinglePassEClass *LiberaSinglePassEClass::init(const char *name)
 {
 	if (_instance == NULL)
 	{
 		try
 		{
 			string s(name);
-			_instance = new LiberaSinglePathEClass(s);
+			_instance = new LiberaSinglePassEClass(s);
 		}
 		catch (bad_alloc)
 		{
@@ -132,12 +132,12 @@ LiberaSinglePathEClass *LiberaSinglePathEClass::init(const char *name)
 
 //--------------------------------------------------------
 /**
- * method : 		LiberaSinglePathEClass::instance
+ * method : 		LiberaSinglePassEClass::instance
  * description : 	Check if object already created,
  *                  and return a pointer to the object
  */
 //--------------------------------------------------------
-LiberaSinglePathEClass *LiberaSinglePathEClass::instance()
+LiberaSinglePassEClass *LiberaSinglePassEClass::instance()
 {
 	if (_instance == NULL)
 	{
@@ -169,7 +169,7 @@ CORBA::Any *ResetClass::execute(Tango::DeviceImpl *device, const CORBA::Any &in_
 	cout2 << "ResetClass::execute(): arrived" << endl;
 
 	
-	((static_cast<LiberaSinglePathE *>(device))->reset());
+	((static_cast<LiberaSinglePassE *>(device))->reset());
 	return new CORBA::Any();
 }
 //--------------------------------------------------------
@@ -188,7 +188,7 @@ CORBA::Any *ResetTriggerClass::execute(Tango::DeviceImpl *device, const CORBA::A
 	cout2 << "ResetTriggerClass::execute(): arrived" << endl;
 
 	
-	((static_cast<LiberaSinglePathE *>(device))->reset_trigger());
+	((static_cast<LiberaSinglePassE *>(device))->reset_trigger());
 	return new CORBA::Any();
 }
 
@@ -201,13 +201,13 @@ CORBA::Any *ResetTriggerClass::execute(Tango::DeviceImpl *device, const CORBA::A
 
 //--------------------------------------------------------
 /**
- * method : 		LiberaSinglePathEClass::get_class_property
+ * method : 		LiberaSinglePassEClass::get_class_property
  * description : 	Get the class property for specified name.
  *
  * @param	name  The property name
  */
 //--------------------------------------------------------
-Tango::DbDatum LiberaSinglePathEClass::get_class_property(string &prop_name)
+Tango::DbDatum LiberaSinglePassEClass::get_class_property(string &prop_name)
 {
 	for (unsigned int i=0 ; i<cl_prop.size() ; i++)
 		if (cl_prop[i].name == prop_name)
@@ -219,11 +219,11 @@ Tango::DbDatum LiberaSinglePathEClass::get_class_property(string &prop_name)
 
 //--------------------------------------------------------
 /**
- *	Method      : LiberaSinglePathE::LiberaSinglePathEClass::get_default_device_property()()
+ *	Method      : LiberaSinglePassE::LiberaSinglePassEClass::get_default_device_property()()
  *	Description : Return the default value for device property.
  */
 //--------------------------------------------------------
-Tango::DbDatum LiberaSinglePathEClass::get_default_device_property(string &prop_name)
+Tango::DbDatum LiberaSinglePassEClass::get_default_device_property(string &prop_name)
 {
 	for (unsigned int i=0 ; i<dev_def_prop.size() ; i++)
 		if (dev_def_prop[i].name == prop_name)
@@ -235,11 +235,11 @@ Tango::DbDatum LiberaSinglePathEClass::get_default_device_property(string &prop_
 
 //--------------------------------------------------------
 /**
- *	Method      : LiberaSinglePathE::LiberaSinglePathEClass::get_default_class_property()()
+ *	Method      : LiberaSinglePassE::LiberaSinglePassEClass::get_default_class_property()()
  *	Description : Return the default value for class property.
  */
 //--------------------------------------------------------
-Tango::DbDatum LiberaSinglePathEClass::get_default_class_property(string &prop_name)
+Tango::DbDatum LiberaSinglePassEClass::get_default_class_property(string &prop_name)
 {
 	for (unsigned int i=0 ; i<cl_def_prop.size() ; i++)
 		if (cl_def_prop[i].name == prop_name)
@@ -251,17 +251,17 @@ Tango::DbDatum LiberaSinglePathEClass::get_default_class_property(string &prop_n
 
 //--------------------------------------------------------
 /**
- *	Method      : LiberaSinglePathE::LiberaSinglePathEClass::get_class_property()
+ *	Method      : LiberaSinglePassE::LiberaSinglePassEClass::get_class_property()
  *	Description : //	Add your own code to initialize
  */
 //--------------------------------------------------------
-void LiberaSinglePathEClass::get_class_property()
+void LiberaSinglePassEClass::get_class_property()
 {
-	/*----- PROTECTED REGION ID(LiberaSinglePathE::Class::get_class_property_before) ENABLED START -----*/
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::Class::get_class_property_before) ENABLED START -----*/
 
 	//	Initialize class property data members
 
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePathE::Class::get_class_property_before
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::Class::get_class_property_before
 
 	//	Read class properties from database.
 	cl_prop.push_back(Tango::DbDatum("ServiceTaskSleep"));
@@ -301,25 +301,25 @@ void LiberaSinglePathEClass::get_class_property()
 		}
 	}
 
-	/*----- PROTECTED REGION ID(LiberaSinglePathE::Class::get_class_property_after) ENABLED START -----*/
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::Class::get_class_property_after) ENABLED START -----*/
 
 	//	Check class property data members init
 
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePathE::Class::get_class_property_after
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::Class::get_class_property_after
 
 }
 
 
 //--------------------------------------------------------
 /**
- *	Method      : LiberaSinglePathE::LiberaSinglePathEClass::set_default_property()
+ *	Method      : LiberaSinglePassE::LiberaSinglePassEClass::set_default_property()
  *	Description : Set default property (class and device) for wizard.
  *	              For each property, add to wizard property name and description.
  *	              If default value has been set, add it to wizard property and.
  *	              store it in a DbDatum.
  */
 //--------------------------------------------------------
-void LiberaSinglePathEClass::set_default_property()
+void LiberaSinglePassEClass::set_default_property()
 {
 	string	prop_name;
 	string	prop_desc;
@@ -505,11 +505,11 @@ void LiberaSinglePathEClass::set_default_property()
 
 //--------------------------------------------------------
 /**
- *	Method      : LiberaSinglePathE::LiberaSinglePathEClass::write_class_property()
+ *	Method      : LiberaSinglePassE::LiberaSinglePassEClass::write_class_property()
  *	Description : Set class description fields as property in database
  */
 //--------------------------------------------------------
-void LiberaSinglePathEClass::write_class_property()
+void LiberaSinglePassEClass::write_class_property()
 {
 	//	First time, check if database used
 	if (Tango::Util::_UseDb == false)
@@ -537,7 +537,7 @@ void LiberaSinglePathEClass::write_class_property()
 	data.push_back(description);
 		
 	//	put cvs or svn location
-	string	filename("LiberaSinglePathE");
+	string	filename("LiberaSinglePassE");
 	filename += "Class.cpp";
 	
 	// check for cvs information
@@ -654,27 +654,27 @@ void LiberaSinglePathEClass::write_class_property()
 
 //--------------------------------------------------------
 /**
- * method : 		LiberaSinglePathEClass::device_factory
+ * method : 		LiberaSinglePassEClass::device_factory
  * description : 	Create the device object(s)
  *                  and store them in the device list
  *
  * @param	*devlist_ptr	The device name list
  */
 //--------------------------------------------------------
-void LiberaSinglePathEClass::device_factory(const Tango::DevVarStringArray *devlist_ptr)
+void LiberaSinglePassEClass::device_factory(const Tango::DevVarStringArray *devlist_ptr)
 {
 
-	/*----- PROTECTED REGION ID(LiberaSinglePathE::Class::device_factory_before) ENABLED START -----*/
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::Class::device_factory_before) ENABLED START -----*/
 
 	//	Add your own code
 
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePathE::Class::device_factory_before
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::Class::device_factory_before
 
 	//	Create devices and add it into the device list
 	for (unsigned long i=0 ; i<devlist_ptr->length() ; i++)
 	{
 		cout4 << "Device name : " << (*devlist_ptr)[i].in() << endl;
-		device_list.push_back(new LiberaSinglePathE(this, (*devlist_ptr)[i]));							 
+		device_list.push_back(new LiberaSinglePassE(this, (*devlist_ptr)[i]));							 
 	}
 
 	//	Manage dynamic attributes if any
@@ -684,7 +684,7 @@ void LiberaSinglePathEClass::device_factory(const Tango::DevVarStringArray *devl
 	for (unsigned long i=1 ; i<=devlist_ptr->length() ; i++)
 	{
 		//	Add dynamic attributes if any
-		LiberaSinglePathE *dev = static_cast<LiberaSinglePathE *>(device_list[device_list.size()-i]);
+		LiberaSinglePassE *dev = static_cast<LiberaSinglePassE *>(device_list[device_list.size()-i]);
 		dev->add_dynamic_attributes();
 
 		//	Check before if database used.
@@ -694,11 +694,11 @@ void LiberaSinglePathEClass::device_factory(const Tango::DevVarStringArray *devl
 			export_device(dev, dev->get_name().c_str());
 	}
 
-	/*----- PROTECTED REGION ID(LiberaSinglePathE::Class::device_factory_after) ENABLED START -----*/
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::Class::device_factory_after) ENABLED START -----*/
 
 	//	Add your own code
 
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePathE::Class::device_factory_after
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::Class::device_factory_after
 
 	
 }
@@ -706,18 +706,18 @@ void LiberaSinglePathEClass::device_factory(const Tango::DevVarStringArray *devl
 
 //--------------------------------------------------------
 /**
- *	Method      : LiberaSinglePathE::LiberaSinglePathEClass::attribute_factory()
+ *	Method      : LiberaSinglePassE::LiberaSinglePassEClass::attribute_factory()
  *	Description : Create the attribute object(s)
  *	              and store them in the attribute list
  */
 //--------------------------------------------------------
-void LiberaSinglePathEClass::attribute_factory(vector<Tango::Attr *> &att_list)
+void LiberaSinglePassEClass::attribute_factory(vector<Tango::Attr *> &att_list)
 {
-	/*----- PROTECTED REGION ID(LiberaSinglePathE::Class::attribute_factory_before) ENABLED START -----*/
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::Class::attribute_factory_before) ENABLED START -----*/
 
 	//	Add your own code
 
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePathE::Class::attribute_factory_before
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::Class::attribute_factory_before
 
 
 	//	Attribute : BufferSize
@@ -1264,27 +1264,27 @@ void LiberaSinglePathEClass::attribute_factory(vector<Tango::Attr *> &att_list)
 	//	Create a list of static attributes
 	create_static_attribute_list(get_class_attr()->get_attr_list());
 
-	/*----- PROTECTED REGION ID(LiberaSinglePathE::Class::attribute_factory_after) ENABLED START -----*/
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::Class::attribute_factory_after) ENABLED START -----*/
 
 	//	Add your own code
 
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePathE::Class::attribute_factory_after
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::Class::attribute_factory_after
 
 }
 
 
 //--------------------------------------------------------
 /**
- *	Method      : LiberaSinglePathE::LiberaSinglePathEClass::command_factory()
+ *	Method      : LiberaSinglePassE::LiberaSinglePassEClass::command_factory()
  *	Description : Create the command object(s)
  *	              and store them in the command list
  */
 //--------------------------------------------------------
-void LiberaSinglePathEClass::command_factory()
+void LiberaSinglePassEClass::command_factory()
 {
-	/*----- PROTECTED REGION ID(LiberaSinglePathE::Class::command_factory_before) ENABLED START -----*/
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::Class::command_factory_before) ENABLED START -----*/
 
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePathE::Class::command_factory_before
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::Class::command_factory_before
 
 	ResetClass	*pResetCmd =
 		new ResetClass("Reset",
@@ -1301,9 +1301,9 @@ void LiberaSinglePathEClass::command_factory()
 			Tango::EXPERT);
 	command_list.push_back(pResetTriggerCmd);
 
-	/*----- PROTECTED REGION ID(LiberaSinglePathE::Class::command_factory_after) ENABLED START -----*/
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::Class::command_factory_after) ENABLED START -----*/
 
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePathE::Class::command_factory_after
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::Class::command_factory_after
 
 }
 
@@ -1317,13 +1317,13 @@ void LiberaSinglePathEClass::command_factory()
 
 //--------------------------------------------------------
 /**
- * method : 		LiberaSinglePathEClass::create_static_attribute_list
+ * method : 		LiberaSinglePassEClass::create_static_attribute_list
  * description : 	Create the a list of static attributes
  *
  * @param	att_list	the ceated attribute list 
  */
 //--------------------------------------------------------
-void LiberaSinglePathEClass::create_static_attribute_list(vector<Tango::Attr *> &att_list)
+void LiberaSinglePassEClass::create_static_attribute_list(vector<Tango::Attr *> &att_list)
 {
 	for (unsigned long i=0 ; i<att_list.size() ; i++)
 	{
@@ -1335,30 +1335,30 @@ void LiberaSinglePathEClass::create_static_attribute_list(vector<Tango::Attr *> 
 	cout2 << defaultAttList.size() << " attributes in default list" << endl;
 
 
-	/*----- PROTECTED REGION ID(LiberaSinglePathE::Class::create_static_att_list) ENABLED START -----*/
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::Class::create_static_att_list) ENABLED START -----*/
 
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePathE::Class::create_static_att_list
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::Class::create_static_att_list
 
 }
 
 
 //--------------------------------------------------------
 /**
- * method : 		LiberaSinglePathEClass::erase_dynamic_attributes
+ * method : 		LiberaSinglePassEClass::erase_dynamic_attributes
  * description : 	delete the dynamic attributes if any.
  *
  * @param	devlist_ptr	the device list pointer
  * @param	list of all attributes
  */
 //--------------------------------------------------------
-void LiberaSinglePathEClass::erase_dynamic_attributes(const Tango::DevVarStringArray *devlist_ptr, vector<Tango::Attr *> &att_list)
+void LiberaSinglePassEClass::erase_dynamic_attributes(const Tango::DevVarStringArray *devlist_ptr, vector<Tango::Attr *> &att_list)
 {
 	Tango::Util *tg = Tango::Util::instance();
 
 	for (unsigned long i=0 ; i<devlist_ptr->length() ; i++)
 	{	
 		Tango::DeviceImpl *dev_impl = tg->get_device_by_name(((string)(*devlist_ptr)[i]).c_str());
-		LiberaSinglePathE *dev = static_cast<LiberaSinglePathE *> (dev_impl);
+		LiberaSinglePassE *dev = static_cast<LiberaSinglePassE *> (dev_impl);
 		
 		vector<Tango::Attribute *> &dev_att_list = dev->get_device_attr()->get_attribute_list();
 		vector<Tango::Attribute *>::iterator ite_att;
@@ -1377,16 +1377,16 @@ void LiberaSinglePathEClass::erase_dynamic_attributes(const Tango::DevVarStringA
 			}
 		}
 	}
-	/*----- PROTECTED REGION ID(LiberaSinglePathE::Class::erase_dynamic_attributes) ENABLED START -----*/
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::Class::erase_dynamic_attributes) ENABLED START -----*/
 
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePathE::Class::erase_dynamic_attributes
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::Class::erase_dynamic_attributes
 
 }
 
 
 
-	/*----- PROTECTED REGION ID(LiberaSinglePathE::Class::Additional Methods) ENABLED START -----*/
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::Class::Additional Methods) ENABLED START -----*/
 
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePathE::Class::Additional Methods
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::Class::Additional Methods
 
 } //	namespace

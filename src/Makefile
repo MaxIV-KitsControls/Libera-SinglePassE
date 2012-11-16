@@ -1,4 +1,4 @@
-#PROTECTED REGION ID(LiberaSinglePathE::Makefile) ENABLED START#
+#PROTECTED REGION ID(LiberaSinglePassE::Makefile) ENABLED START#
 #=============================================================================
 #
 # file :        Makefile
@@ -27,7 +27,7 @@ MAKE_ENV = /usr/local/share/pogo/preferences
 #=============================================================================
 # PACKAGE_NAME is the name of the library/device/exe you want to build
 #
-PACKAGE_NAME = LiberaSinglePathE
+PACKAGE_NAME = LiberaSinglePassE
 MAJOR_VERS   = 1
 MINOR_VERS   = 0
 RELEASE      = Release_$(MAJOR_VERS)_$(MINOR_VERS)
@@ -59,14 +59,13 @@ OUTPUT_TYPE = DEVICE
 OUTPUT_DIR = ./bin/$(BIN_DIR)
 
 
-
 #=============================================================================
 # INC_DIR_USER is the list of all include path needed by your sources
 #   - for a device server, tango dependencies are automatically appended
 #   - '-I ../include' and '-I .' are automatically appended in all cases
 #
 #
-INC_DIR_USER= -I . 
+INC_DIR_USER+= -I . -I /usr/include/libera-2.6
 
 
 #=============================================================================
@@ -74,7 +73,7 @@ INC_DIR_USER= -I .
 #   - for a device server, tango libraries directories are automatically appended
 #   - '-L ../lib' is automatically appended in all cases
 #
-LIB_DIR_USER=
+LIB_DIR_USER+= -L /opt/libera/lib
 
 #=============================================================================
 # LFLAGS_USR is the list of user link flags
@@ -87,7 +86,7 @@ LIB_DIR_USER=
 # you must use '-lA -lB' in this order as link flags, otherwise you will get
 # 'undefined reference' errors
 #
-#LFLAGS_USR+=
+LFLAGS_USR+= -lliberamci2.6 -lliberainet2.6 -lliberaisig2.6 -lomniORB4 -lomnithread
 
 
 #=============================================================================
@@ -96,7 +95,7 @@ LIB_DIR_USER=
 #
 # -DACE_HAS_EXCEPTIONS -D__ACE_INLINE__ for ACE
 #
-#CXXFLAGS_USR+= -Wall
+CXXFLAGS_USR+= -Wall -O0 -ggdb3 -std=gnu++0x
 
 
 #=============================================================================

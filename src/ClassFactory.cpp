@@ -1,4 +1,4 @@
-/*----- PROTECTED REGION ID(LiberaSinglePathE::ClassFactory.cpp) ENABLED START -----*/
+/*----- PROTECTED REGION ID(LiberaSinglePassE::ClassFactory.cpp) ENABLED START -----*/
 static const char *RcsId = "$Id:  $";
 //=============================================================================
 //
@@ -9,7 +9,7 @@ static const char *RcsId = "$Id:  $";
 //               all class singleton for a device server. It is called
 //               at device server startup.
 //
-// project :     Libera Brillance Single Pass.
+// project :     Libera Brillance Single Pass E.
 //
 // $Author:  $
 //
@@ -30,20 +30,20 @@ static const char *RcsId = "$Id:  $";
 
 
 #include <tango.h>
-#include <LiberaSinglePathEClass.h>
+#include <LiberaSinglePassEClass.h>
 
 //	Add class header files if needed
 
 
 /**
- *	Create LiberaSinglePathE Class singleton and store it in DServer object.
+ *	Create LiberaSinglePassE Class singleton and store it in DServer object.
  */
 
 void Tango::DServer::class_factory()
 {
 	//	Add method class init if needed
 	
-	add_class(LiberaSinglePathE_ns::LiberaSinglePathEClass::init("LiberaSinglePathE"));
+	add_class(LiberaSinglePassE_ns::LiberaSinglePassEClass::init("LiberaSinglePassE"));
 }
 
 /*----- PROTECTED REGION END -----*/
