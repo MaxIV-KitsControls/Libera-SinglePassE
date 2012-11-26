@@ -32,6 +32,7 @@ static const char *RcsId = "$Id:  $";
 
 #include <LiberaSinglePassE.h>
 #include <LiberaSinglePassEClass.h>
+#include <LiberaSinglePassEDataTask.h>
 
 /*----- PROTECTED REGION END -----*/
 
@@ -56,6 +57,30 @@ static const char *RcsId = "$Id:  $";
 //  Reset         |  reset
 //  ResetTrigger  |  reset_trigger
 //================================================================
+//	Attributes managed are:
+//	BufferSize:
+//	Level:
+//	TriggerCounter:
+//	Fan1Speed:
+//	Fan2Speed:
+//	Temp1:
+//	Temp2:
+//	Temp3:
+//	Up:
+//	Down:
+//	Left:
+//	Right:
+//	UpT:
+//	DownT:
+//	LeftT:
+//	RightT:
+//	Zposition:
+//	Xposition:
+//	Current:
+//	SumT:
+
+
+
 
 namespace LiberaSinglePassE_ns
 {
@@ -173,16 +198,38 @@ LiberaSinglePassE::LiberaSinglePassE(Tango::DeviceClass *cl, const char *s, cons
 //--------------------------------------------------------
 void LiberaSinglePassE::delete_device()
 {
+	DEBUG_STREAM << "LiberaSinglePassE::delete_device() " << device_name << endl;
 	/*----- PROTECTED REGION ID(LiberaSinglePassE::delete_device) ENABLED START -----*/
-	DEBUG_STREAM << "LiberaSinglePassE::delete_device() delete device " << device_name << endl;
 
 	//	Delete device allocated objects
+
+	// Get rid of threads first
+	delete data_thread;
+	data_thread = NULL;
+
+	// Disconnect from MCI application daemon
+	try {
+		mci_application_root.Destroy();
+		mci::Disconnect(liberaIpAddr, mci::Root::Application);
+	} catch (istd::Exception &e) {
+		ERROR_STREAM_DS << "MCI application daemon disconnect failed: "
+				<< e.what() << endl;
+	}
+
+	// Disconnect from MCI platform daemon
+	try {
+		mci_platform_root.Destroy();
+		mci::Disconnect(liberaIpAddr, mci::Root::Platform);
+	} catch (istd::Exception &e) {
+		ERROR_STREAM_DS << "MCI platform daemon disconnect failed: "
+				<< e.what() << endl;
+	}
+
+	// Attributes
 	delete attr_BufferSize_read;
 	attr_BufferSize_read = NULL;
 	delete attr_Level_read;
 	attr_Level_read = NULL;
-	delete attr_TriggerCounter_read;
-	attr_TriggerCounter_read = NULL;
 	delete attr_Fan1Speed_read;
 	attr_Fan1Speed_read = NULL;
 	delete attr_Fan2Speed_read;
@@ -194,25 +241,37 @@ void LiberaSinglePassE::delete_device()
 	delete attr_Temp3_read;
 	attr_Temp3_read = NULL;
 
-	try {
-		mci_AppRootNode.Destroy();
-		mci::Disconnect(liberaIpAddr, mci::Root::Application);
-	} catch (istd::Exception &e) {
-		ERROR_STREAM << "LiberaSinglePassE::delete_device() failed disconnecting from MCI application host " << device_name << endl;
-	}
+	// Just reset attribute pointer
+	attr_TriggerCounter_read = NULL;
 
-	try {
-		mci_PlatRootNode.Destroy();
-		mci::Disconnect(liberaIpAddr, mci::Root::Platform);
-	} catch (istd::Exception &e) {
-		ERROR_STREAM << "LiberaSinglePassE::delete_device() failed disconnecting from MCI platform host " << device_name << endl;
-	}
-
-	// Set device state
-	set_state(Tango::UNKNOWN);
-	set_status("UNKNOWN");
+	// Get rid of the data buffers
+	delete [] attr_UpT_read;
+	attr_UpT_read = NULL;
+	delete [] attr_DownT_read;
+	attr_DownT_read = NULL;
+	delete [] attr_LeftT_read;
+	attr_LeftT_read = NULL;
+	delete [] attr_RightT_read;
+	attr_RightT_read = NULL;
+	delete [] attr_SumT_read;
+	attr_SumT_read = NULL;
+	delete [] attr_Zposition_read;
+	attr_Zposition_read = NULL;
+	delete [] attr_Xposition_read;
+	attr_Xposition_read = NULL;
+	delete [] attr_Current_read;
+	attr_Current_read = NULL;
+	delete [] attr_Up_read;
+	attr_Up_read = NULL;
+	delete [] attr_Down_read;
+	attr_Down_read = NULL;
+	delete [] attr_Left_read;
+	attr_Left_read = NULL;
+	delete [] attr_Right_read;
+	attr_Right_read = NULL;
 
 	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::delete_device
+
 
 }
 
@@ -227,65 +286,17 @@ void LiberaSinglePassE::init_device()
 {
 	DEBUG_STREAM << "LiberaSinglePassE::init_device() create device " << device_name << endl;
 
+
 	/*----- PROTECTED REGION ID(LiberaSinglePassE::init_device_before) ENABLED START -----*/
 
 	//	Initialization before get_device_property() call
 
-	/* Access application MCI daemon */
-	try {
-		mci_AppRootNode = mci::Connect(liberaIpAddr, mci::Root::Application);
-	} catch (istd::Exception &e){
-		ERROR_STREAM << "LiberaSinglePassE::init_device() failed connecting to MCI host " << liberaIpAddr << " TDS " << device_name << endl;
-		return;
-	}
-
-	/* Access platform MCI daemon */
-	try {
-		mci_PlatRootNode = mci::Connect(liberaIpAddr, mci::Root::Platform);
-	} catch (istd::Exception &e){
-		ERROR_STREAM << "LiberaSinglePassE::init_device() failed connecting to MCI host " << liberaIpAddr << " TDS " << device_name << endl;
-		return;
-	}
-
-	/* SPE application daemon MCI nodes */
-	try {
-		//TODO: mci_LevelNode = mci_AppRootNode.GetNode(mci::Tokenize("boards.rfspe4.attenuation.att_id"));
-
-	} catch (istd::Exception &e){
-		ERROR_STREAM << "LiberaSinglePassE::init_device() failed connecting to MCI nodes " << liberaIpAddr << " TDS " << device_name << endl;
-		return;
-	}
-
-	/* Platform daemon MCI nodes */
-	try {
-		mci_Fan1Node = mci_PlatRootNode.GetNode(mci::Tokenize("fans.left_front"));
-		mci_Fan2Node = mci_PlatRootNode.GetNode(mci::Tokenize("fans.right_front"));
-
-		mci_Temp1Node = mci_PlatRootNode.GetNode(mci::Tokenize("boards.icb0.sensors.ID_0.value"));
-		mci_Temp2Node = mci_PlatRootNode.GetNode(mci::Tokenize("boards.icb0.sensors.ID_1.value"));
-		mci_Temp3Node = mci_PlatRootNode.GetNode(mci::Tokenize("boards.icb0.sensors.ID_2.value"));
-	} catch (istd::Exception &e){
-		ERROR_STREAM << "LiberaSinglePassE::init_device() failed connecting to MCI nodes " << liberaIpAddr << " TDS " << device_name << endl;
-		return;
-	}
-
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::init_device_before
-
-	//	Get the device properties (if any) from database
-	get_device_property();
-
-
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::init_device) ENABLED START -----*/
-
-	//	Initialize device
+	//	Initialize attributes
 	attr_BufferSize_read = new Tango::DevLong(0);
 	CHECK_ALLOC(attr_BufferSize_read);
 
 	attr_Level_read = new Tango::DevLong(0);
 	CHECK_ALLOC(attr_Level_read);
-
-	attr_TriggerCounter_read = new Tango::DevULong(0);
-	CHECK_ALLOC(attr_TriggerCounter_read);
 
 	attr_Temp1_read = new Tango::DevUShort(0);
 	CHECK_ALLOC(attr_Temp1_read);
@@ -302,6 +313,65 @@ void LiberaSinglePassE::init_device()
 	attr_Fan2Speed_read = new Tango::DevUShort(0);
 	CHECK_ALLOC(attr_Fan2Speed_read);
 
+	attr_Up_read = new Tango::DevShort[MAX_BUF_SIZE];
+	CHECK_ALLOC(attr_Up_read)
+
+	attr_Down_read = new Tango::DevShort[MAX_BUF_SIZE];
+	CHECK_ALLOC(attr_Down_read)
+
+	attr_Left_read = new Tango::DevShort[MAX_BUF_SIZE];
+	CHECK_ALLOC(attr_Left_read)
+
+	attr_Right_read = new Tango::DevShort[MAX_BUF_SIZE];
+	CHECK_ALLOC(attr_Right_read)
+
+	attr_UpT_read = new Tango::DevDouble[MAX_BUF_SIZE];
+	CHECK_ALLOC(attr_UpT_read)
+
+	attr_DownT_read = new Tango::DevDouble[MAX_BUF_SIZE];
+	CHECK_ALLOC(attr_DownT_read)
+
+	attr_LeftT_read = new Tango::DevDouble[MAX_BUF_SIZE];
+	CHECK_ALLOC(attr_LeftT_read)
+
+	attr_RightT_read = new Tango::DevDouble[MAX_BUF_SIZE];
+	CHECK_ALLOC(attr_RightT_read)
+
+	attr_SumT_read = new Tango::DevDouble[MAX_BUF_SIZE];
+	CHECK_ALLOC(attr_SumT_read)
+
+	attr_Zposition_read = new Tango::DevDouble[MAX_BUF_SIZE];
+	CHECK_ALLOC(attr_Zposition_read)
+
+	attr_Xposition_read = new Tango::DevDouble[MAX_BUF_SIZE];
+	CHECK_ALLOC(attr_Xposition_read)
+
+	attr_Current_read = new Tango::DevDouble[MAX_CURRENT_BUF_SIZE];
+	CHECK_ALLOC(attr_Current_read)
+
+	// Attributes that have local storage
+	attr_TriggerCounter_read = &trig_ctr;
+
+	// Initialize variables
+	gettimeofday(&now, NULL);
+	heartbeat_sec = now.tv_sec;
+	trig_ctr = 0;
+	old_trig_ctr = 0;
+	*attr_BufferSize_read = 10;
+	data_thread = NULL;
+
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::init_device_before
+
+	//	Get the device properties (if any) from database
+	get_device_property();
+
+
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::init_device) ENABLED START -----*/
+
+	// Initialize variables that (might) rely on database value
+	computed_buf_size = *attr_BufferSize_read - POINTS_AVERAGING;
+	current_buf_size = (computed_buf_size - currentTimeOffset) / POINTS_PER_US;
+
 	// Set device state
 	set_state(Tango::ON);
 	set_status(ON_STATUS);
@@ -314,7 +384,7 @@ void LiberaSinglePassE::init_device()
 //--------------------------------------------------------
 /**
  *	Method      : LiberaSinglePassE::get_device_property()
- *	Description : //	Add your own code to initialize
+ *	Description : Read database to initialize property data members.
  */
 //--------------------------------------------------------
 void LiberaSinglePassE::get_device_property()
@@ -322,6 +392,13 @@ void LiberaSinglePassE::get_device_property()
 	/*----- PROTECTED REGION ID(LiberaSinglePassE::get_device_property_before) ENABLED START -----*/
 
 	//	Initialize property data members
+	liberaIpAddr = "127.0.0.1";
+	liberaBoard = "";
+
+	positionK = 0.0;
+	currentK = 0.0;
+	currentTimeOffset = -1;
+	beamThreshold = 0.0;
 
 	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::get_device_property_before
 
@@ -329,8 +406,7 @@ void LiberaSinglePassE::get_device_property()
 	//	Read device properties from database.
 	Tango::DbData	dev_prop;
 	dev_prop.push_back(Tango::DbDatum("LiberaIpAddr"));
-	dev_prop.push_back(Tango::DbDatum("LiberaMulticastIpAddr"));
-	dev_prop.push_back(Tango::DbDatum("LiberaPort"));
+	dev_prop.push_back(Tango::DbDatum("LiberaBoard"));
 	dev_prop.push_back(Tango::DbDatum("Location"));
 	dev_prop.push_back(Tango::DbDatum("ServiceTaskSleep"));
 	dev_prop.push_back(Tango::DbDatum("DataTaskHeartbeat"));
@@ -363,27 +439,16 @@ void LiberaSinglePassE::get_device_property()
 		//	And try to extract LiberaIpAddr value from database
 		if (dev_prop[i].is_empty()==false)	dev_prop[i]  >>  liberaIpAddr;
 
-		//	Try to initialize LiberaMulticastIpAddr from class property
+		//	Try to initialize LiberaBoard from class property
 		cl_prop = ds_class->get_class_property(dev_prop[++i].name);
-		if (cl_prop.is_empty()==false)	cl_prop  >>  liberaMulticastIpAddr;
+		if (cl_prop.is_empty()==false)	cl_prop  >>  liberaBoard;
 		else {
-			//	Try to initialize LiberaMulticastIpAddr from default device value
+			//	Try to initialize LiberaBoard from default device value
 			def_prop = ds_class->get_default_device_property(dev_prop[i].name);
-			if (def_prop.is_empty()==false)	def_prop  >>  liberaMulticastIpAddr;
+			if (def_prop.is_empty()==false)	def_prop  >>  liberaBoard;
 		}
-		//	And try to extract LiberaMulticastIpAddr value from database
-		if (dev_prop[i].is_empty()==false)	dev_prop[i]  >>  liberaMulticastIpAddr;
-
-		//	Try to initialize LiberaPort from class property
-		cl_prop = ds_class->get_class_property(dev_prop[++i].name);
-		if (cl_prop.is_empty()==false)	cl_prop  >>  liberaPort;
-		else {
-			//	Try to initialize LiberaPort from default device value
-			def_prop = ds_class->get_default_device_property(dev_prop[i].name);
-			if (def_prop.is_empty()==false)	def_prop  >>  liberaPort;
-		}
-		//	And try to extract LiberaPort value from database
-		if (dev_prop[i].is_empty()==false)	dev_prop[i]  >>  liberaPort;
+		//	And try to extract LiberaBoard value from database
+		if (dev_prop[i].is_empty()==false)	dev_prop[i]  >>  liberaBoard;
 
 		//	Try to initialize Location from class property
 		cl_prop = ds_class->get_class_property(dev_prop[++i].name);
@@ -468,9 +533,37 @@ void LiberaSinglePassE::get_device_property()
 
 	//	Check device property data members init
 
+	if (positionK == 0.0) {
+		cerr << "WARNING: Property PositionK for device " << get_name() << " not defined, default value of 1.0 taken!!" << endl;
+		positionK = 1.0;
+	}
+
+	if (currentK == 0.0) {
+		cerr << "WARNING: Property CurrentK for device " << get_name() << " not defined, default value of 1.0 taken!!" << endl;
+		currentK = 1.0;
+	}
+
+	if (currentTimeOffset == -1) {
+		cerr << "WARNING: Property CurrentTimeOffset for device " << get_name() << " not defined, default value of 0 taken!!" << endl;
+		currentTimeOffset = 0;
+	} else if (currentTimeOffset > (MAX_BUF_SIZE - POINTS_AVERAGING)) {
+		cerr << "ERROR: Value too high for CurrentTimeOffset property" << endl;
+		cerr << "Max possible value = " << MAX_BUF_SIZE - POINTS_AVERAGING << endl;
+   		Tango::Except::throw_exception ("LiberaSinglePassE_BadProperty",
+                                    	"Value too high for CurrentTimeOffset property. Max value = 8188",
+                                    	"LiberaSinglePassE::get_device_property");
+	}
+
+	if (beamThreshold == 0.0) {
+		cerr << "WARNING: Property BeamThreshold for device " << get_name() << " not defined, default value of 0.0 taken!!" << endl;
+		beamThreshold = 0.0;
+	}
+
+
 	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::get_device_property_after
 
 }
+
 
 //--------------------------------------------------------
 /**
@@ -481,12 +574,211 @@ void LiberaSinglePassE::get_device_property()
 void LiberaSinglePassE::always_executed_hook()
 {
 	INFO_STREAM << "LiberaSinglePassE::always_executed_hook()  " << device_name << endl;
+
 	/*----- PROTECTED REGION ID(LiberaSinglePassE::always_executed_hook) ENABLED START -----*/
 
 	//	code always executed before all requests
 
+	//if the user failed to specify libera board, connection is not possible
+	if (liberaBoard.size() == 0){
+		ERROR_STREAM_DS << "Libera board not specified. "<< endl;
+		// Set device FAULT state
+		set_state(Tango::FAULT);
+		set_status("liberaBoard property not specified.");
+		return;
+	}
+	//
+	// MCI application daemon connection check
+	//
+	bool app_connected = false;
+	bool app_reconnect = false;
+	try {
+		mci_application_root.GetFlags();
+		app_connected = true;
+		DEBUG_STREAM_DS << "MCI application daemon already connected!" <<  endl;
+	} catch (istd::Exception &e) {
+		ERROR_STREAM_DS << "MCI application daemon not connected!" <<  endl;
+
+		app_reconnect = true;
+	}
+
+	if (app_reconnect) {
+		app_connected = false;
+
+		// Get rid of data thread first
+		delete data_thread;
+		data_thread = NULL;
+
+		DEBUG_STREAM_DS << "forcing MCI application daemon disconnect" <<  endl;
+		// Disconnect from MCI application daemon
+		try {
+			mci_application_root.Destroy();
+			mci::Disconnect(liberaIpAddr, mci::Root::Application);
+		} catch (istd::Exception &e) {
+			ERROR_STREAM_DS << "MCI application daemon disconnect failed: "
+					<< e.what() << endl;
+		}
+
+		DEBUG_STREAM_DS << "trying to connect MCI to application daemon" <<  endl;
+		// Connect to MCI application daemon
+		try {
+			mci_application_root = mci::Connect(liberaIpAddr, mci::Root::Application);
+			mci_application_root.GetFlags();
+			app_connected = true;
+			DEBUG_STREAM_DS << "MCI application daemon re-connected!" <<  endl;
+
+			//creating a map of level enumerations after each connection, in case of changes
+
+			std::string brds="boards.";
+			std::string part_node1=".attenuation.gain_table.";
+			std::string gt="gt_";
+			std::string all_node=brds+liberaBoard+part_node1+gt;
+			std::string part_node2=".dB";
+			int lv=0;
+			while(lv<32){
+
+				stringstream ss;
+				ss << lv;
+				std::string levl = ss.str();
+				std::string all=all_node+levl+part_node2;
+				mci_level_gt=mci_application_root.GetNode(mci::Tokenize(all));
+				uint32_t db;
+				mci_level_gt.Get(db);
+				std::string s=gt+levl;
+				level_enumeration[db]=s;
+				lv=lv+1;
+			}
+
+		} catch (istd::Exception &e){
+			ERROR_STREAM_DS << "MCI application daemon connect failed: "
+					<< e.what() << endl;
+		}
+
+		// Did connection succeed?
+		if (app_connected) {
+			DEBUG_STREAM_DS << "connected to MCI application daemon" <<  endl;
+
+			// Connect MCI application daemon nodes
+			try {
+				std::string board="boards.";
+
+				std::string levelS=".attenuation.att_id";
+				std::string mci_LevelSNodeString=board+liberaBoard+levelS;
+				mci_LevelNodeSet = mci_application_root.GetNode(mci::Tokenize(mci_LevelSNodeString));
+
+				std::string adc_signal=".signals.adc";
+				std::string mci_adc_signalNodeString=board+liberaBoard+adc_signal;
+				mci_adc_signal = mci_application_root.GetNode(mci::Tokenize(mci_adc_signalNodeString));
+
+				std::string adc_max=".signals.max_adc";
+				std::string mci_adc_maxNodeString=board+liberaBoard+adc_max;
+				mci_adc_max = mci_application_root.GetNode(mci::Tokenize(mci_adc_maxNodeString));
+
+				DEBUG_STREAM_DS << "connected MCI application daemon nodes" <<  endl;
+			} catch (istd::Exception &e){
+				ERROR_STREAM_DS << "MCI application nodes connect failed: "
+						<< e.what() << endl;
+			}
+
+			DEBUG_STREAM_DS << "starting ADC data acquisition task" <<  endl;
+			// Create MCI ADC data acquisition task
+			assert(data_thread == NULL);
+			try {
+				data_thread = new LiberaSinglePassEDataTask(this, mci_adc_signal, dataTaskHeartbeat);
+		  	} catch(...) {
+		  		Tango::Except::throw_exception ("LiberaSinglePassE_CantStartDataTask",
+		                                    	"Can't create the device data task",
+		 	                                  	"LiberaSinglePassE::always_executed_hook()");
+			}
+			assert(data_thread != NULL);
+		}
+	}
+
+	//
+	// MCI platform daemon connection check
+	//
+	bool plat_connected = false;
+	bool plat_reconnect = false;
+	try {
+		mci_platform_root.GetFlags();
+		plat_connected = true;
+		DEBUG_STREAM_DS << "MCI platform daemon already connected!" <<  endl;
+	} catch (istd::Exception &e) {
+		ERROR_STREAM_DS << "MCI platform daemon not connected!" <<  endl;
+
+		plat_reconnect = true;
+	}
+
+	if (plat_reconnect) {
+		plat_connected = false;
+
+		DEBUG_STREAM_DS << "forcing MCI platform daemon disconnect" <<  endl;
+		// Disconnect from MCI platform daemon
+		try {
+			mci_platform_root.Destroy();
+			mci::Disconnect(liberaIpAddr, mci::Root::Platform);
+		} catch (istd::Exception &e) {
+			ERROR_STREAM_DS << "MCI platform daemon disconnect failed: "
+					<< e.what() << endl;
+		}
+
+		DEBUG_STREAM_DS << "trying to connect MCI to platform daemon" <<  endl;
+		// Connect to MCI platform daemon
+		try {
+			mci_platform_root = mci::Connect(liberaIpAddr, mci::Root::Platform);
+			mci_platform_root.GetFlags();
+			plat_connected = true;
+			DEBUG_STREAM_DS << "MCI platform daemon re-connected!" <<  endl;
+		} catch (istd::Exception &e){
+			ERROR_STREAM_DS << "MCI platform daemon connect failed: "
+					<< e.what() << endl;
+		}
+
+		// Did connection succeed?
+		if (plat_connected) {
+			DEBUG_STREAM_DS << "connected to MCI platform daemon" <<  endl;
+
+			// Connect MCI platform daemon nodes
+			try {
+				mci_fan_left_front = mci_platform_root.GetNode(mci::Tokenize("fans.left_front"));
+				mci_fan_left_middle = mci_platform_root.GetNode(mci::Tokenize("fans.left_middle"));
+				mci_fan_left_rear = mci_platform_root.GetNode(mci::Tokenize("fans.left_rear"));
+
+				mci_fan_right_front = mci_platform_root.GetNode(mci::Tokenize("fans.right_front"));
+				mci_fan_right_middle = mci_platform_root.GetNode(mci::Tokenize("fans.right_middle"));
+				mci_fan_right_rear = mci_platform_root.GetNode(mci::Tokenize("fans.right_rear"));
+
+
+				mci_temp1 = mci_platform_root.GetNode(mci::Tokenize("boards.icb0.sensors.ID_0.value"));
+				mci_temp2 = mci_platform_root.GetNode(mci::Tokenize("boards.icb0.sensors.ID_1.value"));
+				mci_temp3 = mci_platform_root.GetNode(mci::Tokenize("boards.icb0.sensors.ID_2.value"));
+
+				DEBUG_STREAM_DS << "connected MCI platform daemon nodes" <<  endl;
+			} catch (istd::Exception &e){
+				ERROR_STREAM_DS << "MCI platform nodes connect failed: "
+						<< e.what() << endl;
+			}
+		}
+	}
+
+	if (app_connected && plat_connected) {
+		// Set device ON state
+		set_state(Tango::ON);
+		set_status(ON_STATUS);
+	} else {
+		// Set device FAULT state
+		set_state(Tango::FAULT);
+		if (! app_connected) {
+			set_status("Not connected to Libera MCI application daemon");
+		}
+		if (! plat_connected) {
+			set_status("Not connected to Libera MCI platform daemon");
+		}
+	}
+
 	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::always_executed_hook
 }
+
 
 
 
@@ -496,12 +788,27 @@ void LiberaSinglePassE::always_executed_hook()
  *	Description : Hardware acquisition for attributes.
  */
 //--------------------------------------------------------
-void LiberaSinglePassE::read_attr_hardware(vector<long> &attr_list)
+void LiberaSinglePassE::read_attr_hardware(TANGO_UNUSED(vector<long> &attr_list))
 {
 	DEBUG_STREAM << "LiberaSinglePassE::read_attr_hardware(vector<long> &attr_list) entering... " << endl;
 	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_attr_hardware) ENABLED START -----*/
 
 	//	Add your own code
+
+	//
+	// Compute attributes from raw ADC data
+	//
+
+	struct timeval start, stop;
+
+	gettimeofday(&start,NULL);
+	if ((trig_ctr != old_trig_ctr) && (*attr_BufferSize_read >= MIN_POINTS)) {
+		compute();
+		old_trig_ctr = trig_ctr;
+	}
+	gettimeofday(&stop,NULL);
+	float diff = (stop.tv_sec - start.tv_sec) + ((stop.tv_usec - start.tv_usec) / 1000000.0);
+ 	INFO_STREAM << "LiberaSinglePassE::read_attr_hardware(vector<long> &attr_list) Attribute computation took "<< diff << " sec"  << endl;
 
 	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_attr_hardware
 
@@ -543,10 +850,16 @@ void LiberaSinglePassE::write_BufferSize(Tango::WAttribute &attr)
 	//	Retrieve write value
 	Tango::DevLong	w_val;
 	attr.get_write_value(w_val);
-	*attr_BufferSize_read = w_val;
 
 	/*----- PROTECTED REGION ID(LiberaSinglePassE::write_BufferSize) ENABLED START -----*/
 
+	// Set the value of the attribute
+	*attr_BufferSize_read = w_val;
+
+	// Notify task that value has changed
+	if (data_thread) {
+		data_thread->mci_set_buffer_size(attr_BufferSize_read);
+	}
 
 
 	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::write_BufferSize
@@ -555,7 +868,8 @@ void LiberaSinglePassE::write_BufferSize(Tango::WAttribute &attr)
 //--------------------------------------------------------
 /**
  *	Read Level attribute
- *	Description: The analog channels level. This attribute allows the user to tune the analog channels\nattenuator. The input is an index within a lookup table in the Libera box
+ *	Description: The analog channels level. This attribute allows the user to tune the analog channels
+ *	             attenuator. The input is an index within a lookup table in the Libera box
  *
  *	Data type:	Tango::DevLong
  *	Attr type:	Scalar
@@ -565,6 +879,24 @@ void LiberaSinglePassE::read_Level(Tango::Attribute &attr)
 {
 	DEBUG_STREAM << "LiberaSinglePassE::read_Level(Tango::Attribute &attr) entering... " << endl;
 	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_Level) ENABLED START -----*/
+
+
+	try {
+			std::string board="boards.";
+			std::string level_enum;
+			mci_LevelNodeSet.Get(level_enum);
+			std::string levelG=".attenuation.gain_table.";
+			std::string dB=".dB";
+			std::string mci_LevelGNodeString=board+liberaBoard+levelG+level_enum+dB;
+			mci_LevelNodeGet = mci_application_root.GetNode(mci::Tokenize(mci_LevelGNodeString));
+			uint32_t v;
+			mci_LevelNodeGet.Get(v);
+			*attr_Level_read = static_cast<Tango::DevLong>(v);
+		} catch (istd::Exception &e) {
+			ERROR_STREAM << "LiberaSinglePassE::attr_Level_read failed get value " << device_name << endl;
+			return;
+		}
+
 
 	//	Set the attribute value
 	attr.set_value(attr_Level_read);
@@ -590,7 +922,15 @@ void LiberaSinglePassE::write_Level(Tango::WAttribute &attr)
 
 	/*----- PROTECTED REGION ID(LiberaSinglePassE::write_Level) ENABLED START -----*/
 
-
+	try{
+		*attr_Level_read=w_val;
+		uint32_t val=static_cast<uint32_t>(w_val);
+		std::string set=level_enumeration[val];
+		mci_LevelNodeSet.Set(set);
+		}catch(istd::Exception &e){
+			ERROR_STREAM << "MCI ERROR caught : " << e.what() << endl;
+			return;
+		}
 
 	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::write_Level
 }
@@ -614,6 +954,7 @@ void LiberaSinglePassE::read_TriggerCounter(Tango::Attribute &attr)
 
 	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_TriggerCounter
 }
+
 //--------------------------------------------------------
 /**
  *	Read Fan1Speed attribute
@@ -629,8 +970,15 @@ void LiberaSinglePassE::read_Fan1Speed(Tango::Attribute &attr)
 	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_Fan1Speed) ENABLED START -----*/
 
 	try {
+		double v1;
+		double v2;
+		double v3;
 		double v;
-		mci_Fan1Node.Get(v);
+		mci_fan_left_front.Get(v1);
+		mci_fan_left_rear.Get(v2);
+		mci_fan_left_middle.Get(v3);
+		// get the average speed value of all three left fans
+		v = (v1 + v2 + v3) / 3;
 		*attr_Fan1Speed_read = static_cast<Tango::DevUShort>(v);
 	} catch (istd::Exception &e) {
 		ERROR_STREAM << "LiberaSinglePassE::read_Fan1Speed() failed get value " << device_name << endl;
@@ -642,6 +990,7 @@ void LiberaSinglePassE::read_Fan1Speed(Tango::Attribute &attr)
 
 	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_Fan1Speed
 }
+
 //--------------------------------------------------------
 /**
  *	Read Fan2Speed attribute
@@ -657,8 +1006,15 @@ void LiberaSinglePassE::read_Fan2Speed(Tango::Attribute &attr)
 	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_Fan2Speed) ENABLED START -----*/
 
 	try {
+		double v1;
+		double v2;
+		double v3;
 		double v;
-		mci_Fan2Node.Get(v);
+		mci_fan_right_front.Get(v1);
+		mci_fan_right_rear.Get(v2);
+		mci_fan_right_middle.Get(v3);
+		// get the average speed value of all three right fans
+		v = (v1 + v2 + v3) / 3;
 		*attr_Fan2Speed_read = static_cast<Tango::DevUShort>(v);
 	} catch (istd::Exception &e) {
 		ERROR_STREAM << "LiberaSinglePassE::read_Fan2Speed() failed get value " << device_name << endl;
@@ -670,6 +1026,7 @@ void LiberaSinglePassE::read_Fan2Speed(Tango::Attribute &attr)
 
 	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_Fan2Speed
 }
+
 //--------------------------------------------------------
 /**
  *	Read Temp1 attribute
@@ -686,7 +1043,7 @@ void LiberaSinglePassE::read_Temp1(Tango::Attribute &attr)
 
 	try {
 		double v;
-		mci_Temp1Node.Get(v);
+		mci_temp1.Get(v);
 		*attr_Temp1_read = static_cast<Tango::DevUShort>(v);
 	} catch (istd::Exception &e) {
 		ERROR_STREAM << "LiberaSinglePassE::read_Temp1() failed get value " << device_name << endl;
@@ -698,6 +1055,7 @@ void LiberaSinglePassE::read_Temp1(Tango::Attribute &attr)
 
 	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_Temp1
 }
+
 //--------------------------------------------------------
 /**
  *	Read Temp2 attribute
@@ -714,7 +1072,7 @@ void LiberaSinglePassE::read_Temp2(Tango::Attribute &attr)
 
 	try {
 		double v;
-		mci_Temp2Node.Get(v);
+		mci_temp2.Get(v);
 		*attr_Temp2_read = static_cast<Tango::DevUShort>(v);
 	} catch (istd::Exception &e) {
 		ERROR_STREAM << "LiberaSinglePassE::read_Temp2() failed get value " << device_name << endl;
@@ -726,6 +1084,7 @@ void LiberaSinglePassE::read_Temp2(Tango::Attribute &attr)
 
 	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_Temp2
 }
+
 //--------------------------------------------------------
 /**
  *	Read Temp3 attribute
@@ -742,7 +1101,7 @@ void LiberaSinglePassE::read_Temp3(Tango::Attribute &attr)
 
 	try {
 		double v;
-		mci_Temp3Node.Get(v);
+		mci_temp3.Get(v);
 		*attr_Temp3_read = static_cast<Tango::DevUShort>(v);
 	} catch (istd::Exception &e) {
 		ERROR_STREAM << "LiberaSinglePassE::read_Temp3() failed get value " << device_name << endl;
@@ -754,6 +1113,7 @@ void LiberaSinglePassE::read_Temp3(Tango::Attribute &attr)
 
 	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_Temp3
 }
+
 //--------------------------------------------------------
 /**
  *	Read Up attribute
@@ -769,10 +1129,11 @@ void LiberaSinglePassE::read_Up(Tango::Attribute &attr)
 	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_Up) ENABLED START -----*/
 
 	//	Set the attribute value
-	attr.set_value(attr_Up_read, 10000);
+	attr.set_value(attr_Up_read, *attr_BufferSize_read);
 
 	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_Up
 }
+
 //--------------------------------------------------------
 /**
  *	Read Down attribute
@@ -788,10 +1149,11 @@ void LiberaSinglePassE::read_Down(Tango::Attribute &attr)
 	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_Down) ENABLED START -----*/
 
 	//	Set the attribute value
-	attr.set_value(attr_Down_read, 10000);
+	attr.set_value(attr_Down_read, *attr_BufferSize_read);
 
 	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_Down
 }
+
 //--------------------------------------------------------
 /**
  *	Read Left attribute
@@ -807,10 +1169,11 @@ void LiberaSinglePassE::read_Left(Tango::Attribute &attr)
 	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_Left) ENABLED START -----*/
 
 	//	Set the attribute value
-	attr.set_value(attr_Left_read, 10000);
+	attr.set_value(attr_Left_read, *attr_BufferSize_read);
 
 	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_Left
 }
+
 //--------------------------------------------------------
 /**
  *	Read Right attribute
@@ -826,10 +1189,11 @@ void LiberaSinglePassE::read_Right(Tango::Attribute &attr)
 	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_Right) ENABLED START -----*/
 
 	//	Set the attribute value
-	attr.set_value(attr_Right_read, 10000);
+	attr.set_value(attr_Right_read, *attr_BufferSize_read);
 
 	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_Right
 }
+
 //--------------------------------------------------------
 /**
  *	Read UpT attribute
@@ -844,11 +1208,18 @@ void LiberaSinglePassE::read_UpT(Tango::Attribute &attr)
 	DEBUG_STREAM << "LiberaSinglePassE::read_UpT(Tango::Attribute &attr) entering... " << endl;
 	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_UpT) ENABLED START -----*/
 
+	if (*attr_BufferSize_read < MIN_POINTS) {
+    	Tango::Except::throw_exception ("LiberaSinglePassE_NotEnoughtPoints",
+                                    	"Not enought points read from Libera box",
+                                    	"LiberaSinglePassE::read_UpT");
+	}
+
 	//	Set the attribute value
-	attr.set_value(attr_UpT_read, 10000);
+	attr.set_value(attr_UpT_read, computed_buf_size);
 
 	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_UpT
 }
+
 //--------------------------------------------------------
 /**
  *	Read DownT attribute
@@ -863,11 +1234,18 @@ void LiberaSinglePassE::read_DownT(Tango::Attribute &attr)
 	DEBUG_STREAM << "LiberaSinglePassE::read_DownT(Tango::Attribute &attr) entering... " << endl;
 	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_DownT) ENABLED START -----*/
 
+	if (*attr_BufferSize_read < MIN_POINTS) {
+    	Tango::Except::throw_exception ("LiberaSinglePassE_NotEnoughtPoints",
+                                    	"Not enought points read from Libera box",
+                                    	"LiberaSinglePassE::read_DownT");
+	}
+
 	//	Set the attribute value
-	attr.set_value(attr_DownT_read, 10000);
+	attr.set_value(attr_DownT_read, computed_buf_size);
 
 	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_DownT
 }
+
 //--------------------------------------------------------
 /**
  *	Read LeftT attribute
@@ -882,11 +1260,18 @@ void LiberaSinglePassE::read_LeftT(Tango::Attribute &attr)
 	DEBUG_STREAM << "LiberaSinglePassE::read_LeftT(Tango::Attribute &attr) entering... " << endl;
 	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_LeftT) ENABLED START -----*/
 
+	if (*attr_BufferSize_read < MIN_POINTS) {
+    	Tango::Except::throw_exception ("LiberaSinglePassE_NotEnoughtPoints",
+                                    	"Not enought points read from Libera box",
+                                    	"LiberaSinglePassE::read_LeftT");
+	}
+
 	//	Set the attribute value
-	attr.set_value(attr_LeftT_read, 10000);
+	attr.set_value(attr_LeftT_read, computed_buf_size);
 
 	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_LeftT
 }
+
 //--------------------------------------------------------
 /**
  *	Read RightT attribute
@@ -901,11 +1286,18 @@ void LiberaSinglePassE::read_RightT(Tango::Attribute &attr)
 	DEBUG_STREAM << "LiberaSinglePassE::read_RightT(Tango::Attribute &attr) entering... " << endl;
 	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_RightT) ENABLED START -----*/
 
+	if (*attr_BufferSize_read < MIN_POINTS) {
+    	Tango::Except::throw_exception ("LiberaSinglePassE_NotEnoughtPoints",
+                                    	"Not enought points read from Libera box",
+                                    	"LiberaSinglePassE::read_RightT");
+	}
+
 	//	Set the attribute value
-	attr.set_value(attr_RightT_read, 10000);
+	attr.set_value(attr_RightT_read, computed_buf_size);
 
 	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_RightT
 }
+
 //--------------------------------------------------------
 /**
  *	Read Zposition attribute
@@ -920,11 +1312,18 @@ void LiberaSinglePassE::read_Zposition(Tango::Attribute &attr)
 	DEBUG_STREAM << "LiberaSinglePassE::read_Zposition(Tango::Attribute &attr) entering... " << endl;
 	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_Zposition) ENABLED START -----*/
 
+	if (*attr_BufferSize_read < MIN_POINTS) {
+    	Tango::Except::throw_exception ("LiberaSinglePassE_NotEnoughtPoints",
+                                    	"Not enought points read from Libera box",
+                                    	"LiberaSinglePassE::read_Zposition");
+	}
+
 	//	Set the attribute value
-	attr.set_value(attr_Zposition_read, 10000);
+	attr.set_value(attr_Zposition_read, computed_buf_size);
 
 	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_Zposition
 }
+
 //--------------------------------------------------------
 /**
  *	Read Xposition attribute
@@ -939,11 +1338,18 @@ void LiberaSinglePassE::read_Xposition(Tango::Attribute &attr)
 	DEBUG_STREAM << "LiberaSinglePassE::read_Xposition(Tango::Attribute &attr) entering... " << endl;
 	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_Xposition) ENABLED START -----*/
 
+	if (*attr_BufferSize_read < MIN_POINTS) {
+    	Tango::Except::throw_exception ("LiberaSinglePassE_NotEnoughtPoints",
+                                    	"Not enought points read from Libera box",
+                                    	"LiberaSinglePassE::read_Xposition");
+	}
+
 	//	Set the attribute value
-	attr.set_value(attr_Xposition_read, 10000);
+	attr.set_value(attr_Xposition_read, computed_buf_size);
 
 	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_Xposition
 }
+
 //--------------------------------------------------------
 /**
  *	Read Current attribute
@@ -958,11 +1364,18 @@ void LiberaSinglePassE::read_Current(Tango::Attribute &attr)
 	DEBUG_STREAM << "LiberaSinglePassE::read_Current(Tango::Attribute &attr) entering... " << endl;
 	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_Current) ENABLED START -----*/
 
+	if (*attr_BufferSize_read < MIN_POINTS) {
+    	Tango::Except::throw_exception ("LiberaSinglePassE_NotEnoughtPoints",
+                                    	"Not enought points read from Libera box",
+                                    	"LiberaSinglePassE::read_Current");
+	}
+
 	//	Set the attribute value
-	attr.set_value(attr_Current_read, 100);
+	attr.set_value(attr_Current_read, current_buf_size);
 
 	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_Current
 }
+
 //--------------------------------------------------------
 /**
  *	Read SumT attribute
@@ -977,27 +1390,35 @@ void LiberaSinglePassE::read_SumT(Tango::Attribute &attr)
 	DEBUG_STREAM << "LiberaSinglePassE::read_SumT(Tango::Attribute &attr) entering... " << endl;
 	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_SumT) ENABLED START -----*/
 
+	if (*attr_BufferSize_read < MIN_POINTS) {
+    	Tango::Except::throw_exception ("LiberaSinglePassE_NotEnoughtPoints",
+                                    	"Not enought points read from Libera box",
+                                    	"LiberaSinglePassE::read_SumT");
+	}
+
 	//	Set the attribute value
-	attr.set_value(attr_SumT_read, 10000);
+	attr.set_value(attr_SumT_read, computed_buf_size);
 
 	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_SumT
 }
 
+
+
 //--------------------------------------------------------
 /**
- *	Method      : LiberaSinglePassE::LiberaSinglePassEClass::add_dynamic_attributes()
- *	Description : Create the dynamic attributes if any
+ *	Method      : LiberaSinglePassE::add_dynamic_attributes()
+ *	Description : Create the dynamic attributes if any at server startup
  *	              for specified device.
  */
 //--------------------------------------------------------
 void LiberaSinglePassE::add_dynamic_attributes()
 {
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::Class::add_dynamic_attributes) ENABLED START -----*/
+
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::add_dynamic_attributes) ENABLED START -----*/
 
 	//	Add your own code to create and add dynamic attributes if any
 
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::Class::add_dynamic_attributes
-
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::add_dynamic_attributes()
 }
 
 
@@ -1021,6 +1442,8 @@ void LiberaSinglePassE::reset()
 	/*----- PROTECTED REGION ID(LiberaSinglePassE::reset) ENABLED START -----*/
 
 	//	Add your own code
+	set_state(Tango::ON);
+	set_status(ON_STATUS);
 
 	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::reset
 
@@ -1041,6 +1464,7 @@ void LiberaSinglePassE::reset_trigger()
 	/*----- PROTECTED REGION ID(LiberaSinglePassE::reset_trigger) ENABLED START -----*/
 
 	//	Add your own code
+	*attr_TriggerCounter_read=0;
 
 	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::reset_trigger
 
@@ -1050,6 +1474,142 @@ void LiberaSinglePassE::reset_trigger()
 	/*----- PROTECTED REGION ID(LiberaSinglePassE::namespace_ending) ENABLED START -----*/
 
 	//	Additional Methods
+
+//+----------------------------------------------------------------------------
+//
+// method : 		LiberaSinglePassE::compute
+//
+// description : 	Compute the computed attributes:
+//					UpT, DownT, LeftT, RightT
+//					X and Z position
+//					Current
+//
+//-----------------------------------------------------------------------------
+void LiberaSinglePassE::compute()
+{
+//
+// Computed attribute size
+//
+
+	computed_buf_size = *attr_BufferSize_read - POINTS_AVERAGING;
+
+//
+// Compute xxxT attributes
+//
+
+	compute_T_attr(attr_Up_read, attr_UpT_read);
+	compute_T_attr(attr_Down_read, attr_DownT_read);
+	compute_T_attr(attr_Left_read, attr_LeftT_read);
+	compute_T_attr(attr_Right_read, attr_RightT_read);
+
+//
+// Compute data sum
+//
+
+	int loop;
+	for (loop = 0; loop < computed_buf_size; loop++) {
+		attr_SumT_read[loop] = attr_UpT_read[loop] + \
+				attr_DownT_read[loop] + \
+				attr_LeftT_read[loop] + \
+				attr_RightT_read[loop];
+	}
+
+//
+// Compute positions
+//
+
+	compute_pos_attr();
+
+//
+// Compute current attribute
+//
+
+	compute_current_attr();
+
+}
+
+//+----------------------------------------------------------------------------
+//
+// method : 		LiberaSinglePassE::compute_T_attr
+//
+// description : Compute one xxxT attribute
+//
+// in : - raw_data: The read raw data
+//		- comp_data: Buffer where the computed data must be stored
+//
+//-----------------------------------------------------------------------------
+void LiberaSinglePassE::compute_T_attr(Tango::DevShort *raw_data,Tango::DevDouble *comp_data)
+{
+	//when calculating num, the sum of squares can be larger than Long data type
+	Tango::DevDouble square[MAX_BUF_SIZE];
+	int loop;
+
+	for (loop = 0; loop < *attr_BufferSize_read; loop++) {
+		square[loop] = raw_data[loop] * raw_data[loop];
+	}
+
+	for (loop = 0; loop < computed_buf_size; loop++) {
+		Tango::DevDouble num = Tango::DevDouble(square[loop] + \
+			2 * (square[loop + 1] + square[loop + 2] + \
+				square[loop + 3]) + square[loop + 4]);
+		comp_data[loop] = sqrt(num / 8.0);
+	}
+}
+
+
+//+----------------------------------------------------------------------------
+//
+// method : 		LiberaSinglePassE::compute_pos_attr
+//
+// description : Compute the two position attributes
+//
+//-----------------------------------------------------------------------------
+void LiberaSinglePassE::compute_pos_attr()
+{
+	int loop;
+
+	for (loop = 0; loop < computed_buf_size; loop++) {
+		if (attr_SumT_read[loop] < beamThreshold) {
+			attr_Xposition_read[loop] = nan("NaN");
+			attr_Zposition_read[loop] = nan("NaN");
+		} else {
+			Tango::DevDouble tmp_data =
+					(attr_UpT_read[loop] - attr_DownT_read[loop]) /
+					(attr_UpT_read[loop] + attr_DownT_read[loop]);
+			attr_Zposition_read[loop] = positionK * tmp_data;
+			tmp_data =
+					(attr_RightT_read[loop] - attr_LeftT_read[loop]) /
+					(attr_RightT_read[loop] + attr_LeftT_read[loop]);
+			attr_Xposition_read[loop] = positionK * tmp_data;
+		}
+	}
+}
+
+//+----------------------------------------------------------------------------
+//
+// method : 		LiberaSinglePassE::compute_current_attr
+//
+// description : Compute the current attributes
+//
+//-----------------------------------------------------------------------------
+void LiberaSinglePassE::compute_current_attr()
+{
+	current_buf_size = (computed_buf_size - currentTimeOffset) / POINTS_PER_US;
+
+	int loop,ctr;
+
+	for (loop = 0; loop < current_buf_size; loop++) {
+		double tmp_sum = 0.0;
+		for (ctr = 0; ctr < POINTS_PER_US; ctr++) {
+			int ind = ctr + currentTimeOffset + (POINTS_PER_US * loop);
+			if (attr_SumT_read[ind] >= beamThreshold) {
+				tmp_sum = tmp_sum + attr_SumT_read[ind];
+			}
+		}
+		attr_Current_read[loop] = currentK * tmp_sum;
+	}
+}
+
 
 	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::namespace_ending
 } //	namespace

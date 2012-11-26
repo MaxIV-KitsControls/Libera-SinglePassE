@@ -59,13 +59,14 @@ OUTPUT_TYPE = DEVICE
 OUTPUT_DIR = ./bin/$(BIN_DIR)
 
 
+
 #=============================================================================
 # INC_DIR_USER is the list of all include path needed by your sources
 #   - for a device server, tango dependencies are automatically appended
 #   - '-I ../include' and '-I .' are automatically appended in all cases
 #
 #
-INC_DIR_USER+= -I . -I /usr/include/libera-2.6
+INC_DIR_USER= -I . -I /usr/include/libera-2.6
 
 
 #=============================================================================
@@ -73,7 +74,7 @@ INC_DIR_USER+= -I . -I /usr/include/libera-2.6
 #   - for a device server, tango libraries directories are automatically appended
 #   - '-L ../lib' is automatically appended in all cases
 #
-LIB_DIR_USER+= -L /opt/libera/lib
+LIB_DIR_USER= -L /opt/libera/lib
 
 #=============================================================================
 # LFLAGS_USR is the list of user link flags
@@ -86,7 +87,12 @@ LIB_DIR_USER+= -L /opt/libera/lib
 # you must use '-lA -lB' in this order as link flags, otherwise you will get
 # 'undefined reference' errors
 #
-LFLAGS_USR+= -lliberamci2.6 -lliberainet2.6 -lliberaisig2.6 -lomniORB4 -lomnithread
+LFLAGS_USR+= -lliberamci2.6 \
+				-lliberainet2.6 \
+				-lliberaisig2.6 \
+				-lomniORB4 \
+				-lomnithread \
+				-lm
 
 
 #=============================================================================
@@ -123,11 +129,12 @@ include $(MAKE_ENV)/tango.opt
 #=============================================================================
 # SVC_OBJS is the list of all objects needed to make the output
 #
-SVC_INCL =  $(PACKAGE_NAME).h $(PACKAGE_NAME)Class.h
+SVC_INCL =  $(PACKAGE_NAME).h $(PACKAGE_NAME)Class.h $(PACKAGE_NAME)DataTask.h
 
 
 SVC_OBJS =      \
             $(OBJDIR)/$(PACKAGE_NAME).o \
+            $(OBJDIR)/$(PACKAGE_NAME)DataTask.o \
             $(OBJDIR)/$(PACKAGE_NAME)Class.o \
             $(OBJDIR)/$(PACKAGE_NAME)StateMachine.o \
             $(OBJDIR)/ClassFactory.o  \

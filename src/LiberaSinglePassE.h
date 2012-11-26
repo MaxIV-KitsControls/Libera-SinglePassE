@@ -28,27 +28,22 @@
 #ifndef LIBERASINGLEPASSE_H
 #define LIBERASINGLEPASSE_H
 
-
+#include <math.h>
 #include <tango.h>
+#include "LiberaCommon.h"
 
-// MCI includes
-#include <istd/trace.h>
-#include <istd/string.h>
-#include <istd/enum_cast.h>
-#include <mci/mci.h>
-#include <mci/mci_util.h>
-#include <mci/node.h>
-#include <mci/callback.h>
-#include <mci/notification_data.h>
-#include <mci/notification_client.h>
-#include <isig/signal_traits.h>
-#include <istd/enum_cast.h>
-#include <isig/signal_source.h>
-#include <isig/remote_stream.h>
-#include <isig/data_on_demand_remote_source.h>
+#include <string.h>
+
+#include <map>
+#include <utility>
 
 
 #define			ON_STATUS				"Libera box is up and running"
+#define			MAX_BUF_SIZE			10000
+#define			MIN_POINTS				5
+#define			POINTS_AVERAGING		4
+#define			POINTS_PER_US			108
+#define			MAX_CURRENT_BUF_SIZE	80
 
 #define CHECK_ALLOC(ptr) \
 if (ptr == NULL) \
@@ -73,7 +68,46 @@ namespace LiberaSinglePassE_ns
 {
 	/*----- PROTECTED REGION ID(LiberaSinglePassE::Additional Class Declarations) ENABLED START -----*/
 
-		//		Additional Class Declarations
+#define FATAL_STREAM_DS \
+  if (get_logger()->is_fatal_enabled()) \
+    get_logger()->fatal_stream() \
+      << log4tango::LogInitiator::_begin_log \
+      << __FILE__ << " " << __func__ << "[" << __LINE__ << "] " \
+      << "TDS " << device_name << " "
+
+#define ERROR_STREAM_DS \
+  if (get_logger()->is_error_enabled()) \
+    get_logger()->error_stream() \
+      << log4tango::LogInitiator::_begin_log \
+      << __FILE__ << " " << __func__ << "[" << __LINE__ << "] " \
+      << "TDS " << device_name << " "
+
+#define WARN_STREAM_DS \
+  if (get_logger()->is_warn_enabled()) \
+    get_logger()->warn_stream() \
+      << log4tango::LogInitiator::_begin_log \
+      << __FILE__ << " " << __func__ << "[" << __LINE__ << "] " \
+      << "TDS " << device_name << " "
+
+#define INFO_STREAM_DS \
+  if (get_logger()->is_info_enabled()) \
+    get_logger()->info_stream() \
+      << log4tango::LogInitiator::_begin_log \
+      << __FILE__ << " " << __func__ << "[" << __LINE__ << "] " \
+      << "TDS " << device_name << " "
+
+#define DEBUG_STREAM_DS \
+  if (get_logger()->is_debug_enabled()) \
+  	get_logger()->debug_stream() \
+      << log4tango::LogInitiator::_begin_log \
+      << __FILE__ << " " << __func__ << "[" << __LINE__ << "] " \
+      << "TDS " << device_name << " "
+
+#define ENDLOG_DS \
+  log4tango::LogSeparator::_end_log
+
+//		Additional Class Declarations
+class LiberaSinglePassEDataTask;
 
 	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::Additional Class Declarations
 
@@ -92,11 +126,8 @@ class LiberaSinglePassE : public Tango::Device_4Impl
 //	Device property data members
 public:		//	LiberaIpAddr:	Libera IP address
 	string	liberaIpAddr;
-	//	LiberaMulticastIpAddr:	The IP address used by the Libera box for multicast communication
-	string	liberaMulticastIpAddr;
-	//	LiberaPort:	The port number on which the generic server running on the LIbera box
-	//	is listening
-	Tango::DevUShort	liberaPort;
+	//	LiberaBoard:	The board name (and index) used by the Libera box for multi board setup
+	string	liberaBoard;
 	//	Location:	The libera box physical place (TL1, BOOSTER,....)
 	string	location;
 	//	ServiceTaskSleep:	Sleep time (in mS) for the class task between libera boxes request
@@ -113,7 +144,6 @@ public:		//	LiberaIpAddr:	Libera IP address
 	//	CurrentTimeOffset:	Time coefficient used in current computation
 	Tango::DevLong	currentTimeOffset;
 
-
 //	Attribute data members
 public:
 	Tango::DevLong	*attr_BufferSize_read;
@@ -124,10 +154,10 @@ public:
 	Tango::DevUShort	*attr_Temp1_read;
 	Tango::DevUShort	*attr_Temp2_read;
 	Tango::DevUShort	*attr_Temp3_read;
-	Tango::DevShort	*attr_Up_read;
-	Tango::DevShort	*attr_Down_read;
-	Tango::DevShort	*attr_Left_read;
-	Tango::DevShort	*attr_Right_read;
+	Tango::DevShort		*attr_Up_read;
+	Tango::DevShort		*attr_Down_read;
+	Tango::DevShort		*attr_Left_read;
+	Tango::DevShort		*attr_Right_read;
 	Tango::DevDouble	*attr_UpT_read;
 	Tango::DevDouble	*attr_DownT_read;
 	Tango::DevDouble	*attr_LeftT_read;
@@ -214,7 +244,8 @@ public:
 
 	/**
 	 *	Level attribute related methods.
-	 *	Description: The analog channels level. This attribute allows the user to tune the analog channels\nattenuator. The input is an index within a lookup table in the Libera box
+	 *	Description: The analog channels level. This attribute allows the user to tune the analog channels
+	 *             attenuator. The input is an index within a lookup table in the Libera box
 	 *
 	 *	Data type:	Tango::DevLong
 	 *	Attr type:	Scalar
@@ -441,11 +472,12 @@ public:
 
 
 
+
 	/**
 	 *	Method      : LiberaSinglePassE::add_dynamic_attributes()
 	 *	Description : Add dynamic attributes if any.
 	 */
-		void add_dynamic_attributes();
+	void add_dynamic_attributes();
 
 //	Command related methods
 public:
@@ -454,13 +486,13 @@ public:
 	/**
 	 *	Command Reset related methods.
 	 */
-	void reset();
+	virtual void reset();
 	virtual bool is_Reset_allowed(const CORBA::Any &any);
 
 	/**
 	 *	Command ResetTrigger related methods.
 	 */
-	void reset_trigger();
+	virtual void reset_trigger();
 	virtual bool is_ResetTrigger_allowed(const CORBA::Any &any);
 
 
@@ -469,19 +501,48 @@ public:
 
 	//	Additional Method prototypes
 protected:
-	mci::Node mci_AppRootNode;
-	mci::Node mci_PlatRootNode;
+	mci::Node mci_application_root;
+	mci::Node mci_platform_root;
 
 	/* Application daemon nodes */
-	mci::Node mci_TriggerCounterNode;
+	mci::Node mci_LevelNodeGet;
+	mci::Node mci_adc_signal;
+	mci::Node mci_adc_max;
+	mci::Node mci_LevelNodeSet;
+
+	/* Level enumeration node */
+	mci::Node mci_level_gt;
+
+	std::map<uint32_t, string> level_enumeration;
+
 
 	/* Platform daemon nodes */
-	mci::Node mci_LevelNode;
-	mci::Node mci_Temp1Node;
-	mci::Node mci_Temp2Node;
-	mci::Node mci_Temp3Node;
-	mci::Node mci_Fan1Node;
-	mci::Node mci_Fan2Node;
+	mci::Node mci_temp1;
+	mci::Node mci_temp2;
+	mci::Node mci_temp3;
+	mci::Node mci_fan_left_front;
+	mci::Node mci_fan_left_rear;
+	mci::Node mci_fan_left_middle;
+	mci::Node mci_fan_right_front;
+	mci::Node mci_fan_right_middle;
+	mci::Node mci_fan_right_rear;
+
+
+	LiberaSinglePassEDataTask *data_thread;
+
+	struct timeval now;
+
+	void compute();
+	void compute_T_attr(Tango::DevShort *,Tango::DevDouble *);
+	void compute_pos_attr();
+	void compute_current_attr();
+
+public:
+	time_t heartbeat_sec;
+	Tango::DevULong trig_ctr;
+	Tango::DevULong old_trig_ctr;
+	int computed_buf_size;
+	int current_buf_size;
 
 	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::Additional Method prototypes
 

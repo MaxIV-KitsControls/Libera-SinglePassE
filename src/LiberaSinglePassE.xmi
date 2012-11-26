@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ASCII"?>
 <pogoDsl:PogoSystem xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pogoDsl="http://www.esrf.fr/tango/pogo/PogoDsl">
   <classes name="LiberaSinglePassE">
-    <description description="This Tango class is the interface of the Instrumentation Technologies (IT) Libera&#xA;Brilliance Single Pass E equipment. This class supports only a subset of all the&#xA;equipment features. It is the basic equipment for a Injection and Transfer Efficiency&#xA;Measurement System" title="Libera Brillance Single Pass E" sourcePath="/home/hinko.kocevar/workspace/tds-branches/Libera-SinglePassE/src" language="Cpp" filestogenerate="XMI File, Code files" hasAbstractCommand="false" hasAbstractAttribute="false">
+    <description description="This Tango class is the interface of the Instrumentation Technologies (IT) Libera&#xA;Brilliance Single Pass E equipment. This class supports only a subset of all the&#xA;equipment features. It is the basic equipment for a Injection and Transfer Efficiency&#xA;Measurement System" title="Libera Brillance Single Pass E" sourcePath="/home/hinko.kocevar/workspace/TDS-Libera-SinglePassE/src" language="Cpp" filestogenerate="XMI   file,Code files,Makefile,html Pages" hasMandatoryProperty="false" hasConcreteProperty="true" hasAbstractCommand="false" hasAbstractAttribute="false" descriptionHtmlExists="false">
       <inheritances classname="Device_4Impl" sourcePath=""/>
       <identification contact="at maxlab.lu.se - kitscontrols" author="kitscontrols" emailDomain="maxlab.lu.se" classFamily="BeamDiag" siteSpecific="" platform="Unix Like" bus="Ethernet" manufacturer="Instrumentation Technologies" reference="Libera Brillance Single Pass E"/>
       <comments commandsTable="//================================================================&#xA;//&#xA;//  The following table gives the correspondence&#xA;//  between command and method names.&#xA;//&#xA;//  Command name  |  Method name&#xA;//----------------------------------------------------------------&#xA;//  State         |  Inherited (no method)&#xA;//  Status        |  Inherited (no method)&#xA;//  Reset         |  reset&#xA;//  ResetTrigger  |  reset_trigger&#xA;//================================================================"/>
@@ -20,14 +20,9 @@
       <type xsi:type="pogoDsl:StringType"/>
       <status abstract="false" inherited="false" concrete="true" concreteHere="true"/>
     </deviceProperties>
-    <deviceProperties name="LiberaMulticastIpAddr" description="The IP address used by the Libera box for multicast communication">
+    <deviceProperties name="LiberaBoard" description="The board name (and index) used by the Libera box for multi board setup">
       <type xsi:type="pogoDsl:StringType"/>
       <status abstract="false" inherited="false" concrete="true" concreteHere="true"/>
-    </deviceProperties>
-    <deviceProperties name="LiberaPort" description="The port number on which the generic server running on the LIbera box&#xA;is listening">
-      <type xsi:type="pogoDsl:UShortType"/>
-      <status abstract="false" inherited="false" concrete="true" concreteHere="true"/>
-      <DefaultPropValue>23171</DefaultPropValue>
     </deviceProperties>
     <deviceProperties name="Location" description="The libera box physical place (TL1, BOOSTER,....)">
       <type xsi:type="pogoDsl:StringType"/>
@@ -59,7 +54,7 @@
       <type xsi:type="pogoDsl:IntType"/>
       <status abstract="false" inherited="false" concrete="true" concreteHere="true"/>
     </deviceProperties>
-    <commands name="State" description="This command gets the device state (stored in its &lt;i>device_state&lt;/i> data member) and returns it to the caller." execMethod="dev_state" displayLevel="OPERATOR">
+    <commands name="State" description="This command gets the device state (stored in its &lt;i>device_state&lt;/i> data member) and returns it to the caller." execMethod="dev_state" displayLevel="OPERATOR" polledPeriod="0">
       <argin description="none.">
         <type xsi:type="pogoDsl:VoidType"/>
       </argin>
@@ -68,7 +63,7 @@
       </argout>
       <status abstract="true" inherited="true" concrete="true" concreteHere="false"/>
     </commands>
-    <commands name="Status" description="This command gets the device status (stored in its &lt;i>device_status&lt;/i> data member) and returns it to the caller." execMethod="dev_status" displayLevel="OPERATOR">
+    <commands name="Status" description="This command gets the device status (stored in its &lt;i>device_status&lt;/i> data member) and returns it to the caller." execMethod="dev_status" displayLevel="OPERATOR" polledPeriod="0">
       <argin description="none.">
         <type xsi:type="pogoDsl:VoidType"/>
       </argin>
@@ -77,7 +72,7 @@
       </argout>
       <status abstract="true" inherited="true" concrete="true" concreteHere="false"/>
     </commands>
-    <commands name="Reset" description="Reset the device in case of fault" execMethod="reset" displayLevel="OPERATOR">
+    <commands name="Reset" description="Reset the device in case of fault" execMethod="reset" displayLevel="OPERATOR" polledPeriod="0">
       <argin description="">
         <type xsi:type="pogoDsl:VoidType"/>
       </argin>
@@ -88,7 +83,7 @@
       <excludedStates>ON</excludedStates>
       <excludedStates>UNKNOWN</excludedStates>
     </commands>
-    <commands name="ResetTrigger" description="Reset the trigger counter" execMethod="reset_trigger" displayLevel="EXPERT">
+    <commands name="ResetTrigger" description="Reset the trigger counter" execMethod="reset_trigger" displayLevel="EXPERT" polledPeriod="0">
       <argin description="">
         <type xsi:type="pogoDsl:VoidType"/>
       </argin>
@@ -107,13 +102,13 @@
       <properties description="The Libera box ADC buffer size (between 10 and 8192)" label="Buffer Size" unit="samples" standardUnit="" displayUnit="" format="%4d" maxValue="8192" minValue="10" maxAlarm="" minAlarm="" maxWarning="" minWarning="" deltaTime="" deltaValue=""/>
       <readExcludedStates>UNKNOWN</readExcludedStates>
     </attributes>
-    <attributes name="Level" attType="Scalar" rwType="READ_WRITE" displayLevel="OPERATOR" polledPeriod="0" maxX="0" maxY="0">
+    <attributes name="Level" attType="Scalar" rwType="READ_WRITE" displayLevel="OPERATOR" polledPeriod="0" maxX="0" maxY="0" allocReadMember="false" isDynamic="false">
       <dataType xsi:type="pogoDsl:IntType"/>
       <changeEvent fire="false" libCheckCriteria="false"/>
       <archiveEvent fire="false" libCheckCriteria="false"/>
+      <dataReadyEvent fire="false" libCheckCriteria="true"/>
       <status abstract="false" inherited="false" concrete="true" concreteHere="true"/>
-      <properties description="The analog channels level. This attribute allows the user to tune the analog channels\nattenuator. The input is an index within a lookup table in the Libera box" label="Level" unit="dBm" standardUnit="" displayUnit="" format="%2d" maxValue="0" minValue="-82" maxAlarm="" minAlarm="" maxWarning="" minWarning="" deltaTime="" deltaValue=""/>
-      <readExcludedStates>UNKNOWN</readExcludedStates>
+      <properties description="The analog channels level. This attribute allows the user to tune the analog channels&#xA;attenuator. The input is an index within a lookup table in the Libera box" label="Level" unit="dBm" standardUnit="" displayUnit="" format="%2d" maxValue="31" minValue="0" maxAlarm="" minAlarm="" maxWarning="" minWarning="" deltaTime="" deltaValue=""/>
     </attributes>
     <attributes name="TriggerCounter" attType="Scalar" rwType="READ" displayLevel="OPERATOR" polledPeriod="0" maxX="0" maxY="0">
       <dataType xsi:type="pogoDsl:UIntType"/>

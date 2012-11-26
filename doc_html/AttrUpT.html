@@ -5,7 +5,6 @@
 </HEAD>
 <BODY TEXT="#000000" BGCOLOR="#FFFFFF" LINK="#0000FF" VLINK="#7F00FF" ALINK="#FF0000">
 
-<P><!-------TITLE------></P>
 <TABLE BORDER="0" WIDTH="100%">
     <TR>
         <TD ALIGN="left">
@@ -27,7 +26,7 @@
         <TD ALIGN="Right">
             <H2><FONT COLOR="#7F00FF">
             <Br><Center><A HREF="http://www.tango-controls.org/" TARGET="_top"> TANGO </a> 
-            </Center></FONT>
+            </Center></FONT></H2>
        </TD>
     </TR>
     <TR>
@@ -49,15 +48,16 @@
         <TD ALIGN="Right">
             <H2><FONT COLOR="#7F00FF">
             <Center> Device Servers
-            </Center></FONT>
+            </Center></FONT></H2>
         </TD>
     </TR>
 </TABLE>
 
-<HR WIDTH="100%"></H5>
+<HR WIDTH="100%">
 
 
-<FONT SIZE="+3">
+
+	<FONT SIZE="+3">
 <center>
 <u>
          LiberaSinglePassE Tango Class <Br>
@@ -67,33 +67,35 @@
 <Br>
 <Br>
 <TABLE BORDER="1" WIDTH="100%" CELLSPACING=0>
+    <Tr>
        <TD ALIGN="center">
                <a href="index.html">         Description</a>
        </Td>
        <TD ALIGN="center">
-               <a href="Properties.html">    Properties</a></li>
+               <a href="Properties.html">    Properties</a>
        </Td>
        <TD ALIGN="center">
-               <a href="Commands.html">      Commands</a></li>
+               <a href="Commands.html">      Commands</a>
        </Td>
        <TD ALIGN="center">
-               <a href="Attributes.html">    Attributes</a></li>
+               <a href="Attributes.html">    Attributes</a>
        </Td>
        <TD ALIGN="center">
-               <a href="States.html">        States</a></li>
+               <a href="States.html">        States</a>
        </Td>
+    </Tr>
 </TABLE>
 <Br>
 <Br>
 <Br>
 <FONT SIZE="+2"><u>
-            UpT Attribute 
+            UpT&nbsp;&nbsp; Attribute 
 </u></Font>
 </Center>
 
 
 
-<FONT SIZE="-1">
+<FONT SIZE="-0">
 <Br>
 <Br>
 <ul>
@@ -106,7 +108,7 @@
 	
 	
 	
-	<Table Border=0 Cellpadding=0 CELLSPACING=10>
+	<Table Border=0 Cellpadding=0 CELLSPACING=20>
 	<TR>
 	<TD ALIGN="left" VALIGN=top>
 	
@@ -141,7 +143,7 @@
 		<Tr>
 			<Td> <Font=+1><b> Read NOT allowed for   </b></Font></Td>
 			<Td> 
-					- UNKNOWN <Br>
+					<li>UNKNOWN<Br>
 			</Td>
 		</Tr>
 
@@ -176,8 +178,7 @@
 		
 		</Table>
 	</Td>
-	<Td ALIGN="left" VALIGN=top>
-		
+	<Td ALIGN="Center" VALIGN=top>
 		
 	<Table Border=2 Cellpadding=3 CELLSPACING=0>
 	<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
@@ -198,7 +199,41 @@
 			<Tr><Td> <Font=+1><b>  min_warning   </b></Font></Td>    <Td> </Td></Tr>
 			<Tr><Td> <Font=+1><b>  delta_time    </b></Font></Td>    <Td> </Td></Tr>
 			<Tr><Td> <Font=+1><b>  delta_val     </b></Font></Td>    <Td> </Td></Tr>
-			<!--- Tr><Td> <Font=+1><b>  description   </b></Font></Td>    <Td> The up StripLine ADC buffer after some computation:\nsquare - double averaging filter - square root</Td></Tr--->
+		</Table>
+	</Td>
+	<Td ALIGN="left" VALIGN=top>
+		
+	<Table Border=2 Cellpadding=3 CELLSPACING=0>
+	<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+	<Td COLSPAN=0> <Font Size=+1> <Center><b>
+		   Event Criteria 
+	</b></Font></Center></td>
+	</Tr>
+			<Tr><Td> <Font=+1><b>  Periodic        </b></Font></Td> <Td>
+				none</Td></Tr>
+			<Tr><Td> <Font=+1><b>  Relative Change </b></Font></Td> <Td>
+				none</Td></Tr>
+			<Tr><Td> <Font=+1><b>  Absolute Change </b></Font></Td> <Td>
+				none</Td></Tr>
+
+			<Tr BGCOLOR="#CCCCFF"><Td><Hr></Td><Td><Hr></Td></Tr>
+
+			<Tr><Td> <Font=+1><b>  Archive Periodic   </b></Font></Td> <Td>
+				none</Td></Tr>
+			<Tr><Td> <Font=+1><b>  Archive Relative Change   </b></Font></Td> <Td>
+				none</Td></Tr>
+			<Tr><Td> <Font=+1><b>  Archive Absolute Change  </b></Font></Td> <Td>none</Td></Tr>
+
+			<Tr BGCOLOR="#CCCCFF"><Td><Hr></Td><Td><Hr></Td></Tr>
+
+			<Tr><Td> <Font=+1><b>  Push Change event by user code   </b></Font></Td> <Td>
+				false</Td></Tr>
+				
+			<Tr><Td> <Font=+1><b>  Push Archive event by user code   </b></Font></Td> <Td>
+				false</Td></Tr>
+				
+			<Tr><Td> <Font=+1><b>  Push DataReady event by user code </b></Font></Td> <Td>
+				false</Td></Tr>
 		</Table>
 	</Td>
 	</Table>
