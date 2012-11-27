@@ -507,7 +507,6 @@ protected:
 	/* Application daemon nodes */
 	mci::Node mci_LevelNodeGet;
 	mci::Node mci_adc_signal;
-	mci::Node mci_adc_max;
 	mci::Node mci_LevelNodeSet;
 
 	/* Level enumeration node */

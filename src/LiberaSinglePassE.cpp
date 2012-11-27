@@ -670,10 +670,6 @@ void LiberaSinglePassE::always_executed_hook()
 				std::string mci_adc_signalNodeString=board+liberaBoard+adc_signal;
 				mci_adc_signal = mci_application_root.GetNode(mci::Tokenize(mci_adc_signalNodeString));
 
-				std::string adc_max=".signals.max_adc";
-				std::string mci_adc_maxNodeString=board+liberaBoard+adc_max;
-				mci_adc_max = mci_application_root.GetNode(mci::Tokenize(mci_adc_maxNodeString));
-
 				DEBUG_STREAM_DS << "connected MCI application daemon nodes" <<  endl;
 			} catch (istd::Exception &e){
 				ERROR_STREAM_DS << "MCI application nodes connect failed: "
