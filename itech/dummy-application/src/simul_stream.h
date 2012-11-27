@@ -48,7 +48,6 @@ struct Simul5TraitsSPE {
 };
 
 typedef Simul5Traits<int16_t>::type Simul5Short;
-typedef Simul5Traits<int32_t>::type Simul5Long;
 typedef Simul5Traits<double>::type Simul5Double;
 
 typedef Simul5TraitsSPE<int16_t>::type Simul5ShortSPE;
@@ -58,10 +57,6 @@ typedef Simul5TraitsSPE<double>::type Simul5DoubleSPE;
 template<>
 const Simul5Short::Names Simul5Short::names =
     {{"A", "B", "C", "D"}};
-
-template<>
-const Simul5Long::Names Simul5Long::names =
-	{{"A", "B", "C", "D"}};
 
 template<>
 const Simul5ShortSPE::Names Simul5ShortSPE::names =
@@ -389,7 +384,7 @@ struct Test {
     isig::RandomAccessBufferPtr m_input;
 };
 
-Test<Simul5Long> g_testLong("./simul_dod_long.bin");
+Test<Simul5Short> g_testLong("./simul_dod_short.bin");
 Test<Simul5Double> g_testDouble("./simul_dod_double.bin");
 
 /*****************************************************************************/
@@ -462,9 +457,9 @@ protected:
 
 isig::RandomAccessBufferPtr g_simulBuffer(std::make_shared<SimulBuffer>());
 
-class SimulDoD : public isig::DataOnDemandSource<Simul5Long> {
+class SimulDoD : public isig::DataOnDemandSource<Simul5Short> {
 public:
-    typedef isig::DataOnDemandSource<Simul5Long> BaseDoD;
+    typedef isig::DataOnDemandSource<Simul5Short> BaseDoD;
     SimulDoD() : BaseDoD("simul-dod", g_simulBuffer)
     {
         auto bc = std::make_shared<TestCircularBufferController>(ATOM_COUNT, 1);
