@@ -71,8 +71,8 @@ namespace LiberaSinglePassE_ns
 
 class LiberaSinglePassEDataTask
 {
-    typedef isig::SignalTraitsVarInt32::BaseType BaseType;
-    typedef isig::DataOnDemandRemoteSource<isig::SignalTraitsVarInt32> RSource;
+    typedef isig::SignalTraitsVarInt16::BaseType BaseType;
+    typedef isig::DataOnDemandRemoteSource<isig::SignalTraitsVarInt16> RSource;
     typedef RSource::Client Client;
     typedef RSource::Buffer Buffer;
 
