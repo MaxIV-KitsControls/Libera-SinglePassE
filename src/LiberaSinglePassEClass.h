@@ -64,20 +64,20 @@ public:
 		{return (static_cast<LiberaSinglePassE *>(dev))->is_BufferSize_allowed(ty);}
 };
 
-//	Attribute Level class definition
-class LevelAttrib: public Tango::Attr
+//	Attribute AttenuationLevel class definition
+class AttenuationLevelAttrib: public Tango::Attr
 {
 public:
-	LevelAttrib():Attr("Level",
+	AttenuationLevelAttrib():Attr("AttenuationLevel",
 	                   Tango::DEV_LONG, Tango::READ_WRITE) {};
-	~LevelAttrib() {};
+	~AttenuationLevelAttrib() {};
 
 	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
-		{(static_cast<LiberaSinglePassE *>(dev))->read_Level(att);}
+		{(static_cast<LiberaSinglePassE *>(dev))->read_AttenuationLevel(att);}
 	virtual void write(Tango::DeviceImpl *dev,Tango::WAttribute &att)
-		{(static_cast<LiberaSinglePassE *>(dev))->write_Level(att);}
+		{(static_cast<LiberaSinglePassE *>(dev))->write_AttenuationLevel(att);}
 	virtual bool is_allowed(Tango::DeviceImpl *dev,Tango::AttReqType ty)
-		{return (static_cast<LiberaSinglePassE *>(dev))->is_Level_allowed(ty);}
+		{return (static_cast<LiberaSinglePassE *>(dev))->is_AttenuationLevel_allowed(ty);}
 };
 
 //	Attribute TriggerCounter class definition

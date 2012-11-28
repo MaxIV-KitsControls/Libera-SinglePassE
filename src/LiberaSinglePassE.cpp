@@ -59,7 +59,7 @@ static const char *RcsId = "$Id:  $";
 //================================================================
 //	Attributes managed are:
 //	BufferSize:
-//	Level:
+//	AttenuationLevel:
 //	TriggerCounter:
 //	Fan1Speed:
 //	Fan2Speed:
@@ -102,7 +102,7 @@ namespace LiberaSinglePassE_ns
 LiberaSinglePassE::LiberaSinglePassE(Tango::DeviceClass *cl, string &s)
 	: Tango::Device_4Impl(cl, s.c_str()),
 		attr_BufferSize_read(NULL),
-		attr_Level_read(NULL),
+		attr_AttenuationLevel_read(NULL),
 		attr_TriggerCounter_read(NULL),
 		attr_Fan1Speed_read(NULL),
 		attr_Fan2Speed_read(NULL),
@@ -132,7 +132,7 @@ LiberaSinglePassE::LiberaSinglePassE(Tango::DeviceClass *cl, string &s)
 LiberaSinglePassE::LiberaSinglePassE(Tango::DeviceClass *cl, const char *s)
 	: Tango::Device_4Impl(cl, s),
 		attr_BufferSize_read(NULL),
-		attr_Level_read(NULL),
+		attr_AttenuationLevel_read(NULL),
 		attr_TriggerCounter_read(NULL),
 		attr_Fan1Speed_read(NULL),
 		attr_Fan2Speed_read(NULL),
@@ -162,7 +162,7 @@ LiberaSinglePassE::LiberaSinglePassE(Tango::DeviceClass *cl, const char *s)
 LiberaSinglePassE::LiberaSinglePassE(Tango::DeviceClass *cl, const char *s, const char *d)
 	: Tango::Device_4Impl(cl, s, d),
 		attr_BufferSize_read(NULL),
-		attr_Level_read(NULL),
+		attr_AttenuationLevel_read(NULL),
 		attr_TriggerCounter_read(NULL),
 		attr_Fan1Speed_read(NULL),
 		attr_Fan2Speed_read(NULL),
@@ -228,8 +228,8 @@ void LiberaSinglePassE::delete_device()
 	// Attributes
 	delete attr_BufferSize_read;
 	attr_BufferSize_read = NULL;
-	delete attr_Level_read;
-	attr_Level_read = NULL;
+	delete attr_AttenuationLevel_read;
+	attr_AttenuationLevel_read = NULL;
 	delete attr_Fan1Speed_read;
 	attr_Fan1Speed_read = NULL;
 	delete attr_Fan2Speed_read;
@@ -295,8 +295,8 @@ void LiberaSinglePassE::init_device()
 	attr_BufferSize_read = new Tango::DevLong(0);
 	CHECK_ALLOC(attr_BufferSize_read);
 
-	attr_Level_read = new Tango::DevLong(0);
-	CHECK_ALLOC(attr_Level_read);
+	attr_AttenuationLevel_read = new Tango::DevLong(0);
+	CHECK_ALLOC(attr_AttenuationLevel_read);
 
 	attr_Temp1_read = new Tango::DevUShort(0);
 	CHECK_ALLOC(attr_Temp1_read);
@@ -863,7 +863,7 @@ void LiberaSinglePassE::write_BufferSize(Tango::WAttribute &attr)
 
 //--------------------------------------------------------
 /**
- *	Read Level attribute
+ *	Read AttenuationLevel attribute
  *	Description: The analog channels level. This attribute allows the user to tune the analog channels
  *	             attenuator. The input is an index within a lookup table in the Libera box
  *
@@ -871,64 +871,67 @@ void LiberaSinglePassE::write_BufferSize(Tango::WAttribute &attr)
  *	Attr type:	Scalar
  */
 //--------------------------------------------------------
-void LiberaSinglePassE::read_Level(Tango::Attribute &attr)
+void LiberaSinglePassE::read_AttenuationLevel(Tango::Attribute &attr)
 {
-	DEBUG_STREAM << "LiberaSinglePassE::read_Level(Tango::Attribute &attr) entering... " << endl;
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_Level) ENABLED START -----*/
-
+	DEBUG_STREAM << "LiberaSinglePassE::read_AttenuationLevel(Tango::Attribute &attr) entering... " << endl;
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_AttenuationLevel) ENABLED START -----*/
 
 	try {
-			std::string board="boards.";
-			std::string level_enum;
-			mci_LevelNodeSet.Get(level_enum);
-			std::string levelG=".attenuation.gain_table.";
-			std::string dB=".dB";
-			std::string mci_LevelGNodeString=board+liberaBoard+levelG+level_enum+dB;
-			mci_LevelNodeGet = mci_application_root.GetNode(mci::Tokenize(mci_LevelGNodeString));
-			uint32_t v;
-			mci_LevelNodeGet.Get(v);
-			*attr_Level_read = static_cast<Tango::DevLong>(v);
-		} catch (istd::Exception &e) {
-			ERROR_STREAM << "LiberaSinglePassE::attr_Level_read failed get value " << device_name << endl;
-			return;
-		}
-
+		std::string board = "boards.";
+		std::string level_enum;
+		mci_LevelNodeSet.Get(level_enum);
+		std::string levelG = ".attenuation.gain_table.";
+		std::string dB = ".dB";
+		std::string mci_LevelGNodeString = board + liberaBoard + levelG
+				+ level_enum + dB;
+		mci_LevelNodeGet = mci_application_root.GetNode(
+				mci::Tokenize(mci_LevelGNodeString));
+		uint32_t v;
+		mci_LevelNodeGet.Get(v);
+		*attr_AttenuationLevel_read = static_cast<Tango::DevLong>(v);
+	} catch (istd::Exception &e) {
+		ERROR_STREAM << "LiberaSinglePassE::read_AttenuationLevel failed "
+				<< device_name << e.what() << endl;
+		return;
+	}
 
 	//	Set the attribute value
-	attr.set_value(attr_Level_read);
+	attr.set_value(attr_AttenuationLevel_read);
 
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_Level
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_AttenuationLevel
 }
 
 //--------------------------------------------------------
 /**
- *	Write Level attribute values to hardware.
+ *	Write AttenuationLevel attribute values to hardware.
  *
  *	Data type:	Tango::DevLong
  *	Attr type:	Scalar
  */
 //--------------------------------------------------------
-void LiberaSinglePassE::write_Level(Tango::WAttribute &attr)
+void LiberaSinglePassE::write_AttenuationLevel(Tango::WAttribute &attr)
 {
-	DEBUG_STREAM << "LiberaSinglePassE::write_Level(Tango::Attribute &attr) entering... " << endl;
+	DEBUG_STREAM << "LiberaSinglePassE::write_AttenuationLevel(Tango::Attribute &attr) entering... " << endl;
 
 	//	Retrieve write value
 	Tango::DevLong	w_val;
 	attr.get_write_value(w_val);
 
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::write_Level) ENABLED START -----*/
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::write_AttenuationLevel) ENABLED START -----*/
 
-	try{
-		*attr_Level_read=w_val;
-		uint32_t val=static_cast<uint32_t>(w_val);
-		std::string set=level_enumeration[val];
+	try {
+		*attr_AttenuationLevel_read = w_val;
+		uint32_t val = static_cast<uint32_t>(w_val);
+		std::string set = level_enumeration[val];
 		mci_LevelNodeSet.Set(set);
-		}catch(istd::Exception &e){
-			ERROR_STREAM << "MCI ERROR caught : " << e.what() << endl;
-			return;
-		}
+	} catch (istd::Exception &e) {
+		ERROR_STREAM << "LiberaSinglePassE::write_AttenuationLevel failed "
+				<< device_name << e.what() << endl;
+		ERROR_STREAM << "MCI ERROR caught : " << e.what() << endl;
+		return;
+	}
 
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::write_Level
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::write_AttenuationLevel
 }
 
 //--------------------------------------------------------
@@ -973,8 +976,14 @@ void LiberaSinglePassE::read_Fan1Speed(Tango::Attribute &attr)
 		mci_fan_left_front.Get(v1);
 		mci_fan_left_rear.Get(v2);
 		mci_fan_left_middle.Get(v3);
-		// get the average speed value of all three left fans
-		v = (v1 + v2 + v3) / 3;
+		// get the minimum speed value of all three left fans
+		v = v1;
+		if (v2 < v) {
+			v = v2;
+		}
+		if (v3 < v) {
+			v = v3;
+		}
 		*attr_Fan1Speed_read = static_cast<Tango::DevUShort>(v);
 	} catch (istd::Exception &e) {
 		ERROR_STREAM << "LiberaSinglePassE::read_Fan1Speed() failed get value " << device_name << endl;
@@ -1009,8 +1018,14 @@ void LiberaSinglePassE::read_Fan2Speed(Tango::Attribute &attr)
 		mci_fan_right_front.Get(v1);
 		mci_fan_right_rear.Get(v2);
 		mci_fan_right_middle.Get(v3);
-		// get the average speed value of all three right fans
-		v = (v1 + v2 + v3) / 3;
+		// get the minimum speed value of all three right fans
+		v = v1;
+		if (v2 < v) {
+			v = v2;
+		}
+		if (v3 < v) {
+			v = v3;
+		}
 		*attr_Fan2Speed_read = static_cast<Tango::DevUShort>(v);
 	} catch (istd::Exception &e) {
 		ERROR_STREAM << "LiberaSinglePassE::read_Fan2Speed() failed get value " << device_name << endl;

@@ -84,30 +84,30 @@ bool LiberaSinglePassE::is_BufferSize_allowed(TANGO_UNUSED(Tango::AttReqType typ
 
 //--------------------------------------------------------
 /**
- *	Method      : LiberaSinglePassE::is_LevelState_allowed()
- *	Description : Execution allowed for Level attribute.
+ *	Method      : LiberaSinglePassE::is_AttenuationLevelState_allowed()
+ *	Description : Execution allowed for AttenuationLevel attribute.
  */
 //--------------------------------------------------------
 
-bool LiberaSinglePassE::is_Level_allowed(TANGO_UNUSED(Tango::AttReqType type))
+bool LiberaSinglePassE::is_AttenuationLevel_allowed(TANGO_UNUSED(Tango::AttReqType type))
 {
 	//	Check if access type.
 	if ( type!=Tango::READ_REQ )
 	{
-			//	Not any excluded states for Level attribute in WRITE access.
+			//	Not any excluded states for AttenuationLevel attribute in WRITE access.
 
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::LevelStateAllowed_WRITE) ENABLED START -----*/
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::AttenuationLevelStateAllowed_WRITE) ENABLED START -----*/
 
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::LevelStateAllowed_WRITE
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::AttenuationLevelStateAllowed_WRITE
 
 		return true;
 	}
 	else
-		//	Not any excluded states for Level attribute in READ access.
+		//	Not any excluded states for AttenuationLevel attribute in READ access.
 
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_LevelStateAllowed_READ) ENABLED START -----*/
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_AttenuationLevelStateAllowed_READ) ENABLED START -----*/
 
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_LevelStateAllowed_READ
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_AttenuationLevelStateAllowed_READ
 
 	return true;
 }

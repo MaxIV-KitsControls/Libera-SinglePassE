@@ -124,14 +124,10 @@ void LiberaSinglePassEDataTask::thread_task(void) {
 	pthread_mutex_unlock(&mutex);
 	DEBUG_STREAM_TASK << "thread is running, ID " << pthread_self() << std::endl;
 
-	// XXX: assume readout in Position mode is desired
-	dod_mode = isig::eModeDodPosition;
-
-	// task sleep time between consecutive acquisitions
-	int period = 1;
-	if (acq_period > 1000) {
-		period = (acq_period / 1000);
-	}
+	// ADC data readout *must* be in the SingleEvent mode!
+	// This a) avoids Read() I/O errors, b) allows arbitrary data sizes at
+	// arbitrary rates
+	dod_mode = isig::eModeDodSingleEvent;
 
 	// initialize the dod signal
 	try {
@@ -169,8 +165,10 @@ void LiberaSinglePassEDataTask::thread_task(void) {
 
 		// doze off for the requested time
 		DEBUG_STREAM_TASK << "thread sleeping for "
-				<< period << " seconds" << std::endl;
-		sleep(period);
+				<< acq_period << " ms" << std::endl;
+		for (int zz = 0; zz < acq_period; zz++) {
+			usleep(1000);
+		}
 		DEBUG_STREAM_TASK << "thread awaken" << std::endl;
 
 		// see if buffer size changed

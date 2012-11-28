@@ -733,34 +733,34 @@ void LiberaSinglePassEClass::attribute_factory(vector<Tango::Attr *> &att_list)
 
 	att_list.push_back(buffersize);
 
-	//	Attribute : Level
-	LevelAttrib	*level = new LevelAttrib();
-	Tango::UserDefaultAttrProp	level_prop;
-	level_prop.set_description("The analog channels level. This attribute allows the user to tune the analog channels\nattenuator. The input is an index within a lookup table in the Libera box");
-	level_prop.set_label("Level");
-	level_prop.set_unit("dBm");
-	//	standard_unit	not set for	Level
-	//	display_unit	not set for	Level
-	level_prop.set_format("%2d");
-	level_prop.set_max_value("31");
-	level_prop.set_min_value("0");
-	//	max_alarm	not set for	Level
-	//	min_alarm	not set for	Level
-	//	max_warning	not set for	Level
-	//	min_warning	not set for	Level
-	//	delta_t	not set for	Level
-	//	delta_val	not set for	Level
+	//	Attribute : AttenuationLevel
+	AttenuationLevelAttrib	*attenuationlevel = new AttenuationLevelAttrib();
+	Tango::UserDefaultAttrProp	attenuationlevel_prop;
+	attenuationlevel_prop.set_description("The analog channels level. This attribute allows the user to tune the analog channels\nattenuator. The input is an index within a lookup table in the Libera box");
+	attenuationlevel_prop.set_label("AttenuationLevel");
+	attenuationlevel_prop.set_unit("dBm");
+	//	standard_unit	not set for	AttenuationLevel
+	//	display_unit	not set for	AttenuationLevel
+	attenuationlevel_prop.set_format("%2d");
+	attenuationlevel_prop.set_max_value("31");
+	attenuationlevel_prop.set_min_value("0");
+	//	max_alarm	not set for	AttenuationLevel
+	//	min_alarm	not set for	AttenuationLevel
+	//	max_warning	not set for	AttenuationLevel
+	//	min_warning	not set for	AttenuationLevel
+	//	delta_t	not set for	AttenuationLevel
+	//	delta_val	not set for	AttenuationLevel
 
-	level->set_default_properties(level_prop);
-	level->set_polling_period(0);
-	level->set_disp_level(Tango::OPERATOR);
+	attenuationlevel->set_default_properties(attenuationlevel_prop);
+	attenuationlevel->set_polling_period(0);
+	attenuationlevel->set_disp_level(Tango::OPERATOR);
 	//	Not memorized
 
-	//	Level does not fire change event
-	//	Level does not fire archive event
-	//	Level does not fire data_ready event
+	//	AttenuationLevel does not fire change event
+	//	AttenuationLevel does not fire archive event
+	//	AttenuationLevel does not fire data_ready event
 
-	att_list.push_back(level);
+	att_list.push_back(attenuationlevel);
 
 	//	Attribute : TriggerCounter
 	TriggerCounterAttrib	*triggercounter = new TriggerCounterAttrib();

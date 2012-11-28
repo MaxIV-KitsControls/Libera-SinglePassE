@@ -146,9 +146,9 @@ public:		//	LiberaIpAddr:	Libera IP address
 
 //	Attribute data members
 public:
-	Tango::DevLong	*attr_BufferSize_read;
-	Tango::DevLong	*attr_Level_read;
-	Tango::DevULong	*attr_TriggerCounter_read;
+	Tango::DevLong		*attr_BufferSize_read;
+	Tango::DevLong		*attr_AttenuationLevel_read;
+	Tango::DevULong		*attr_TriggerCounter_read;
 	Tango::DevUShort	*attr_Fan1Speed_read;
 	Tango::DevUShort	*attr_Fan2Speed_read;
 	Tango::DevUShort	*attr_Temp1_read;
@@ -243,16 +243,16 @@ public:
 
 
 	/**
-	 *	Level attribute related methods.
+	 *	AttenuationLevel attribute related methods.
 	 *	Description: The analog channels level. This attribute allows the user to tune the analog channels
 	 *             attenuator. The input is an index within a lookup table in the Libera box
 	 *
 	 *	Data type:	Tango::DevLong
 	 *	Attr type:	Scalar
 	 */
-	virtual void read_Level(Tango::Attribute &attr);
-	virtual void write_Level(Tango::WAttribute &attr);
-	virtual bool is_Level_allowed(Tango::AttReqType type);
+	virtual void read_AttenuationLevel(Tango::Attribute &attr);
+	virtual void write_AttenuationLevel(Tango::WAttribute &attr);
+	virtual bool is_AttenuationLevel_allowed(Tango::AttReqType type);
 
 
 
