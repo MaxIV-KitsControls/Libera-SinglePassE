@@ -49,8 +49,13 @@ platformDummy::platformDummy() : LiberaApplication(c_applicationName)
 	m_id0 = 0;
 	m_id1 = 0;
 	m_id2 = 0;
-	m_fan1 = 4544;
-	m_fan2 = 4544;
+	m_fan_right_front = 4540;
+	m_fan_left_front = 4554;
+	m_fan_right_middle = 4534;
+	m_fan_right_rear = 4524;
+	m_fan_left_middle = 4514;
+	m_fan_left_rear = 4544;
+
 }
 
 /*-----------------------------------------------------------------------------*/
@@ -123,17 +128,41 @@ void platformDummy::EventThread()
     	}
     	m_nodeid2->Emit();
 
-    	m_fan1--;
-    	if (m_fan1 < 4000) {
-    		m_fan1 = 4544;
+    	m_fan_left_rear--;
+    	if (m_fan_left_rear < 4000) {
+    		m_fan_left_rear = 4548;
     	}
-    	m_nodefan1->Emit();
+    	m_nodefan_left_rear->Emit();
 
-    	m_fan2++;
-    	if (m_fan2 > 5000) {
-    		m_fan2 = 4544;
+    	m_fan_left_middle--;
+    	if (m_fan_left_middle < 4000) {
+    		m_fan_left_middle = 4530;
     	}
-    	m_nodefan2->Emit();
+    	m_nodefan_left_middle->Emit();
+
+    	m_fan_left_front--;
+    	if (m_fan_left_front < 4000) {
+    		m_fan_left_front = 4540;
+    	}
+    	m_nodefan_left_front->Emit();
+
+    	m_fan_right_rear--;
+    	if (m_fan_right_rear < 4000) {
+    		m_fan_right_rear = 4544;
+    	}
+    	m_nodefan_right_rear->Emit();
+
+    	m_fan_right_middle--;
+    	if (m_fan_right_middle < 4000) {
+    		m_fan_right_middle = 4532;
+    	}
+    	m_nodefan_right_middle->Emit();
+
+    	m_fan_right_front--;
+    	if (m_fan_right_front < 4000) {
+    		m_fan_right_front = 4500;
+    	}
+    	m_nodefan_right_front->Emit();
 
     	usleep(300000);
     }
@@ -164,12 +193,23 @@ void platformDummy::OnRegistryAdd(ireg::TreeNodePtr &parent) {
 	 * of interest to Tango DS */
 
 	mci::Node regroot = GetRegistry();
-	m_nodefan1 = Create<RegReferenceDoubleNode>("left_front", m_fan1, f_read_only);
-	m_nodefan2 = Create<RegReferenceDoubleNode>("right_front", m_fan2, f_read_only);
+
+	m_nodefan_left_rear = Create<RegReferenceDoubleNode>("left_rear", m_fan_left_rear, f_read_only);
+	m_nodefan_left_middle = Create<RegReferenceDoubleNode>("left_middle", m_fan_left_middle, f_read_only);
+	m_nodefan_left_front =  Create<RegReferenceDoubleNode>("left_front", m_fan_left_front, f_read_only);
+	m_nodefan_right_rear = Create<RegReferenceDoubleNode>("right_rear", m_fan_right_rear, f_read_only);
+	m_nodefan_right_middle = Create<RegReferenceDoubleNode>("right_middle", m_fan_right_middle, f_read_only);
+	m_nodefan_right_front =  Create<RegReferenceDoubleNode>("right_front", m_fan_right_front, f_read_only);
 	regroot.GetTreeNode()->Attach(Create<RegNode>("fans"));
 	mci::Node fans = GetRegistry()["fans"];
-	fans.GetTreeNode()->Attach(m_nodefan1);
-	fans.GetTreeNode()->Attach(m_nodefan2);
+	fans.GetTreeNode()->Attach(m_nodefan_left_rear);
+	fans.GetTreeNode()->Attach(m_nodefan_left_middle);
+	fans.GetTreeNode()->Attach(m_nodefan_left_front);
+	fans.GetTreeNode()->Attach(m_nodefan_right_rear);
+	fans.GetTreeNode()->Attach(m_nodefan_right_middle);
+	fans.GetTreeNode()->Attach(m_nodefan_right_front);
+
+
 
 	mci::Node boards = GetRegistry()["boards"];
 
