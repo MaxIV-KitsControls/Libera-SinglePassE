@@ -164,7 +164,7 @@ LiberaSinglePassEClass *LiberaSinglePassEClass::instance()
  *	returns The command output data (packed in the Any object)
  */
 //--------------------------------------------------------
-CORBA::Any *ResetClass::execute(Tango::DeviceImpl *device, TANGO_UNUSED(const CORBA::Any &in_any))
+CORBA::Any *ResetClass::execute(Tango::DeviceImpl *device, const CORBA::Any &in_any)
 {
 	cout2 << "ResetClass::execute(): arrived" << endl;
 
@@ -183,7 +183,7 @@ CORBA::Any *ResetClass::execute(Tango::DeviceImpl *device, TANGO_UNUSED(const CO
  *	returns The command output data (packed in the Any object)
  */
 //--------------------------------------------------------
-CORBA::Any *ResetTriggerClass::execute(Tango::DeviceImpl *device, TANGO_UNUSED(const CORBA::Any &in_any))
+CORBA::Any *ResetTriggerClass::execute(Tango::DeviceImpl *device, const CORBA::Any &in_any)
 {
 	cout2 << "ResetTriggerClass::execute(): arrived" << endl;
 
@@ -704,6 +704,7 @@ void LiberaSinglePassEClass::attribute_factory(vector<Tango::Attr *> &att_list)
 
 	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::Class::attribute_factory_before
 
+
 	//	Attribute : BufferSize
 	BufferSizeAttrib	*buffersize = new BufferSizeAttrib();
 	Tango::UserDefaultAttrProp	buffersize_prop;
@@ -721,16 +722,14 @@ void LiberaSinglePassEClass::attribute_factory(vector<Tango::Attr *> &att_list)
 	//	min_warning	not set for	BufferSize
 	//	delta_t	not set for	BufferSize
 	//	delta_val	not set for	BufferSize
-
 	buffersize->set_default_properties(buffersize_prop);
-	buffersize->set_polling_period(0);
+	//	Not Polled
 	buffersize->set_disp_level(Tango::OPERATOR);
 	buffersize->set_memorized();
 	buffersize->set_memorized_init(true);
 	//	BufferSize does not fire change event
 	//	BufferSize does not fire archive event
 	//	BufferSize does not fire data_ready event
-
 	att_list.push_back(buffersize);
 
 	//	Attribute : AttenuationLevel
@@ -750,16 +749,14 @@ void LiberaSinglePassEClass::attribute_factory(vector<Tango::Attr *> &att_list)
 	//	min_warning	not set for	AttenuationLevel
 	//	delta_t	not set for	AttenuationLevel
 	//	delta_val	not set for	AttenuationLevel
-
 	attenuationlevel->set_default_properties(attenuationlevel_prop);
-	attenuationlevel->set_polling_period(0);
+	//	Not Polled
 	attenuationlevel->set_disp_level(Tango::OPERATOR);
 	//	Not memorized
 
 	//	AttenuationLevel does not fire change event
 	//	AttenuationLevel does not fire archive event
 	//	AttenuationLevel does not fire data_ready event
-
 	att_list.push_back(attenuationlevel);
 
 	//	Attribute : TriggerCounter
@@ -779,16 +776,14 @@ void LiberaSinglePassEClass::attribute_factory(vector<Tango::Attr *> &att_list)
 	//	min_warning	not set for	TriggerCounter
 	//	delta_t	not set for	TriggerCounter
 	//	delta_val	not set for	TriggerCounter
-
 	triggercounter->set_default_properties(triggercounter_prop);
-	triggercounter->set_polling_period(0);
+	//	Not Polled
 	triggercounter->set_disp_level(Tango::OPERATOR);
 	//	Not memorized
 
 	//	TriggerCounter does not fire change event
 	//	TriggerCounter does not fire archive event
 	//	TriggerCounter does not fire data_ready event
-
 	att_list.push_back(triggercounter);
 
 	//	Attribute : Fan1Speed
@@ -808,16 +803,14 @@ void LiberaSinglePassEClass::attribute_factory(vector<Tango::Attr *> &att_list)
 	//	min_warning	not set for	Fan1Speed
 	//	delta_t	not set for	Fan1Speed
 	//	delta_val	not set for	Fan1Speed
-
 	fan1speed->set_default_properties(fan1speed_prop);
-	fan1speed->set_polling_period(0);
+	//	Not Polled
 	fan1speed->set_disp_level(Tango::EXPERT);
 	//	Not memorized
 
 	//	Fan1Speed does not fire change event
 	//	Fan1Speed does not fire archive event
 	//	Fan1Speed does not fire data_ready event
-
 	att_list.push_back(fan1speed);
 
 	//	Attribute : Fan2Speed
@@ -837,16 +830,14 @@ void LiberaSinglePassEClass::attribute_factory(vector<Tango::Attr *> &att_list)
 	//	min_warning	not set for	Fan2Speed
 	//	delta_t	not set for	Fan2Speed
 	//	delta_val	not set for	Fan2Speed
-
 	fan2speed->set_default_properties(fan2speed_prop);
-	fan2speed->set_polling_period(0);
+	//	Not Polled
 	fan2speed->set_disp_level(Tango::EXPERT);
 	//	Not memorized
 
 	//	Fan2Speed does not fire change event
 	//	Fan2Speed does not fire archive event
 	//	Fan2Speed does not fire data_ready event
-
 	att_list.push_back(fan2speed);
 
 	//	Attribute : Temp1
@@ -866,16 +857,14 @@ void LiberaSinglePassEClass::attribute_factory(vector<Tango::Attr *> &att_list)
 	//	min_warning	not set for	Temp1
 	//	delta_t	not set for	Temp1
 	//	delta_val	not set for	Temp1
-
 	temp1->set_default_properties(temp1_prop);
-	temp1->set_polling_period(0);
+	//	Not Polled
 	temp1->set_disp_level(Tango::EXPERT);
 	//	Not memorized
 
 	//	Temp1 does not fire change event
 	//	Temp1 does not fire archive event
 	//	Temp1 does not fire data_ready event
-
 	att_list.push_back(temp1);
 
 	//	Attribute : Temp2
@@ -895,16 +884,14 @@ void LiberaSinglePassEClass::attribute_factory(vector<Tango::Attr *> &att_list)
 	//	min_warning	not set for	Temp2
 	//	delta_t	not set for	Temp2
 	//	delta_val	not set for	Temp2
-
 	temp2->set_default_properties(temp2_prop);
-	temp2->set_polling_period(0);
+	//	Not Polled
 	temp2->set_disp_level(Tango::EXPERT);
 	//	Not memorized
 
 	//	Temp2 does not fire change event
 	//	Temp2 does not fire archive event
 	//	Temp2 does not fire data_ready event
-
 	att_list.push_back(temp2);
 
 	//	Attribute : Temp3
@@ -924,16 +911,14 @@ void LiberaSinglePassEClass::attribute_factory(vector<Tango::Attr *> &att_list)
 	//	min_warning	not set for	Temp3
 	//	delta_t	not set for	Temp3
 	//	delta_val	not set for	Temp3
-
 	temp3->set_default_properties(temp3_prop);
-	temp3->set_polling_period(0);
+	//	Not Polled
 	temp3->set_disp_level(Tango::EXPERT);
 	//	Not memorized
 
 	//	Temp3 does not fire change event
 	//	Temp3 does not fire archive event
 	//	Temp3 does not fire data_ready event
-
 	att_list.push_back(temp3);
 
 	//	Attribute : Up
@@ -953,16 +938,14 @@ void LiberaSinglePassEClass::attribute_factory(vector<Tango::Attr *> &att_list)
 	//	min_warning	not set for	Up
 	//	delta_t	not set for	Up
 	//	delta_val	not set for	Up
-
 	up->set_default_properties(up_prop);
-	up->set_polling_period(0);
+	//	Not Polled
 	up->set_disp_level(Tango::OPERATOR);
 	//	Not memorized
 
 	//	Up does not fire change event
 	//	Up does not fire archive event
 	//	Up does not fire data_ready event
-
 	att_list.push_back(up);
 
 	//	Attribute : Down
@@ -982,16 +965,14 @@ void LiberaSinglePassEClass::attribute_factory(vector<Tango::Attr *> &att_list)
 	//	min_warning	not set for	Down
 	//	delta_t	not set for	Down
 	//	delta_val	not set for	Down
-
 	down->set_default_properties(down_prop);
-	down->set_polling_period(0);
+	//	Not Polled
 	down->set_disp_level(Tango::OPERATOR);
 	//	Not memorized
 
 	//	Down does not fire change event
 	//	Down does not fire archive event
 	//	Down does not fire data_ready event
-
 	att_list.push_back(down);
 
 	//	Attribute : Left
@@ -1011,16 +992,14 @@ void LiberaSinglePassEClass::attribute_factory(vector<Tango::Attr *> &att_list)
 	//	min_warning	not set for	Left
 	//	delta_t	not set for	Left
 	//	delta_val	not set for	Left
-
 	left->set_default_properties(left_prop);
-	left->set_polling_period(0);
+	//	Not Polled
 	left->set_disp_level(Tango::OPERATOR);
 	//	Not memorized
 
 	//	Left does not fire change event
 	//	Left does not fire archive event
 	//	Left does not fire data_ready event
-
 	att_list.push_back(left);
 
 	//	Attribute : Right
@@ -1040,16 +1019,14 @@ void LiberaSinglePassEClass::attribute_factory(vector<Tango::Attr *> &att_list)
 	//	min_warning	not set for	Right
 	//	delta_t	not set for	Right
 	//	delta_val	not set for	Right
-
 	right->set_default_properties(right_prop);
-	right->set_polling_period(0);
+	//	Not Polled
 	right->set_disp_level(Tango::OPERATOR);
 	//	Not memorized
 
 	//	Right does not fire change event
 	//	Right does not fire archive event
 	//	Right does not fire data_ready event
-
 	att_list.push_back(right);
 
 	//	Attribute : UpT
@@ -1069,16 +1046,14 @@ void LiberaSinglePassEClass::attribute_factory(vector<Tango::Attr *> &att_list)
 	//	min_warning	not set for	UpT
 	//	delta_t	not set for	UpT
 	//	delta_val	not set for	UpT
-
 	upt->set_default_properties(upt_prop);
-	upt->set_polling_period(0);
+	//	Not Polled
 	upt->set_disp_level(Tango::OPERATOR);
 	//	Not memorized
 
 	//	UpT does not fire change event
 	//	UpT does not fire archive event
 	//	UpT does not fire data_ready event
-
 	att_list.push_back(upt);
 
 	//	Attribute : DownT
@@ -1098,16 +1073,14 @@ void LiberaSinglePassEClass::attribute_factory(vector<Tango::Attr *> &att_list)
 	//	min_warning	not set for	DownT
 	//	delta_t	not set for	DownT
 	//	delta_val	not set for	DownT
-
 	downt->set_default_properties(downt_prop);
-	downt->set_polling_period(0);
+	//	Not Polled
 	downt->set_disp_level(Tango::OPERATOR);
 	//	Not memorized
 
 	//	DownT does not fire change event
 	//	DownT does not fire archive event
 	//	DownT does not fire data_ready event
-
 	att_list.push_back(downt);
 
 	//	Attribute : LeftT
@@ -1127,16 +1100,14 @@ void LiberaSinglePassEClass::attribute_factory(vector<Tango::Attr *> &att_list)
 	//	min_warning	not set for	LeftT
 	//	delta_t	not set for	LeftT
 	//	delta_val	not set for	LeftT
-
 	leftt->set_default_properties(leftt_prop);
-	leftt->set_polling_period(0);
+	//	Not Polled
 	leftt->set_disp_level(Tango::OPERATOR);
 	//	Not memorized
 
 	//	LeftT does not fire change event
 	//	LeftT does not fire archive event
 	//	LeftT does not fire data_ready event
-
 	att_list.push_back(leftt);
 
 	//	Attribute : RightT
@@ -1156,16 +1127,14 @@ void LiberaSinglePassEClass::attribute_factory(vector<Tango::Attr *> &att_list)
 	//	min_warning	not set for	RightT
 	//	delta_t	not set for	RightT
 	//	delta_val	not set for	RightT
-
 	rightt->set_default_properties(rightt_prop);
-	rightt->set_polling_period(0);
+	//	Not Polled
 	rightt->set_disp_level(Tango::OPERATOR);
 	//	Not memorized
 
 	//	RightT does not fire change event
 	//	RightT does not fire archive event
 	//	RightT does not fire data_ready event
-
 	att_list.push_back(rightt);
 
 	//	Attribute : Zposition
@@ -1185,16 +1154,14 @@ void LiberaSinglePassEClass::attribute_factory(vector<Tango::Attr *> &att_list)
 	//	min_warning	not set for	Zposition
 	//	delta_t	not set for	Zposition
 	//	delta_val	not set for	Zposition
-
 	zposition->set_default_properties(zposition_prop);
-	zposition->set_polling_period(0);
+	//	Not Polled
 	zposition->set_disp_level(Tango::OPERATOR);
 	//	Not memorized
 
 	//	Zposition does not fire change event
 	//	Zposition does not fire archive event
 	//	Zposition does not fire data_ready event
-
 	att_list.push_back(zposition);
 
 	//	Attribute : Xposition
@@ -1214,16 +1181,14 @@ void LiberaSinglePassEClass::attribute_factory(vector<Tango::Attr *> &att_list)
 	//	min_warning	not set for	Xposition
 	//	delta_t	not set for	Xposition
 	//	delta_val	not set for	Xposition
-
 	xposition->set_default_properties(xposition_prop);
-	xposition->set_polling_period(0);
+	//	Not Polled
 	xposition->set_disp_level(Tango::OPERATOR);
 	//	Not memorized
 
 	//	Xposition does not fire change event
 	//	Xposition does not fire archive event
 	//	Xposition does not fire data_ready event
-
 	att_list.push_back(xposition);
 
 	//	Attribute : Current
@@ -1243,16 +1208,14 @@ void LiberaSinglePassEClass::attribute_factory(vector<Tango::Attr *> &att_list)
 	//	min_warning	not set for	Current
 	//	delta_t	not set for	Current
 	//	delta_val	not set for	Current
-
 	current->set_default_properties(current_prop);
-	current->set_polling_period(0);
+	//	Not Polled
 	current->set_disp_level(Tango::OPERATOR);
 	//	Not memorized
 
 	//	Current does not fire change event
 	//	Current does not fire archive event
 	//	Current does not fire data_ready event
-
 	att_list.push_back(current);
 
 	//	Attribute : SumT
@@ -1272,16 +1235,14 @@ void LiberaSinglePassEClass::attribute_factory(vector<Tango::Attr *> &att_list)
 	//	min_warning	not set for	SumT
 	//	delta_t	not set for	SumT
 	//	delta_val	not set for	SumT
-
 	sumt->set_default_properties(sumt_prop);
-	sumt->set_polling_period(0);
+	//	Not Polled
 	sumt->set_disp_level(Tango::OPERATOR);
 	//	Not memorized
 
 	//	SumT does not fire change event
 	//	SumT does not fire archive event
 	//	SumT does not fire data_ready event
-
 	att_list.push_back(sumt);
 
 
@@ -1297,7 +1258,6 @@ void LiberaSinglePassEClass::attribute_factory(vector<Tango::Attr *> &att_list)
 }
 
 
-
 //--------------------------------------------------------
 /**
  *	Method      : LiberaSinglePassE::LiberaSinglePassEClass::command_factory()
@@ -1311,30 +1271,22 @@ void LiberaSinglePassEClass::command_factory()
 
 	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::Class::command_factory_before
 
-
-
-	//	Create Reset command object
 	ResetClass	*pResetCmd =
 		new ResetClass("Reset",
 			Tango::DEV_VOID, Tango::DEV_VOID,
 			"",
 			"",
 			Tango::OPERATOR);
+	pResetCmd->set_polling_period(0);
 	command_list.push_back(pResetCmd);
-
-
-
-	//	Create ResetTrigger command object
 	ResetTriggerClass	*pResetTriggerCmd =
 		new ResetTriggerClass("ResetTrigger",
 			Tango::DEV_VOID, Tango::DEV_VOID,
 			"",
 			"",
 			Tango::EXPERT);
+	pResetTriggerCmd->set_polling_period(0);
 	command_list.push_back(pResetTriggerCmd);
-
-
-
 
 	/*----- PROTECTED REGION ID(LiberaSinglePassE::Class::command_factory_after) ENABLED START -----*/
 

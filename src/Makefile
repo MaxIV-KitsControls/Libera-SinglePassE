@@ -22,7 +22,7 @@
 #=============================================================================
 # MAKE_ENV is the path to find common environment to buil project
 #
-MAKE_ENV = /usr/local/share/pogo/preferences
+MAKE_ENV = /usr/share/pogo/preferences
 
 #=============================================================================
 # PACKAGE_NAME is the name of the library/device/exe you want to build
@@ -101,7 +101,7 @@ LFLAGS_USR+= -lliberamci2.6 \
 #
 # -DACE_HAS_EXCEPTIONS -D__ACE_INLINE__ for ACE
 #
-CXXFLAGS_USR+= -Wall -O0 -ggdb3 -std=gnu++0x
+CXXFLAGS_USR+= -Wall -std=gnu++0x
 
 
 #=============================================================================

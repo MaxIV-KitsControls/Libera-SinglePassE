@@ -336,7 +336,6 @@ public:
 
 
 
-
 //=========================================
 //	Define classes for commands
 //=========================================
@@ -443,7 +442,6 @@ private:
 	void create_static_attribute_list(vector<Tango::Attr *> &);
 	void erase_dynamic_attributes(const Tango::DevVarStringArray *,vector<Tango::Attr *> &);
 	vector<string>	defaultAttList;
-	Tango::Attr *get_attr_object_by_name(vector<Tango::Attr *> &att_list, string attname);
 
 
 };

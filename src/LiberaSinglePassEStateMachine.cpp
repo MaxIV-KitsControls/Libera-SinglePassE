@@ -44,6 +44,7 @@ static const char *RcsId = "$Id:  $";
 
 namespace LiberaSinglePassE_ns
 {
+
 //=================================================
 //		Attributes Allowed Methods
 //=================================================
@@ -55,7 +56,7 @@ namespace LiberaSinglePassE_ns
  */
 //--------------------------------------------------------
 
-bool LiberaSinglePassE::is_BufferSize_allowed(TANGO_UNUSED(Tango::AttReqType type))
+bool LiberaSinglePassE::is_BufferSize_allowed(Tango::AttReqType type)
 {
 	//	Check if access type.
 	if ( type!=Tango::READ_REQ )
@@ -89,7 +90,7 @@ bool LiberaSinglePassE::is_BufferSize_allowed(TANGO_UNUSED(Tango::AttReqType typ
  */
 //--------------------------------------------------------
 
-bool LiberaSinglePassE::is_AttenuationLevel_allowed(TANGO_UNUSED(Tango::AttReqType type))
+bool LiberaSinglePassE::is_AttenuationLevel_allowed(Tango::AttReqType type)
 {
 	//	Check if access type.
 	if ( type!=Tango::READ_REQ )
@@ -119,7 +120,7 @@ bool LiberaSinglePassE::is_AttenuationLevel_allowed(TANGO_UNUSED(Tango::AttReqTy
  */
 //--------------------------------------------------------
 
-bool LiberaSinglePassE::is_TriggerCounter_allowed(TANGO_UNUSED(Tango::AttReqType type))
+bool LiberaSinglePassE::is_TriggerCounter_allowed(Tango::AttReqType type)
 {
 	if (	//	Compare device state with not allowed states for READ
 		get_state() == Tango::UNKNOWN)
@@ -141,7 +142,7 @@ bool LiberaSinglePassE::is_TriggerCounter_allowed(TANGO_UNUSED(Tango::AttReqType
  */
 //--------------------------------------------------------
 
-bool LiberaSinglePassE::is_Fan1Speed_allowed(TANGO_UNUSED(Tango::AttReqType type))
+bool LiberaSinglePassE::is_Fan1Speed_allowed(Tango::AttReqType type)
 {
 	if (	//	Compare device state with not allowed states for READ
 		get_state() == Tango::UNKNOWN)
@@ -163,7 +164,7 @@ bool LiberaSinglePassE::is_Fan1Speed_allowed(TANGO_UNUSED(Tango::AttReqType type
  */
 //--------------------------------------------------------
 
-bool LiberaSinglePassE::is_Fan2Speed_allowed(TANGO_UNUSED(Tango::AttReqType type))
+bool LiberaSinglePassE::is_Fan2Speed_allowed(Tango::AttReqType type)
 {
 	if (	//	Compare device state with not allowed states for READ
 		get_state() == Tango::UNKNOWN)
@@ -185,7 +186,7 @@ bool LiberaSinglePassE::is_Fan2Speed_allowed(TANGO_UNUSED(Tango::AttReqType type
  */
 //--------------------------------------------------------
 
-bool LiberaSinglePassE::is_Temp1_allowed(TANGO_UNUSED(Tango::AttReqType type))
+bool LiberaSinglePassE::is_Temp1_allowed(Tango::AttReqType type)
 {
 	if (	//	Compare device state with not allowed states for READ
 		get_state() == Tango::UNKNOWN)
@@ -207,7 +208,7 @@ bool LiberaSinglePassE::is_Temp1_allowed(TANGO_UNUSED(Tango::AttReqType type))
  */
 //--------------------------------------------------------
 
-bool LiberaSinglePassE::is_Temp2_allowed(TANGO_UNUSED(Tango::AttReqType type))
+bool LiberaSinglePassE::is_Temp2_allowed(Tango::AttReqType type)
 {
 	if (	//	Compare device state with not allowed states for READ
 		get_state() == Tango::UNKNOWN)
@@ -229,7 +230,7 @@ bool LiberaSinglePassE::is_Temp2_allowed(TANGO_UNUSED(Tango::AttReqType type))
  */
 //--------------------------------------------------------
 
-bool LiberaSinglePassE::is_Temp3_allowed(TANGO_UNUSED(Tango::AttReqType type))
+bool LiberaSinglePassE::is_Temp3_allowed(Tango::AttReqType type)
 {
 	if (	//	Compare device state with not allowed states for READ
 		get_state() == Tango::UNKNOWN)
@@ -251,7 +252,7 @@ bool LiberaSinglePassE::is_Temp3_allowed(TANGO_UNUSED(Tango::AttReqType type))
  */
 //--------------------------------------------------------
 
-bool LiberaSinglePassE::is_Up_allowed(TANGO_UNUSED(Tango::AttReqType type))
+bool LiberaSinglePassE::is_Up_allowed(Tango::AttReqType type)
 {
 	if (	//	Compare device state with not allowed states for READ
 		get_state() == Tango::UNKNOWN)
@@ -273,7 +274,7 @@ bool LiberaSinglePassE::is_Up_allowed(TANGO_UNUSED(Tango::AttReqType type))
  */
 //--------------------------------------------------------
 
-bool LiberaSinglePassE::is_Down_allowed(TANGO_UNUSED(Tango::AttReqType type))
+bool LiberaSinglePassE::is_Down_allowed(Tango::AttReqType type)
 {
 	if (	//	Compare device state with not allowed states for READ
 		get_state() == Tango::UNKNOWN)
@@ -295,7 +296,7 @@ bool LiberaSinglePassE::is_Down_allowed(TANGO_UNUSED(Tango::AttReqType type))
  */
 //--------------------------------------------------------
 
-bool LiberaSinglePassE::is_Left_allowed(TANGO_UNUSED(Tango::AttReqType type))
+bool LiberaSinglePassE::is_Left_allowed(Tango::AttReqType type)
 {
 	if (	//	Compare device state with not allowed states for READ
 		get_state() == Tango::UNKNOWN)
@@ -317,7 +318,7 @@ bool LiberaSinglePassE::is_Left_allowed(TANGO_UNUSED(Tango::AttReqType type))
  */
 //--------------------------------------------------------
 
-bool LiberaSinglePassE::is_Right_allowed(TANGO_UNUSED(Tango::AttReqType type))
+bool LiberaSinglePassE::is_Right_allowed(Tango::AttReqType type)
 {
 	if (	//	Compare device state with not allowed states for READ
 		get_state() == Tango::UNKNOWN)
@@ -339,7 +340,7 @@ bool LiberaSinglePassE::is_Right_allowed(TANGO_UNUSED(Tango::AttReqType type))
  */
 //--------------------------------------------------------
 
-bool LiberaSinglePassE::is_UpT_allowed(TANGO_UNUSED(Tango::AttReqType type))
+bool LiberaSinglePassE::is_UpT_allowed(Tango::AttReqType type)
 {
 	if (	//	Compare device state with not allowed states for READ
 		get_state() == Tango::UNKNOWN)
@@ -361,7 +362,7 @@ bool LiberaSinglePassE::is_UpT_allowed(TANGO_UNUSED(Tango::AttReqType type))
  */
 //--------------------------------------------------------
 
-bool LiberaSinglePassE::is_DownT_allowed(TANGO_UNUSED(Tango::AttReqType type))
+bool LiberaSinglePassE::is_DownT_allowed(Tango::AttReqType type)
 {
 	if (	//	Compare device state with not allowed states for READ
 		get_state() == Tango::UNKNOWN)
@@ -383,7 +384,7 @@ bool LiberaSinglePassE::is_DownT_allowed(TANGO_UNUSED(Tango::AttReqType type))
  */
 //--------------------------------------------------------
 
-bool LiberaSinglePassE::is_LeftT_allowed(TANGO_UNUSED(Tango::AttReqType type))
+bool LiberaSinglePassE::is_LeftT_allowed(Tango::AttReqType type)
 {
 	if (	//	Compare device state with not allowed states for READ
 		get_state() == Tango::UNKNOWN)
@@ -405,7 +406,7 @@ bool LiberaSinglePassE::is_LeftT_allowed(TANGO_UNUSED(Tango::AttReqType type))
  */
 //--------------------------------------------------------
 
-bool LiberaSinglePassE::is_RightT_allowed(TANGO_UNUSED(Tango::AttReqType type))
+bool LiberaSinglePassE::is_RightT_allowed(Tango::AttReqType type)
 {
 	if (	//	Compare device state with not allowed states for READ
 		get_state() == Tango::UNKNOWN)
@@ -427,7 +428,7 @@ bool LiberaSinglePassE::is_RightT_allowed(TANGO_UNUSED(Tango::AttReqType type))
  */
 //--------------------------------------------------------
 
-bool LiberaSinglePassE::is_Zposition_allowed(TANGO_UNUSED(Tango::AttReqType type))
+bool LiberaSinglePassE::is_Zposition_allowed(Tango::AttReqType type)
 {
 	if (	//	Compare device state with not allowed states for READ
 		get_state() == Tango::UNKNOWN)
@@ -449,7 +450,7 @@ bool LiberaSinglePassE::is_Zposition_allowed(TANGO_UNUSED(Tango::AttReqType type
  */
 //--------------------------------------------------------
 
-bool LiberaSinglePassE::is_Xposition_allowed(TANGO_UNUSED(Tango::AttReqType type))
+bool LiberaSinglePassE::is_Xposition_allowed(Tango::AttReqType type)
 {
 	if (	//	Compare device state with not allowed states for READ
 		get_state() == Tango::UNKNOWN)
@@ -471,7 +472,7 @@ bool LiberaSinglePassE::is_Xposition_allowed(TANGO_UNUSED(Tango::AttReqType type
  */
 //--------------------------------------------------------
 
-bool LiberaSinglePassE::is_Current_allowed(TANGO_UNUSED(Tango::AttReqType type))
+bool LiberaSinglePassE::is_Current_allowed(Tango::AttReqType type)
 {
 	if (	//	Compare device state with not allowed states for READ
 		get_state() == Tango::UNKNOWN)
@@ -493,7 +494,7 @@ bool LiberaSinglePassE::is_Current_allowed(TANGO_UNUSED(Tango::AttReqType type))
  */
 //--------------------------------------------------------
 
-bool LiberaSinglePassE::is_SumT_allowed(TANGO_UNUSED(Tango::AttReqType type))
+bool LiberaSinglePassE::is_SumT_allowed(Tango::AttReqType type)
 {
 	if (	//	Compare device state with not allowed states for READ
 		get_state() == Tango::UNKNOWN)
@@ -507,11 +508,6 @@ bool LiberaSinglePassE::is_SumT_allowed(TANGO_UNUSED(Tango::AttReqType type))
 	}
 	return true;
 }
-
-
-//=================================================
-//	Dynamic Attributes Allowed Methods
-//=================================================
 
 
 	/*----- PROTECTED REGION ID(LiberaSinglePassE::are_dynamic_attributes_allowed) ENABLED START -----*/
@@ -533,7 +529,7 @@ bool LiberaSinglePassE::is_SumT_allowed(TANGO_UNUSED(Tango::AttReqType type))
  */
 //--------------------------------------------------------
 
-bool LiberaSinglePassE::is_Reset_allowed(TANGO_UNUSED(const CORBA::Any &any))
+bool LiberaSinglePassE::is_Reset_allowed(const CORBA::Any &any)
 {
 	if (	//	Compare device state with not allowed states for command
 		get_state() == Tango::ON	||
@@ -556,7 +552,7 @@ bool LiberaSinglePassE::is_Reset_allowed(TANGO_UNUSED(const CORBA::Any &any))
  */
 //--------------------------------------------------------
 
-bool LiberaSinglePassE::is_ResetTrigger_allowed(TANGO_UNUSED(const CORBA::Any &any))
+bool LiberaSinglePassE::is_ResetTrigger_allowed(const CORBA::Any &any)
 {
 	if (	//	Compare device state with not allowed states for command
 		get_state() == Tango::UNKNOWN	||

@@ -736,18 +736,22 @@ void LiberaSinglePassE::always_executed_hook()
 
 			// Connect MCI platform daemon nodes
 			try {
+				// left side fans
 				mci_fan_left_front = mci_platform_root.GetNode(mci::Tokenize("fans.left_front"));
 				mci_fan_left_middle = mci_platform_root.GetNode(mci::Tokenize("fans.left_middle"));
 				mci_fan_left_rear = mci_platform_root.GetNode(mci::Tokenize("fans.left_rear"));
-
+				// right side fans
 				mci_fan_right_front = mci_platform_root.GetNode(mci::Tokenize("fans.right_front"));
 				mci_fan_right_middle = mci_platform_root.GetNode(mci::Tokenize("fans.right_middle"));
 				mci_fan_right_rear = mci_platform_root.GetNode(mci::Tokenize("fans.right_rear"));
 
-
-				mci_temp1 = mci_platform_root.GetNode(mci::Tokenize("boards.icb0.sensors.ID_0.value"));
-				mci_temp2 = mci_platform_root.GetNode(mci::Tokenize("boards.icb0.sensors.ID_1.value"));
-				mci_temp3 = mci_platform_root.GetNode(mci::Tokenize("boards.icb0.sensors.ID_2.value"));
+				// temperature from processing board sensor
+				std::string temppath = std::string("boards.") + liberaBoard + std::string(".sensors.ID_2.value");
+				mci_temp1 = mci_platform_root.GetNode(mci::Tokenize(temppath));
+				// temperature from ICB board sensor
+				mci_temp2 = mci_platform_root.GetNode(mci::Tokenize("boards.icb0.ID_8.value"));
+				// temperature from EVRX board sensor
+				mci_temp3 = mci_platform_root.GetNode(mci::Tokenize("boards.evrx2.sensors.ID_6.value"));
 
 				DEBUG_STREAM_DS << "connected MCI platform daemon nodes" <<  endl;
 			} catch (istd::Exception &e){
@@ -784,7 +788,7 @@ void LiberaSinglePassE::always_executed_hook()
  *	Description : Hardware acquisition for attributes.
  */
 //--------------------------------------------------------
-void LiberaSinglePassE::read_attr_hardware(TANGO_UNUSED(vector<long> &attr_list))
+void LiberaSinglePassE::read_attr_hardware(vector<long> &attr_list)
 {
 	DEBUG_STREAM << "LiberaSinglePassE::read_attr_hardware(vector<long> &attr_list) entering... " << endl;
 	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_attr_hardware) ENABLED START -----*/

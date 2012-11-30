@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ASCII"?>
 <pogoDsl:PogoSystem xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pogoDsl="http://www.esrf.fr/tango/pogo/PogoDsl">
   <classes name="LiberaSinglePassE">
-    <description description="This Tango class is the interface of the Instrumentation Technologies (IT) Libera&#xA;Brilliance Single Pass E equipment. This class supports only a subset of all the&#xA;equipment features. It is the basic equipment for a Injection and Transfer Efficiency&#xA;Measurement System" title="Libera Brillance Single Pass E" sourcePath="/home/hinko.kocevar/workspace/TDS-Libera-SinglePassE/src" language="Cpp" filestogenerate="XMI   file,Code files,Makefile,html Pages" hasMandatoryProperty="false" hasConcreteProperty="true" hasAbstractCommand="false" hasAbstractAttribute="false" descriptionHtmlExists="false">
+    <description description="This Tango class is the interface of the Instrumentation Technologies (IT) Libera&#xA;Brilliance Single Pass E equipment. This class supports only a subset of all the&#xA;equipment features. It is the basic equipment for a Injection and Transfer Efficiency&#xA;Measurement System" title="Libera Brillance Single Pass E" sourcePath="/home/hinko.kocevar/workspace/TDS-Libera-SinglePassE/src" language="Cpp" filestogenerate="XMI   file,Code files,Makefile,html Pages" hasAbstractCommand="false" hasAbstractAttribute="false">
       <inheritances classname="Device_4Impl" sourcePath=""/>
       <identification contact="at maxlab.lu.se - kitscontrols" author="kitscontrols" emailDomain="maxlab.lu.se" classFamily="BeamDiag" siteSpecific="" platform="Unix Like" bus="Ethernet" manufacturer="Instrumentation Technologies" reference="Libera Brillance Single Pass E"/>
       <comments commandsTable="//================================================================&#xA;//&#xA;//  The following table gives the correspondence&#xA;//  between command and method names.&#xA;//&#xA;//  Command name  |  Method name&#xA;//----------------------------------------------------------------&#xA;//  State         |  Inherited (no method)&#xA;//  Status        |  Inherited (no method)&#xA;//  Reset         |  reset&#xA;//  ResetTrigger  |  reset_trigger&#xA;//================================================================"/>
@@ -102,7 +102,7 @@
       <properties description="The Libera box ADC buffer size (between 10 and 8192)" label="Buffer Size" unit="samples" standardUnit="" displayUnit="" format="%4d" maxValue="8192" minValue="10" maxAlarm="" minAlarm="" maxWarning="" minWarning="" deltaTime="" deltaValue=""/>
       <readExcludedStates>UNKNOWN</readExcludedStates>
     </attributes>
-    <attributes name="AttenuationLevel" attType="Scalar" rwType="READ_WRITE" displayLevel="OPERATOR" polledPeriod="0" maxX="0" maxY="0" allocReadMember="false" isDynamic="false">
+    <attributes name="AttenuationLevel" attType="Scalar" rwType="READ_WRITE" displayLevel="OPERATOR" polledPeriod="0" maxX="0" maxY="0" allocReadMember="false">
       <dataType xsi:type="pogoDsl:IntType"/>
       <changeEvent fire="false" libCheckCriteria="false"/>
       <archiveEvent fire="false" libCheckCriteria="false"/>
@@ -263,6 +263,6 @@
     <states name="FAULT" description="The Libera box is in Fault">
       <status abstract="false" inherited="false" concrete="true" concreteHere="true"/>
     </states>
-    <preferences docHome="./doc_html" makefileHome="/usr/local/share/pogo/preferences"/>
+    <preferences docHome="./doc_html" makefileHome="/usr/share/pogo/preferences"/>
   </classes>
 </pogoDsl:PogoSystem>
