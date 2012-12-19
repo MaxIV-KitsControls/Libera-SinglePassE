@@ -909,7 +909,7 @@ void LiberaSinglePassE::always_executed_hook()
 				// temperature from processing board sensor
 				mci_temp1 = mci_platform_root.GetNode(mci::Tokenize("boards." + liberaBoard + ".sensors.ID_2.value"));
 				// temperature from ICB board sensor
-				mci_temp2 = mci_platform_root.GetNode(mci::Tokenize("boards.icb0.sensors.ID_8.value"));
+				mci_temp2 = mci_platform_root.GetNode(mci::Tokenize("boards.icb0.sensors.ID_1.value"));
 				// temperature from EVRX board sensor
 				mci_temp3 = mci_platform_root.GetNode(mci::Tokenize("boards.evrx2.sensors.ID_6.value"));
 
@@ -1322,7 +1322,7 @@ void LiberaSinglePassE::read_Calibration_ka(Tango::Attribute &attr)
  *	Write Calibration_ka attribute values to hardware.
  *
  *	Data type:	Tango::DevDouble
- *	Attr type:	Scalar 
+ *	Attr type:	Scalar
  */
 //--------------------------------------------------------
 void LiberaSinglePassE::write_Calibration_ka(Tango::WAttribute &attr)
@@ -1355,7 +1355,7 @@ void LiberaSinglePassE::write_Calibration_ka(Tango::WAttribute &attr)
  *	             calibration
  *
  *	Data type:	Tango::DevDouble
- *	Attr type:	Scalar 
+ *	Attr type:	Scalar
  */
 //--------------------------------------------------------
 void LiberaSinglePassE::read_Calibration_kb(Tango::Attribute &attr)
@@ -1384,7 +1384,7 @@ void LiberaSinglePassE::read_Calibration_kb(Tango::Attribute &attr)
  *	Write Calibration_kb attribute values to hardware.
  *
  *	Data type:	Tango::DevDouble
- *	Attr type:	Scalar 
+ *	Attr type:	Scalar
  */
 //--------------------------------------------------------
 void LiberaSinglePassE::write_Calibration_kb(Tango::WAttribute &attr)
@@ -1417,7 +1417,7 @@ void LiberaSinglePassE::write_Calibration_kb(Tango::WAttribute &attr)
  *	             calibration
  *
  *	Data type:	Tango::DevDouble
- *	Attr type:	Scalar 
+ *	Attr type:	Scalar
  */
 //--------------------------------------------------------
 void LiberaSinglePassE::read_Calibration_kc(Tango::Attribute &attr)
@@ -1446,7 +1446,7 @@ void LiberaSinglePassE::read_Calibration_kc(Tango::Attribute &attr)
  *	Write Calibration_kc attribute values to hardware.
  *
  *	Data type:	Tango::DevDouble
- *	Attr type:	Scalar 
+ *	Attr type:	Scalar
  */
 //--------------------------------------------------------
 void LiberaSinglePassE::write_Calibration_kc(Tango::WAttribute &attr)
@@ -1479,7 +1479,7 @@ void LiberaSinglePassE::write_Calibration_kc(Tango::WAttribute &attr)
  *	             calibration
  *
  *	Data type:	Tango::DevDouble
- *	Attr type:	Scalar 
+ *	Attr type:	Scalar
  */
 //--------------------------------------------------------
 void LiberaSinglePassE::read_Calibration_kd(Tango::Attribute &attr)
@@ -1508,7 +1508,7 @@ void LiberaSinglePassE::read_Calibration_kd(Tango::Attribute &attr)
  *	Write Calibration_kd attribute values to hardware.
  *
  *	Data type:	Tango::DevDouble
- *	Attr type:	Scalar 
+ *	Attr type:	Scalar
  */
 //--------------------------------------------------------
 void LiberaSinglePassE::write_Calibration_kd(Tango::WAttribute &attr)
@@ -1538,10 +1538,10 @@ void LiberaSinglePassE::write_Calibration_kd(Tango::WAttribute &attr)
 /**
  *	Read Linear_x_k attribute
  *	Description: Pickup inverse sensitivity coefficient
- *	             
+ *
  *
  *	Data type:	Tango::DevDouble
- *	Attr type:	Scalar 
+ *	Attr type:	Scalar
  */
 //--------------------------------------------------------
 void LiberaSinglePassE::read_Linear_x_k(Tango::Attribute &attr)
@@ -1570,7 +1570,7 @@ void LiberaSinglePassE::read_Linear_x_k(Tango::Attribute &attr)
  *	Write Linear_x_k attribute values to hardware.
  *
  *	Data type:	Tango::DevDouble
- *	Attr type:	Scalar 
+ *	Attr type:	Scalar
  */
 //--------------------------------------------------------
 void LiberaSinglePassE::write_Linear_x_k(Tango::WAttribute &attr)
@@ -1600,10 +1600,10 @@ void LiberaSinglePassE::write_Linear_x_k(Tango::WAttribute &attr)
 /**
  *	Read Linear_x_offs attribute
  *	Description: Calibrates position offsets
- *	             
+ *
  *
  *	Data type:	Tango::DevDouble
- *	Attr type:	Scalar 
+ *	Attr type:	Scalar
  */
 //--------------------------------------------------------
 void LiberaSinglePassE::read_Linear_x_offs(Tango::Attribute &attr)
@@ -1632,7 +1632,7 @@ void LiberaSinglePassE::read_Linear_x_offs(Tango::Attribute &attr)
  *	Write Linear_x_offs attribute values to hardware.
  *
  *	Data type:	Tango::DevDouble
- *	Attr type:	Scalar 
+ *	Attr type:	Scalar
  */
 //--------------------------------------------------------
 void LiberaSinglePassE::write_Linear_x_offs(Tango::WAttribute &attr)
@@ -1664,7 +1664,7 @@ void LiberaSinglePassE::write_Linear_x_offs(Tango::WAttribute &attr)
  *	Description: Pickup inverse sensitivity coefficient.
  *
  *	Data type:	Tango::DevDouble
- *	Attr type:	Scalar 
+ *	Attr type:	Scalar
  */
 //--------------------------------------------------------
 void LiberaSinglePassE::read_Linear_y_k(Tango::Attribute &attr)
@@ -1693,7 +1693,7 @@ void LiberaSinglePassE::read_Linear_y_k(Tango::Attribute &attr)
  *	Write Linear_y_k attribute values to hardware.
  *
  *	Data type:	Tango::DevDouble
- *	Attr type:	Scalar 
+ *	Attr type:	Scalar
  */
 //--------------------------------------------------------
 void LiberaSinglePassE::write_Linear_y_k(Tango::WAttribute &attr)
@@ -1725,7 +1725,7 @@ void LiberaSinglePassE::write_Linear_y_k(Tango::WAttribute &attr)
  *	Description: Calibrates position offsets
  *
  *	Data type:	Tango::DevDouble
- *	Attr type:	Scalar 
+ *	Attr type:	Scalar
  */
 //--------------------------------------------------------
 void LiberaSinglePassE::read_Linear_y_offs(Tango::Attribute &attr)
@@ -1754,7 +1754,7 @@ void LiberaSinglePassE::read_Linear_y_offs(Tango::Attribute &attr)
  *	Write Linear_y_offs attribute values to hardware.
  *
  *	Data type:	Tango::DevDouble
- *	Attr type:	Scalar 
+ *	Attr type:	Scalar
  */
 //--------------------------------------------------------
 void LiberaSinglePassE::write_Linear_y_offs(Tango::WAttribute &attr)
@@ -1784,10 +1784,10 @@ void LiberaSinglePassE::write_Linear_y_offs(Tango::WAttribute &attr)
 /**
  *	Read Linear_q_k attribute
  *	Description: Scaling coefficient for q factor.
- *	             
+ *
  *
  *	Data type:	Tango::DevDouble
- *	Attr type:	Scalar 
+ *	Attr type:	Scalar
  */
 //--------------------------------------------------------
 void LiberaSinglePassE::read_Linear_q_k(Tango::Attribute &attr)
@@ -1816,7 +1816,7 @@ void LiberaSinglePassE::read_Linear_q_k(Tango::Attribute &attr)
  *	Write Linear_q_k attribute values to hardware.
  *
  *	Data type:	Tango::DevDouble
- *	Attr type:	Scalar 
+ *	Attr type:	Scalar
  */
 //--------------------------------------------------------
 void LiberaSinglePassE::write_Linear_q_k(Tango::WAttribute &attr)
@@ -1846,10 +1846,10 @@ void LiberaSinglePassE::write_Linear_q_k(Tango::WAttribute &attr)
 /**
  *	Read Linear_q_offs attribute
  *	Description: Sets the offset for q factor.
- *	             
+ *
  *
  *	Data type:	Tango::DevDouble
- *	Attr type:	Scalar 
+ *	Attr type:	Scalar
  */
 //--------------------------------------------------------
 void LiberaSinglePassE::read_Linear_q_offs(Tango::Attribute &attr)
@@ -1878,7 +1878,7 @@ void LiberaSinglePassE::read_Linear_q_offs(Tango::Attribute &attr)
  *	Write Linear_q_offs attribute values to hardware.
  *
  *	Data type:	Tango::DevDouble
- *	Attr type:	Scalar 
+ *	Attr type:	Scalar
  */
 //--------------------------------------------------------
 void LiberaSinglePassE::write_Linear_q_offs(Tango::WAttribute &attr)
@@ -1910,7 +1910,7 @@ void LiberaSinglePassE::write_Linear_q_offs(Tango::WAttribute &attr)
  *	Description: Coefficient for sum value
  *
  *	Data type:	Tango::DevDouble
- *	Attr type:	Scalar 
+ *	Attr type:	Scalar
  */
 //--------------------------------------------------------
 void LiberaSinglePassE::read_Linear_sum_k(Tango::Attribute &attr)
@@ -1939,7 +1939,7 @@ void LiberaSinglePassE::read_Linear_sum_k(Tango::Attribute &attr)
  *	Write Linear_sum_k attribute values to hardware.
  *
  *	Data type:	Tango::DevDouble
- *	Attr type:	Scalar 
+ *	Attr type:	Scalar
  */
 //--------------------------------------------------------
 void LiberaSinglePassE::write_Linear_sum_k(Tango::WAttribute &attr)
@@ -1969,10 +1969,10 @@ void LiberaSinglePassE::write_Linear_sum_k(Tango::WAttribute &attr)
 /**
  *	Read Linear_sum_offs attribute
  *	Description: Coefficient for offsetting the sum value
- *	             
+ *
  *
  *	Data type:	Tango::DevDouble
- *	Attr type:	Scalar 
+ *	Attr type:	Scalar
  */
 //--------------------------------------------------------
 void LiberaSinglePassE::read_Linear_sum_offs(Tango::Attribute &attr)
@@ -2001,7 +2001,7 @@ void LiberaSinglePassE::read_Linear_sum_offs(Tango::Attribute &attr)
  *	Write Linear_sum_offs attribute values to hardware.
  *
  *	Data type:	Tango::DevDouble
- *	Attr type:	Scalar 
+ *	Attr type:	Scalar
  */
 //--------------------------------------------------------
 void LiberaSinglePassE::write_Linear_sum_offs(Tango::WAttribute &attr)
@@ -2033,7 +2033,7 @@ void LiberaSinglePassE::write_Linear_sum_offs(Tango::WAttribute &attr)
  *	Description: Interlock output signal duration.
  *
  *	Data type:	Tango::DevDouble
- *	Attr type:	Scalar 
+ *	Attr type:	Scalar
  */
 //--------------------------------------------------------
 void LiberaSinglePassE::read_Signal_expansion(Tango::Attribute &attr)
@@ -2062,7 +2062,7 @@ void LiberaSinglePassE::read_Signal_expansion(Tango::Attribute &attr)
  *	Write Signal_expansion attribute values to hardware.
  *
  *	Data type:	Tango::DevDouble
- *	Attr type:	Scalar 
+ *	Attr type:	Scalar
  */
 //--------------------------------------------------------
 void LiberaSinglePassE::write_Signal_expansion(Tango::WAttribute &attr)
@@ -2094,7 +2094,7 @@ void LiberaSinglePassE::write_Signal_expansion(Tango::WAttribute &attr)
  *	Description: Enable / disable interlock functionality.
  *
  *	Data type:	Tango::DevBoolean
- *	Attr type:	Scalar 
+ *	Attr type:	Scalar
  */
 //--------------------------------------------------------
 void LiberaSinglePassE::read_Interlock_enabled(Tango::Attribute &attr)
@@ -2123,7 +2123,7 @@ void LiberaSinglePassE::read_Interlock_enabled(Tango::Attribute &attr)
  *	Write Interlock_enabled attribute values to hardware.
  *
  *	Data type:	Tango::DevBoolean
- *	Attr type:	Scalar 
+ *	Attr type:	Scalar
  */
 //--------------------------------------------------------
 void LiberaSinglePassE::write_Interlock_enabled(Tango::WAttribute &attr)
@@ -2153,10 +2153,10 @@ void LiberaSinglePassE::write_Interlock_enabled(Tango::WAttribute &attr)
 /**
  *	Read Limit_min_x attribute
  *	Description: Interlock limits parameter.
- *	             
+ *
  *
  *	Data type:	Tango::DevDouble
- *	Attr type:	Scalar 
+ *	Attr type:	Scalar
  */
 //--------------------------------------------------------
 void LiberaSinglePassE::read_Limit_min_x(Tango::Attribute &attr)
@@ -2185,7 +2185,7 @@ void LiberaSinglePassE::read_Limit_min_x(Tango::Attribute &attr)
  *	Write Limit_min_x attribute values to hardware.
  *
  *	Data type:	Tango::DevDouble
- *	Attr type:	Scalar 
+ *	Attr type:	Scalar
  */
 //--------------------------------------------------------
 void LiberaSinglePassE::write_Limit_min_x(Tango::WAttribute &attr)
@@ -2217,7 +2217,7 @@ void LiberaSinglePassE::write_Limit_min_x(Tango::WAttribute &attr)
  *	Description: Interlock limits parameter.
  *
  *	Data type:	Tango::DevDouble
- *	Attr type:	Scalar 
+ *	Attr type:	Scalar
  */
 //--------------------------------------------------------
 void LiberaSinglePassE::read_Limit_min_y(Tango::Attribute &attr)
@@ -2246,7 +2246,7 @@ void LiberaSinglePassE::read_Limit_min_y(Tango::Attribute &attr)
  *	Write Limit_min_y attribute values to hardware.
  *
  *	Data type:	Tango::DevDouble
- *	Attr type:	Scalar 
+ *	Attr type:	Scalar
  */
 //--------------------------------------------------------
 void LiberaSinglePassE::write_Limit_min_y(Tango::WAttribute &attr)
@@ -2278,7 +2278,7 @@ void LiberaSinglePassE::write_Limit_min_y(Tango::WAttribute &attr)
  *	Description: Interlock limits parameter.
  *
  *	Data type:	Tango::DevDouble
- *	Attr type:	Scalar 
+ *	Attr type:	Scalar
  */
 //--------------------------------------------------------
 void LiberaSinglePassE::read_Limit_max_x(Tango::Attribute &attr)
@@ -2307,7 +2307,7 @@ void LiberaSinglePassE::read_Limit_max_x(Tango::Attribute &attr)
  *	Write Limit_max_x attribute values to hardware.
  *
  *	Data type:	Tango::DevDouble
- *	Attr type:	Scalar 
+ *	Attr type:	Scalar
  */
 //--------------------------------------------------------
 void LiberaSinglePassE::write_Limit_max_x(Tango::WAttribute &attr)
@@ -2339,7 +2339,7 @@ void LiberaSinglePassE::write_Limit_max_x(Tango::WAttribute &attr)
  *	Description: Interlock limits parameter.
  *
  *	Data type:	Tango::DevDouble
- *	Attr type:	Scalar 
+ *	Attr type:	Scalar
  */
 //--------------------------------------------------------
 void LiberaSinglePassE::read_Limit_max_y(Tango::Attribute &attr)
@@ -2368,7 +2368,7 @@ void LiberaSinglePassE::read_Limit_max_y(Tango::Attribute &attr)
  *	Write Limit_max_y attribute values to hardware.
  *
  *	Data type:	Tango::DevDouble
- *	Attr type:	Scalar 
+ *	Attr type:	Scalar
  */
 //--------------------------------------------------------
 void LiberaSinglePassE::write_Limit_max_y(Tango::WAttribute &attr)
@@ -2400,7 +2400,7 @@ void LiberaSinglePassE::write_Limit_max_y(Tango::WAttribute &attr)
  *	Description: Interlock limits parameter.
  *
  *	Data type:	Tango::DevULong
- *	Attr type:	Scalar 
+ *	Attr type:	Scalar
  */
 //--------------------------------------------------------
 void LiberaSinglePassE::read_Overflow_threshold(Tango::Attribute &attr)
@@ -2429,7 +2429,7 @@ void LiberaSinglePassE::read_Overflow_threshold(Tango::Attribute &attr)
  *	Write Overflow_threshold attribute values to hardware.
  *
  *	Data type:	Tango::DevULong
- *	Attr type:	Scalar 
+ *	Attr type:	Scalar
  */
 //--------------------------------------------------------
 void LiberaSinglePassE::write_Overflow_threshold(Tango::WAttribute &attr)
@@ -2461,7 +2461,7 @@ void LiberaSinglePassE::write_Overflow_threshold(Tango::WAttribute &attr)
  *	Description: Interlock status parameter.
  *
  *	Data type:	Tango::DevULong
- *	Attr type:	Scalar 
+ *	Attr type:	Scalar
  */
 //--------------------------------------------------------
 void LiberaSinglePassE::read_Interlock_status(Tango::Attribute &attr)
@@ -2490,7 +2490,7 @@ void LiberaSinglePassE::read_Interlock_status(Tango::Attribute &attr)
  *	Description: Interlock status parameter.
  *
  *	Data type:	Tango::DevBoolean
- *	Attr type:	Scalar 
+ *	Attr type:	Scalar
  */
 //--------------------------------------------------------
 void LiberaSinglePassE::read_Status_x(Tango::Attribute &attr)
@@ -2519,7 +2519,7 @@ void LiberaSinglePassE::read_Status_x(Tango::Attribute &attr)
  *	Description: Interlock status parameter.
  *
  *	Data type:	Tango::DevBoolean
- *	Attr type:	Scalar 
+ *	Attr type:	Scalar
  */
 //--------------------------------------------------------
 void LiberaSinglePassE::read_Status_y(Tango::Attribute &attr)
@@ -2548,7 +2548,7 @@ void LiberaSinglePassE::read_Status_y(Tango::Attribute &attr)
  *	Description: Interlock status parameter.
  *
  *	Data type:	Tango::DevBoolean
- *	Attr type:	Scalar 
+ *	Attr type:	Scalar
  */
 //--------------------------------------------------------
 void LiberaSinglePassE::read_Status_adc_overflow(Tango::Attribute &attr)
@@ -2880,8 +2880,8 @@ void LiberaSinglePassE::add_dynamic_attributes()
  *	Execute the Reset command:
  *	Description: Reset the device in case of fault
  *
- *	@param argin 
- *	@returns 
+ *	@param argin
+ *	@returns
  */
 //--------------------------------------------------------
 void LiberaSinglePassE::reset()
@@ -2902,8 +2902,8 @@ void LiberaSinglePassE::reset()
  *	Execute the ResetTrigger command:
  *	Description: Reset the trigger counter
  *
- *	@param argin 
- *	@returns 
+ *	@param argin
+ *	@returns
  */
 //--------------------------------------------------------
 void LiberaSinglePassE::reset_trigger()
@@ -2923,8 +2923,8 @@ void LiberaSinglePassE::reset_trigger()
  *	Execute the ResetInterlockStatus command:
  *	Description: Resets the status register after the interlock was enabled.
  *
- *	@param argin 
- *	@returns 
+ *	@param argin
+ *	@returns
  */
 //--------------------------------------------------------
 void LiberaSinglePassE::reset_interlock_status()
@@ -2948,11 +2948,11 @@ void LiberaSinglePassE::reset_interlock_status()
 /**
  *	Execute the MagicCommand command:
  *	Description: Command receives an input string and returns the node path and node value.
- *	             The input string can be ``dump`` for the entire mci dump or 
+ *	             The input string can be ``dump`` for the entire mci dump or
  *	             node path string for the specific node value.
  *
- *	@param argin 
- *	@returns 
+ *	@param argin
+ *	@returns
  */
 //--------------------------------------------------------
 Tango::DevVarStringArray *LiberaSinglePassE::magic_command(Tango::DevString argin)
