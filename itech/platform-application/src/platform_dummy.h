@@ -45,12 +45,21 @@ private:
 	double m_id0;
 	double m_id1;
 	double m_id2;
+	double m_id3;
+	double m_id4;
+	double m_id5;
+
+
+
 
 	std::thread m_thread1;
 
 	ireg::TreeNodePtr m_nodeid0;
 	ireg::TreeNodePtr m_nodeid1;
 	ireg::TreeNodePtr m_nodeid2;
+	ireg::TreeNodePtr m_nodeid3;
+	ireg::TreeNodePtr m_nodeid4;
+	ireg::TreeNodePtr m_nodeid5;
 
 	ireg::TreeNodePtr m_nodefan_left_rear;
 	ireg::TreeNodePtr m_nodefan_left_middle;

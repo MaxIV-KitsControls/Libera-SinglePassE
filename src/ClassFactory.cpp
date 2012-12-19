@@ -42,7 +42,7 @@ static const char *RcsId = "$Id:  $";
 void Tango::DServer::class_factory()
 {
 	//	Add method class init if needed
-	
+
 	add_class(LiberaSinglePassE_ns::LiberaSinglePassEClass::init("LiberaSinglePassE"));
 }
 

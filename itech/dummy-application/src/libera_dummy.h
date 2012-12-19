@@ -118,7 +118,15 @@ const istd::EnumMap<myEnum>::Items istd::EnumMap<myEnum>::items = {
 
 };
 
+static const int reset_enum1 = 1;
 
+enum reset {
+	reset_enum = reset_enum1
+};
+template<>
+const istd::EnumMap<reset>::Items istd::EnumMap<reset>::items = {
+		{reset_enum , "Execute"}
+};
 
 /*--------------------------------------------------------------------------------------*/
 /* Dummy Application class                                                              */

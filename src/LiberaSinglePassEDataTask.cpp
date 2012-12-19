@@ -312,10 +312,10 @@ bool LiberaSinglePassEDataTask::read_data() {
 		ERROR_STREAM_TASK << "Read() failed: " << ret << std::endl;
 
 		// invalidate the data buffers
-		memset(dev->attr_Left_read, 0, sizeof(dev->attr_Left_read));
-		memset(dev->attr_Down_read, 0, sizeof(dev->attr_Down_read));
-		memset(dev->attr_Right_read, 0, sizeof(dev->attr_Right_read));
-		memset(dev->attr_Up_read, 0, sizeof(dev->attr_Up_read));
+		memset(dev->attr_A_read, 0, sizeof(dev->attr_A_read));
+		memset(dev->attr_B_read, 0, sizeof(dev->attr_B_read));
+		memset(dev->attr_C_read, 0, sizeof(dev->attr_C_read));
+		memset(dev->attr_D_read, 0, sizeof(dev->attr_D_read));
 
 		return false;
 	}
@@ -329,10 +329,11 @@ bool LiberaSinglePassEDataTask::read_data() {
 				<< std::endl;
 
 		// invalidate the data buffers
-		memset(dev->attr_Left_read, 0, sizeof(dev->attr_Left_read));
-		memset(dev->attr_Down_read, 0, sizeof(dev->attr_Down_read));
-		memset(dev->attr_Right_read, 0, sizeof(dev->attr_Right_read));
-		memset(dev->attr_Up_read, 0, sizeof(dev->attr_Up_read));
+		memset(dev->attr_A_read, 0, sizeof(dev->attr_A_read));
+		memset(dev->attr_B_read, 0, sizeof(dev->attr_B_read));
+		memset(dev->attr_C_read, 0, sizeof(dev->attr_C_read));
+		memset(dev->attr_D_read, 0, sizeof(dev->attr_D_read));
+
 		return false;
 	}
 
@@ -359,13 +360,13 @@ bool LiberaSinglePassEDataTask::read_data() {
 				<< dod_buffer[row][1] << " "
 				<< dod_buffer[row][2] << " "
 				<< dod_buffer[row][3] << std::endl;
-		*(dev->attr_Left_read + row) =
+		*(dev->attr_A_read + row) =
 				static_cast<Tango::DevUShort>(dod_buffer[row][0]);
-		*(dev->attr_Down_read + row) =
+		*(dev->attr_B_read + row) =
 				static_cast<Tango::DevUShort>(dod_buffer[row][1]);
-		*(dev->attr_Right_read + row) =
+		*(dev->attr_C_read + row) =
 				static_cast<Tango::DevUShort>(dod_buffer[row][2]);
-		*(dev->attr_Up_read + row) =
+		*(dev->attr_D_read + row) =
 				static_cast<Tango::DevUShort>(dod_buffer[row][3]);
 	}
 

@@ -1,3 +1,3 @@
 #!/bin/bash
 
-python ../../test_signal_size.py $1 Up 100
+python ../../test_signal_size.py $1 C 100

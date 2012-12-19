@@ -102,7 +102,7 @@
 	<Table Border=2 Cellpadding=3 CELLSPACING=0>
 	<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
 	<Td COLSPAN=8> <Font Size=+1> <Center><b>
-		  20 Device Attributes
+		  43 Device Attributes
 	</b></Font></Center></td>
 	<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
 		<Td><Center><b>
@@ -212,94 +212,328 @@ attenuator. The input is an index within a lookup table in the Libera box       
 		<Td> The Libera box third temperature             </Td>
 	</Tr>
 	<Tr>
-		<Td> <a href=AttrUp.html> Up </a></Td>
+		<Td> <a href=AttrCalibration_ka.html> Calibration_ka </a></Td>
+		<Td> false                   </Td>
+		<Td>  false </Td>
+		<Td> Scalar    </Td>
+		<Td> READ_WRITE                             </Td>
+		<Td> Tango::DEV_DOUBLE          </Td>
+		<Td> EXPERT                       </Td>
+		<Td> Matjaz.....             </Td>
+	</Tr>
+	<Tr>
+		<Td> <a href=AttrCalibration_kb.html> Calibration_kb </a></Td>
+		<Td> false                   </Td>
+		<Td>  false </Td>
+		<Td> Scalar    </Td>
+		<Td> READ_WRITE                             </Td>
+		<Td> Tango::DEV_DOUBLE          </Td>
+		<Td> EXPERT                       </Td>
+		<Td> Matjaz.....             </Td>
+	</Tr>
+	<Tr>
+		<Td> <a href=AttrCalibration_kc.html> Calibration_kc </a></Td>
+		<Td> false                   </Td>
+		<Td>  false </Td>
+		<Td> Scalar    </Td>
+		<Td> READ_WRITE                             </Td>
+		<Td> Tango::DEV_DOUBLE          </Td>
+		<Td> EXPERT                       </Td>
+		<Td> Matjaz.....             </Td>
+	</Tr>
+	<Tr>
+		<Td> <a href=AttrCalibration_kd.html> Calibration_kd </a></Td>
+		<Td> false                   </Td>
+		<Td>  false </Td>
+		<Td> Scalar    </Td>
+		<Td> READ_WRITE                             </Td>
+		<Td> Tango::DEV_DOUBLE          </Td>
+		<Td> EXPERT                       </Td>
+		<Td> Matjaz.....             </Td>
+	</Tr>
+	<Tr>
+		<Td> <a href=AttrLinear_x_k.html> Linear_x_k </a></Td>
+		<Td> false                   </Td>
+		<Td>  false </Td>
+		<Td> Scalar    </Td>
+		<Td> READ_WRITE                             </Td>
+		<Td> Tango::DEV_DOUBLE          </Td>
+		<Td> EXPERT                       </Td>
+		<Td> Matjaz.....             </Td>
+	</Tr>
+	<Tr>
+		<Td> <a href=AttrLinear_x_offs.html> Linear_x_offs </a></Td>
+		<Td> false                   </Td>
+		<Td>  false </Td>
+		<Td> Scalar    </Td>
+		<Td> READ_WRITE                             </Td>
+		<Td> Tango::DEV_DOUBLE          </Td>
+		<Td> EXPERT                       </Td>
+		<Td> Matjaz.....             </Td>
+	</Tr>
+	<Tr>
+		<Td> <a href=AttrLinear_y_k.html> Linear_y_k </a></Td>
+		<Td> false                   </Td>
+		<Td>  false </Td>
+		<Td> Scalar    </Td>
+		<Td> READ_WRITE                             </Td>
+		<Td> Tango::DEV_DOUBLE          </Td>
+		<Td> EXPERT                       </Td>
+		<Td> Matjaz.....             </Td>
+	</Tr>
+	<Tr>
+		<Td> <a href=AttrLinear_y_offs.html> Linear_y_offs </a></Td>
+		<Td> false                   </Td>
+		<Td>  false </Td>
+		<Td> Scalar    </Td>
+		<Td> READ_WRITE                             </Td>
+		<Td> Tango::DEV_DOUBLE          </Td>
+		<Td> EXPERT                       </Td>
+		<Td> Matjaz.....             </Td>
+	</Tr>
+	<Tr>
+		<Td> <a href=AttrLinear_q_k.html> Linear_q_k </a></Td>
+		<Td> false                   </Td>
+		<Td>  false </Td>
+		<Td> Scalar    </Td>
+		<Td> READ_WRITE                             </Td>
+		<Td> Tango::DEV_DOUBLE          </Td>
+		<Td> EXPERT                       </Td>
+		<Td> Matjaz.....             </Td>
+	</Tr>
+	<Tr>
+		<Td> <a href=AttrLinear_q_offs.html> Linear_q_offs </a></Td>
+		<Td> false                   </Td>
+		<Td>  false </Td>
+		<Td> Scalar    </Td>
+		<Td> READ_WRITE                             </Td>
+		<Td> Tango::DEV_DOUBLE          </Td>
+		<Td> EXPERT                       </Td>
+		<Td> Matjaz.....             </Td>
+	</Tr>
+	<Tr>
+		<Td> <a href=AttrLinear_sum_k.html> Linear_sum_k </a></Td>
+		<Td> false                   </Td>
+		<Td>  false </Td>
+		<Td> Scalar    </Td>
+		<Td> READ_WRITE                             </Td>
+		<Td> Tango::DEV_DOUBLE          </Td>
+		<Td> EXPERT                       </Td>
+		<Td> Matjaz.....             </Td>
+	</Tr>
+	<Tr>
+		<Td> <a href=AttrLinear_sum_offs.html> Linear_sum_offs </a></Td>
+		<Td> false                   </Td>
+		<Td>  false </Td>
+		<Td> Scalar    </Td>
+		<Td> READ_WRITE                             </Td>
+		<Td> Tango::DEV_DOUBLE          </Td>
+		<Td> EXPERT                       </Td>
+		<Td> Matjaz.....             </Td>
+	</Tr>
+	<Tr>
+		<Td> <a href=AttrSignal_expansion.html> Signal_expansion </a></Td>
+		<Td> false                   </Td>
+		<Td>  false </Td>
+		<Td> Scalar    </Td>
+		<Td> READ_WRITE                             </Td>
+		<Td> Tango::DEV_DOUBLE          </Td>
+		<Td> EXPERT                       </Td>
+		<Td> Matjaz.....             </Td>
+	</Tr>
+	<Tr>
+		<Td> <a href=AttrInterlock_enabled.html> Interlock_enabled </a></Td>
+		<Td> false                   </Td>
+		<Td>  false </Td>
+		<Td> Scalar    </Td>
+		<Td> READ_WRITE                             </Td>
+		<Td> Tango::DEV_BOOLEAN          </Td>
+		<Td> EXPERT                       </Td>
+		<Td> Matjaz.....             </Td>
+	</Tr>
+	<Tr>
+		<Td> <a href=AttrLimit_min_x.html> Limit_min_x </a></Td>
+		<Td> false                   </Td>
+		<Td>  false </Td>
+		<Td> Scalar    </Td>
+		<Td> READ_WRITE                             </Td>
+		<Td> Tango::DEV_DOUBLE          </Td>
+		<Td> EXPERT                       </Td>
+		<Td> Matjaz.....             </Td>
+	</Tr>
+	<Tr>
+		<Td> <a href=AttrLimit_min_y.html> Limit_min_y </a></Td>
+		<Td> false                   </Td>
+		<Td>  false </Td>
+		<Td> Scalar    </Td>
+		<Td> READ_WRITE                             </Td>
+		<Td> Tango::DEV_DOUBLE          </Td>
+		<Td> EXPERT                       </Td>
+		<Td> Matjaz.....             </Td>
+	</Tr>
+	<Tr>
+		<Td> <a href=AttrLimit_max_x.html> Limit_max_x </a></Td>
+		<Td> false                   </Td>
+		<Td>  false </Td>
+		<Td> Scalar    </Td>
+		<Td> READ_WRITE                             </Td>
+		<Td> Tango::DEV_DOUBLE          </Td>
+		<Td> EXPERT                       </Td>
+		<Td> Matjaz.....             </Td>
+	</Tr>
+	<Tr>
+		<Td> <a href=AttrLimit_max_y.html> Limit_max_y </a></Td>
+		<Td> false                   </Td>
+		<Td>  false </Td>
+		<Td> Scalar    </Td>
+		<Td> READ_WRITE                             </Td>
+		<Td> Tango::DEV_DOUBLE          </Td>
+		<Td> EXPERT                       </Td>
+		<Td> Matjaz.....             </Td>
+	</Tr>
+	<Tr>
+		<Td> <a href=AttrOverflow_threshold.html> Overflow_threshold </a></Td>
+		<Td> false                   </Td>
+		<Td>  false </Td>
+		<Td> Scalar    </Td>
+		<Td> READ_WRITE                             </Td>
+		<Td> Tango::DEV_ULONG          </Td>
+		<Td> EXPERT                       </Td>
+		<Td> Matjaz.....             </Td>
+	</Tr>
+	<Tr>
+		<Td> <a href=AttrInterlock_status.html> Interlock_status </a></Td>
+		<Td> false                   </Td>
+		<Td>  false </Td>
+		<Td> Scalar    </Td>
+		<Td> READ                             </Td>
+		<Td> Tango::DEV_ULONG          </Td>
+		<Td> EXPERT                       </Td>
+		<Td> Matjaz.....             </Td>
+	</Tr>
+	<Tr>
+		<Td> <a href=AttrStatus_x.html> Status_x </a></Td>
+		<Td> false                   </Td>
+		<Td>  false </Td>
+		<Td> Scalar    </Td>
+		<Td> READ                             </Td>
+		<Td> Tango::DEV_BOOLEAN          </Td>
+		<Td> EXPERT                       </Td>
+		<Td> Matjaz.....             </Td>
+	</Tr>
+	<Tr>
+		<Td> <a href=AttrStatus_y.html> Status_y </a></Td>
+		<Td> false                   </Td>
+		<Td>  false </Td>
+		<Td> Scalar    </Td>
+		<Td> READ                             </Td>
+		<Td> Tango::DEV_BOOLEAN          </Td>
+		<Td> EXPERT                       </Td>
+		<Td> Matjaz.....             </Td>
+	</Tr>
+	<Tr>
+		<Td> <a href=AttrStatus_adc_overflow.html> Status_adc_overflow </a></Td>
+		<Td> false                   </Td>
+		<Td>  false </Td>
+		<Td> Scalar    </Td>
+		<Td> READ                             </Td>
+		<Td> Tango::DEV_BOOLEAN          </Td>
+		<Td> EXPERT                       </Td>
+		<Td> Matjaz.....             </Td>
+	</Tr>
+	<Tr>
+		<Td> <a href=AttrA.html> A </a></Td>
 		<Td> false                   </Td>
 		<Td>  false </Td>
 		<Td> Spectrum				(10000)    </Td>
 		<Td> READ                             </Td>
 		<Td> Tango::DEV_SHORT          </Td>
 		<Td> OPERATOR                       </Td>
-		<Td> The up StripLine ADC buffer             </Td>
+		<Td> The A StripLine ADC buffer             </Td>
 	</Tr>
 	<Tr>
-		<Td> <a href=AttrDown.html> Down </a></Td>
+		<Td> <a href=AttrB.html> B </a></Td>
 		<Td> false                   </Td>
 		<Td>  false </Td>
 		<Td> Spectrum				(10000)    </Td>
 		<Td> READ                             </Td>
 		<Td> Tango::DEV_SHORT          </Td>
 		<Td> OPERATOR                       </Td>
-		<Td> The down StripLine ADC buffer             </Td>
+		<Td> The B StripLine ADC buffer             </Td>
 	</Tr>
 	<Tr>
-		<Td> <a href=AttrLeft.html> Left </a></Td>
+		<Td> <a href=AttrC.html> C </a></Td>
 		<Td> false                   </Td>
 		<Td>  false </Td>
 		<Td> Spectrum				(10000)    </Td>
 		<Td> READ                             </Td>
 		<Td> Tango::DEV_SHORT          </Td>
 		<Td> OPERATOR                       </Td>
-		<Td> The left StripLine ADC buffer             </Td>
+		<Td> The C StripLine ADC buffer             </Td>
 	</Tr>
 	<Tr>
-		<Td> <a href=AttrRight.html> Right </a></Td>
+		<Td> <a href=AttrD.html> D </a></Td>
 		<Td> false                   </Td>
 		<Td>  false </Td>
 		<Td> Spectrum				(10000)    </Td>
 		<Td> READ                             </Td>
 		<Td> Tango::DEV_SHORT          </Td>
 		<Td> OPERATOR                       </Td>
-		<Td> The right StripLine ADC buffer             </Td>
+		<Td> The D StripLine ADC buffer             </Td>
 	</Tr>
 	<Tr>
-		<Td> <a href=AttrUpT.html> UpT </a></Td>
+		<Td> <a href=AttrAT.html> AT </a></Td>
 		<Td> false                   </Td>
 		<Td>  false </Td>
 		<Td> Spectrum				(10000)    </Td>
 		<Td> READ                             </Td>
 		<Td> Tango::DEV_DOUBLE          </Td>
 		<Td> OPERATOR                       </Td>
-		<Td> The up StripLine ADC buffer after some computation:\nsquare - double averaging filter - square root             </Td>
+		<Td> The A StripLine ADC buffer after some computation:
+square - double averaging filter - square root             </Td>
 	</Tr>
 	<Tr>
-		<Td> <a href=AttrDownT.html> DownT </a></Td>
+		<Td> <a href=AttrBT.html> BT </a></Td>
 		<Td> false                   </Td>
 		<Td>  false </Td>
 		<Td> Spectrum				(10000)    </Td>
 		<Td> READ                             </Td>
 		<Td> Tango::DEV_DOUBLE          </Td>
 		<Td> OPERATOR                       </Td>
-		<Td> The down StripLine ADC buffer after some computation:\nsquare - double averaging filter - square root             </Td>
+		<Td> The B StripLine ADC buffer after some computation:
+square - double averaging filter - square root             </Td>
 	</Tr>
 	<Tr>
-		<Td> <a href=AttrLeftT.html> LeftT </a></Td>
+		<Td> <a href=AttrCT.html> CT </a></Td>
 		<Td> false                   </Td>
 		<Td>  false </Td>
 		<Td> Spectrum				(10000)    </Td>
 		<Td> READ                             </Td>
 		<Td> Tango::DEV_DOUBLE          </Td>
 		<Td> OPERATOR                       </Td>
-		<Td> The left StripLine ADC buffer after some computation:\nsquare - double averaging filter - square root             </Td>
+		<Td> The C StripLine ADC buffer after some computation:
+square - double averaging filter - square root             </Td>
 	</Tr>
 	<Tr>
-		<Td> <a href=AttrRightT.html> RightT </a></Td>
+		<Td> <a href=AttrDT.html> DT </a></Td>
 		<Td> false                   </Td>
 		<Td>  false </Td>
 		<Td> Spectrum				(10000)    </Td>
 		<Td> READ                             </Td>
 		<Td> Tango::DEV_DOUBLE          </Td>
 		<Td> OPERATOR                       </Td>
-		<Td> The right StripLine ADC buffer after some computation:\nsquare - double averaging filter - square root             </Td>
+		<Td> The D StripLine ADC buffer after some computation:
+square - double averaging filter - square root             </Td>
 	</Tr>
 	<Tr>
-		<Td> <a href=AttrZposition.html> Zposition </a></Td>
+		<Td> <a href=AttrYposition.html> Yposition </a></Td>
 		<Td> false                   </Td>
 		<Td>  false </Td>
 		<Td> Spectrum				(10000)    </Td>
 		<Td> READ                             </Td>
 		<Td> Tango::DEV_DOUBLE          </Td>
 		<Td> OPERATOR                       </Td>
-		<Td> Beam Z position (vertical)             </Td>
+		<Td> Beam Y position (vertical)             </Td>
 	</Tr>
 	<Tr>
 		<Td> <a href=AttrXposition.html> Xposition </a></Td>

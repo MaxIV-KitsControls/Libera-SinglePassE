@@ -49,6 +49,10 @@ platformDummy::platformDummy() : LiberaApplication(c_applicationName)
 	m_id0 = 0;
 	m_id1 = 0;
 	m_id2 = 0;
+	m_id3 = 0;
+	m_id3 = 0;
+	m_id5 = 0;
+
 	m_fan_right_front = 4540;
 	m_fan_left_front = 4554;
 	m_fan_right_middle = 4534;
@@ -127,6 +131,24 @@ void platformDummy::EventThread()
     		m_id2 = 47;
     	}
     	m_nodeid2->Emit();
+
+    	m_id3 = (m_id2 * 2) - 6;
+    	if (m_id3 > 90) {
+    		m_id3 = 45;
+    	}
+    	m_nodeid3->Emit();
+
+    	m_id4 = (m_id3 * 2) - 10;
+    	if (m_id4 > 60) {
+    		m_id4 = 35;
+    	}
+    	m_nodeid4->Emit();
+
+    	m_id5 = (m_id4 * 4) - 20;
+    	if (m_id5 > 160) {
+    		m_id5 = 64;
+    	}
+    	m_nodeid5->Emit();
 
     	m_fan_left_rear--;
     	if (m_fan_left_rear < 4000) {
@@ -216,10 +238,16 @@ void platformDummy::OnRegistryAdd(ireg::TreeNodePtr &parent) {
 	m_nodeid0 = Create<RegReferenceDoubleNode>("value", m_id0, f_read_only);
 	m_nodeid1 = Create<RegReferenceDoubleNode>("value", m_id1, f_read_only);
 	m_nodeid2 = Create<RegReferenceDoubleNode>("value", m_id2, f_read_only);
-    boards.GetTreeNode()->Attach( Create<RegNode>("icb0")->Attach( Create<RegNode>("sensors")->Attach( Create<RegNode>("ID_0")->Attach(m_nodeid0))));
-	mci::Node sensors = GetRegistry()["boards"]["icb0"]["sensors"];
-	sensors.GetTreeNode()->Attach( Create<RegNode>("ID_1")->Attach(m_nodeid1));
-	sensors.GetTreeNode()->Attach( Create<RegNode>("ID_2")->Attach(m_nodeid2));
+	m_nodeid3 = Create<RegReferenceDoubleNode>("value", m_id3, f_read_only);
+	m_nodeid4 = Create<RegReferenceDoubleNode>("value", m_id4, f_read_only);
+	m_nodeid5 = Create<RegReferenceDoubleNode>("value", m_id5, f_read_only);
+    boards.GetTreeNode()->Attach( Create<RegNode>("icb0")->Attach( Create<RegNode>("sensors")->Attach( Create<RegNode>("ID_8")->Attach(m_nodeid0))));
+    boards.GetTreeNode()->Attach( Create<RegNode>("evrx2")->Attach( Create<RegNode>("sensors")->Attach( Create<RegNode>("ID_6")->Attach(m_nodeid1))));
+    boards.GetTreeNode()->Attach( Create<RegNode>("rfspe3")->Attach( Create<RegNode>("sensors")->Attach( Create<RegNode>("ID_2")->Attach(m_nodeid2))));
+    boards.GetTreeNode()->Attach( Create<RegNode>("rfspe4")->Attach( Create<RegNode>("sensors")->Attach( Create<RegNode>("ID_2")->Attach(m_nodeid3))));
+    boards.GetTreeNode()->Attach( Create<RegNode>("rfspe5")->Attach( Create<RegNode>("sensors")->Attach( Create<RegNode>("ID_2")->Attach(m_nodeid4))));
+    boards.GetTreeNode()->Attach( Create<RegNode>("rfspe6")->Attach( Create<RegNode>("sensors")->Attach( Create<RegNode>("ID_2")->Attach(m_nodeid5))));
+
 }
 
 /*-----------------------------------------------------------------------------*/
