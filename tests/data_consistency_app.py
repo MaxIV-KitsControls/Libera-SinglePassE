@@ -2,6 +2,7 @@
 import PyTango
 import subprocess
 import sys
+import exceptions
 
 if (len(sys.argv)<3):
     print "Usage: data_consistency_app.py device_instance attribute_name test_option utility_option(is optional) value(is optional)"
@@ -19,6 +20,12 @@ if (len(sys.argv)<3):
     print "        in case of testing write or read and write nodes, the value can be set, the default is 10: "
     print "Usage example: python data_consistency_app.py a/b/c Level -rd"
     sys.exit(0)
+
+def num(s):
+    try:
+        return int(s)
+    except exceptions.ValueError:
+        return float(s)
 
 nodesDictionary={'AttenuationLevel': '.attenuation.att_id',
                  'status_adc_overflow': '.interlock.status.adc_overflow', 'status_y': '.interlock.status.y',
@@ -93,7 +100,7 @@ if(is_node):
         write_option='-tango'
 
         if (len(sys.argv)>5):
-            value=sys.argv[5]
+            value=int(sys.argv[5])
         if (len(sys.argv)>4):
             write_option=sys.argv[4]
         if (write_option=='-tango'):
@@ -138,7 +145,7 @@ if(is_node):
         write_option='-tango'
 
         if (len(sys.argv)>5):
-            value=sys.argv[5]
+            value=num(sys.argv[5])
         if (len(sys.argv)>4):
             write_option=sys.argv[4]
         if (write_option=='-tango'):
@@ -179,3 +186,4 @@ if(is_node):
             print " AND " ,
             print "Attribute value:",
             print value.value
+

@@ -1,3 +1,3 @@
 #!/bin/bash
 
-python ../../data_consistency.py $1 Level -rdwr -ireg 1
+python ../../data_consistency_app.py $1 AttenuationLevel -rdwr -ireg 1

@@ -1,3 +1,3 @@
 #!/bin/bash
 
-python ../../data_consistency_app.py $1 Level -rdwr -tango 32
+python ../../data_consistency_app.py $1 AttenuationLevel -rdwr -tango 32
