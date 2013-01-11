@@ -3,7 +3,7 @@ import PyTango
 import subprocess
 import sys
 
-if (len(sys.argv)<5):
+if (len(sys.argv)<3):
     print "Usage: data_consistency_app.py device_instance attribute_name test_option utility_option(is optional) value(is optional)"
     print "        device_instance is an instance of the tango device server in the following format: "
     print "                        domain/family/member "
@@ -20,7 +20,7 @@ if (len(sys.argv)<5):
     print "Usage example: python data_consistency_app.py a/b/c Level -rd"
     sys.exit(0)
 
-nodesDictionary={'Level': '.attenuation.att_id',
+nodesDictionary={'AttenuationLevel': '.attenuation.att_id',
                  'status_adc_overflow': '.interlock.status.adc_overflow', 'status_y': '.interlock.status.y',
                  'status_x': '.interlock.status.x', 'interlock_status': '.interlock.status',
                  'overflow_threshold': '.interlock.limits.overflow.threshold',
@@ -35,8 +35,8 @@ nodesDictionary={'Level': '.attenuation.att_id',
                  'linear_x_offs': '.calibration.linear.x.offs','linear_x_k': '.calibration.linear.x.k',
                  'calibration_kd': '.calibration.kd','calibration_kc': '.calibration.kc','calibration_kb': '.calibration.kb','calibration_ka': '.calibration.ka'}
 
-if (nodesDictionary.has_key(sys.argv[3])):
-    node=nodesDictionary[sys.argv[3]]
+if (nodesDictionary.has_key(sys.argv[2])):
+    node=nodesDictionary[sys.argv[2]]
     is_node=1
 else:
     is_node=0
@@ -45,10 +45,10 @@ else:
 
 li="/opt/libera/bin/libera-ireg"
 
-device = PyTango.DeviceProxy(sys.argv[2])
+device = PyTango.DeviceProxy(sys.argv[1])
 
-#libera_ip=device.get_property('LiberaIpAddr')['LiberaIpAddr'][0]
-libera_ip='10.0.4.128'
+libera_ip=device.get_property('LiberaIpAddr')['LiberaIpAddr'][0]
+#libera_ip='10.0.4.128'
 libera_board=device.get_property('LiberaBoard')['LiberaBoard'][0]
 
 if(is_node):
@@ -64,8 +64,8 @@ if(is_node):
     out=subprocess.Popen(li_args,stdout=subprocess.PIPE)
     node_value, err = out.communicate()
     #read node value and attribute value and check consistency
-    if (sys.argv[4]=='-rd'):
-        value = device.read_attribute(sys.argv[3])
+    if (sys.argv[3]=='-rd'):
+        value = device.read_attribute(sys.argv[2])
         
         val=node_value.split(":")[1].strip()
         if "gt" in val:
@@ -87,17 +87,17 @@ if(is_node):
             print value.value
     
     #write value through ireg or tango
-    elif (sys.argv[4]=='-wr'):
+    elif (sys.argv[3]=='-wr'):
         
         value = 10
         write_option='-tango'
 
-        if (len(sys.argv)>6):
-            value=sys.argv[6]
         if (len(sys.argv)>5):
-            write_option=sys.argv[5]
+            value=sys.argv[5]
+        if (len(sys.argv)>4):
+            write_option=sys.argv[4]
         if (write_option=='-tango'):
-            device.write_attribute(sys.argv[3], value)
+            device.write_attribute(sys.argv[2], value)
         elif (write_option=='-ireg'):           
             li_args = [li,
                        "-h",
@@ -112,8 +112,8 @@ if(is_node):
         
     #read node value and attribute value and check for consistency. 
     #then write value through ireg or tango and check for consistency again
-    elif (sys.argv[4]=='-rdwr'):
-        value = device.read_attribute(sys.argv[3])
+    elif (sys.argv[3]=='-rdwr'):
+        value = device.read_attribute(sys.argv[2])
         
         val=node_value.split(":")[1].strip()
         if "gt" in val:
@@ -137,12 +137,12 @@ if(is_node):
         value = 10
         write_option='-tango'
 
-        if (len(sys.argv)>6):
-            value=sys.argv[6]
         if (len(sys.argv)>5):
-            write_option=sys.argv[5]
+            value=sys.argv[5]
+        if (len(sys.argv)>4):
+            write_option=sys.argv[4]
         if (write_option=='-tango'):
-            device.write_attribute(sys.argv[3], value)
+            device.write_attribute(sys.argv[2], value)
         elif (write_option=='-ireg'):
             li_args = [li,
                        "-h",
@@ -153,7 +153,7 @@ if(is_node):
             exe=subprocess.Popen(li_args,stdout=subprocess.PIPE)
             new_value, err = exe.communicate()
                         
-        value = device.read_attribute(sys.argv[3])
+        value = device.read_attribute(sys.argv[2])
         li_args = [li,
                    node,
                    "-h",
