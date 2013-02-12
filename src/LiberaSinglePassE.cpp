@@ -909,7 +909,7 @@ void LiberaSinglePassE::always_executed_hook()
 				// temperature from processing board sensor
 				mci_temp1 = mci_platform_root.GetNode(mci::Tokenize("boards." + liberaBoard + ".sensors.ID_2.value"));
 				// temperature from ICB board sensor
-				mci_temp2 = mci_platform_root.GetNode(mci::Tokenize("boards.icb0.sensors.ID_1.value"));
+				mci_temp2 = mci_platform_root.GetNode(mci::Tokenize("boards.icb0.sensors.ID_8.value"));
 				// temperature from EVRX board sensor
 				mci_temp3 = mci_platform_root.GetNode(mci::Tokenize("boards.evrx2.sensors.ID_6.value"));
 
