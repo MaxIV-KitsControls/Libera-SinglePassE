@@ -22,11 +22,16 @@ class LiberaTestCase(unittest.TestCase):
                      'limit_max_x': '.interlock.limits.position.max.x',
                      'limit_min_y': '.interlock.limits.position.min.y',
                      'limit_min_x': '.interlock.limits.position.min.x',
-                     'interlock_enabled': '.interlock.enabled', 'signal_expansion': '.interlock.signal_expansion',
-                     'linear_sum_offs': '.calibration.linear.sum.offs','linear_sum_k': '.calibration.linear.sum.k',
-                     'linear_q_offs': '.calibration.linear.q.offs','linear_q_offs': '.calibration.linear.q.k',
-                     'linear_y_offs': '.calibration.linear.y.offs','linear_y_k': '.calibration.linear.y.k',
-                     'linear_x_offs': '.calibration.linear.x.offs','linear_x_k': '.calibration.linear.x.k',
+                     'interlock_enabled': '.interlock.enabled',
+                     'signal_expansion': '.interlock.signal_expansion',
+                     'linear_sum_offs': '.calibration.linear.sum.offs',
+                     'linear_sum_k': '.calibration.linear.sum.k',
+                     'linear_q_offs': '.calibration.linear.q.offs',
+                     'linear_q_offs': '.calibration.linear.q.k',
+                     'linear_y_offs': '.calibration.linear.y.offs',
+                     'linear_y_k': '.calibration.linear.y.k',
+                     'linear_x_offs': '.calibration.linear.x.offs',
+                     'linear_x_k': '.calibration.linear.x.k',
                      'calibration_kd': '.calibration.kd',
                      'calibration_kc': '.calibration.kc',
                      'calibration_kb': '.calibration.kb',
@@ -68,6 +73,67 @@ class LiberaTestCase(unittest.TestCase):
 
                 "then:"
                 self.assertEquals(expected, actual, "BufferSize is not set correctly : %s (expected : %s)" % (actual, expected))
+
+
+    def testReadWriteBooleanAttribute(self):
+        # Absolute random values
+        values = [True, False ]
+        attributes = [
+                'interlock_enabled',
+                ]
+        for device in self.devices :
+            for attribute in attributes :
+                for expected in values :
+                    self._write_read_test(device, attribute, expected)
+
+    def testReadWriteUnsignedIntegerAttribute(self):
+        # Absolute random values
+        values = [10, 25, 0, 38, 10000]
+        attributes = [
+                'overflow_threshold',
+                ]
+        for device in self.devices :
+            for attribute in attributes :
+                for expected in values :
+                    self._write_read_test(device, attribute, expected)
+
+    def testLinearXOffsAttribute(self):
+        for device in self.devices :
+            self._write_read_test(device, 'linear_x_offs', -10.0)
+
+    def testCalibrationKdAttribute(self):
+        for device in self.devices :
+            self._write_read_test(device, 'calibration_kd', -10.0)
+
+    def testReadWriteDoubleAttribute(self):
+        # Absolute random values
+        values = [-10.0, -25.45, 0.0, 38.56, 10000.0]
+        # XXX Bad practice to test several attribute in one unit test
+        # TODO Check if unittest accept the parametrized test
+        attributes = [
+                'limit_max_y',
+                'limit_max_x',
+                'limit_min_y',
+                'limit_min_x',
+                'signal_expansion',
+                'linear_sum_offs',
+                'linear_sum_k',
+                'linear_q_offs',
+                'linear_q_k',
+                'linear_y_offs',
+                'linear_y_k',
+                #Check testLinearXOffsAttribute 'linear_x_offs',
+                'linear_x_k',
+                #'calibration_kd',
+                'calibration_kc',
+                'calibration_kb',
+                'calibration_ka']
+
+        for device in self.devices :
+            for attribute in attributes :
+                for expected in values :
+                    self._write_read_test(device, attribute, expected)
+
 
     def testWrongBufferSize(self):
         sizes = [1, 8193, 1000000]
@@ -191,6 +257,19 @@ class LiberaTestCase(unittest.TestCase):
                 self.assertRaises(PyTango.DevFailed, lambda : device.write_attribute(attribute, wrong))
 
 
+#TEST UTILITIES
+    def _write_read_test(self, device, attribute, expected ):
+            "when:"
+            print "%s %s %s" % (device.name(), attribute, expected)
+            #setattr(device, attribute, expected)
+            device.write_attribute(attribute, expected)
+            #XXX We should expect to exit the write request with the value taken account in the low level
+            #time.sleep(1)
+            actual = getattr(device, attribute)
+            #actual = device.read_attribute(attribute)
+
+            "then:"
+            self.assertEquals(expected, actual, "%s is not set correctly : %s (expected : %s)" % (attribute, actual, expected))
 
 #UTILITIES
     def read_ireg(self, libera_ip, node):
@@ -236,6 +315,6 @@ class LiberaTestCase(unittest.TestCase):
 
 if __name__ == '__main__':
     suiteFew = unittest.TestSuite()
-    suiteFew.addTest(LiberaTestCase("testPlatformFanSpeed"))
+    suiteFew.addTest(LiberaTestCase("testReadWriteDoubleAttribute"))
     unittest.TextTestRunner(verbosity=2).run(suiteFew)
     #unittest.TextTestRunner(verbosity=2).run(unittest.makeSuite(LiberaTestCase))
