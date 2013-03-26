@@ -106,7 +106,7 @@ class LiberaTestCase(unittest.TestCase):
             self._write_read_test(device, 'calibration_kd', -10.0)
 
     def testReadWriteDoubleAttribute(self):
-        # Absolute random values
+        # Absolute random valuess
         values = [-10.0, -25.45, 0.0, 38.56, 10000.0]
         # XXX Bad practice to test several attribute in one unit test
         # TODO Check if unittest accept the parametrized test
