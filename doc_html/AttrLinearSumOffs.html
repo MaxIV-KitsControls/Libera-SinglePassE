@@ -87,7 +87,7 @@
 <Br>
 <Br>
 <FONT SIZE="+2"><u>
-            AttenuationLevel Attribute 
+            LinearSumOffs Attribute 
 </u></Font>
 </Center>
 
@@ -99,13 +99,19 @@
 <ul>
 	<Font SIZE="+0"> <b><u> Description :</u></b> </Font>
 	<ul>
-		Each analogue channel on one processor module in 
-Libera Single Pass E has one 5-bit programmable 
-attenuator. The attenuation can be controlled in the 
-range from 0 to 31dB in steps of 1dB. Gain control serves 
-to set the attenuators according to the input RF signal 
-level. Writing to this attribute serves to set the input 
-RF signal attenuators in dB.
+		Coefficient for offsetting the sum value. 
+Default value is 0. Please refer to Chapter 2.6 of Libera 
+Single Pass E User manual for details.
+
+NOTE: The Libera Single Pass E has the possibility to 
+support also the polynomial equations for calculation 
+of position, however it is not supported in Tango as the 
+Libera Brilliance Single Pass supports only the linear 
+equation. Polynomial equation is providing more 
+accurate results of measurements as it is 
+compensating for the nonlinear anomalies for the 
+pick-up sensor. Please see the chapter 2.6.2 in the 
+Libera Single Pass E user manual for details.
 	</ul>
 	<Br>
 	<Br>
@@ -138,7 +144,7 @@ RF signal attenuators in dB.
 			<!---------- Data type ----------->
 			<Tr>
 				<Td> <Font=+1><b>   Data Type  </b></Font></Td>
-				<Td> Tango::DEV_LONG </Td>
+				<Td> Tango::DEV_DOUBLE </Td>
 			</Tr>
 			
 			<!---------- Allowed State ----------->
@@ -157,7 +163,7 @@ RF signal attenuators in dB.
 			<!---------- Display Level ----------->
 			<Tr>
 				<Td> <Font=+1><b> Display Level  </b></Font></Td>
-				<Td> OPERATOR	</Td>
+				<Td> EXPERT	</Td>
 			</Tr>
 		
 			<!---------- Inheritance ----------->
@@ -189,26 +195,32 @@ RF signal attenuators in dB.
 		   Attrribute Properties 
 	</b></Font></Center></td>
 	</Tr>
-			<Tr><Td> <Font=+1><b>  label         </b></Font></Td>    <Td> AttenuationLevel</Td></Tr>
-			<Tr><Td> <Font=+1><b>  unit          </b></Font></Td>    <Td> dBm</Td></Tr>
+			<Tr><Td> <Font=+1><b>  label         </b></Font></Td>    <Td> LinearSumOffs</Td></Tr>
+			<Tr><Td> <Font=+1><b>  unit          </b></Font></Td>    <Td> a.u.</Td></Tr>
 			<Tr><Td> <Font=+1><b>  standard unit </b></Font></Td>    <Td> </Td></Tr>
 			<Tr><Td> <Font=+1><b>  display unit  </b></Font></Td>    <Td> </Td></Tr>
-			<Tr><Td> <Font=+1><b>  format        </b></Font></Td>    <Td> %2d</Td></Tr>
-			<Tr><Td> <Font=+1><b>  max_value     </b></Font></Td>    <Td> 31</Td></Tr>
-			<Tr><Td> <Font=+1><b>  min_value     </b></Font></Td>    <Td> 0</Td></Tr>
+			<Tr><Td> <Font=+1><b>  format        </b></Font></Td>    <Td> </Td></Tr>
+			<Tr><Td> <Font=+1><b>  max_value     </b></Font></Td>    <Td> </Td></Tr>
+			<Tr><Td> <Font=+1><b>  min_value     </b></Font></Td>    <Td> </Td></Tr>
 			<Tr><Td> <Font=+1><b>  max_alarm     </b></Font></Td>    <Td> </Td></Tr>
 			<Tr><Td> <Font=+1><b>  min_alarm     </b></Font></Td>    <Td> </Td></Tr>
 			<Tr><Td> <Font=+1><b>  max_warning   </b></Font></Td>    <Td> </Td></Tr>
 			<Tr><Td> <Font=+1><b>  min_warning   </b></Font></Td>    <Td> </Td></Tr>
 			<Tr><Td> <Font=+1><b>  delta_time    </b></Font></Td>    <Td> </Td></Tr>
 			<Tr><Td> <Font=+1><b>  delta_val     </b></Font></Td>    <Td> </Td></Tr>
-			<!--- Tr><Td> <Font=+1><b>  description   </b></Font></Td>    <Td> Each analogue channel on one processor module in 
-Libera Single Pass E has one 5-bit programmable 
-attenuator. The attenuation can be controlled in the 
-range from 0 to 31dB in steps of 1dB. Gain control serves 
-to set the attenuators according to the input RF signal 
-level. Writing to this attribute serves to set the input 
-RF signal attenuators in dB.</Td></Tr--->
+			<!--- Tr><Td> <Font=+1><b>  description   </b></Font></Td>    <Td> Coefficient for offsetting the sum value. 
+Default value is 0. Please refer to Chapter 2.6 of Libera 
+Single Pass E User manual for details.
+
+NOTE: The Libera Single Pass E has the possibility to 
+support also the polynomial equations for calculation 
+of position, however it is not supported in Tango as the 
+Libera Brilliance Single Pass supports only the linear 
+equation. Polynomial equation is providing more 
+accurate results of measurements as it is 
+compensating for the nonlinear anomalies for the 
+pick-up sensor. Please see the chapter 2.6.2 in the 
+Libera Single Pass E user manual for details.</Td></Tr--->
 		</Table>
 	</Td>
 	</Table>
@@ -217,7 +229,7 @@ RF signal attenuators in dB.</Td></Tr--->
 	<Br>
 	<Br>
 	
-<!---  /*PROTECTED REGION ID(./doc_html/AttrAttenuationLevel.html) ENABLED START*/  --->
+<!---  /*PROTECTED REGION ID(./doc_html/AttrLinearSumOffs.html) ENABLED START*/  --->
 	<!--- Add your own documentation, pictures, links,.... --->
 	<ul>
 

@@ -148,8 +148,13 @@
 		<Td> READ_WRITE                             </Td>
 		<Td> Tango::DEV_LONG          </Td>
 		<Td> OPERATOR                       </Td>
-		<Td> The analog channels level. This attribute allows the user to tune the analog channels
-attenuator. The input is an index within a lookup table in the Libera box             </Td>
+		<Td> Each analogue channel on one processor module in 
+Libera Single Pass E has one 5-bit programmable 
+attenuator. The attenuation can be controlled in the 
+range from 0 to 31dB in steps of 1dB. Gain control serves 
+to set the attenuators according to the input RF signal 
+level. Writing to this attribute serves to set the input 
+RF signal attenuators in dB.             </Td>
 	</Tr>
 	<Tr>
 		<Td> <a href=AttrTriggerCounter.html> TriggerCounter </a></Td>
@@ -169,7 +174,10 @@ attenuator. The input is an index within a lookup table in the Libera box       
 		<Td> READ                             </Td>
 		<Td> Tango::DEV_USHORT          </Td>
 		<Td> EXPERT                       </Td>
-		<Td> First fan speed             </Td>
+		<Td> Provides minimal fan speed reading of all three fans on 
+the left side of the chassis in order to identify if the fan 
+module (consisting of 3 fans) is broken - returned value 
+0 means that at least one fan has stopped.             </Td>
 	</Tr>
 	<Tr>
 		<Td> <a href=AttrFan2Speed.html> Fan2Speed </a></Td>
@@ -179,7 +187,10 @@ attenuator. The input is an index within a lookup table in the Libera box       
 		<Td> READ                             </Td>
 		<Td> Tango::DEV_USHORT          </Td>
 		<Td> EXPERT                       </Td>
-		<Td> Second fan speed             </Td>
+		<Td> Provides minimal fan speed reading of all three fans on 
+the right side of the chassis in order to identify if the 
+fan module (consisting of 3 fans) is broken - returned 
+value 0 means that at least one fan has stopped.             </Td>
 	</Tr>
 	<Tr>
 		<Td> <a href=AttrTemp1.html> Temp1 </a></Td>
@@ -189,7 +200,8 @@ attenuator. The input is an index within a lookup table in the Libera box       
 		<Td> READ                             </Td>
 		<Td> Tango::DEV_USHORT          </Td>
 		<Td> EXPERT                       </Td>
-		<Td> The Libera box first temperature             </Td>
+		<Td> Temperature of the hottest component on the BPM 
+module is returned.             </Td>
 	</Tr>
 	<Tr>
 		<Td> <a href=AttrTemp2.html> Temp2 </a></Td>
@@ -199,7 +211,8 @@ attenuator. The input is an index within a lookup table in the Libera box       
 		<Td> READ                             </Td>
 		<Td> Tango::DEV_USHORT          </Td>
 		<Td> EXPERT                       </Td>
-		<Td> The Libera box second temperature             </Td>
+		<Td> Temperature of the hottest component on the chassis 
+interconnection board is returned.             </Td>
 	</Tr>
 	<Tr>
 		<Td> <a href=AttrTemp3.html> Temp3 </a></Td>
@@ -209,237 +222,293 @@ attenuator. The input is an index within a lookup table in the Libera box       
 		<Td> READ                             </Td>
 		<Td> Tango::DEV_USHORT          </Td>
 		<Td> EXPERT                       </Td>
-		<Td> The Libera box third temperature             </Td>
+		<Td> Temperature of the hottest component on the timing 
+module is returned.             </Td>
 	</Tr>
 	<Tr>
-		<Td> <a href=AttrCalibration_ka.html> Calibration_ka </a></Td>
+		<Td> <a href=AttrCalibrationKa.html> CalibrationKa </a></Td>
 		<Td> false                   </Td>
 		<Td>  false </Td>
 		<Td> Scalar    </Td>
 		<Td> READ_WRITE                             </Td>
 		<Td> Tango::DEV_DOUBLE          </Td>
 		<Td> EXPERT                       </Td>
-		<Td> Matjaz.....             </Td>
+		<Td> Correction coefficient of the pickup sensor for channel A.             </Td>
 	</Tr>
 	<Tr>
-		<Td> <a href=AttrCalibration_kb.html> Calibration_kb </a></Td>
+		<Td> <a href=AttrCalibrationKb.html> CalibrationKb </a></Td>
 		<Td> false                   </Td>
 		<Td>  false </Td>
 		<Td> Scalar    </Td>
 		<Td> READ_WRITE                             </Td>
 		<Td> Tango::DEV_DOUBLE          </Td>
 		<Td> EXPERT                       </Td>
-		<Td> Matjaz.....             </Td>
+		<Td> Correction coefficient of the pickup sensor for channel B.             </Td>
 	</Tr>
 	<Tr>
-		<Td> <a href=AttrCalibration_kc.html> Calibration_kc </a></Td>
+		<Td> <a href=AttrCalibrationKc.html> CalibrationKc </a></Td>
 		<Td> false                   </Td>
 		<Td>  false </Td>
 		<Td> Scalar    </Td>
 		<Td> READ_WRITE                             </Td>
 		<Td> Tango::DEV_DOUBLE          </Td>
 		<Td> EXPERT                       </Td>
-		<Td> Matjaz.....             </Td>
+		<Td> Correction coefficient of the pickup sensor for channel C.             </Td>
 	</Tr>
 	<Tr>
-		<Td> <a href=AttrCalibration_kd.html> Calibration_kd </a></Td>
+		<Td> <a href=AttrCalibrationKd.html> CalibrationKd </a></Td>
 		<Td> false                   </Td>
 		<Td>  false </Td>
 		<Td> Scalar    </Td>
 		<Td> READ_WRITE                             </Td>
 		<Td> Tango::DEV_DOUBLE          </Td>
 		<Td> EXPERT                       </Td>
-		<Td> Matjaz.....             </Td>
+		<Td> Correction coefficient of the pickup sensor for channel D.             </Td>
 	</Tr>
 	<Tr>
-		<Td> <a href=AttrLinear_x_k.html> Linear_x_k </a></Td>
+		<Td> <a href=AttrLinearXK.html> LinearXK </a></Td>
 		<Td> false                   </Td>
 		<Td>  false </Td>
 		<Td> Scalar    </Td>
 		<Td> READ_WRITE                             </Td>
 		<Td> Tango::DEV_DOUBLE          </Td>
 		<Td> EXPERT                       </Td>
-		<Td> Matjaz.....             </Td>
+		<Td> Setting the correction coefficient of the linear equation 
+for the x position calculation. See chapter 2.6.1 in 
+Libera Single Pass E User manual for details.             </Td>
 	</Tr>
 	<Tr>
-		<Td> <a href=AttrLinear_x_offs.html> Linear_x_offs </a></Td>
+		<Td> <a href=AttrLinearXOffs.html> LinearXOffs </a></Td>
 		<Td> false                   </Td>
 		<Td>  false </Td>
 		<Td> Scalar    </Td>
 		<Td> READ_WRITE                             </Td>
 		<Td> Tango::DEV_DOUBLE          </Td>
 		<Td> EXPERT                       </Td>
-		<Td> Matjaz.....             </Td>
+		<Td> Used to calibrate position offsets expressed in nm. 
+Please refer to Chapter 2.6 in Libera Single Pass E 
+User manual for details.             </Td>
 	</Tr>
 	<Tr>
-		<Td> <a href=AttrLinear_y_k.html> Linear_y_k </a></Td>
+		<Td> <a href=AttrLinearYK.html> LinearYK </a></Td>
 		<Td> false                   </Td>
 		<Td>  false </Td>
 		<Td> Scalar    </Td>
 		<Td> READ_WRITE                             </Td>
 		<Td> Tango::DEV_DOUBLE          </Td>
 		<Td> EXPERT                       </Td>
-		<Td> Matjaz.....             </Td>
+		<Td> Setting the correction coefficient of the linear equation 
+for the y position calculation. See chapter 2.6.1 in 
+Libera Single Pass E User manual for details.             </Td>
 	</Tr>
 	<Tr>
-		<Td> <a href=AttrLinear_y_offs.html> Linear_y_offs </a></Td>
+		<Td> <a href=AttrLinearYOffs.html> LinearYOffs </a></Td>
 		<Td> false                   </Td>
 		<Td>  false </Td>
 		<Td> Scalar    </Td>
 		<Td> READ_WRITE                             </Td>
 		<Td> Tango::DEV_DOUBLE          </Td>
 		<Td> EXPERT                       </Td>
-		<Td> Matjaz.....             </Td>
+		<Td> Used to calibrate position offsets expressed in nm. 
+Please refer to Chapter 2.6 in Libera Single Pass E 
+User manual for details.             </Td>
 	</Tr>
 	<Tr>
-		<Td> <a href=AttrLinear_q_k.html> Linear_q_k </a></Td>
+		<Td> <a href=AttrLinearQK.html> LinearQK </a></Td>
 		<Td> false                   </Td>
 		<Td>  false </Td>
 		<Td> Scalar    </Td>
 		<Td> READ_WRITE                             </Td>
 		<Td> Tango::DEV_DOUBLE          </Td>
 		<Td> EXPERT                       </Td>
-		<Td> Matjaz.....             </Td>
+		<Td> Setting the correction coefficient of the linear equation 
+for the q calculation. See chapter 2.6.1 in Libera Single 
+Pass E User manual for details.             </Td>
 	</Tr>
 	<Tr>
-		<Td> <a href=AttrLinear_q_offs.html> Linear_q_offs </a></Td>
+		<Td> <a href=AttrLinearQOffs.html> LinearQOffs </a></Td>
 		<Td> false                   </Td>
 		<Td>  false </Td>
 		<Td> Scalar    </Td>
 		<Td> READ_WRITE                             </Td>
 		<Td> Tango::DEV_DOUBLE          </Td>
 		<Td> EXPERT                       </Td>
-		<Td> Matjaz.....             </Td>
+		<Td> Sets the offset for q factor. Default value is 0. 
+See Chapter 2.6 in Libera Single Pass E User manual 
+for details.             </Td>
 	</Tr>
 	<Tr>
-		<Td> <a href=AttrLinear_sum_k.html> Linear_sum_k </a></Td>
+		<Td> <a href=AttrLinearSumK.html> LinearSumK </a></Td>
 		<Td> false                   </Td>
 		<Td>  false </Td>
 		<Td> Scalar    </Td>
 		<Td> READ_WRITE                             </Td>
 		<Td> Tango::DEV_DOUBLE          </Td>
 		<Td> EXPERT                       </Td>
-		<Td> Matjaz.....             </Td>
+		<Td> Coefficient for sum value. Default is 67108864 (2^26). 
+Please refer to Chapter 2.6 in the Libera Single Pass E 
+User manual for details.             </Td>
 	</Tr>
 	<Tr>
-		<Td> <a href=AttrLinear_sum_offs.html> Linear_sum_offs </a></Td>
+		<Td> <a href=AttrLinearSumOffs.html> LinearSumOffs </a></Td>
 		<Td> false                   </Td>
 		<Td>  false </Td>
 		<Td> Scalar    </Td>
 		<Td> READ_WRITE                             </Td>
 		<Td> Tango::DEV_DOUBLE          </Td>
 		<Td> EXPERT                       </Td>
-		<Td> Matjaz.....             </Td>
+		<Td> Coefficient for offsetting the sum value. 
+Default value is 0. Please refer to Chapter 2.6 of Libera 
+Single Pass E User manual for details.
+
+NOTE: The Libera Single Pass E has the possibility to 
+support also the polynomial equations for calculation 
+of position, however it is not supported in Tango as the 
+Libera Brilliance Single Pass supports only the linear 
+equation. Polynomial equation is providing more 
+accurate results of measurements as it is 
+compensating for the nonlinear anomalies for the 
+pick-up sensor. Please see the chapter 2.6.2 in the 
+Libera Single Pass E user manual for details.             </Td>
 	</Tr>
 	<Tr>
-		<Td> <a href=AttrSignal_expansion.html> Signal_expansion </a></Td>
+		<Td> <a href=AttrSignalExpansion.html> SignalExpansion </a></Td>
 		<Td> false                   </Td>
 		<Td>  false </Td>
 		<Td> Scalar    </Td>
 		<Td> READ_WRITE                             </Td>
 		<Td> Tango::DEV_DOUBLE          </Td>
 		<Td> EXPERT                       </Td>
-		<Td> Matjaz.....             </Td>
+		<Td> Interlock output is active for all the time the Interlock 
+conditions are fulfilled (ADC overflow and position 
+monitoring). The Interlock output remains active for a 
+certain time after the conditions have been cleared 
+(mono-stable cell). The time is defined in ADC clock 
+cycles with ireg parameter signal_expansion.             </Td>
 	</Tr>
 	<Tr>
-		<Td> <a href=AttrInterlock_enabled.html> Interlock_enabled </a></Td>
+		<Td> <a href=AttrInterlockEnabled.html> InterlockEnabled </a></Td>
 		<Td> false                   </Td>
 		<Td>  false </Td>
 		<Td> Scalar    </Td>
 		<Td> READ_WRITE                             </Td>
 		<Td> Tango::DEV_BOOLEAN          </Td>
 		<Td> EXPERT                       </Td>
-		<Td> Matjaz.....             </Td>
+		<Td> Enables/disables the interlock functionality. If it is set to 
+true, interlock is enabled, if set to false, interlock is 
+disabled. More details are in the chapter 2.12 in the 
+Libera Single Pass E User manual.             </Td>
 	</Tr>
 	<Tr>
-		<Td> <a href=AttrLimit_min_x.html> Limit_min_x </a></Td>
+		<Td> <a href=AttrLimitMinX.html> LimitMinX </a></Td>
 		<Td> false                   </Td>
 		<Td>  false </Td>
 		<Td> Scalar    </Td>
 		<Td> READ_WRITE                             </Td>
 		<Td> Tango::DEV_DOUBLE          </Td>
 		<Td> EXPERT                       </Td>
-		<Td> Matjaz.....             </Td>
+		<Td> Interlock lower limit parameter for x position in nm. 
+See Chapter 2.12.1 in the Libera Single Pass E User 
+manual for details.             </Td>
 	</Tr>
 	<Tr>
-		<Td> <a href=AttrLimit_min_y.html> Limit_min_y </a></Td>
+		<Td> <a href=AttrLimitMinY.html> LimitMinY </a></Td>
 		<Td> false                   </Td>
 		<Td>  false </Td>
 		<Td> Scalar    </Td>
 		<Td> READ_WRITE                             </Td>
 		<Td> Tango::DEV_DOUBLE          </Td>
 		<Td> EXPERT                       </Td>
-		<Td> Matjaz.....             </Td>
+		<Td> Interlock lower limit parameter for y position in nm. 
+See Chapter 2.12.1 in the Libera Single Pass E User 
+manual for details.             </Td>
 	</Tr>
 	<Tr>
-		<Td> <a href=AttrLimit_max_x.html> Limit_max_x </a></Td>
+		<Td> <a href=AttrLimitMaxX.html> LimitMaxX </a></Td>
 		<Td> false                   </Td>
 		<Td>  false </Td>
 		<Td> Scalar    </Td>
 		<Td> READ_WRITE                             </Td>
 		<Td> Tango::DEV_DOUBLE          </Td>
 		<Td> EXPERT                       </Td>
-		<Td> Matjaz.....             </Td>
+		<Td> Interlock upper limit parameter for x position in nm. 
+See Chapter 2.12.1 in the Libera Single Pass E User 
+manual for details.             </Td>
 	</Tr>
 	<Tr>
-		<Td> <a href=AttrLimit_max_y.html> Limit_max_y </a></Td>
+		<Td> <a href=AttrLimitMaxY.html> LimitMaxY </a></Td>
 		<Td> false                   </Td>
 		<Td>  false </Td>
 		<Td> Scalar    </Td>
 		<Td> READ_WRITE                             </Td>
 		<Td> Tango::DEV_DOUBLE          </Td>
 		<Td> EXPERT                       </Td>
-		<Td> Matjaz.....             </Td>
+		<Td> Interlock upper limit parameter for y position in nm. 
+See Chapter 2.12.1 in the Libera Single Pass E User 
+manual for details.             </Td>
 	</Tr>
 	<Tr>
-		<Td> <a href=AttrOverflow_threshold.html> Overflow_threshold </a></Td>
+		<Td> <a href=AttrOverflowThreshold.html> OverflowThreshold </a></Td>
 		<Td> false                   </Td>
 		<Td>  false </Td>
 		<Td> Scalar    </Td>
 		<Td> READ_WRITE                             </Td>
 		<Td> Tango::DEV_ULONG          </Td>
 		<Td> EXPERT                       </Td>
-		<Td> Matjaz.....             </Td>
+		<Td> Interlock upper limit parameter for the ADC overflow 
+buffer (ADC saturation) parameter which is in ADC 
+counts. See Chapter 2.12.2 in the Libera Single Pass E 
+User manual for details.             </Td>
 	</Tr>
 	<Tr>
-		<Td> <a href=AttrInterlock_status.html> Interlock_status </a></Td>
+		<Td> <a href=AttrInterlockStatus.html> InterlockStatus </a></Td>
 		<Td> false                   </Td>
 		<Td>  false </Td>
 		<Td> Scalar    </Td>
 		<Td> READ                             </Td>
 		<Td> Tango::DEV_ULONG          </Td>
 		<Td> EXPERT                       </Td>
-		<Td> Matjaz.....             </Td>
+		<Td> Issuing this command tells you which was the cause of 
+the interlock. Number is 5 bit expressed in the decimal 
+value. If no interlock was triggered, the returned value 
+is 0. See the chapter 2.12.3 in the Libera Single Pass E 
+User manual for details.             </Td>
 	</Tr>
 	<Tr>
-		<Td> <a href=AttrStatus_x.html> Status_x </a></Td>
+		<Td> <a href=AttrStatusX.html> StatusX </a></Td>
 		<Td> false                   </Td>
 		<Td>  false </Td>
 		<Td> Scalar    </Td>
 		<Td> READ                             </Td>
 		<Td> Tango::DEV_BOOLEAN          </Td>
 		<Td> EXPERT                       </Td>
-		<Td> Matjaz.....             </Td>
+		<Td> Checking the status of the interlock for the x position. 
+Returned value false means that x position wasnt out 
+of set limit.             </Td>
 	</Tr>
 	<Tr>
-		<Td> <a href=AttrStatus_y.html> Status_y </a></Td>
+		<Td> <a href=AttrStatusY.html> StatusY </a></Td>
 		<Td> false                   </Td>
 		<Td>  false </Td>
 		<Td> Scalar    </Td>
 		<Td> READ                             </Td>
 		<Td> Tango::DEV_BOOLEAN          </Td>
 		<Td> EXPERT                       </Td>
-		<Td> Matjaz.....             </Td>
+		<Td> Checking the status of the interlock for the y position. 
+Returned value false means that y position wasnt out 
+of set limit.             </Td>
 	</Tr>
 	<Tr>
-		<Td> <a href=AttrStatus_adc_overflow.html> Status_adc_overflow </a></Td>
+		<Td> <a href=AttrStatusAdcOverflow.html> StatusAdcOverflow </a></Td>
 		<Td> false                   </Td>
 		<Td>  false </Td>
 		<Td> Scalar    </Td>
 		<Td> READ                             </Td>
 		<Td> Tango::DEV_BOOLEAN          </Td>
 		<Td> EXPERT                       </Td>
-		<Td> Matjaz.....             </Td>
+		<Td> Checking the status of the interlock for the ADC 
+saturation. Returned value false means that ADC 
+wasnt in saturation.             </Td>
 	</Tr>
 	<Tr>
 		<Td> <a href=AttrA.html> A </a></Td>

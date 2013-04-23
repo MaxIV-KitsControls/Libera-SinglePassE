@@ -302,9 +302,7 @@ void LiberaSinglePassEClass::get_class_property()
 	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::Class::get_class_property_before
 
 	//	Read class properties from database.
-	cl_prop.push_back(Tango::DbDatum("ServiceTaskSleep"));
 	cl_prop.push_back(Tango::DbDatum("DataTaskHeartbeat"));
-
 
 	if (cl_prop.size()==0) return;	//	No property to read
 
@@ -314,18 +312,6 @@ void LiberaSinglePassEClass::get_class_property()
 	Tango::DbDatum	def_prop;
 	int	i = -1;
 
-	//	Try to extract ServiceTaskSleep value
-	if (cl_prop[++i].is_empty()==false)	cl_prop[i]  >>  serviceTaskSleep;
-	else
-	{
-		//	Check default value for ServiceTaskSleep
-		def_prop = get_default_class_property(cl_prop[i].name);
-		if (def_prop.is_empty()==false)
-		{
-			def_prop    >>  serviceTaskSleep;
-			cl_prop[i]  <<  serviceTaskSleep;
-		}
-	}
 	//	Try to extract DataTaskHeartbeat value
 	if (cl_prop[++i].is_empty()==false)	cl_prop[i]  >>  dataTaskHeartbeat;
 	else
@@ -365,20 +351,6 @@ void LiberaSinglePassEClass::set_default_property()
 	vector<string>	vect_data;
 
 	//	Set Default Class Properties
-	prop_name = "ServiceTaskSleep";
-	prop_desc = "Sleep time (in mS) for the service task between libera boxes request";
-	prop_def  = "2000`\n";
-	vect_data.clear();
-	vect_data.push_back("2000");
-	if (prop_def.length()>0)
-	{
-		Tango::DbDatum	data(prop_name);
-		data << vect_data ;
-		cl_def_prop.push_back(data);
-		add_wiz_class_prop(prop_name, prop_desc,  prop_def);
-	}
-	else
-		add_wiz_class_prop(prop_name, prop_desc);
 	prop_name = "DataTaskHeartbeat";
 	prop_desc = "Heartbeat time (in mS) for the data task";
 	prop_def  = "2000`\n";
@@ -428,21 +400,6 @@ void LiberaSinglePassEClass::set_default_property()
 	prop_desc = "The libera box physical place (TL1, BOOSTER,....)";
 	prop_def  = "";
 	vect_data.clear();
-	if (prop_def.length()>0)
-	{
-		Tango::DbDatum	data(prop_name);
-		data << vect_data ;
-		dev_def_prop.push_back(data);
-		add_wiz_dev_prop(prop_name, prop_desc,  prop_def);
-	}
-	else
-		add_wiz_dev_prop(prop_name, prop_desc);
-
-	prop_name = "ServiceTaskSleep";
-	prop_desc = "Sleep time (in mS) for the class task between libera boxes request";
-	prop_def  = "2000\n";
-	vect_data.clear();
-	vect_data.push_back("2000");
 	if (prop_def.length()>0)
 	{
 		Tango::DbDatum	data(prop_name);
@@ -773,7 +730,7 @@ void LiberaSinglePassEClass::attribute_factory(vector<Tango::Attr *> &att_list)
 	//	Attribute : AttenuationLevel
 	AttenuationLevelAttrib	*attenuationlevel = new AttenuationLevelAttrib();
 	Tango::UserDefaultAttrProp	attenuationlevel_prop;
-	attenuationlevel_prop.set_description("The analog channels level. This attribute allows the user to tune the analog channels\nattenuator. The input is an index within a lookup table in the Libera box");
+	attenuationlevel_prop.set_description("Each analogue channel on one processor module in \nLibera Single Pass E has one 5-bit programmable \nattenuator. The attenuation can be controlled in the \nrange from 0 to 31dB in steps of 1dB. Gain control serves \nto set the attenuators according to the input RF signal \nlevel. Writing to this attribute serves to set the input \nRF signal attenuators in dB.");
 	attenuationlevel_prop.set_label("AttenuationLevel");
 	attenuationlevel_prop.set_unit("dBm");
 	//	standard_unit	not set for	AttenuationLevel
@@ -827,7 +784,7 @@ void LiberaSinglePassEClass::attribute_factory(vector<Tango::Attr *> &att_list)
 	//	Attribute : Fan1Speed
 	Fan1SpeedAttrib	*fan1speed = new Fan1SpeedAttrib();
 	Tango::UserDefaultAttrProp	fan1speed_prop;
-	fan1speed_prop.set_description("First fan speed");
+	fan1speed_prop.set_description("Provides minimal fan speed reading of all three� fans on \nthe left side of the chassis in order to identify if the fan \nmodule (consisting of 3 fans) is broken - returned value \n0 means that at least one fan has stopped.");
 	fan1speed_prop.set_label("Fan.1 speed");
 	fan1speed_prop.set_unit("rpm");
 	//	standard_unit	not set for	Fan1Speed
@@ -854,7 +811,7 @@ void LiberaSinglePassEClass::attribute_factory(vector<Tango::Attr *> &att_list)
 	//	Attribute : Fan2Speed
 	Fan2SpeedAttrib	*fan2speed = new Fan2SpeedAttrib();
 	Tango::UserDefaultAttrProp	fan2speed_prop;
-	fan2speed_prop.set_description("Second fan speed");
+	fan2speed_prop.set_description("Provides minimal fan speed reading of all three� fans on \nthe right side of the chassis in order to identify if the \nfan module (consisting of 3 fans) is broken - returned \nvalue 0 means that at least one fan has stopped.");
 	fan2speed_prop.set_label("Fan.2 speed");
 	fan2speed_prop.set_unit("rpm");
 	fan2speed_prop.set_standard_unit(" ");
@@ -881,7 +838,7 @@ void LiberaSinglePassEClass::attribute_factory(vector<Tango::Attr *> &att_list)
 	//	Attribute : Temp1
 	Temp1Attrib	*temp1 = new Temp1Attrib();
 	Tango::UserDefaultAttrProp	temp1_prop;
-	temp1_prop.set_description("The Libera box first temperature");
+	temp1_prop.set_description("Temperature of the hottest component on the BPM \nmodule is returned.");
 	temp1_prop.set_label("Temperature 1");
 	temp1_prop.set_unit("C deg");
 	//	standard_unit	not set for	Temp1
@@ -908,7 +865,7 @@ void LiberaSinglePassEClass::attribute_factory(vector<Tango::Attr *> &att_list)
 	//	Attribute : Temp2
 	Temp2Attrib	*temp2 = new Temp2Attrib();
 	Tango::UserDefaultAttrProp	temp2_prop;
-	temp2_prop.set_description("The Libera box second temperature");
+	temp2_prop.set_description("Temperature of the hottest component on the chassis \ninterconnection board is returned.");
 	temp2_prop.set_label("Temperature 2");
 	temp2_prop.set_unit("C deg");
 	//	standard_unit	not set for	Temp2
@@ -935,7 +892,7 @@ void LiberaSinglePassEClass::attribute_factory(vector<Tango::Attr *> &att_list)
 	//	Attribute : Temp3
 	Temp3Attrib	*temp3 = new Temp3Attrib();
 	Tango::UserDefaultAttrProp	temp3_prop;
-	temp3_prop.set_description("The Libera box third temperature");
+	temp3_prop.set_description("Temperature of the hottest component on the timing \nmodule is returned.");
 	temp3_prop.set_label("Temperature 3");
 	temp3_prop.set_unit("C deg");
 	//	standard_unit	not set for	Temp3
@@ -959,626 +916,626 @@ void LiberaSinglePassEClass::attribute_factory(vector<Tango::Attr *> &att_list)
 	//	Temp3 does not fire data_ready event
 	att_list.push_back(temp3);
 
-	//	Attribute : Calibration_ka
-	Calibration_kaAttrib	*calibration_ka = new Calibration_kaAttrib();
-	Tango::UserDefaultAttrProp	calibration_ka_prop;
-	calibration_ka_prop.set_description("Matjaz.....");
-	calibration_ka_prop.set_label("calibration_ka");
-	//	unit	not set for	Calibration_ka
-	//	standard_unit	not set for	Calibration_ka
-	//	display_unit	not set for	Calibration_ka
-	//	format	not set for	Calibration_ka
-	//	max_value	not set for	Calibration_ka
-	//	min_value	not set for	Calibration_ka
-	//	max_alarm	not set for	Calibration_ka
-	//	min_alarm	not set for	Calibration_ka
-	//	max_warning	not set for	Calibration_ka
-	//	min_warning	not set for	Calibration_ka
-	//	delta_t	not set for	Calibration_ka
-	//	delta_val	not set for	Calibration_ka
-	calibration_ka->set_default_properties(calibration_ka_prop);
+	//	Attribute : CalibrationKa
+	CalibrationKaAttrib	*calibrationka = new CalibrationKaAttrib();
+	Tango::UserDefaultAttrProp	calibrationka_prop;
+	calibrationka_prop.set_description("Correction coefficient of the pickup sensor for channel A.");
+	calibrationka_prop.set_label("calibrationKa");
+	calibrationka_prop.set_unit("a.u.");
+	//	standard_unit	not set for	CalibrationKa
+	//	display_unit	not set for	CalibrationKa
+	//	format	not set for	CalibrationKa
+	//	max_value	not set for	CalibrationKa
+	//	min_value	not set for	CalibrationKa
+	//	max_alarm	not set for	CalibrationKa
+	//	min_alarm	not set for	CalibrationKa
+	//	max_warning	not set for	CalibrationKa
+	//	min_warning	not set for	CalibrationKa
+	//	delta_t	not set for	CalibrationKa
+	//	delta_val	not set for	CalibrationKa
+	calibrationka->set_default_properties(calibrationka_prop);
 	//	Not Polled
-	calibration_ka->set_disp_level(Tango::EXPERT);
+	calibrationka->set_disp_level(Tango::EXPERT);
 	//	Not memorized
 
-	//	Calibration_ka does not fire change event
-	//	Calibration_ka does not fire archive event
-	//	Calibration_ka does not fire data_ready event
-	att_list.push_back(calibration_ka);
+	//	CalibrationKa does not fire change event
+	//	CalibrationKa does not fire archive event
+	//	CalibrationKa does not fire data_ready event
+	att_list.push_back(calibrationka);
 
-	//	Attribute : Calibration_kb
-	Calibration_kbAttrib	*calibration_kb = new Calibration_kbAttrib();
-	Tango::UserDefaultAttrProp	calibration_kb_prop;
-	calibration_kb_prop.set_description("Matjaz.....");
-	calibration_kb_prop.set_label("calibration_kb");
-	//	unit	not set for	Calibration_kb
-	//	standard_unit	not set for	Calibration_kb
-	//	display_unit	not set for	Calibration_kb
-	//	format	not set for	Calibration_kb
-	//	max_value	not set for	Calibration_kb
-	//	min_value	not set for	Calibration_kb
-	//	max_alarm	not set for	Calibration_kb
-	//	min_alarm	not set for	Calibration_kb
-	//	max_warning	not set for	Calibration_kb
-	//	min_warning	not set for	Calibration_kb
-	//	delta_t	not set for	Calibration_kb
-	//	delta_val	not set for	Calibration_kb
-	calibration_kb->set_default_properties(calibration_kb_prop);
+	//	Attribute : CalibrationKb
+	CalibrationKbAttrib	*calibrationkb = new CalibrationKbAttrib();
+	Tango::UserDefaultAttrProp	calibrationkb_prop;
+	calibrationkb_prop.set_description("Correction coefficient of the pickup sensor for channel B.");
+	calibrationkb_prop.set_label("calibrationKb");
+	calibrationkb_prop.set_unit("a.u.");
+	//	standard_unit	not set for	CalibrationKb
+	//	display_unit	not set for	CalibrationKb
+	//	format	not set for	CalibrationKb
+	//	max_value	not set for	CalibrationKb
+	//	min_value	not set for	CalibrationKb
+	//	max_alarm	not set for	CalibrationKb
+	//	min_alarm	not set for	CalibrationKb
+	//	max_warning	not set for	CalibrationKb
+	//	min_warning	not set for	CalibrationKb
+	//	delta_t	not set for	CalibrationKb
+	//	delta_val	not set for	CalibrationKb
+	calibrationkb->set_default_properties(calibrationkb_prop);
 	//	Not Polled
-	calibration_kb->set_disp_level(Tango::EXPERT);
+	calibrationkb->set_disp_level(Tango::EXPERT);
 	//	Not memorized
 
-	//	Calibration_kb does not fire change event
-	//	Calibration_kb does not fire archive event
-	//	Calibration_kb does not fire data_ready event
-	att_list.push_back(calibration_kb);
+	//	CalibrationKb does not fire change event
+	//	CalibrationKb does not fire archive event
+	//	CalibrationKb does not fire data_ready event
+	att_list.push_back(calibrationkb);
 
-	//	Attribute : Calibration_kc
-	Calibration_kcAttrib	*calibration_kc = new Calibration_kcAttrib();
-	Tango::UserDefaultAttrProp	calibration_kc_prop;
-	calibration_kc_prop.set_description("Matjaz.....");
-	calibration_kc_prop.set_label("calibration_kc");
-	//	unit	not set for	Calibration_kc
-	//	standard_unit	not set for	Calibration_kc
-	//	display_unit	not set for	Calibration_kc
-	//	format	not set for	Calibration_kc
-	//	max_value	not set for	Calibration_kc
-	//	min_value	not set for	Calibration_kc
-	//	max_alarm	not set for	Calibration_kc
-	//	min_alarm	not set for	Calibration_kc
-	//	max_warning	not set for	Calibration_kc
-	//	min_warning	not set for	Calibration_kc
-	//	delta_t	not set for	Calibration_kc
-	//	delta_val	not set for	Calibration_kc
-	calibration_kc->set_default_properties(calibration_kc_prop);
+	//	Attribute : CalibrationKc
+	CalibrationKcAttrib	*calibrationkc = new CalibrationKcAttrib();
+	Tango::UserDefaultAttrProp	calibrationkc_prop;
+	calibrationkc_prop.set_description("Correction coefficient of the pickup sensor for channel C.");
+	calibrationkc_prop.set_label("calibrationKc");
+	calibrationkc_prop.set_unit("a.u.");
+	//	standard_unit	not set for	CalibrationKc
+	//	display_unit	not set for	CalibrationKc
+	//	format	not set for	CalibrationKc
+	//	max_value	not set for	CalibrationKc
+	//	min_value	not set for	CalibrationKc
+	//	max_alarm	not set for	CalibrationKc
+	//	min_alarm	not set for	CalibrationKc
+	//	max_warning	not set for	CalibrationKc
+	//	min_warning	not set for	CalibrationKc
+	//	delta_t	not set for	CalibrationKc
+	//	delta_val	not set for	CalibrationKc
+	calibrationkc->set_default_properties(calibrationkc_prop);
 	//	Not Polled
-	calibration_kc->set_disp_level(Tango::EXPERT);
+	calibrationkc->set_disp_level(Tango::EXPERT);
 	//	Not memorized
 
-	//	Calibration_kc does not fire change event
-	//	Calibration_kc does not fire archive event
-	//	Calibration_kc does not fire data_ready event
-	att_list.push_back(calibration_kc);
+	//	CalibrationKc does not fire change event
+	//	CalibrationKc does not fire archive event
+	//	CalibrationKc does not fire data_ready event
+	att_list.push_back(calibrationkc);
 
-	//	Attribute : Calibration_kd
-	Calibration_kdAttrib	*calibration_kd = new Calibration_kdAttrib();
-	Tango::UserDefaultAttrProp	calibration_kd_prop;
-	calibration_kd_prop.set_description("Matjaz.....");
-	calibration_kd_prop.set_label("calibration_kd");
-	//	unit	not set for	Calibration_kd
-	//	standard_unit	not set for	Calibration_kd
-	//	display_unit	not set for	Calibration_kd
-	//	format	not set for	Calibration_kd
-	//	max_value	not set for	Calibration_kd
-	//	min_value	not set for	Calibration_kd
-	//	max_alarm	not set for	Calibration_kd
-	//	min_alarm	not set for	Calibration_kd
-	//	max_warning	not set for	Calibration_kd
-	//	min_warning	not set for	Calibration_kd
-	//	delta_t	not set for	Calibration_kd
-	//	delta_val	not set for	Calibration_kd
-	calibration_kd->set_default_properties(calibration_kd_prop);
+	//	Attribute : CalibrationKd
+	CalibrationKdAttrib	*calibrationkd = new CalibrationKdAttrib();
+	Tango::UserDefaultAttrProp	calibrationkd_prop;
+	calibrationkd_prop.set_description("Correction coefficient of the pickup sensor for channel D.");
+	calibrationkd_prop.set_label("calibrationKd");
+	calibrationkd_prop.set_unit("a.u.");
+	//	standard_unit	not set for	CalibrationKd
+	//	display_unit	not set for	CalibrationKd
+	//	format	not set for	CalibrationKd
+	//	max_value	not set for	CalibrationKd
+	//	min_value	not set for	CalibrationKd
+	//	max_alarm	not set for	CalibrationKd
+	//	min_alarm	not set for	CalibrationKd
+	//	max_warning	not set for	CalibrationKd
+	//	min_warning	not set for	CalibrationKd
+	//	delta_t	not set for	CalibrationKd
+	//	delta_val	not set for	CalibrationKd
+	calibrationkd->set_default_properties(calibrationkd_prop);
 	//	Not Polled
-	calibration_kd->set_disp_level(Tango::EXPERT);
+	calibrationkd->set_disp_level(Tango::EXPERT);
 	//	Not memorized
 
-	//	Calibration_kd does not fire change event
-	//	Calibration_kd does not fire archive event
-	//	Calibration_kd does not fire data_ready event
-	att_list.push_back(calibration_kd);
+	//	CalibrationKd does not fire change event
+	//	CalibrationKd does not fire archive event
+	//	CalibrationKd does not fire data_ready event
+	att_list.push_back(calibrationkd);
 
-	//	Attribute : Linear_x_k
-	Linear_x_kAttrib	*linear_x_k = new Linear_x_kAttrib();
-	Tango::UserDefaultAttrProp	linear_x_k_prop;
-	linear_x_k_prop.set_description("Matjaz.....");
-	linear_x_k_prop.set_label("linear_x_k");
-	//	unit	not set for	Linear_x_k
-	//	standard_unit	not set for	Linear_x_k
-	//	display_unit	not set for	Linear_x_k
-	//	format	not set for	Linear_x_k
-	//	max_value	not set for	Linear_x_k
-	//	min_value	not set for	Linear_x_k
-	//	max_alarm	not set for	Linear_x_k
-	//	min_alarm	not set for	Linear_x_k
-	//	max_warning	not set for	Linear_x_k
-	//	min_warning	not set for	Linear_x_k
-	//	delta_t	not set for	Linear_x_k
-	//	delta_val	not set for	Linear_x_k
-	linear_x_k->set_default_properties(linear_x_k_prop);
+	//	Attribute : LinearXK
+	LinearXKAttrib	*linearxk = new LinearXKAttrib();
+	Tango::UserDefaultAttrProp	linearxk_prop;
+	linearxk_prop.set_description("Setting the correction coefficient of the linear equation \nfor the x position calculation. See chapter 2.6.1 in \nLibera Single Pass E User manual for details.");
+	linearxk_prop.set_label("LinearXK");
+	linearxk_prop.set_unit("nm");
+	//	standard_unit	not set for	LinearXK
+	//	display_unit	not set for	LinearXK
+	//	format	not set for	LinearXK
+	//	max_value	not set for	LinearXK
+	//	min_value	not set for	LinearXK
+	//	max_alarm	not set for	LinearXK
+	//	min_alarm	not set for	LinearXK
+	//	max_warning	not set for	LinearXK
+	//	min_warning	not set for	LinearXK
+	//	delta_t	not set for	LinearXK
+	//	delta_val	not set for	LinearXK
+	linearxk->set_default_properties(linearxk_prop);
 	//	Not Polled
-	linear_x_k->set_disp_level(Tango::EXPERT);
+	linearxk->set_disp_level(Tango::EXPERT);
 	//	Not memorized
 
-	//	Linear_x_k does not fire change event
-	//	Linear_x_k does not fire archive event
-	//	Linear_x_k does not fire data_ready event
-	att_list.push_back(linear_x_k);
+	//	LinearXK does not fire change event
+	//	LinearXK does not fire archive event
+	//	LinearXK does not fire data_ready event
+	att_list.push_back(linearxk);
 
-	//	Attribute : Linear_x_offs
-	Linear_x_offsAttrib	*linear_x_offs = new Linear_x_offsAttrib();
-	Tango::UserDefaultAttrProp	linear_x_offs_prop;
-	linear_x_offs_prop.set_description("Matjaz.....");
-	linear_x_offs_prop.set_label("linear_x_offs");
-	linear_x_offs_prop.set_unit("nm");
-	//	standard_unit	not set for	Linear_x_offs
-	//	display_unit	not set for	Linear_x_offs
-	//	format	not set for	Linear_x_offs
-	//	max_value	not set for	Linear_x_offs
-	//	min_value	not set for	Linear_x_offs
-	//	max_alarm	not set for	Linear_x_offs
-	//	min_alarm	not set for	Linear_x_offs
-	//	max_warning	not set for	Linear_x_offs
-	//	min_warning	not set for	Linear_x_offs
-	//	delta_t	not set for	Linear_x_offs
-	//	delta_val	not set for	Linear_x_offs
-	linear_x_offs->set_default_properties(linear_x_offs_prop);
+	//	Attribute : LinearXOffs
+	LinearXOffsAttrib	*linearxoffs = new LinearXOffsAttrib();
+	Tango::UserDefaultAttrProp	linearxoffs_prop;
+	linearxoffs_prop.set_description("Used to calibrate position offsets expressed in nm. \nPlease refer to Chapter 2.6 in Libera Single Pass E \nUser manual for details.");
+	linearxoffs_prop.set_label("LinearXOffs");
+	linearxoffs_prop.set_unit("nm");
+	//	standard_unit	not set for	LinearXOffs
+	//	display_unit	not set for	LinearXOffs
+	//	format	not set for	LinearXOffs
+	//	max_value	not set for	LinearXOffs
+	//	min_value	not set for	LinearXOffs
+	//	max_alarm	not set for	LinearXOffs
+	//	min_alarm	not set for	LinearXOffs
+	//	max_warning	not set for	LinearXOffs
+	//	min_warning	not set for	LinearXOffs
+	//	delta_t	not set for	LinearXOffs
+	//	delta_val	not set for	LinearXOffs
+	linearxoffs->set_default_properties(linearxoffs_prop);
 	//	Not Polled
-	linear_x_offs->set_disp_level(Tango::EXPERT);
+	linearxoffs->set_disp_level(Tango::EXPERT);
 	//	Not memorized
 
-	//	Linear_x_offs does not fire change event
-	//	Linear_x_offs does not fire archive event
-	//	Linear_x_offs does not fire data_ready event
-	att_list.push_back(linear_x_offs);
+	//	LinearXOffs does not fire change event
+	//	LinearXOffs does not fire archive event
+	//	LinearXOffs does not fire data_ready event
+	att_list.push_back(linearxoffs);
 
-	//	Attribute : Linear_y_k
-	Linear_y_kAttrib	*linear_y_k = new Linear_y_kAttrib();
-	Tango::UserDefaultAttrProp	linear_y_k_prop;
-	linear_y_k_prop.set_description("Matjaz.....");
-	linear_y_k_prop.set_label("linear_y_k");
-	//	unit	not set for	Linear_y_k
-	//	standard_unit	not set for	Linear_y_k
-	//	display_unit	not set for	Linear_y_k
-	//	format	not set for	Linear_y_k
-	//	max_value	not set for	Linear_y_k
-	//	min_value	not set for	Linear_y_k
-	//	max_alarm	not set for	Linear_y_k
-	//	min_alarm	not set for	Linear_y_k
-	//	max_warning	not set for	Linear_y_k
-	//	min_warning	not set for	Linear_y_k
-	//	delta_t	not set for	Linear_y_k
-	//	delta_val	not set for	Linear_y_k
-	linear_y_k->set_default_properties(linear_y_k_prop);
+	//	Attribute : LinearYK
+	LinearYKAttrib	*linearyk = new LinearYKAttrib();
+	Tango::UserDefaultAttrProp	linearyk_prop;
+	linearyk_prop.set_description("Setting the correction coefficient of the linear equation \nfor the y position calculation. See chapter 2.6.1 in \nLibera Single Pass E User manual for details.");
+	linearyk_prop.set_label("LinearYK");
+	linearyk_prop.set_unit("nm");
+	//	standard_unit	not set for	LinearYK
+	//	display_unit	not set for	LinearYK
+	//	format	not set for	LinearYK
+	//	max_value	not set for	LinearYK
+	//	min_value	not set for	LinearYK
+	//	max_alarm	not set for	LinearYK
+	//	min_alarm	not set for	LinearYK
+	//	max_warning	not set for	LinearYK
+	//	min_warning	not set for	LinearYK
+	//	delta_t	not set for	LinearYK
+	//	delta_val	not set for	LinearYK
+	linearyk->set_default_properties(linearyk_prop);
 	//	Not Polled
-	linear_y_k->set_disp_level(Tango::EXPERT);
+	linearyk->set_disp_level(Tango::EXPERT);
 	//	Not memorized
 
-	//	Linear_y_k does not fire change event
-	//	Linear_y_k does not fire archive event
-	//	Linear_y_k does not fire data_ready event
-	att_list.push_back(linear_y_k);
+	//	LinearYK does not fire change event
+	//	LinearYK does not fire archive event
+	//	LinearYK does not fire data_ready event
+	att_list.push_back(linearyk);
 
-	//	Attribute : Linear_y_offs
-	Linear_y_offsAttrib	*linear_y_offs = new Linear_y_offsAttrib();
-	Tango::UserDefaultAttrProp	linear_y_offs_prop;
-	linear_y_offs_prop.set_description("Matjaz.....");
-	linear_y_offs_prop.set_label("linear_y_offs");
-	linear_y_offs_prop.set_unit("nm");
-	//	standard_unit	not set for	Linear_y_offs
-	//	display_unit	not set for	Linear_y_offs
-	//	format	not set for	Linear_y_offs
-	//	max_value	not set for	Linear_y_offs
-	//	min_value	not set for	Linear_y_offs
-	//	max_alarm	not set for	Linear_y_offs
-	//	min_alarm	not set for	Linear_y_offs
-	//	max_warning	not set for	Linear_y_offs
-	//	min_warning	not set for	Linear_y_offs
-	//	delta_t	not set for	Linear_y_offs
-	//	delta_val	not set for	Linear_y_offs
-	linear_y_offs->set_default_properties(linear_y_offs_prop);
+	//	Attribute : LinearYOffs
+	LinearYOffsAttrib	*linearyoffs = new LinearYOffsAttrib();
+	Tango::UserDefaultAttrProp	linearyoffs_prop;
+	linearyoffs_prop.set_description("Used to calibrate position offsets expressed in nm. \nPlease refer to Chapter 2.6 in Libera Single Pass E \nUser manual for details.");
+	linearyoffs_prop.set_label("LinearYOffs");
+	linearyoffs_prop.set_unit("nm");
+	//	standard_unit	not set for	LinearYOffs
+	//	display_unit	not set for	LinearYOffs
+	//	format	not set for	LinearYOffs
+	//	max_value	not set for	LinearYOffs
+	//	min_value	not set for	LinearYOffs
+	//	max_alarm	not set for	LinearYOffs
+	//	min_alarm	not set for	LinearYOffs
+	//	max_warning	not set for	LinearYOffs
+	//	min_warning	not set for	LinearYOffs
+	//	delta_t	not set for	LinearYOffs
+	//	delta_val	not set for	LinearYOffs
+	linearyoffs->set_default_properties(linearyoffs_prop);
 	//	Not Polled
-	linear_y_offs->set_disp_level(Tango::EXPERT);
+	linearyoffs->set_disp_level(Tango::EXPERT);
 	//	Not memorized
 
-	//	Linear_y_offs does not fire change event
-	//	Linear_y_offs does not fire archive event
-	//	Linear_y_offs does not fire data_ready event
-	att_list.push_back(linear_y_offs);
+	//	LinearYOffs does not fire change event
+	//	LinearYOffs does not fire archive event
+	//	LinearYOffs does not fire data_ready event
+	att_list.push_back(linearyoffs);
 
-	//	Attribute : Linear_q_k
-	Linear_q_kAttrib	*linear_q_k = new Linear_q_kAttrib();
-	Tango::UserDefaultAttrProp	linear_q_k_prop;
-	linear_q_k_prop.set_description("Matjaz.....");
-	linear_q_k_prop.set_label("linear_q_k");
-	//	unit	not set for	Linear_q_k
-	//	standard_unit	not set for	Linear_q_k
-	//	display_unit	not set for	Linear_q_k
-	//	format	not set for	Linear_q_k
-	//	max_value	not set for	Linear_q_k
-	//	min_value	not set for	Linear_q_k
-	//	max_alarm	not set for	Linear_q_k
-	//	min_alarm	not set for	Linear_q_k
-	//	max_warning	not set for	Linear_q_k
-	//	min_warning	not set for	Linear_q_k
-	//	delta_t	not set for	Linear_q_k
-	//	delta_val	not set for	Linear_q_k
-	linear_q_k->set_default_properties(linear_q_k_prop);
+	//	Attribute : LinearQK
+	LinearQKAttrib	*linearqk = new LinearQKAttrib();
+	Tango::UserDefaultAttrProp	linearqk_prop;
+	linearqk_prop.set_description("Setting the correction coefficient of the linear equation \nfor the q calculation. See chapter 2.6.1 in Libera Single \nPass E User manual for details.");
+	linearqk_prop.set_label("LinearQK");
+	linearqk_prop.set_unit("a.u.");
+	//	standard_unit	not set for	LinearQK
+	//	display_unit	not set for	LinearQK
+	//	format	not set for	LinearQK
+	//	max_value	not set for	LinearQK
+	//	min_value	not set for	LinearQK
+	//	max_alarm	not set for	LinearQK
+	//	min_alarm	not set for	LinearQK
+	//	max_warning	not set for	LinearQK
+	//	min_warning	not set for	LinearQK
+	//	delta_t	not set for	LinearQK
+	//	delta_val	not set for	LinearQK
+	linearqk->set_default_properties(linearqk_prop);
 	//	Not Polled
-	linear_q_k->set_disp_level(Tango::EXPERT);
+	linearqk->set_disp_level(Tango::EXPERT);
 	//	Not memorized
 
-	//	Linear_q_k does not fire change event
-	//	Linear_q_k does not fire archive event
-	//	Linear_q_k does not fire data_ready event
-	att_list.push_back(linear_q_k);
+	//	LinearQK does not fire change event
+	//	LinearQK does not fire archive event
+	//	LinearQK does not fire data_ready event
+	att_list.push_back(linearqk);
 
-	//	Attribute : Linear_q_offs
-	Linear_q_offsAttrib	*linear_q_offs = new Linear_q_offsAttrib();
-	Tango::UserDefaultAttrProp	linear_q_offs_prop;
-	linear_q_offs_prop.set_description("Matjaz.....");
-	linear_q_offs_prop.set_label("linear_q_offs");
-	linear_q_offs_prop.set_unit("nano meters");
-	//	standard_unit	not set for	Linear_q_offs
-	//	display_unit	not set for	Linear_q_offs
-	//	format	not set for	Linear_q_offs
-	//	max_value	not set for	Linear_q_offs
-	//	min_value	not set for	Linear_q_offs
-	//	max_alarm	not set for	Linear_q_offs
-	//	min_alarm	not set for	Linear_q_offs
-	//	max_warning	not set for	Linear_q_offs
-	//	min_warning	not set for	Linear_q_offs
-	//	delta_t	not set for	Linear_q_offs
-	//	delta_val	not set for	Linear_q_offs
-	linear_q_offs->set_default_properties(linear_q_offs_prop);
+	//	Attribute : LinearQOffs
+	LinearQOffsAttrib	*linearqoffs = new LinearQOffsAttrib();
+	Tango::UserDefaultAttrProp	linearqoffs_prop;
+	linearqoffs_prop.set_description("Sets the offset for q factor. Default value is 0. \nSee Chapter 2.6 in Libera Single Pass E User manual \nfor details.");
+	linearqoffs_prop.set_label("LinearQOffs");
+	linearqoffs_prop.set_unit("a.u.");
+	//	standard_unit	not set for	LinearQOffs
+	//	display_unit	not set for	LinearQOffs
+	//	format	not set for	LinearQOffs
+	//	max_value	not set for	LinearQOffs
+	//	min_value	not set for	LinearQOffs
+	//	max_alarm	not set for	LinearQOffs
+	//	min_alarm	not set for	LinearQOffs
+	//	max_warning	not set for	LinearQOffs
+	//	min_warning	not set for	LinearQOffs
+	//	delta_t	not set for	LinearQOffs
+	//	delta_val	not set for	LinearQOffs
+	linearqoffs->set_default_properties(linearqoffs_prop);
 	//	Not Polled
-	linear_q_offs->set_disp_level(Tango::EXPERT);
+	linearqoffs->set_disp_level(Tango::EXPERT);
 	//	Not memorized
 
-	//	Linear_q_offs does not fire change event
-	//	Linear_q_offs does not fire archive event
-	//	Linear_q_offs does not fire data_ready event
-	att_list.push_back(linear_q_offs);
+	//	LinearQOffs does not fire change event
+	//	LinearQOffs does not fire archive event
+	//	LinearQOffs does not fire data_ready event
+	att_list.push_back(linearqoffs);
 
-	//	Attribute : Linear_sum_k
-	Linear_sum_kAttrib	*linear_sum_k = new Linear_sum_kAttrib();
-	Tango::UserDefaultAttrProp	linear_sum_k_prop;
-	linear_sum_k_prop.set_description("Matjaz.....");
-	linear_sum_k_prop.set_label("linear_sum_k");
-	//	unit	not set for	Linear_sum_k
-	//	standard_unit	not set for	Linear_sum_k
-	//	display_unit	not set for	Linear_sum_k
-	//	format	not set for	Linear_sum_k
-	//	max_value	not set for	Linear_sum_k
-	//	min_value	not set for	Linear_sum_k
-	//	max_alarm	not set for	Linear_sum_k
-	//	min_alarm	not set for	Linear_sum_k
-	//	max_warning	not set for	Linear_sum_k
-	//	min_warning	not set for	Linear_sum_k
-	//	delta_t	not set for	Linear_sum_k
-	//	delta_val	not set for	Linear_sum_k
-	linear_sum_k->set_default_properties(linear_sum_k_prop);
+	//	Attribute : LinearSumK
+	LinearSumKAttrib	*linearsumk = new LinearSumKAttrib();
+	Tango::UserDefaultAttrProp	linearsumk_prop;
+	linearsumk_prop.set_description("Coefficient for sum value. Default is 67108864 (2^26). \nPlease refer to Chapter 2.6 in the Libera Single Pass E \nUser manual for details.");
+	linearsumk_prop.set_label("LinearSumK");
+	linearsumk_prop.set_unit("a.u.");
+	//	standard_unit	not set for	LinearSumK
+	//	display_unit	not set for	LinearSumK
+	//	format	not set for	LinearSumK
+	//	max_value	not set for	LinearSumK
+	//	min_value	not set for	LinearSumK
+	//	max_alarm	not set for	LinearSumK
+	//	min_alarm	not set for	LinearSumK
+	//	max_warning	not set for	LinearSumK
+	//	min_warning	not set for	LinearSumK
+	//	delta_t	not set for	LinearSumK
+	//	delta_val	not set for	LinearSumK
+	linearsumk->set_default_properties(linearsumk_prop);
 	//	Not Polled
-	linear_sum_k->set_disp_level(Tango::EXPERT);
+	linearsumk->set_disp_level(Tango::EXPERT);
 	//	Not memorized
 
-	//	Linear_sum_k does not fire change event
-	//	Linear_sum_k does not fire archive event
-	//	Linear_sum_k does not fire data_ready event
-	att_list.push_back(linear_sum_k);
+	//	LinearSumK does not fire change event
+	//	LinearSumK does not fire archive event
+	//	LinearSumK does not fire data_ready event
+	att_list.push_back(linearsumk);
 
-	//	Attribute : Linear_sum_offs
-	Linear_sum_offsAttrib	*linear_sum_offs = new Linear_sum_offsAttrib();
-	Tango::UserDefaultAttrProp	linear_sum_offs_prop;
-	linear_sum_offs_prop.set_description("Matjaz.....");
-	linear_sum_offs_prop.set_label("linear_sum_offs");
-	linear_sum_offs_prop.set_unit("nm");
-	//	standard_unit	not set for	Linear_sum_offs
-	//	display_unit	not set for	Linear_sum_offs
-	//	format	not set for	Linear_sum_offs
-	//	max_value	not set for	Linear_sum_offs
-	//	min_value	not set for	Linear_sum_offs
-	//	max_alarm	not set for	Linear_sum_offs
-	//	min_alarm	not set for	Linear_sum_offs
-	//	max_warning	not set for	Linear_sum_offs
-	//	min_warning	not set for	Linear_sum_offs
-	//	delta_t	not set for	Linear_sum_offs
-	//	delta_val	not set for	Linear_sum_offs
-	linear_sum_offs->set_default_properties(linear_sum_offs_prop);
+	//	Attribute : LinearSumOffs
+	LinearSumOffsAttrib	*linearsumoffs = new LinearSumOffsAttrib();
+	Tango::UserDefaultAttrProp	linearsumoffs_prop;
+	linearsumoffs_prop.set_description("Coefficient for offsetting the sum value. \nDefault value is 0. Please refer to Chapter 2.6 of Libera \nSingle Pass E User manual for details.\n\nNOTE: The Libera Single Pass E has the possibility to \nsupport also the polynomial equations for calculation \nof position, however it is not supported in Tango as the \nLibera Brilliance Single Pass supports only the linear \nequation. Polynomial equation is providing more \naccurate results of measurements as it is \ncompensating for the nonlinear anomalies for the \npick-up sensor. Please see the chapter 2.6.2 in the \nLibera Single Pass E user manual for details.");
+	linearsumoffs_prop.set_label("LinearSumOffs");
+	linearsumoffs_prop.set_unit("a.u.");
+	//	standard_unit	not set for	LinearSumOffs
+	//	display_unit	not set for	LinearSumOffs
+	//	format	not set for	LinearSumOffs
+	//	max_value	not set for	LinearSumOffs
+	//	min_value	not set for	LinearSumOffs
+	//	max_alarm	not set for	LinearSumOffs
+	//	min_alarm	not set for	LinearSumOffs
+	//	max_warning	not set for	LinearSumOffs
+	//	min_warning	not set for	LinearSumOffs
+	//	delta_t	not set for	LinearSumOffs
+	//	delta_val	not set for	LinearSumOffs
+	linearsumoffs->set_default_properties(linearsumoffs_prop);
 	//	Not Polled
-	linear_sum_offs->set_disp_level(Tango::EXPERT);
+	linearsumoffs->set_disp_level(Tango::EXPERT);
 	//	Not memorized
 
-	//	Linear_sum_offs does not fire change event
-	//	Linear_sum_offs does not fire archive event
-	//	Linear_sum_offs does not fire data_ready event
-	att_list.push_back(linear_sum_offs);
+	//	LinearSumOffs does not fire change event
+	//	LinearSumOffs does not fire archive event
+	//	LinearSumOffs does not fire data_ready event
+	att_list.push_back(linearsumoffs);
 
-	//	Attribute : Signal_expansion
-	Signal_expansionAttrib	*signal_expansion = new Signal_expansionAttrib();
-	Tango::UserDefaultAttrProp	signal_expansion_prop;
-	signal_expansion_prop.set_description("Matjaz.....");
-	signal_expansion_prop.set_label("signal_expansion");
-	//	unit	not set for	Signal_expansion
-	//	standard_unit	not set for	Signal_expansion
-	//	display_unit	not set for	Signal_expansion
-	//	format	not set for	Signal_expansion
-	//	max_value	not set for	Signal_expansion
-	//	min_value	not set for	Signal_expansion
-	//	max_alarm	not set for	Signal_expansion
-	//	min_alarm	not set for	Signal_expansion
-	//	max_warning	not set for	Signal_expansion
-	//	min_warning	not set for	Signal_expansion
-	//	delta_t	not set for	Signal_expansion
-	//	delta_val	not set for	Signal_expansion
-	signal_expansion->set_default_properties(signal_expansion_prop);
+	//	Attribute : SignalExpansion
+	SignalExpansionAttrib	*signalexpansion = new SignalExpansionAttrib();
+	Tango::UserDefaultAttrProp	signalexpansion_prop;
+	signalexpansion_prop.set_description("Interlock output is active for all the time the Interlock \nconditions are fulfilled (ADC overflow and position \nmonitoring). The Interlock output remains active for a \ncertain time after the conditions have been cleared \n(mono-stable cell). The time is defined in ADC clock \ncycles with ireg parameter signal_expansion.");
+	signalexpansion_prop.set_label("SignalExpansion");
+	//	unit	not set for	SignalExpansion
+	//	standard_unit	not set for	SignalExpansion
+	//	display_unit	not set for	SignalExpansion
+	//	format	not set for	SignalExpansion
+	//	max_value	not set for	SignalExpansion
+	//	min_value	not set for	SignalExpansion
+	//	max_alarm	not set for	SignalExpansion
+	//	min_alarm	not set for	SignalExpansion
+	//	max_warning	not set for	SignalExpansion
+	//	min_warning	not set for	SignalExpansion
+	//	delta_t	not set for	SignalExpansion
+	//	delta_val	not set for	SignalExpansion
+	signalexpansion->set_default_properties(signalexpansion_prop);
 	//	Not Polled
-	signal_expansion->set_disp_level(Tango::EXPERT);
+	signalexpansion->set_disp_level(Tango::EXPERT);
 	//	Not memorized
 
-	//	Signal_expansion does not fire change event
-	//	Signal_expansion does not fire archive event
-	//	Signal_expansion does not fire data_ready event
-	att_list.push_back(signal_expansion);
+	//	SignalExpansion does not fire change event
+	//	SignalExpansion does not fire archive event
+	//	SignalExpansion does not fire data_ready event
+	att_list.push_back(signalexpansion);
 
-	//	Attribute : Interlock_enabled
-	Interlock_enabledAttrib	*interlock_enabled = new Interlock_enabledAttrib();
-	Tango::UserDefaultAttrProp	interlock_enabled_prop;
-	interlock_enabled_prop.set_description("Matjaz.....");
-	interlock_enabled_prop.set_label("interlock_enabled");
-	//	unit	not set for	Interlock_enabled
-	//	standard_unit	not set for	Interlock_enabled
-	//	display_unit	not set for	Interlock_enabled
-	//	format	not set for	Interlock_enabled
-	//	max_value	not set for	Interlock_enabled
-	//	min_value	not set for	Interlock_enabled
-	//	max_alarm	not set for	Interlock_enabled
-	//	min_alarm	not set for	Interlock_enabled
-	//	max_warning	not set for	Interlock_enabled
-	//	min_warning	not set for	Interlock_enabled
-	//	delta_t	not set for	Interlock_enabled
-	//	delta_val	not set for	Interlock_enabled
-	interlock_enabled->set_default_properties(interlock_enabled_prop);
+	//	Attribute : InterlockEnabled
+	InterlockEnabledAttrib	*interlockenabled = new InterlockEnabledAttrib();
+	Tango::UserDefaultAttrProp	interlockenabled_prop;
+	interlockenabled_prop.set_description("Enables/disables the interlock functionality. If it is set to \ntrue, interlock is enabled, if set to false, interlock is \ndisabled. More details are in the chapter 2.12 in the \nLibera Single Pass E User manual.");
+	interlockenabled_prop.set_label("InterlockEnabled");
+	//	unit	not set for	InterlockEnabled
+	//	standard_unit	not set for	InterlockEnabled
+	//	display_unit	not set for	InterlockEnabled
+	//	format	not set for	InterlockEnabled
+	//	max_value	not set for	InterlockEnabled
+	//	min_value	not set for	InterlockEnabled
+	//	max_alarm	not set for	InterlockEnabled
+	//	min_alarm	not set for	InterlockEnabled
+	//	max_warning	not set for	InterlockEnabled
+	//	min_warning	not set for	InterlockEnabled
+	//	delta_t	not set for	InterlockEnabled
+	//	delta_val	not set for	InterlockEnabled
+	interlockenabled->set_default_properties(interlockenabled_prop);
 	//	Not Polled
-	interlock_enabled->set_disp_level(Tango::EXPERT);
+	interlockenabled->set_disp_level(Tango::EXPERT);
 	//	Not memorized
 
-	//	Interlock_enabled does not fire change event
-	//	Interlock_enabled does not fire archive event
-	//	Interlock_enabled does not fire data_ready event
-	att_list.push_back(interlock_enabled);
+	//	InterlockEnabled does not fire change event
+	//	InterlockEnabled does not fire archive event
+	//	InterlockEnabled does not fire data_ready event
+	att_list.push_back(interlockenabled);
 
-	//	Attribute : Limit_min_x
-	Limit_min_xAttrib	*limit_min_x = new Limit_min_xAttrib();
-	Tango::UserDefaultAttrProp	limit_min_x_prop;
-	limit_min_x_prop.set_description("Matjaz.....");
-	limit_min_x_prop.set_label("limit_min_x");
-	limit_min_x_prop.set_unit("nm");
-	//	standard_unit	not set for	Limit_min_x
-	//	display_unit	not set for	Limit_min_x
-	//	format	not set for	Limit_min_x
-	//	max_value	not set for	Limit_min_x
-	//	min_value	not set for	Limit_min_x
-	//	max_alarm	not set for	Limit_min_x
-	//	min_alarm	not set for	Limit_min_x
-	//	max_warning	not set for	Limit_min_x
-	//	min_warning	not set for	Limit_min_x
-	//	delta_t	not set for	Limit_min_x
-	//	delta_val	not set for	Limit_min_x
-	limit_min_x->set_default_properties(limit_min_x_prop);
+	//	Attribute : LimitMinX
+	LimitMinXAttrib	*limitminx = new LimitMinXAttrib();
+	Tango::UserDefaultAttrProp	limitminx_prop;
+	limitminx_prop.set_description("Interlock lower limit parameter for x position in nm. \nSee Chapter 2.12.1 in the Libera Single Pass E User \nmanual for details.");
+	limitminx_prop.set_label("LimitMinX");
+	limitminx_prop.set_unit("nm");
+	//	standard_unit	not set for	LimitMinX
+	//	display_unit	not set for	LimitMinX
+	//	format	not set for	LimitMinX
+	//	max_value	not set for	LimitMinX
+	//	min_value	not set for	LimitMinX
+	//	max_alarm	not set for	LimitMinX
+	//	min_alarm	not set for	LimitMinX
+	//	max_warning	not set for	LimitMinX
+	//	min_warning	not set for	LimitMinX
+	//	delta_t	not set for	LimitMinX
+	//	delta_val	not set for	LimitMinX
+	limitminx->set_default_properties(limitminx_prop);
 	//	Not Polled
-	limit_min_x->set_disp_level(Tango::EXPERT);
+	limitminx->set_disp_level(Tango::EXPERT);
 	//	Not memorized
 
-	//	Limit_min_x does not fire change event
-	//	Limit_min_x does not fire archive event
-	//	Limit_min_x does not fire data_ready event
-	att_list.push_back(limit_min_x);
+	//	LimitMinX does not fire change event
+	//	LimitMinX does not fire archive event
+	//	LimitMinX does not fire data_ready event
+	att_list.push_back(limitminx);
 
-	//	Attribute : Limit_min_y
-	Limit_min_yAttrib	*limit_min_y = new Limit_min_yAttrib();
-	Tango::UserDefaultAttrProp	limit_min_y_prop;
-	limit_min_y_prop.set_description("Matjaz.....");
-	limit_min_y_prop.set_label("limit_min_y");
-	limit_min_y_prop.set_unit("nm");
-	//	standard_unit	not set for	Limit_min_y
-	//	display_unit	not set for	Limit_min_y
-	//	format	not set for	Limit_min_y
-	//	max_value	not set for	Limit_min_y
-	//	min_value	not set for	Limit_min_y
-	//	max_alarm	not set for	Limit_min_y
-	//	min_alarm	not set for	Limit_min_y
-	//	max_warning	not set for	Limit_min_y
-	//	min_warning	not set for	Limit_min_y
-	//	delta_t	not set for	Limit_min_y
-	//	delta_val	not set for	Limit_min_y
-	limit_min_y->set_default_properties(limit_min_y_prop);
+	//	Attribute : LimitMinY
+	LimitMinYAttrib	*limitminy = new LimitMinYAttrib();
+	Tango::UserDefaultAttrProp	limitminy_prop;
+	limitminy_prop.set_description("Interlock lower limit parameter for y position in nm. \nSee Chapter 2.12.1 in the Libera Single Pass E User \nmanual for details.");
+	limitminy_prop.set_label("LimitMinY");
+	limitminy_prop.set_unit("nm");
+	//	standard_unit	not set for	LimitMinY
+	//	display_unit	not set for	LimitMinY
+	//	format	not set for	LimitMinY
+	//	max_value	not set for	LimitMinY
+	//	min_value	not set for	LimitMinY
+	//	max_alarm	not set for	LimitMinY
+	//	min_alarm	not set for	LimitMinY
+	//	max_warning	not set for	LimitMinY
+	//	min_warning	not set for	LimitMinY
+	//	delta_t	not set for	LimitMinY
+	//	delta_val	not set for	LimitMinY
+	limitminy->set_default_properties(limitminy_prop);
 	//	Not Polled
-	limit_min_y->set_disp_level(Tango::EXPERT);
+	limitminy->set_disp_level(Tango::EXPERT);
 	//	Not memorized
 
-	//	Limit_min_y does not fire change event
-	//	Limit_min_y does not fire archive event
-	//	Limit_min_y does not fire data_ready event
-	att_list.push_back(limit_min_y);
+	//	LimitMinY does not fire change event
+	//	LimitMinY does not fire archive event
+	//	LimitMinY does not fire data_ready event
+	att_list.push_back(limitminy);
 
-	//	Attribute : Limit_max_x
-	Limit_max_xAttrib	*limit_max_x = new Limit_max_xAttrib();
-	Tango::UserDefaultAttrProp	limit_max_x_prop;
-	limit_max_x_prop.set_description("Matjaz.....");
-	limit_max_x_prop.set_label("limit_max_x");
-	limit_max_x_prop.set_unit("nm");
-	//	standard_unit	not set for	Limit_max_x
-	//	display_unit	not set for	Limit_max_x
-	//	format	not set for	Limit_max_x
-	//	max_value	not set for	Limit_max_x
-	//	min_value	not set for	Limit_max_x
-	//	max_alarm	not set for	Limit_max_x
-	//	min_alarm	not set for	Limit_max_x
-	//	max_warning	not set for	Limit_max_x
-	//	min_warning	not set for	Limit_max_x
-	//	delta_t	not set for	Limit_max_x
-	//	delta_val	not set for	Limit_max_x
-	limit_max_x->set_default_properties(limit_max_x_prop);
+	//	Attribute : LimitMaxX
+	LimitMaxXAttrib	*limitmaxx = new LimitMaxXAttrib();
+	Tango::UserDefaultAttrProp	limitmaxx_prop;
+	limitmaxx_prop.set_description("Interlock upper limit parameter for x position in nm. \nSee Chapter 2.12.1 in the Libera Single Pass E User \nmanual for details.");
+	limitmaxx_prop.set_label("LimitMaxX");
+	limitmaxx_prop.set_unit("nm");
+	//	standard_unit	not set for	LimitMaxX
+	//	display_unit	not set for	LimitMaxX
+	//	format	not set for	LimitMaxX
+	//	max_value	not set for	LimitMaxX
+	//	min_value	not set for	LimitMaxX
+	//	max_alarm	not set for	LimitMaxX
+	//	min_alarm	not set for	LimitMaxX
+	//	max_warning	not set for	LimitMaxX
+	//	min_warning	not set for	LimitMaxX
+	//	delta_t	not set for	LimitMaxX
+	//	delta_val	not set for	LimitMaxX
+	limitmaxx->set_default_properties(limitmaxx_prop);
 	//	Not Polled
-	limit_max_x->set_disp_level(Tango::EXPERT);
+	limitmaxx->set_disp_level(Tango::EXPERT);
 	//	Not memorized
 
-	//	Limit_max_x does not fire change event
-	//	Limit_max_x does not fire archive event
-	//	Limit_max_x does not fire data_ready event
-	att_list.push_back(limit_max_x);
+	//	LimitMaxX does not fire change event
+	//	LimitMaxX does not fire archive event
+	//	LimitMaxX does not fire data_ready event
+	att_list.push_back(limitmaxx);
 
-	//	Attribute : Limit_max_y
-	Limit_max_yAttrib	*limit_max_y = new Limit_max_yAttrib();
-	Tango::UserDefaultAttrProp	limit_max_y_prop;
-	limit_max_y_prop.set_description("Matjaz.....");
-	limit_max_y_prop.set_label("limit_max_y");
-	limit_max_y_prop.set_unit("nm");
-	//	standard_unit	not set for	Limit_max_y
-	//	display_unit	not set for	Limit_max_y
-	//	format	not set for	Limit_max_y
-	//	max_value	not set for	Limit_max_y
-	//	min_value	not set for	Limit_max_y
-	//	max_alarm	not set for	Limit_max_y
-	//	min_alarm	not set for	Limit_max_y
-	//	max_warning	not set for	Limit_max_y
-	//	min_warning	not set for	Limit_max_y
-	//	delta_t	not set for	Limit_max_y
-	//	delta_val	not set for	Limit_max_y
-	limit_max_y->set_default_properties(limit_max_y_prop);
+	//	Attribute : LimitMaxY
+	LimitMaxYAttrib	*limitmaxy = new LimitMaxYAttrib();
+	Tango::UserDefaultAttrProp	limitmaxy_prop;
+	limitmaxy_prop.set_description("Interlock upper limit parameter for y position in nm. \nSee Chapter 2.12.1 in the Libera Single Pass E User \nmanual for details.");
+	limitmaxy_prop.set_label("LimitMaxY");
+	limitmaxy_prop.set_unit("nm");
+	//	standard_unit	not set for	LimitMaxY
+	//	display_unit	not set for	LimitMaxY
+	//	format	not set for	LimitMaxY
+	//	max_value	not set for	LimitMaxY
+	//	min_value	not set for	LimitMaxY
+	//	max_alarm	not set for	LimitMaxY
+	//	min_alarm	not set for	LimitMaxY
+	//	max_warning	not set for	LimitMaxY
+	//	min_warning	not set for	LimitMaxY
+	//	delta_t	not set for	LimitMaxY
+	//	delta_val	not set for	LimitMaxY
+	limitmaxy->set_default_properties(limitmaxy_prop);
 	//	Not Polled
-	limit_max_y->set_disp_level(Tango::EXPERT);
+	limitmaxy->set_disp_level(Tango::EXPERT);
 	//	Not memorized
 
-	//	Limit_max_y does not fire change event
-	//	Limit_max_y does not fire archive event
-	//	Limit_max_y does not fire data_ready event
-	att_list.push_back(limit_max_y);
+	//	LimitMaxY does not fire change event
+	//	LimitMaxY does not fire archive event
+	//	LimitMaxY does not fire data_ready event
+	att_list.push_back(limitmaxy);
 
-	//	Attribute : Overflow_threshold
-	Overflow_thresholdAttrib	*overflow_threshold = new Overflow_thresholdAttrib();
-	Tango::UserDefaultAttrProp	overflow_threshold_prop;
-	overflow_threshold_prop.set_description("Matjaz.....");
-	overflow_threshold_prop.set_label("overflow_threshold");
-	overflow_threshold_prop.set_unit("ADC counts");
-	//	standard_unit	not set for	Overflow_threshold
-	//	display_unit	not set for	Overflow_threshold
-	//	format	not set for	Overflow_threshold
-	//	max_value	not set for	Overflow_threshold
-	//	min_value	not set for	Overflow_threshold
-	//	max_alarm	not set for	Overflow_threshold
-	//	min_alarm	not set for	Overflow_threshold
-	//	max_warning	not set for	Overflow_threshold
-	//	min_warning	not set for	Overflow_threshold
-	//	delta_t	not set for	Overflow_threshold
-	//	delta_val	not set for	Overflow_threshold
-	overflow_threshold->set_default_properties(overflow_threshold_prop);
+	//	Attribute : OverflowThreshold
+	OverflowThresholdAttrib	*overflowthreshold = new OverflowThresholdAttrib();
+	Tango::UserDefaultAttrProp	overflowthreshold_prop;
+	overflowthreshold_prop.set_description("Interlock upper limit parameter for the ADC overflow \nbuffer (ADC saturation) parameter which is in ADC \ncounts. See Chapter 2.12.2 in the Libera Single Pass E \nUser manual for details.");
+	overflowthreshold_prop.set_label("OverflowThreshold");
+	overflowthreshold_prop.set_unit("ADC counts");
+	//	standard_unit	not set for	OverflowThreshold
+	//	display_unit	not set for	OverflowThreshold
+	//	format	not set for	OverflowThreshold
+	//	max_value	not set for	OverflowThreshold
+	//	min_value	not set for	OverflowThreshold
+	//	max_alarm	not set for	OverflowThreshold
+	//	min_alarm	not set for	OverflowThreshold
+	//	max_warning	not set for	OverflowThreshold
+	//	min_warning	not set for	OverflowThreshold
+	//	delta_t	not set for	OverflowThreshold
+	//	delta_val	not set for	OverflowThreshold
+	overflowthreshold->set_default_properties(overflowthreshold_prop);
 	//	Not Polled
-	overflow_threshold->set_disp_level(Tango::EXPERT);
+	overflowthreshold->set_disp_level(Tango::EXPERT);
 	//	Not memorized
 
-	//	Overflow_threshold does not fire change event
-	//	Overflow_threshold does not fire archive event
-	//	Overflow_threshold does not fire data_ready event
-	att_list.push_back(overflow_threshold);
+	//	OverflowThreshold does not fire change event
+	//	OverflowThreshold does not fire archive event
+	//	OverflowThreshold does not fire data_ready event
+	att_list.push_back(overflowthreshold);
 
-	//	Attribute : Interlock_status
-	Interlock_statusAttrib	*interlock_status = new Interlock_statusAttrib();
-	Tango::UserDefaultAttrProp	interlock_status_prop;
-	interlock_status_prop.set_description("Matjaz.....");
-	interlock_status_prop.set_label("interlock_status");
-	//	unit	not set for	Interlock_status
-	//	standard_unit	not set for	Interlock_status
-	//	display_unit	not set for	Interlock_status
-	//	format	not set for	Interlock_status
-	//	max_value	not set for	Interlock_status
-	//	min_value	not set for	Interlock_status
-	//	max_alarm	not set for	Interlock_status
-	//	min_alarm	not set for	Interlock_status
-	//	max_warning	not set for	Interlock_status
-	//	min_warning	not set for	Interlock_status
-	//	delta_t	not set for	Interlock_status
-	//	delta_val	not set for	Interlock_status
-	interlock_status->set_default_properties(interlock_status_prop);
+	//	Attribute : InterlockStatus
+	InterlockStatusAttrib	*interlockstatus = new InterlockStatusAttrib();
+	Tango::UserDefaultAttrProp	interlockstatus_prop;
+	interlockstatus_prop.set_description("Issuing this command tells you which was the cause of \nthe interlock. Number is 5 bit expressed in the decimal \nvalue. If no interlock was triggered, the returned value \nis 0. See the chapter 2.12.3 in the Libera Single Pass E \nUser manual for details.");
+	interlockstatus_prop.set_label("InterlockStatus");
+	//	unit	not set for	InterlockStatus
+	//	standard_unit	not set for	InterlockStatus
+	//	display_unit	not set for	InterlockStatus
+	//	format	not set for	InterlockStatus
+	//	max_value	not set for	InterlockStatus
+	//	min_value	not set for	InterlockStatus
+	//	max_alarm	not set for	InterlockStatus
+	//	min_alarm	not set for	InterlockStatus
+	//	max_warning	not set for	InterlockStatus
+	//	min_warning	not set for	InterlockStatus
+	//	delta_t	not set for	InterlockStatus
+	//	delta_val	not set for	InterlockStatus
+	interlockstatus->set_default_properties(interlockstatus_prop);
 	//	Not Polled
-	interlock_status->set_disp_level(Tango::EXPERT);
+	interlockstatus->set_disp_level(Tango::EXPERT);
 	//	Not memorized
 
-	//	Interlock_status does not fire change event
-	//	Interlock_status does not fire archive event
-	//	Interlock_status does not fire data_ready event
-	att_list.push_back(interlock_status);
+	//	InterlockStatus does not fire change event
+	//	InterlockStatus does not fire archive event
+	//	InterlockStatus does not fire data_ready event
+	att_list.push_back(interlockstatus);
 
-	//	Attribute : Status_x
-	Status_xAttrib	*status_x = new Status_xAttrib();
-	Tango::UserDefaultAttrProp	status_x_prop;
-	status_x_prop.set_description("Matjaz.....");
-	status_x_prop.set_label("status_x");
-	//	unit	not set for	Status_x
-	//	standard_unit	not set for	Status_x
-	//	display_unit	not set for	Status_x
-	//	format	not set for	Status_x
-	//	max_value	not set for	Status_x
-	//	min_value	not set for	Status_x
-	//	max_alarm	not set for	Status_x
-	//	min_alarm	not set for	Status_x
-	//	max_warning	not set for	Status_x
-	//	min_warning	not set for	Status_x
-	//	delta_t	not set for	Status_x
-	//	delta_val	not set for	Status_x
-	status_x->set_default_properties(status_x_prop);
+	//	Attribute : StatusX
+	StatusXAttrib	*statusx = new StatusXAttrib();
+	Tango::UserDefaultAttrProp	statusx_prop;
+	statusx_prop.set_description("Checking the status of the interlock for the x position. \nReturned value 'false' means that x position wasn't out \nof set limit.");
+	statusx_prop.set_label("StatusX");
+	//	unit	not set for	StatusX
+	//	standard_unit	not set for	StatusX
+	//	display_unit	not set for	StatusX
+	//	format	not set for	StatusX
+	//	max_value	not set for	StatusX
+	//	min_value	not set for	StatusX
+	//	max_alarm	not set for	StatusX
+	//	min_alarm	not set for	StatusX
+	//	max_warning	not set for	StatusX
+	//	min_warning	not set for	StatusX
+	//	delta_t	not set for	StatusX
+	//	delta_val	not set for	StatusX
+	statusx->set_default_properties(statusx_prop);
 	//	Not Polled
-	status_x->set_disp_level(Tango::EXPERT);
+	statusx->set_disp_level(Tango::EXPERT);
 	//	Not memorized
 
-	//	Status_x does not fire change event
-	//	Status_x does not fire archive event
-	//	Status_x does not fire data_ready event
-	att_list.push_back(status_x);
+	//	StatusX does not fire change event
+	//	StatusX does not fire archive event
+	//	StatusX does not fire data_ready event
+	att_list.push_back(statusx);
 
-	//	Attribute : Status_y
-	Status_yAttrib	*status_y = new Status_yAttrib();
-	Tango::UserDefaultAttrProp	status_y_prop;
-	status_y_prop.set_description("Matjaz.....");
-	status_y_prop.set_label("status_y");
-	//	unit	not set for	Status_y
-	//	standard_unit	not set for	Status_y
-	//	display_unit	not set for	Status_y
-	//	format	not set for	Status_y
-	//	max_value	not set for	Status_y
-	//	min_value	not set for	Status_y
-	//	max_alarm	not set for	Status_y
-	//	min_alarm	not set for	Status_y
-	//	max_warning	not set for	Status_y
-	//	min_warning	not set for	Status_y
-	//	delta_t	not set for	Status_y
-	//	delta_val	not set for	Status_y
-	status_y->set_default_properties(status_y_prop);
+	//	Attribute : StatusY
+	StatusYAttrib	*statusy = new StatusYAttrib();
+	Tango::UserDefaultAttrProp	statusy_prop;
+	statusy_prop.set_description("Checking the status of the interlock for the y position. \nReturned value 'false' means that y position wasn't out \nof set limit.");
+	statusy_prop.set_label("StatusY");
+	//	unit	not set for	StatusY
+	//	standard_unit	not set for	StatusY
+	//	display_unit	not set for	StatusY
+	//	format	not set for	StatusY
+	//	max_value	not set for	StatusY
+	//	min_value	not set for	StatusY
+	//	max_alarm	not set for	StatusY
+	//	min_alarm	not set for	StatusY
+	//	max_warning	not set for	StatusY
+	//	min_warning	not set for	StatusY
+	//	delta_t	not set for	StatusY
+	//	delta_val	not set for	StatusY
+	statusy->set_default_properties(statusy_prop);
 	//	Not Polled
-	status_y->set_disp_level(Tango::EXPERT);
+	statusy->set_disp_level(Tango::EXPERT);
 	//	Not memorized
 
-	//	Status_y does not fire change event
-	//	Status_y does not fire archive event
-	//	Status_y does not fire data_ready event
-	att_list.push_back(status_y);
+	//	StatusY does not fire change event
+	//	StatusY does not fire archive event
+	//	StatusY does not fire data_ready event
+	att_list.push_back(statusy);
 
-	//	Attribute : Status_adc_overflow
-	Status_adc_overflowAttrib	*status_adc_overflow = new Status_adc_overflowAttrib();
-	Tango::UserDefaultAttrProp	status_adc_overflow_prop;
-	status_adc_overflow_prop.set_description("Matjaz.....");
-	status_adc_overflow_prop.set_label("status_adc_overflow");
-	//	unit	not set for	Status_adc_overflow
-	//	standard_unit	not set for	Status_adc_overflow
-	//	display_unit	not set for	Status_adc_overflow
-	//	format	not set for	Status_adc_overflow
-	//	max_value	not set for	Status_adc_overflow
-	//	min_value	not set for	Status_adc_overflow
-	//	max_alarm	not set for	Status_adc_overflow
-	//	min_alarm	not set for	Status_adc_overflow
-	//	max_warning	not set for	Status_adc_overflow
-	//	min_warning	not set for	Status_adc_overflow
-	//	delta_t	not set for	Status_adc_overflow
-	//	delta_val	not set for	Status_adc_overflow
-	status_adc_overflow->set_default_properties(status_adc_overflow_prop);
+	//	Attribute : StatusAdcOverflow
+	StatusAdcOverflowAttrib	*statusadcoverflow = new StatusAdcOverflowAttrib();
+	Tango::UserDefaultAttrProp	statusadcoverflow_prop;
+	statusadcoverflow_prop.set_description("Checking the status of the interlock for the ADC \nsaturation. Returned value 'false' means that ADC \nwasn't in saturation.");
+	statusadcoverflow_prop.set_label("StatusAdcOverflow");
+	//	unit	not set for	StatusAdcOverflow
+	//	standard_unit	not set for	StatusAdcOverflow
+	//	display_unit	not set for	StatusAdcOverflow
+	//	format	not set for	StatusAdcOverflow
+	//	max_value	not set for	StatusAdcOverflow
+	//	min_value	not set for	StatusAdcOverflow
+	//	max_alarm	not set for	StatusAdcOverflow
+	//	min_alarm	not set for	StatusAdcOverflow
+	//	max_warning	not set for	StatusAdcOverflow
+	//	min_warning	not set for	StatusAdcOverflow
+	//	delta_t	not set for	StatusAdcOverflow
+	//	delta_val	not set for	StatusAdcOverflow
+	statusadcoverflow->set_default_properties(statusadcoverflow_prop);
 	//	Not Polled
-	status_adc_overflow->set_disp_level(Tango::EXPERT);
+	statusadcoverflow->set_disp_level(Tango::EXPERT);
 	//	Not memorized
 
-	//	Status_adc_overflow does not fire change event
-	//	Status_adc_overflow does not fire archive event
-	//	Status_adc_overflow does not fire data_ready event
-	att_list.push_back(status_adc_overflow);
+	//	StatusAdcOverflow does not fire change event
+	//	StatusAdcOverflow does not fire archive event
+	//	StatusAdcOverflow does not fire data_ready event
+	att_list.push_back(statusadcoverflow);
 
 	//	Attribute : A
 	AAttrib	*a = new AAttrib();

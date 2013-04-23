@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="ASCII"?>
 <pogoDsl:PogoSystem xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pogoDsl="http://www.esrf.fr/tango/pogo/PogoDsl">
   <classes name="LiberaSinglePassE">
-    <description description="This Tango class is the interface of the Instrumentation Technologies (IT) Libera&#xA;Brilliance Single Pass E equipment. This class supports only a subset of all the&#xA;equipment features. It is the basic equipment for a Injection and Transfer Efficiency&#xA;Measurement System" title="Libera Brillance Single Pass E" sourcePath="/home/hinko.kocevar/workspace/TDS-Libera-SinglePassE/src" language="Cpp" filestogenerate="XMI   file,Code files,html Pages" hasAbstractCommand="false" hasAbstractAttribute="false">
+    <description description="This Tango class is the interface of the Instrumentation Technologies (IT) Libera&#xA;Brilliance Single Pass E equipment. This class supports only a subset of all the&#xA;equipment features. It is the basic equipment for a Injection and Transfer Efficiency&#xA;Measurement System" title="Libera Brillance Single Pass E" sourcePath="/home/jerneja/workspace/tango/Libera-SinglePassE/src" language="Cpp" filestogenerate="XMI   file,Code files,html Pages" hasAbstractCommand="false" hasAbstractAttribute="false">
       <inheritances classname="Device_4Impl" sourcePath=""/>
       <identification contact="at maxlab.lu.se - kitscontrols" author="kitscontrols" emailDomain="maxlab.lu.se" classFamily="BeamDiag" siteSpecific="" platform="Unix Like" bus="Ethernet" manufacturer="Instrumentation Technologies" reference="Libera Brillance Single Pass E"/>
       <comments commandsTable="//================================================================&#xA;//&#xA;//  The following table gives the correspondence&#xA;//  between command and method names.&#xA;//&#xA;//  Command name          |  Method name&#xA;//----------------------------------------------------------------&#xA;//  State                 |  Inherited (no method)&#xA;//  Status                |  Inherited (no method)&#xA;//  Reset                 |  reset&#xA;//  ResetTrigger          |  reset_trigger&#xA;//  ResetInterlockStatus  |  reset_interlock_status&#xA;//  MagicCommand          |  magic_command&#xA;//================================================================"/>
     </description>
-    <classProperties name="ServiceTaskSleep" description="Sleep time (in mS) for the service task between libera boxes request">
-      <type xsi:type="pogoDsl:IntType"/>
-      <status abstract="false" inherited="false" concrete="true" concreteHere="true"/>
-      <DefaultPropValue>2000</DefaultPropValue>
-    </classProperties>
     <classProperties name="DataTaskHeartbeat" description="Heartbeat time (in mS) for the data task">
       <type xsi:type="pogoDsl:IntType"/>
       <status abstract="false" inherited="false" concrete="true" concreteHere="true"/>
@@ -27,11 +22,6 @@
     <deviceProperties name="Location" description="The libera box physical place (TL1, BOOSTER,....)">
       <type xsi:type="pogoDsl:StringType"/>
       <status abstract="false" inherited="false" concrete="true" concreteHere="true"/>
-    </deviceProperties>
-    <deviceProperties name="ServiceTaskSleep" description="Sleep time (in mS) for the class task between libera boxes request">
-      <type xsi:type="pogoDsl:IntType"/>
-      <status abstract="false" inherited="false" concrete="true" concreteHere="true"/>
-      <DefaultPropValue>2000</DefaultPropValue>
     </deviceProperties>
     <deviceProperties name="DataTaskHeartbeat" description="Heartbeat time (in mS) for the data task">
       <type xsi:type="pogoDsl:IntType"/>
@@ -94,7 +84,7 @@
       <excludedStates>UNKNOWN</excludedStates>
       <excludedStates>FAULT</excludedStates>
     </commands>
-    <commands name="ResetInterlockStatus" description="Matjaz....." execMethod="reset_interlock_status" displayLevel="EXPERT">
+    <commands name="ResetInterlockStatus" description="Resets the status register after the interlock was enabled. &#xA;See chapter 2.12.3 in the Libera Single Pass E &#xA;User manual." execMethod="reset_interlock_status" displayLevel="EXPERT">
       <argin description="">
         <type xsi:type="pogoDsl:VoidType"/>
       </argin>
@@ -103,7 +93,7 @@
       </argout>
       <status abstract="false" inherited="false" concrete="true" concreteHere="true"/>
     </commands>
-    <commands name="MagicCommand" description="" execMethod="magic_command" displayLevel="EXPERT">
+    <commands name="MagicCommand" description="Command receives an input string and returns the node path and node value.&#xA;The input string can be ``dump`` for the entire mci dump or &#xA;node path string for the specific node value." execMethod="magic_command" displayLevel="EXPERT">
       <argin description="">
         <type xsi:type="pogoDsl:StringType"/>
       </argin>
@@ -120,13 +110,13 @@
       <properties description="The Libera box ADC buffer size (between 10 and 8192)" label="Buffer Size" unit="samples" standardUnit="" displayUnit="" format="%4d" maxValue="8192" minValue="10" maxAlarm="" minAlarm="" maxWarning="" minWarning="" deltaTime="" deltaValue=""/>
       <readExcludedStates>UNKNOWN</readExcludedStates>
     </attributes>
-    <attributes name="AttenuationLevel" attType="Scalar" rwType="READ_WRITE" displayLevel="OPERATOR" polledPeriod="0" maxX="0" maxY="0" allocReadMember="false">
+    <attributes name="AttenuationLevel" attType="Scalar" rwType="READ_WRITE" displayLevel="OPERATOR" maxX="0" maxY="0" allocReadMember="false">
       <dataType xsi:type="pogoDsl:IntType"/>
       <changeEvent fire="false" libCheckCriteria="false"/>
       <archiveEvent fire="false" libCheckCriteria="false"/>
       <dataReadyEvent fire="false" libCheckCriteria="true"/>
       <status abstract="false" inherited="false" concrete="true" concreteHere="true"/>
-      <properties description="The analog channels level. This attribute allows the user to tune the analog channels&#xA;attenuator. The input is an index within a lookup table in the Libera box" label="AttenuationLevel" unit="dBm" standardUnit="" displayUnit="" format="%2d" maxValue="31" minValue="0" maxAlarm="" minAlarm="" maxWarning="" minWarning="" deltaTime="" deltaValue=""/>
+      <properties description="Each analogue channel on one processor module in &#xA;Libera Single Pass E has one 5-bit programmable &#xA;attenuator. The attenuation can be controlled in the &#xA;range from 0 to 31dB in steps of 1dB. Gain control serves &#xA;to set the attenuators according to the input RF signal &#xA;level. Writing to this attribute serves to set the input &#xA;RF signal attenuators in dB." label="AttenuationLevel" unit="dBm" standardUnit="" displayUnit="" format="%2d" maxValue="31" minValue="0" maxAlarm="" minAlarm="" maxWarning="" minWarning="" deltaTime="" deltaValue=""/>
     </attributes>
     <attributes name="TriggerCounter" attType="Scalar" rwType="READ" displayLevel="OPERATOR" polledPeriod="0" maxX="0" maxY="0">
       <dataType xsi:type="pogoDsl:UIntType"/>
@@ -142,223 +132,223 @@
       <archiveEvent fire="false" libCheckCriteria="false"/>
       <dataReadyEvent fire="false" libCheckCriteria="true"/>
       <status abstract="false" inherited="false" concrete="true" concreteHere="true"/>
-      <properties description="First fan speed" label="Fan.1 speed" unit="rpm" standardUnit="" displayUnit="" format="%4d" maxValue="" minValue="" maxAlarm="" minAlarm="" maxWarning="" minWarning="" deltaTime="" deltaValue=""/>
+      <properties description="Provides minimal fan speed reading of all three&#xa0; fans on &#xA;the left side of the chassis in order to identify if the fan &#xA;module (consisting of 3 fans) is broken &#x2013; returned value &#xA;0 means that at least one fan has stopped." label="Fan.1 speed" unit="rpm" standardUnit="" displayUnit="" format="%4d" maxValue="" minValue="" maxAlarm="" minAlarm="" maxWarning="" minWarning="" deltaTime="" deltaValue=""/>
     </attributes>
-    <attributes name="Fan2Speed" attType="Scalar" rwType="READ" displayLevel="EXPERT" polledPeriod="0" maxX="0" maxY="0">
+    <attributes name="Fan2Speed" attType="Scalar" rwType="READ" displayLevel="EXPERT" maxX="0" maxY="0" allocReadMember="false">
       <dataType xsi:type="pogoDsl:UShortType"/>
       <changeEvent fire="false" libCheckCriteria="false"/>
       <archiveEvent fire="false" libCheckCriteria="false"/>
       <status abstract="false" inherited="false" concrete="true" concreteHere="true"/>
-      <properties description="Second fan speed" label="Fan.2 speed" unit="rpm" standardUnit=" " displayUnit="" format="%4d" maxValue="" minValue="" maxAlarm="" minAlarm="" maxWarning="" minWarning="" deltaTime="" deltaValue=""/>
+      <properties description="Provides minimal fan speed reading of all three&#xa0; fans on &#xA;the right side of the chassis in order to identify if the &#xA;fan module (consisting of 3 fans) is broken &#x2013; returned &#xA;value 0 means that at least one fan has stopped." label="Fan.2 speed" unit="rpm" standardUnit="" displayUnit="" format="%4d" maxValue="" minValue="" maxAlarm="" minAlarm="" maxWarning="" minWarning="" deltaTime="" deltaValue=""/>
       <readExcludedStates>UNKNOWN</readExcludedStates>
     </attributes>
-    <attributes name="Temp1" attType="Scalar" rwType="READ" displayLevel="EXPERT" polledPeriod="0" maxX="0" maxY="0">
+    <attributes name="Temp1" attType="Scalar" rwType="READ" displayLevel="EXPERT" maxX="0" maxY="0" allocReadMember="false">
       <dataType xsi:type="pogoDsl:UShortType"/>
       <changeEvent fire="false" libCheckCriteria="false"/>
       <archiveEvent fire="false" libCheckCriteria="false"/>
       <status abstract="false" inherited="false" concrete="true" concreteHere="true"/>
-      <properties description="The Libera box first temperature" label="Temperature 1" unit="C deg" standardUnit="" displayUnit="" format="%2d" maxValue="" minValue="" maxAlarm="65" minAlarm="" maxWarning="" minWarning="" deltaTime="" deltaValue=""/>
+      <properties description="Temperature of the hottest component on the BPM &#xA;module is returned." label="Temperature 1" unit="C deg" standardUnit="" displayUnit="" format="%2d" maxValue="" minValue="" maxAlarm="65" minAlarm="" maxWarning="" minWarning="" deltaTime="" deltaValue=""/>
       <readExcludedStates>UNKNOWN</readExcludedStates>
     </attributes>
-    <attributes name="Temp2" attType="Scalar" rwType="READ" displayLevel="EXPERT" polledPeriod="0" maxX="0" maxY="0">
+    <attributes name="Temp2" attType="Scalar" rwType="READ" displayLevel="EXPERT" maxX="0" maxY="0" allocReadMember="false">
       <dataType xsi:type="pogoDsl:UShortType"/>
       <changeEvent fire="false" libCheckCriteria="false"/>
       <archiveEvent fire="false" libCheckCriteria="false"/>
       <status abstract="false" inherited="false" concrete="true" concreteHere="true"/>
-      <properties description="The Libera box second temperature" label="Temperature 2" unit="C deg" standardUnit="" displayUnit="" format="%2d" maxValue="" minValue="" maxAlarm="65" minAlarm="" maxWarning="" minWarning="" deltaTime="" deltaValue=""/>
+      <properties description="Temperature of the hottest component on the chassis &#xA;interconnection board is returned." label="Temperature 2" unit="C deg" standardUnit="" displayUnit="" format="%2d" maxValue="" minValue="" maxAlarm="65" minAlarm="" maxWarning="" minWarning="" deltaTime="" deltaValue=""/>
       <readExcludedStates>UNKNOWN</readExcludedStates>
     </attributes>
-    <attributes name="Temp3" attType="Scalar" rwType="READ" displayLevel="EXPERT" polledPeriod="0" maxX="0" maxY="0">
+    <attributes name="Temp3" attType="Scalar" rwType="READ" displayLevel="EXPERT" maxX="0" maxY="0" allocReadMember="false">
       <dataType xsi:type="pogoDsl:UShortType"/>
       <changeEvent fire="false" libCheckCriteria="false"/>
       <archiveEvent fire="false" libCheckCriteria="false"/>
       <status abstract="false" inherited="false" concrete="true" concreteHere="true"/>
-      <properties description="The Libera box third temperature" label="Temperature 3" unit="C deg" standardUnit="" displayUnit="" format="%2d" maxValue="" minValue="" maxAlarm="65" minAlarm="" maxWarning="" minWarning="" deltaTime="" deltaValue=""/>
+      <properties description="Temperature of the hottest component on the timing &#xA;module is returned." label="Temperature 3" unit="C deg" standardUnit="" displayUnit="" format="%2d" maxValue="" minValue="" maxAlarm="65" minAlarm="" maxWarning="" minWarning="" deltaTime="" deltaValue=""/>
       <readExcludedStates>UNKNOWN</readExcludedStates>
     </attributes>
-    <attributes name="Calibration_ka" attType="Scalar" rwType="READ_WRITE" displayLevel="EXPERT" maxX="" maxY="" allocReadMember="true">
+    <attributes name="CalibrationKa" attType="Scalar" rwType="READ_WRITE" displayLevel="EXPERT" maxX="" maxY="" allocReadMember="true">
       <dataType xsi:type="pogoDsl:DoubleType"/>
       <changeEvent fire="false" libCheckCriteria="true"/>
       <archiveEvent fire="false" libCheckCriteria="true"/>
       <dataReadyEvent fire="false" libCheckCriteria="true"/>
       <status abstract="false" inherited="false" concrete="true" concreteHere="true"/>
-      <properties description="Matjaz....." label="calibration_ka" unit="" standardUnit="" displayUnit="" format="" maxValue="" minValue="" maxAlarm="" minAlarm="" maxWarning="" minWarning="" deltaTime="" deltaValue=""/>
+      <properties description="Correction coefficient of the pickup sensor for channel A." label="calibrationKa" unit="a.u." standardUnit="" displayUnit="" format="" maxValue="" minValue="" maxAlarm="" minAlarm="" maxWarning="" minWarning="" deltaTime="" deltaValue=""/>
     </attributes>
-    <attributes name="Calibration_kb" attType="Scalar" rwType="READ_WRITE" displayLevel="EXPERT" maxX="" maxY="" allocReadMember="true">
+    <attributes name="CalibrationKb" attType="Scalar" rwType="READ_WRITE" displayLevel="EXPERT" maxX="" maxY="" allocReadMember="true">
       <dataType xsi:type="pogoDsl:DoubleType"/>
       <changeEvent fire="false" libCheckCriteria="true"/>
       <archiveEvent fire="false" libCheckCriteria="true"/>
       <dataReadyEvent fire="false" libCheckCriteria="true"/>
       <status abstract="false" inherited="false" concrete="true" concreteHere="true"/>
-      <properties description="Matjaz....." label="calibration_kb" unit="" standardUnit="" displayUnit="" format="" maxValue="" minValue="" maxAlarm="" minAlarm="" maxWarning="" minWarning="" deltaTime="" deltaValue=""/>
+      <properties description="Correction coefficient of the pickup sensor for channel B." label="calibrationKb" unit="a.u." standardUnit="" displayUnit="" format="" maxValue="" minValue="" maxAlarm="" minAlarm="" maxWarning="" minWarning="" deltaTime="" deltaValue=""/>
     </attributes>
-    <attributes name="Calibration_kc" attType="Scalar" rwType="READ_WRITE" displayLevel="EXPERT" maxX="" maxY="" allocReadMember="true">
+    <attributes name="CalibrationKc" attType="Scalar" rwType="READ_WRITE" displayLevel="EXPERT" maxX="" maxY="" allocReadMember="true">
       <dataType xsi:type="pogoDsl:DoubleType"/>
       <changeEvent fire="false" libCheckCriteria="true"/>
       <archiveEvent fire="false" libCheckCriteria="true"/>
       <dataReadyEvent fire="false" libCheckCriteria="true"/>
       <status abstract="false" inherited="false" concrete="true" concreteHere="true"/>
-      <properties description="Matjaz....." label="calibration_kc" unit="" standardUnit="" displayUnit="" format="" maxValue="" minValue="" maxAlarm="" minAlarm="" maxWarning="" minWarning="" deltaTime="" deltaValue=""/>
+      <properties description="Correction coefficient of the pickup sensor for channel C." label="calibrationKc" unit="a.u." standardUnit="" displayUnit="" format="" maxValue="" minValue="" maxAlarm="" minAlarm="" maxWarning="" minWarning="" deltaTime="" deltaValue=""/>
     </attributes>
-    <attributes name="Calibration_kd" attType="Scalar" rwType="READ_WRITE" displayLevel="EXPERT" maxX="" maxY="" allocReadMember="true">
+    <attributes name="CalibrationKd" attType="Scalar" rwType="READ_WRITE" displayLevel="EXPERT" maxX="" maxY="" allocReadMember="true">
       <dataType xsi:type="pogoDsl:DoubleType"/>
       <changeEvent fire="false" libCheckCriteria="true"/>
       <archiveEvent fire="false" libCheckCriteria="true"/>
       <dataReadyEvent fire="false" libCheckCriteria="true"/>
       <status abstract="false" inherited="false" concrete="true" concreteHere="true"/>
-      <properties description="Matjaz....." label="calibration_kd" unit="" standardUnit="" displayUnit="" format="" maxValue="" minValue="" maxAlarm="" minAlarm="" maxWarning="" minWarning="" deltaTime="" deltaValue=""/>
+      <properties description="Correction coefficient of the pickup sensor for channel D." label="calibrationKd" unit="a.u." standardUnit="" displayUnit="" format="" maxValue="" minValue="" maxAlarm="" minAlarm="" maxWarning="" minWarning="" deltaTime="" deltaValue=""/>
     </attributes>
-    <attributes name="Linear_x_k" attType="Scalar" rwType="READ_WRITE" displayLevel="EXPERT" maxX="" maxY="" allocReadMember="true">
+    <attributes name="LinearXK" attType="Scalar" rwType="READ_WRITE" displayLevel="EXPERT" maxX="" maxY="" allocReadMember="true">
       <dataType xsi:type="pogoDsl:DoubleType"/>
       <changeEvent fire="false" libCheckCriteria="true"/>
       <archiveEvent fire="false" libCheckCriteria="true"/>
       <dataReadyEvent fire="false" libCheckCriteria="true"/>
       <status abstract="false" inherited="false" concrete="true" concreteHere="true"/>
-      <properties description="Matjaz....." label="linear_x_k" unit="" standardUnit="" displayUnit="" format="" maxValue="" minValue="" maxAlarm="" minAlarm="" maxWarning="" minWarning="" deltaTime="" deltaValue=""/>
+      <properties description="Setting the correction coefficient of the linear equation &#xA;for the x position calculation. See chapter 2.6.1 in &#xA;Libera Single Pass E User manual for details." label="LinearXK" unit="nm" standardUnit="" displayUnit="" format="" maxValue="" minValue="" maxAlarm="" minAlarm="" maxWarning="" minWarning="" deltaTime="" deltaValue=""/>
     </attributes>
-    <attributes name="Linear_x_offs" attType="Scalar" rwType="READ_WRITE" displayLevel="EXPERT" maxX="" maxY="" allocReadMember="true">
+    <attributes name="LinearXOffs" attType="Scalar" rwType="READ_WRITE" displayLevel="EXPERT" maxX="" maxY="" allocReadMember="true">
       <dataType xsi:type="pogoDsl:DoubleType"/>
       <changeEvent fire="false" libCheckCriteria="true"/>
       <archiveEvent fire="false" libCheckCriteria="true"/>
       <dataReadyEvent fire="false" libCheckCriteria="true"/>
       <status abstract="false" inherited="false" concrete="true" concreteHere="true"/>
-      <properties description="Matjaz....." label="linear_x_offs" unit="nm" standardUnit="" displayUnit="" format="" maxValue="" minValue="" maxAlarm="" minAlarm="" maxWarning="" minWarning="" deltaTime="" deltaValue=""/>
+      <properties description="Used to calibrate position offsets expressed in nm. &#xA;Please refer to Chapter 2.6 in Libera Single Pass E &#xA;User manual for details." label="LinearXOffs" unit="nm" standardUnit="" displayUnit="" format="" maxValue="" minValue="" maxAlarm="" minAlarm="" maxWarning="" minWarning="" deltaTime="" deltaValue=""/>
     </attributes>
-    <attributes name="Linear_y_k" attType="Scalar" rwType="READ_WRITE" displayLevel="EXPERT" maxX="" maxY="" allocReadMember="true">
+    <attributes name="LinearYK" attType="Scalar" rwType="READ_WRITE" displayLevel="EXPERT" maxX="" maxY="" allocReadMember="true">
       <dataType xsi:type="pogoDsl:DoubleType"/>
       <changeEvent fire="false" libCheckCriteria="true"/>
       <archiveEvent fire="false" libCheckCriteria="true"/>
       <dataReadyEvent fire="false" libCheckCriteria="true"/>
       <status abstract="false" inherited="false" concrete="true" concreteHere="true"/>
-      <properties description="Matjaz....." label="linear_y_k" unit="" standardUnit="" displayUnit="" format="" maxValue="" minValue="" maxAlarm="" minAlarm="" maxWarning="" minWarning="" deltaTime="" deltaValue=""/>
+      <properties description="Setting the correction coefficient of the linear equation &#xA;for the y position calculation. See chapter 2.6.1 in &#xA;Libera Single Pass E User manual for details." label="LinearYK" unit="nm" standardUnit="" displayUnit="" format="" maxValue="" minValue="" maxAlarm="" minAlarm="" maxWarning="" minWarning="" deltaTime="" deltaValue=""/>
     </attributes>
-    <attributes name="Linear_y_offs" attType="Scalar" rwType="READ_WRITE" displayLevel="EXPERT" maxX="" maxY="" allocReadMember="true">
+    <attributes name="LinearYOffs" attType="Scalar" rwType="READ_WRITE" displayLevel="EXPERT" maxX="" maxY="" allocReadMember="true">
       <dataType xsi:type="pogoDsl:DoubleType"/>
       <changeEvent fire="false" libCheckCriteria="true"/>
       <archiveEvent fire="false" libCheckCriteria="true"/>
       <dataReadyEvent fire="false" libCheckCriteria="true"/>
       <status abstract="false" inherited="false" concrete="true" concreteHere="true"/>
-      <properties description="Matjaz....." label="linear_y_offs" unit="nm" standardUnit="" displayUnit="" format="" maxValue="" minValue="" maxAlarm="" minAlarm="" maxWarning="" minWarning="" deltaTime="" deltaValue=""/>
+      <properties description="Used to calibrate position offsets expressed in nm. &#xA;Please refer to Chapter 2.6 in Libera Single Pass E &#xA;User manual for details." label="LinearYOffs" unit="nm" standardUnit="" displayUnit="" format="" maxValue="" minValue="" maxAlarm="" minAlarm="" maxWarning="" minWarning="" deltaTime="" deltaValue=""/>
     </attributes>
-    <attributes name="Linear_q_k" attType="Scalar" rwType="READ_WRITE" displayLevel="EXPERT" maxX="" maxY="" allocReadMember="true">
+    <attributes name="LinearQK" attType="Scalar" rwType="READ_WRITE" displayLevel="EXPERT" maxX="" maxY="" allocReadMember="true">
       <dataType xsi:type="pogoDsl:DoubleType"/>
       <changeEvent fire="false" libCheckCriteria="true"/>
       <archiveEvent fire="false" libCheckCriteria="true"/>
       <dataReadyEvent fire="false" libCheckCriteria="true"/>
       <status abstract="false" inherited="false" concrete="true" concreteHere="true"/>
-      <properties description="Matjaz....." label="linear_q_k" unit="" standardUnit="" displayUnit="" format="" maxValue="" minValue="" maxAlarm="" minAlarm="" maxWarning="" minWarning="" deltaTime="" deltaValue=""/>
+      <properties description="Setting the correction coefficient of the linear equation &#xA;for the q calculation. See chapter 2.6.1 in Libera Single &#xA;Pass E User manual for details." label="LinearQK" unit="a.u." standardUnit="" displayUnit="" format="" maxValue="" minValue="" maxAlarm="" minAlarm="" maxWarning="" minWarning="" deltaTime="" deltaValue=""/>
     </attributes>
-    <attributes name="Linear_q_offs" attType="Scalar" rwType="READ_WRITE" displayLevel="EXPERT" maxX="" maxY="" allocReadMember="true">
+    <attributes name="LinearQOffs" attType="Scalar" rwType="READ_WRITE" displayLevel="EXPERT" maxX="" maxY="" allocReadMember="true">
       <dataType xsi:type="pogoDsl:DoubleType"/>
       <changeEvent fire="false" libCheckCriteria="true"/>
       <archiveEvent fire="false" libCheckCriteria="true"/>
       <dataReadyEvent fire="false" libCheckCriteria="true"/>
       <status abstract="false" inherited="false" concrete="true" concreteHere="true"/>
-      <properties description="Matjaz....." label="linear_q_offs" unit="nano meters" standardUnit="" displayUnit="" format="" maxValue="" minValue="" maxAlarm="" minAlarm="" maxWarning="" minWarning="" deltaTime="" deltaValue=""/>
+      <properties description="Sets the offset for q factor. Default value is 0. &#xA;See Chapter 2.6 in Libera Single Pass E User manual &#xA;for details." label="LinearQOffs" unit="a.u." standardUnit="" displayUnit="" format="" maxValue="" minValue="" maxAlarm="" minAlarm="" maxWarning="" minWarning="" deltaTime="" deltaValue=""/>
     </attributes>
-    <attributes name="Linear_sum_k" attType="Scalar" rwType="READ_WRITE" displayLevel="EXPERT" maxX="" maxY="" allocReadMember="true">
+    <attributes name="LinearSumK" attType="Scalar" rwType="READ_WRITE" displayLevel="EXPERT" maxX="" maxY="" allocReadMember="true">
       <dataType xsi:type="pogoDsl:DoubleType"/>
       <changeEvent fire="false" libCheckCriteria="true"/>
       <archiveEvent fire="false" libCheckCriteria="true"/>
       <dataReadyEvent fire="false" libCheckCriteria="true"/>
       <status abstract="false" inherited="false" concrete="true" concreteHere="true"/>
-      <properties description="Matjaz....." label="linear_sum_k" unit="" standardUnit="" displayUnit="" format="" maxValue="" minValue="" maxAlarm="" minAlarm="" maxWarning="" minWarning="" deltaTime="" deltaValue=""/>
+      <properties description="Coefficient for sum value. Default is 67108864 (2^26). &#xA;Please refer to Chapter 2.6 in the Libera Single Pass E &#xA;User manual for details." label="LinearSumK" unit="a.u." standardUnit="" displayUnit="" format="" maxValue="" minValue="" maxAlarm="" minAlarm="" maxWarning="" minWarning="" deltaTime="" deltaValue=""/>
     </attributes>
-    <attributes name="Linear_sum_offs" attType="Scalar" rwType="READ_WRITE" displayLevel="EXPERT" maxX="" maxY="" allocReadMember="true">
+    <attributes name="LinearSumOffs" attType="Scalar" rwType="READ_WRITE" displayLevel="EXPERT" maxX="" maxY="" allocReadMember="true">
       <dataType xsi:type="pogoDsl:DoubleType"/>
       <changeEvent fire="false" libCheckCriteria="true"/>
       <archiveEvent fire="false" libCheckCriteria="true"/>
       <dataReadyEvent fire="false" libCheckCriteria="true"/>
       <status abstract="false" inherited="false" concrete="true" concreteHere="true"/>
-      <properties description="Matjaz....." label="linear_sum_offs" unit="nm" standardUnit="" displayUnit="" format="" maxValue="" minValue="" maxAlarm="" minAlarm="" maxWarning="" minWarning="" deltaTime="" deltaValue=""/>
+      <properties description="Coefficient for offsetting the sum value. &#xA;Default value is 0. Please refer to Chapter 2.6 of Libera &#xA;Single Pass E User manual for details.&#xA;&#xA;NOTE: The Libera Single Pass E has the possibility to &#xA;support also the polynomial equations for calculation &#xA;of position, however it is not supported in Tango as the &#xA;Libera Brilliance Single Pass supports only the linear &#xA;equation. Polynomial equation is providing more &#xA;accurate results of measurements as it is &#xA;compensating for the nonlinear anomalies for the &#xA;pick-up sensor. Please see the chapter 2.6.2 in the &#xA;Libera Single Pass E user manual for details." label="LinearSumOffs" unit="a.u." standardUnit="" displayUnit="" format="" maxValue="" minValue="" maxAlarm="" minAlarm="" maxWarning="" minWarning="" deltaTime="" deltaValue=""/>
     </attributes>
-    <attributes name="Signal_expansion" attType="Scalar" rwType="READ_WRITE" displayLevel="EXPERT" maxX="" maxY="" allocReadMember="true">
+    <attributes name="SignalExpansion" attType="Scalar" rwType="READ_WRITE" displayLevel="EXPERT" maxX="" maxY="" allocReadMember="true">
       <dataType xsi:type="pogoDsl:DoubleType"/>
       <changeEvent fire="false" libCheckCriteria="true"/>
       <archiveEvent fire="false" libCheckCriteria="true"/>
       <dataReadyEvent fire="false" libCheckCriteria="true"/>
       <status abstract="false" inherited="false" concrete="true" concreteHere="true"/>
-      <properties description="Matjaz....." label="signal_expansion" unit="" standardUnit="" displayUnit="" format="" maxValue="" minValue="" maxAlarm="" minAlarm="" maxWarning="" minWarning="" deltaTime="" deltaValue=""/>
+      <properties description="Interlock output is active for all the time the Interlock &#xA;conditions are fulfilled (ADC overflow and position &#xA;monitoring). The Interlock output remains active for a &#xA;certain time after the conditions have been cleared &#xA;(mono-stable cell). The time is defined in ADC clock &#xA;cycles with ireg parameter signal_expansion." label="SignalExpansion" unit="" standardUnit="" displayUnit="" format="" maxValue="" minValue="" maxAlarm="" minAlarm="" maxWarning="" minWarning="" deltaTime="" deltaValue=""/>
     </attributes>
-    <attributes name="Interlock_enabled" attType="Scalar" rwType="READ_WRITE" displayLevel="EXPERT" maxX="" maxY="" allocReadMember="true">
+    <attributes name="InterlockEnabled" attType="Scalar" rwType="READ_WRITE" displayLevel="EXPERT" maxX="" maxY="" allocReadMember="true">
       <dataType xsi:type="pogoDsl:BooleanType"/>
       <changeEvent fire="false" libCheckCriteria="true"/>
       <archiveEvent fire="false" libCheckCriteria="true"/>
       <dataReadyEvent fire="false" libCheckCriteria="true"/>
       <status abstract="false" inherited="false" concrete="true" concreteHere="true"/>
-      <properties description="Matjaz....." label="interlock_enabled" unit="" standardUnit="" displayUnit="" format="" maxValue="" minValue="" maxAlarm="" minAlarm="" maxWarning="" minWarning="" deltaTime="" deltaValue=""/>
+      <properties description="Enables/disables the interlock functionality. If it is set to &#xA;true, interlock is enabled, if set to false, interlock is &#xA;disabled. More details are in the chapter 2.12 in the &#xA;Libera Single Pass E User manual." label="InterlockEnabled" unit="" standardUnit="" displayUnit="" format="" maxValue="" minValue="" maxAlarm="" minAlarm="" maxWarning="" minWarning="" deltaTime="" deltaValue=""/>
     </attributes>
-    <attributes name="Limit_min_x" attType="Scalar" rwType="READ_WRITE" displayLevel="EXPERT" maxX="" maxY="" allocReadMember="true">
+    <attributes name="LimitMinX" attType="Scalar" rwType="READ_WRITE" displayLevel="EXPERT" maxX="" maxY="" allocReadMember="true">
       <dataType xsi:type="pogoDsl:DoubleType"/>
       <changeEvent fire="false" libCheckCriteria="true"/>
       <archiveEvent fire="false" libCheckCriteria="true"/>
       <dataReadyEvent fire="false" libCheckCriteria="true"/>
       <status abstract="false" inherited="false" concrete="true" concreteHere="true"/>
-      <properties description="Matjaz....." label="limit_min_x" unit="nm" standardUnit="" displayUnit="" format="" maxValue="" minValue="" maxAlarm="" minAlarm="" maxWarning="" minWarning="" deltaTime="" deltaValue=""/>
+      <properties description="Interlock lower limit parameter for x position in nm. &#xA;See Chapter 2.12.1 in the Libera Single Pass E User &#xA;manual for details." label="LimitMinX" unit="nm" standardUnit="" displayUnit="" format="" maxValue="" minValue="" maxAlarm="" minAlarm="" maxWarning="" minWarning="" deltaTime="" deltaValue=""/>
     </attributes>
-    <attributes name="Limit_min_y" attType="Scalar" rwType="READ_WRITE" displayLevel="EXPERT" maxX="" maxY="" allocReadMember="true">
+    <attributes name="LimitMinY" attType="Scalar" rwType="READ_WRITE" displayLevel="EXPERT" maxX="" maxY="" allocReadMember="true">
       <dataType xsi:type="pogoDsl:DoubleType"/>
       <changeEvent fire="false" libCheckCriteria="true"/>
       <archiveEvent fire="false" libCheckCriteria="true"/>
       <dataReadyEvent fire="false" libCheckCriteria="true"/>
       <status abstract="false" inherited="false" concrete="true" concreteHere="true"/>
-      <properties description="Matjaz....." label="limit_min_y" unit="nm" standardUnit="" displayUnit="" format="" maxValue="" minValue="" maxAlarm="" minAlarm="" maxWarning="" minWarning="" deltaTime="" deltaValue=""/>
+      <properties description="Interlock lower limit parameter for y position in nm. &#xA;See Chapter 2.12.1 in the Libera Single Pass E User &#xA;manual for details." label="LimitMinY" unit="nm" standardUnit="" displayUnit="" format="" maxValue="" minValue="" maxAlarm="" minAlarm="" maxWarning="" minWarning="" deltaTime="" deltaValue=""/>
     </attributes>
-    <attributes name="Limit_max_x" attType="Scalar" rwType="READ_WRITE" displayLevel="EXPERT" maxX="" maxY="" allocReadMember="true">
+    <attributes name="LimitMaxX" attType="Scalar" rwType="READ_WRITE" displayLevel="EXPERT" maxX="" maxY="" allocReadMember="true">
       <dataType xsi:type="pogoDsl:DoubleType"/>
       <changeEvent fire="false" libCheckCriteria="true"/>
       <archiveEvent fire="false" libCheckCriteria="true"/>
       <dataReadyEvent fire="false" libCheckCriteria="true"/>
       <status abstract="false" inherited="false" concrete="true" concreteHere="true"/>
-      <properties description="Matjaz....." label="limit_max_x" unit="nm" standardUnit="" displayUnit="" format="" maxValue="" minValue="" maxAlarm="" minAlarm="" maxWarning="" minWarning="" deltaTime="" deltaValue=""/>
+      <properties description="Interlock upper limit parameter for x position in nm. &#xA;See Chapter 2.12.1 in the Libera Single Pass E User &#xA;manual for details." label="LimitMaxX" unit="nm" standardUnit="" displayUnit="" format="" maxValue="" minValue="" maxAlarm="" minAlarm="" maxWarning="" minWarning="" deltaTime="" deltaValue=""/>
     </attributes>
-    <attributes name="Limit_max_y" attType="Scalar" rwType="READ_WRITE" displayLevel="EXPERT" maxX="" maxY="" allocReadMember="true">
+    <attributes name="LimitMaxY" attType="Scalar" rwType="READ_WRITE" displayLevel="EXPERT" maxX="" maxY="" allocReadMember="true">
       <dataType xsi:type="pogoDsl:DoubleType"/>
       <changeEvent fire="false" libCheckCriteria="true"/>
       <archiveEvent fire="false" libCheckCriteria="true"/>
       <dataReadyEvent fire="false" libCheckCriteria="true"/>
       <status abstract="false" inherited="false" concrete="true" concreteHere="true"/>
-      <properties description="Matjaz....." label="limit_max_y" unit="nm" standardUnit="" displayUnit="" format="" maxValue="" minValue="" maxAlarm="" minAlarm="" maxWarning="" minWarning="" deltaTime="" deltaValue=""/>
+      <properties description="Interlock upper limit parameter for y position in nm. &#xA;See Chapter 2.12.1 in the Libera Single Pass E User &#xA;manual for details." label="LimitMaxY" unit="nm" standardUnit="" displayUnit="" format="" maxValue="" minValue="" maxAlarm="" minAlarm="" maxWarning="" minWarning="" deltaTime="" deltaValue=""/>
     </attributes>
-    <attributes name="Overflow_threshold" attType="Scalar" rwType="READ_WRITE" displayLevel="EXPERT" maxX="" maxY="" allocReadMember="true">
+    <attributes name="OverflowThreshold" attType="Scalar" rwType="READ_WRITE" displayLevel="EXPERT" maxX="" maxY="" allocReadMember="true">
       <dataType xsi:type="pogoDsl:UIntType"/>
       <changeEvent fire="false" libCheckCriteria="true"/>
       <archiveEvent fire="false" libCheckCriteria="true"/>
       <dataReadyEvent fire="false" libCheckCriteria="true"/>
       <status abstract="false" inherited="false" concrete="true" concreteHere="true"/>
-      <properties description="Matjaz....." label="overflow_threshold" unit="ADC counts" standardUnit="" displayUnit="" format="" maxValue="" minValue="" maxAlarm="" minAlarm="" maxWarning="" minWarning="" deltaTime="" deltaValue=""/>
+      <properties description="Interlock upper limit parameter for the ADC overflow &#xA;buffer (ADC saturation) parameter which is in ADC &#xA;counts. See Chapter 2.12.2 in the Libera Single Pass E &#xA;User manual for details." label="OverflowThreshold" unit="ADC counts" standardUnit="" displayUnit="" format="" maxValue="" minValue="" maxAlarm="" minAlarm="" maxWarning="" minWarning="" deltaTime="" deltaValue=""/>
     </attributes>
-    <attributes name="Interlock_status" attType="Scalar" rwType="READ" displayLevel="EXPERT" maxX="" maxY="" allocReadMember="true">
+    <attributes name="InterlockStatus" attType="Scalar" rwType="READ" displayLevel="EXPERT" maxX="" maxY="" allocReadMember="true">
       <dataType xsi:type="pogoDsl:UIntType"/>
       <changeEvent fire="false" libCheckCriteria="true"/>
       <archiveEvent fire="false" libCheckCriteria="true"/>
       <dataReadyEvent fire="false" libCheckCriteria="true"/>
       <status abstract="false" inherited="false" concrete="true" concreteHere="true"/>
-      <properties description="Matjaz....." label="interlock_status" unit="" standardUnit="" displayUnit="" format="" maxValue="" minValue="" maxAlarm="" minAlarm="" maxWarning="" minWarning="" deltaTime="" deltaValue=""/>
+      <properties description="Issuing this command tells you which was the cause of &#xA;the interlock. Number is 5 bit expressed in the decimal &#xA;value. If no interlock was triggered, the returned value &#xA;is 0. See the chapter 2.12.3 in the Libera Single Pass E &#xA;User manual for details." label="InterlockStatus" unit="" standardUnit="" displayUnit="" format="" maxValue="" minValue="" maxAlarm="" minAlarm="" maxWarning="" minWarning="" deltaTime="" deltaValue=""/>
     </attributes>
-    <attributes name="Status_x" attType="Scalar" rwType="READ" displayLevel="EXPERT" maxX="" maxY="" allocReadMember="true">
+    <attributes name="StatusX" attType="Scalar" rwType="READ" displayLevel="EXPERT" maxX="" maxY="" allocReadMember="true">
       <dataType xsi:type="pogoDsl:BooleanType"/>
       <changeEvent fire="false" libCheckCriteria="true"/>
       <archiveEvent fire="false" libCheckCriteria="true"/>
       <dataReadyEvent fire="false" libCheckCriteria="true"/>
       <status abstract="false" inherited="false" concrete="true" concreteHere="true"/>
-      <properties description="Matjaz....." label="status_x" unit="" standardUnit="" displayUnit="" format="" maxValue="" minValue="" maxAlarm="" minAlarm="" maxWarning="" minWarning="" deltaTime="" deltaValue=""/>
+      <properties description="Checking the status of the interlock for the x position. &#xA;Returned value &#x2018;false&#x2019; means that x position wasn&#x2019;t out &#xA;of set limit." label="StatusX" unit="" standardUnit="" displayUnit="" format="" maxValue="" minValue="" maxAlarm="" minAlarm="" maxWarning="" minWarning="" deltaTime="" deltaValue=""/>
     </attributes>
-    <attributes name="Status_y" attType="Scalar" rwType="READ" displayLevel="EXPERT" maxX="" maxY="" allocReadMember="true">
+    <attributes name="StatusY" attType="Scalar" rwType="READ" displayLevel="EXPERT" maxX="" maxY="" allocReadMember="true">
       <dataType xsi:type="pogoDsl:BooleanType"/>
       <changeEvent fire="false" libCheckCriteria="true"/>
       <archiveEvent fire="false" libCheckCriteria="true"/>
       <dataReadyEvent fire="false" libCheckCriteria="true"/>
       <status abstract="false" inherited="false" concrete="true" concreteHere="true"/>
-      <properties description="Matjaz....." label="status_y" unit="" standardUnit="" displayUnit="" format="" maxValue="" minValue="" maxAlarm="" minAlarm="" maxWarning="" minWarning="" deltaTime="" deltaValue=""/>
+      <properties description="Checking the status of the interlock for the y position. &#xA;Returned value &#x2018;false&#x2019; means that y position wasn&#x2019;t out &#xA;of set limit." label="StatusY" unit="" standardUnit="" displayUnit="" format="" maxValue="" minValue="" maxAlarm="" minAlarm="" maxWarning="" minWarning="" deltaTime="" deltaValue=""/>
     </attributes>
-    <attributes name="Status_adc_overflow" attType="Scalar" rwType="READ" displayLevel="EXPERT" maxX="" maxY="" allocReadMember="true">
+    <attributes name="StatusAdcOverflow" attType="Scalar" rwType="READ" displayLevel="EXPERT" maxX="" maxY="" allocReadMember="true">
       <dataType xsi:type="pogoDsl:BooleanType"/>
       <changeEvent fire="false" libCheckCriteria="true"/>
       <archiveEvent fire="false" libCheckCriteria="true"/>
       <dataReadyEvent fire="false" libCheckCriteria="true"/>
       <status abstract="false" inherited="false" concrete="true" concreteHere="true"/>
-      <properties description="Matjaz....." label="status_adc_overflow" unit="" standardUnit="" displayUnit="" format="" maxValue="" minValue="" maxAlarm="" minAlarm="" maxWarning="" minWarning="" deltaTime="" deltaValue=""/>
+      <properties description="Checking the status of the interlock for the ADC &#xA;saturation. Returned value &#x2018;false&#x2019; means that ADC &#xA;wasn&#x2019;t in saturation." label="StatusAdcOverflow" unit="" standardUnit="" displayUnit="" format="" maxValue="" minValue="" maxAlarm="" minAlarm="" maxWarning="" minWarning="" deltaTime="" deltaValue=""/>
     </attributes>
     <attributes name="A" attType="Spectrum" rwType="READ" displayLevel="OPERATOR" maxX="10000" maxY="0" allocReadMember="false">
       <dataType xsi:type="pogoDsl:ShortType"/>

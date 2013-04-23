@@ -37,9 +37,9 @@ static const char *RcsId = "$Id:  $";
 /*
  * LiberaSinglePassE states description:
  *
- * ON :	The Libera box is up and running
- * UNKNOWN :	No possible communication with the Libera box
- * FAULT :	The Libera box is in Fault
+ * ON :	The Libera box is up and running 
+ * UNKNOWN :	No possible communication with the Libera box 
+ * FAULT :	The Libera box is in Fault 
  */
 
 namespace LiberaSinglePassE_ns
@@ -62,7 +62,7 @@ bool LiberaSinglePassE::is_BufferSize_allowed(Tango::AttReqType type)
 	if ( type!=Tango::READ_REQ )
 	{
 			//	Not any excluded states for BufferSize attribute in WRITE access.
-
+		
 	/*----- PROTECTED REGION ID(LiberaSinglePassE::BufferSizeStateAllowed_WRITE) ENABLED START -----*/
 
 	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::BufferSizeStateAllowed_WRITE
@@ -70,10 +70,10 @@ bool LiberaSinglePassE::is_BufferSize_allowed(Tango::AttReqType type)
 		return true;
 	}
 	else
-	if (	//	Compare device state with not allowed states for READ
+	if (	//	Compare device state with not allowed states for READ 
 		get_state() == Tango::UNKNOWN)
 	{
-
+	
 	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_BufferSizeStateAllowed_READ) ENABLED START -----*/
 
 	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_BufferSizeStateAllowed_READ
@@ -96,7 +96,7 @@ bool LiberaSinglePassE::is_AttenuationLevel_allowed(Tango::AttReqType type)
 	if ( type!=Tango::READ_REQ )
 	{
 			//	Not any excluded states for AttenuationLevel attribute in WRITE access.
-
+		
 	/*----- PROTECTED REGION ID(LiberaSinglePassE::AttenuationLevelStateAllowed_WRITE) ENABLED START -----*/
 
 	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::AttenuationLevelStateAllowed_WRITE
@@ -105,7 +105,7 @@ bool LiberaSinglePassE::is_AttenuationLevel_allowed(Tango::AttReqType type)
 	}
 	else
 		//	Not any excluded states for AttenuationLevel attribute in READ access.
-
+	
 	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_AttenuationLevelStateAllowed_READ) ENABLED START -----*/
 
 	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_AttenuationLevelStateAllowed_READ
@@ -122,10 +122,10 @@ bool LiberaSinglePassE::is_AttenuationLevel_allowed(Tango::AttReqType type)
 
 bool LiberaSinglePassE::is_TriggerCounter_allowed(Tango::AttReqType type)
 {
-	if (	//	Compare device state with not allowed states for READ
+	if (	//	Compare device state with not allowed states for READ 
 		get_state() == Tango::UNKNOWN)
 	{
-
+	
 	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_TriggerCounterStateAllowed_READ) ENABLED START -----*/
 
 	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_TriggerCounterStateAllowed_READ
@@ -145,7 +145,7 @@ bool LiberaSinglePassE::is_TriggerCounter_allowed(Tango::AttReqType type)
 bool LiberaSinglePassE::is_Fan1Speed_allowed(Tango::AttReqType type)
 {
 		//	Not any excluded states for Fan1Speed attribute in READ access.
-
+	
 	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_Fan1SpeedStateAllowed_READ) ENABLED START -----*/
 
 	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_Fan1SpeedStateAllowed_READ
@@ -243,642 +243,642 @@ bool LiberaSinglePassE::is_Temp3_allowed(Tango::AttReqType type)
 
 //--------------------------------------------------------
 /**
- *	Method      : LiberaSinglePassE::is_Calibration_kaState_allowed()
- *	Description : Execution allowed for Calibration_ka attribute.
+ *	Method      : LiberaSinglePassE::is_CalibrationKaState_allowed()
+ *	Description : Execution allowed for CalibrationKa attribute.
  */
 //--------------------------------------------------------
 
-bool LiberaSinglePassE::is_Calibration_ka_allowed(Tango::AttReqType type)
+bool LiberaSinglePassE::is_CalibrationKa_allowed(Tango::AttReqType type)
 {
 	//	Check if access type.
 	if ( type!=Tango::READ_REQ )
 	{
-			//	Not any excluded states for Calibration_ka attribute in WRITE access.
+			//	Not any excluded states for CalibrationKa attribute in WRITE access.
+		
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::CalibrationKaStateAllowed_WRITE) ENABLED START -----*/
 
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::Calibration_kaStateAllowed_WRITE) ENABLED START -----*/
-
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::Calibration_kaStateAllowed_WRITE
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::CalibrationKaStateAllowed_WRITE
 
 		return true;
 	}
 	else
-		//	Not any excluded states for Calibration_ka attribute in READ access.
+		//	Not any excluded states for CalibrationKa attribute in READ access.
+	
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_CalibrationKaStateAllowed_READ) ENABLED START -----*/
 
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_Calibration_kaStateAllowed_READ) ENABLED START -----*/
-
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_Calibration_kaStateAllowed_READ
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_CalibrationKaStateAllowed_READ
 
 	return true;
 }
 
 //--------------------------------------------------------
 /**
- *	Method      : LiberaSinglePassE::is_Calibration_kbState_allowed()
- *	Description : Execution allowed for Calibration_kb attribute.
+ *	Method      : LiberaSinglePassE::is_CalibrationKbState_allowed()
+ *	Description : Execution allowed for CalibrationKb attribute.
  */
 //--------------------------------------------------------
 
-bool LiberaSinglePassE::is_Calibration_kb_allowed(Tango::AttReqType type)
+bool LiberaSinglePassE::is_CalibrationKb_allowed(Tango::AttReqType type)
 {
 	//	Check if access type.
 	if ( type!=Tango::READ_REQ )
 	{
-			//	Not any excluded states for Calibration_kb attribute in WRITE access.
+			//	Not any excluded states for CalibrationKb attribute in WRITE access.
+		
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::CalibrationKbStateAllowed_WRITE) ENABLED START -----*/
 
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::Calibration_kbStateAllowed_WRITE) ENABLED START -----*/
-
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::Calibration_kbStateAllowed_WRITE
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::CalibrationKbStateAllowed_WRITE
 
 		return true;
 	}
 	else
-		//	Not any excluded states for Calibration_kb attribute in READ access.
+		//	Not any excluded states for CalibrationKb attribute in READ access.
+	
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_CalibrationKbStateAllowed_READ) ENABLED START -----*/
 
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_Calibration_kbStateAllowed_READ) ENABLED START -----*/
-
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_Calibration_kbStateAllowed_READ
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_CalibrationKbStateAllowed_READ
 
 	return true;
 }
 
 //--------------------------------------------------------
 /**
- *	Method      : LiberaSinglePassE::is_Calibration_kcState_allowed()
- *	Description : Execution allowed for Calibration_kc attribute.
+ *	Method      : LiberaSinglePassE::is_CalibrationKcState_allowed()
+ *	Description : Execution allowed for CalibrationKc attribute.
  */
 //--------------------------------------------------------
 
-bool LiberaSinglePassE::is_Calibration_kc_allowed(Tango::AttReqType type)
+bool LiberaSinglePassE::is_CalibrationKc_allowed(Tango::AttReqType type)
 {
 	//	Check if access type.
 	if ( type!=Tango::READ_REQ )
 	{
-			//	Not any excluded states for Calibration_kc attribute in WRITE access.
+			//	Not any excluded states for CalibrationKc attribute in WRITE access.
+		
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::CalibrationKcStateAllowed_WRITE) ENABLED START -----*/
 
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::Calibration_kcStateAllowed_WRITE) ENABLED START -----*/
-
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::Calibration_kcStateAllowed_WRITE
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::CalibrationKcStateAllowed_WRITE
 
 		return true;
 	}
 	else
-		//	Not any excluded states for Calibration_kc attribute in READ access.
+		//	Not any excluded states for CalibrationKc attribute in READ access.
+	
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_CalibrationKcStateAllowed_READ) ENABLED START -----*/
 
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_Calibration_kcStateAllowed_READ) ENABLED START -----*/
-
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_Calibration_kcStateAllowed_READ
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_CalibrationKcStateAllowed_READ
 
 	return true;
 }
 
 //--------------------------------------------------------
 /**
- *	Method      : LiberaSinglePassE::is_Calibration_kdState_allowed()
- *	Description : Execution allowed for Calibration_kd attribute.
+ *	Method      : LiberaSinglePassE::is_CalibrationKdState_allowed()
+ *	Description : Execution allowed for CalibrationKd attribute.
  */
 //--------------------------------------------------------
 
-bool LiberaSinglePassE::is_Calibration_kd_allowed(Tango::AttReqType type)
+bool LiberaSinglePassE::is_CalibrationKd_allowed(Tango::AttReqType type)
 {
 	//	Check if access type.
 	if ( type!=Tango::READ_REQ )
 	{
-			//	Not any excluded states for Calibration_kd attribute in WRITE access.
+			//	Not any excluded states for CalibrationKd attribute in WRITE access.
+		
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::CalibrationKdStateAllowed_WRITE) ENABLED START -----*/
 
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::Calibration_kdStateAllowed_WRITE) ENABLED START -----*/
-
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::Calibration_kdStateAllowed_WRITE
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::CalibrationKdStateAllowed_WRITE
 
 		return true;
 	}
 	else
-		//	Not any excluded states for Calibration_kd attribute in READ access.
+		//	Not any excluded states for CalibrationKd attribute in READ access.
+	
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_CalibrationKdStateAllowed_READ) ENABLED START -----*/
 
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_Calibration_kdStateAllowed_READ) ENABLED START -----*/
-
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_Calibration_kdStateAllowed_READ
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_CalibrationKdStateAllowed_READ
 
 	return true;
 }
 
 //--------------------------------------------------------
 /**
- *	Method      : LiberaSinglePassE::is_Linear_x_kState_allowed()
- *	Description : Execution allowed for Linear_x_k attribute.
+ *	Method      : LiberaSinglePassE::is_LinearXKState_allowed()
+ *	Description : Execution allowed for LinearXK attribute.
  */
 //--------------------------------------------------------
 
-bool LiberaSinglePassE::is_Linear_x_k_allowed(Tango::AttReqType type)
+bool LiberaSinglePassE::is_LinearXK_allowed(Tango::AttReqType type)
 {
 	//	Check if access type.
 	if ( type!=Tango::READ_REQ )
 	{
-			//	Not any excluded states for Linear_x_k attribute in WRITE access.
+			//	Not any excluded states for LinearXK attribute in WRITE access.
+		
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::LinearXKStateAllowed_WRITE) ENABLED START -----*/
 
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::Linear_x_kStateAllowed_WRITE) ENABLED START -----*/
-
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::Linear_x_kStateAllowed_WRITE
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::LinearXKStateAllowed_WRITE
 
 		return true;
 	}
 	else
-		//	Not any excluded states for Linear_x_k attribute in READ access.
+		//	Not any excluded states for LinearXK attribute in READ access.
+	
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_LinearXKStateAllowed_READ) ENABLED START -----*/
 
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_Linear_x_kStateAllowed_READ) ENABLED START -----*/
-
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_Linear_x_kStateAllowed_READ
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_LinearXKStateAllowed_READ
 
 	return true;
 }
 
 //--------------------------------------------------------
 /**
- *	Method      : LiberaSinglePassE::is_Linear_x_offsState_allowed()
- *	Description : Execution allowed for Linear_x_offs attribute.
+ *	Method      : LiberaSinglePassE::is_LinearXOffsState_allowed()
+ *	Description : Execution allowed for LinearXOffs attribute.
  */
 //--------------------------------------------------------
 
-bool LiberaSinglePassE::is_Linear_x_offs_allowed(Tango::AttReqType type)
+bool LiberaSinglePassE::is_LinearXOffs_allowed(Tango::AttReqType type)
 {
 	//	Check if access type.
 	if ( type!=Tango::READ_REQ )
 	{
-			//	Not any excluded states for Linear_x_offs attribute in WRITE access.
+			//	Not any excluded states for LinearXOffs attribute in WRITE access.
+		
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::LinearXOffsStateAllowed_WRITE) ENABLED START -----*/
 
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::Linear_x_offsStateAllowed_WRITE) ENABLED START -----*/
-
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::Linear_x_offsStateAllowed_WRITE
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::LinearXOffsStateAllowed_WRITE
 
 		return true;
 	}
 	else
-		//	Not any excluded states for Linear_x_offs attribute in READ access.
+		//	Not any excluded states for LinearXOffs attribute in READ access.
+	
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_LinearXOffsStateAllowed_READ) ENABLED START -----*/
 
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_Linear_x_offsStateAllowed_READ) ENABLED START -----*/
-
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_Linear_x_offsStateAllowed_READ
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_LinearXOffsStateAllowed_READ
 
 	return true;
 }
 
 //--------------------------------------------------------
 /**
- *	Method      : LiberaSinglePassE::is_Linear_y_kState_allowed()
- *	Description : Execution allowed for Linear_y_k attribute.
+ *	Method      : LiberaSinglePassE::is_LinearYKState_allowed()
+ *	Description : Execution allowed for LinearYK attribute.
  */
 //--------------------------------------------------------
 
-bool LiberaSinglePassE::is_Linear_y_k_allowed(Tango::AttReqType type)
+bool LiberaSinglePassE::is_LinearYK_allowed(Tango::AttReqType type)
 {
 	//	Check if access type.
 	if ( type!=Tango::READ_REQ )
 	{
-			//	Not any excluded states for Linear_y_k attribute in WRITE access.
+			//	Not any excluded states for LinearYK attribute in WRITE access.
+		
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::LinearYKStateAllowed_WRITE) ENABLED START -----*/
 
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::Linear_y_kStateAllowed_WRITE) ENABLED START -----*/
-
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::Linear_y_kStateAllowed_WRITE
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::LinearYKStateAllowed_WRITE
 
 		return true;
 	}
 	else
-		//	Not any excluded states for Linear_y_k attribute in READ access.
+		//	Not any excluded states for LinearYK attribute in READ access.
+	
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_LinearYKStateAllowed_READ) ENABLED START -----*/
 
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_Linear_y_kStateAllowed_READ) ENABLED START -----*/
-
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_Linear_y_kStateAllowed_READ
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_LinearYKStateAllowed_READ
 
 	return true;
 }
 
 //--------------------------------------------------------
 /**
- *	Method      : LiberaSinglePassE::is_Linear_y_offsState_allowed()
- *	Description : Execution allowed for Linear_y_offs attribute.
+ *	Method      : LiberaSinglePassE::is_LinearYOffsState_allowed()
+ *	Description : Execution allowed for LinearYOffs attribute.
  */
 //--------------------------------------------------------
 
-bool LiberaSinglePassE::is_Linear_y_offs_allowed(Tango::AttReqType type)
+bool LiberaSinglePassE::is_LinearYOffs_allowed(Tango::AttReqType type)
 {
 	//	Check if access type.
 	if ( type!=Tango::READ_REQ )
 	{
-			//	Not any excluded states for Linear_y_offs attribute in WRITE access.
+			//	Not any excluded states for LinearYOffs attribute in WRITE access.
+		
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::LinearYOffsStateAllowed_WRITE) ENABLED START -----*/
 
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::Linear_y_offsStateAllowed_WRITE) ENABLED START -----*/
-
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::Linear_y_offsStateAllowed_WRITE
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::LinearYOffsStateAllowed_WRITE
 
 		return true;
 	}
 	else
-		//	Not any excluded states for Linear_y_offs attribute in READ access.
+		//	Not any excluded states for LinearYOffs attribute in READ access.
+	
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_LinearYOffsStateAllowed_READ) ENABLED START -----*/
 
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_Linear_y_offsStateAllowed_READ) ENABLED START -----*/
-
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_Linear_y_offsStateAllowed_READ
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_LinearYOffsStateAllowed_READ
 
 	return true;
 }
 
 //--------------------------------------------------------
 /**
- *	Method      : LiberaSinglePassE::is_Linear_q_kState_allowed()
- *	Description : Execution allowed for Linear_q_k attribute.
+ *	Method      : LiberaSinglePassE::is_LinearQKState_allowed()
+ *	Description : Execution allowed for LinearQK attribute.
  */
 //--------------------------------------------------------
 
-bool LiberaSinglePassE::is_Linear_q_k_allowed(Tango::AttReqType type)
+bool LiberaSinglePassE::is_LinearQK_allowed(Tango::AttReqType type)
 {
 	//	Check if access type.
 	if ( type!=Tango::READ_REQ )
 	{
-			//	Not any excluded states for Linear_q_k attribute in WRITE access.
+			//	Not any excluded states for LinearQK attribute in WRITE access.
+		
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::LinearQKStateAllowed_WRITE) ENABLED START -----*/
 
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::Linear_q_kStateAllowed_WRITE) ENABLED START -----*/
-
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::Linear_q_kStateAllowed_WRITE
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::LinearQKStateAllowed_WRITE
 
 		return true;
 	}
 	else
-		//	Not any excluded states for Linear_q_k attribute in READ access.
+		//	Not any excluded states for LinearQK attribute in READ access.
+	
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_LinearQKStateAllowed_READ) ENABLED START -----*/
 
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_Linear_q_kStateAllowed_READ) ENABLED START -----*/
-
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_Linear_q_kStateAllowed_READ
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_LinearQKStateAllowed_READ
 
 	return true;
 }
 
 //--------------------------------------------------------
 /**
- *	Method      : LiberaSinglePassE::is_Linear_q_offsState_allowed()
- *	Description : Execution allowed for Linear_q_offs attribute.
+ *	Method      : LiberaSinglePassE::is_LinearQOffsState_allowed()
+ *	Description : Execution allowed for LinearQOffs attribute.
  */
 //--------------------------------------------------------
 
-bool LiberaSinglePassE::is_Linear_q_offs_allowed(Tango::AttReqType type)
+bool LiberaSinglePassE::is_LinearQOffs_allowed(Tango::AttReqType type)
 {
 	//	Check if access type.
 	if ( type!=Tango::READ_REQ )
 	{
-			//	Not any excluded states for Linear_q_offs attribute in WRITE access.
+			//	Not any excluded states for LinearQOffs attribute in WRITE access.
+		
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::LinearQOffsStateAllowed_WRITE) ENABLED START -----*/
 
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::Linear_q_offsStateAllowed_WRITE) ENABLED START -----*/
-
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::Linear_q_offsStateAllowed_WRITE
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::LinearQOffsStateAllowed_WRITE
 
 		return true;
 	}
 	else
-		//	Not any excluded states for Linear_q_offs attribute in READ access.
+		//	Not any excluded states for LinearQOffs attribute in READ access.
+	
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_LinearQOffsStateAllowed_READ) ENABLED START -----*/
 
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_Linear_q_offsStateAllowed_READ) ENABLED START -----*/
-
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_Linear_q_offsStateAllowed_READ
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_LinearQOffsStateAllowed_READ
 
 	return true;
 }
 
 //--------------------------------------------------------
 /**
- *	Method      : LiberaSinglePassE::is_Linear_sum_kState_allowed()
- *	Description : Execution allowed for Linear_sum_k attribute.
+ *	Method      : LiberaSinglePassE::is_LinearSumKState_allowed()
+ *	Description : Execution allowed for LinearSumK attribute.
  */
 //--------------------------------------------------------
 
-bool LiberaSinglePassE::is_Linear_sum_k_allowed(Tango::AttReqType type)
+bool LiberaSinglePassE::is_LinearSumK_allowed(Tango::AttReqType type)
 {
 	//	Check if access type.
 	if ( type!=Tango::READ_REQ )
 	{
-			//	Not any excluded states for Linear_sum_k attribute in WRITE access.
+			//	Not any excluded states for LinearSumK attribute in WRITE access.
+		
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::LinearSumKStateAllowed_WRITE) ENABLED START -----*/
 
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::Linear_sum_kStateAllowed_WRITE) ENABLED START -----*/
-
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::Linear_sum_kStateAllowed_WRITE
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::LinearSumKStateAllowed_WRITE
 
 		return true;
 	}
 	else
-		//	Not any excluded states for Linear_sum_k attribute in READ access.
+		//	Not any excluded states for LinearSumK attribute in READ access.
+	
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_LinearSumKStateAllowed_READ) ENABLED START -----*/
 
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_Linear_sum_kStateAllowed_READ) ENABLED START -----*/
-
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_Linear_sum_kStateAllowed_READ
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_LinearSumKStateAllowed_READ
 
 	return true;
 }
 
 //--------------------------------------------------------
 /**
- *	Method      : LiberaSinglePassE::is_Linear_sum_offsState_allowed()
- *	Description : Execution allowed for Linear_sum_offs attribute.
+ *	Method      : LiberaSinglePassE::is_LinearSumOffsState_allowed()
+ *	Description : Execution allowed for LinearSumOffs attribute.
  */
 //--------------------------------------------------------
 
-bool LiberaSinglePassE::is_Linear_sum_offs_allowed(Tango::AttReqType type)
+bool LiberaSinglePassE::is_LinearSumOffs_allowed(Tango::AttReqType type)
 {
 	//	Check if access type.
 	if ( type!=Tango::READ_REQ )
 	{
-			//	Not any excluded states for Linear_sum_offs attribute in WRITE access.
+			//	Not any excluded states for LinearSumOffs attribute in WRITE access.
+		
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::LinearSumOffsStateAllowed_WRITE) ENABLED START -----*/
 
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::Linear_sum_offsStateAllowed_WRITE) ENABLED START -----*/
-
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::Linear_sum_offsStateAllowed_WRITE
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::LinearSumOffsStateAllowed_WRITE
 
 		return true;
 	}
 	else
-		//	Not any excluded states for Linear_sum_offs attribute in READ access.
+		//	Not any excluded states for LinearSumOffs attribute in READ access.
+	
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_LinearSumOffsStateAllowed_READ) ENABLED START -----*/
 
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_Linear_sum_offsStateAllowed_READ) ENABLED START -----*/
-
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_Linear_sum_offsStateAllowed_READ
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_LinearSumOffsStateAllowed_READ
 
 	return true;
 }
 
 //--------------------------------------------------------
 /**
- *	Method      : LiberaSinglePassE::is_Signal_expansionState_allowed()
- *	Description : Execution allowed for Signal_expansion attribute.
+ *	Method      : LiberaSinglePassE::is_SignalExpansionState_allowed()
+ *	Description : Execution allowed for SignalExpansion attribute.
  */
 //--------------------------------------------------------
 
-bool LiberaSinglePassE::is_Signal_expansion_allowed(Tango::AttReqType type)
+bool LiberaSinglePassE::is_SignalExpansion_allowed(Tango::AttReqType type)
 {
 	//	Check if access type.
 	if ( type!=Tango::READ_REQ )
 	{
-			//	Not any excluded states for Signal_expansion attribute in WRITE access.
+			//	Not any excluded states for SignalExpansion attribute in WRITE access.
+		
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::SignalExpansionStateAllowed_WRITE) ENABLED START -----*/
 
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::Signal_expansionStateAllowed_WRITE) ENABLED START -----*/
-
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::Signal_expansionStateAllowed_WRITE
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::SignalExpansionStateAllowed_WRITE
 
 		return true;
 	}
 	else
-		//	Not any excluded states for Signal_expansion attribute in READ access.
+		//	Not any excluded states for SignalExpansion attribute in READ access.
+	
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_SignalExpansionStateAllowed_READ) ENABLED START -----*/
 
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_Signal_expansionStateAllowed_READ) ENABLED START -----*/
-
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_Signal_expansionStateAllowed_READ
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_SignalExpansionStateAllowed_READ
 
 	return true;
 }
 
 //--------------------------------------------------------
 /**
- *	Method      : LiberaSinglePassE::is_Interlock_enabledState_allowed()
- *	Description : Execution allowed for Interlock_enabled attribute.
+ *	Method      : LiberaSinglePassE::is_InterlockEnabledState_allowed()
+ *	Description : Execution allowed for InterlockEnabled attribute.
  */
 //--------------------------------------------------------
 
-bool LiberaSinglePassE::is_Interlock_enabled_allowed(Tango::AttReqType type)
+bool LiberaSinglePassE::is_InterlockEnabled_allowed(Tango::AttReqType type)
 {
 	//	Check if access type.
 	if ( type!=Tango::READ_REQ )
 	{
-			//	Not any excluded states for Interlock_enabled attribute in WRITE access.
+			//	Not any excluded states for InterlockEnabled attribute in WRITE access.
+		
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::InterlockEnabledStateAllowed_WRITE) ENABLED START -----*/
 
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::Interlock_enabledStateAllowed_WRITE) ENABLED START -----*/
-
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::Interlock_enabledStateAllowed_WRITE
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::InterlockEnabledStateAllowed_WRITE
 
 		return true;
 	}
 	else
-		//	Not any excluded states for Interlock_enabled attribute in READ access.
+		//	Not any excluded states for InterlockEnabled attribute in READ access.
+	
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_InterlockEnabledStateAllowed_READ) ENABLED START -----*/
 
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_Interlock_enabledStateAllowed_READ) ENABLED START -----*/
-
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_Interlock_enabledStateAllowed_READ
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_InterlockEnabledStateAllowed_READ
 
 	return true;
 }
 
 //--------------------------------------------------------
 /**
- *	Method      : LiberaSinglePassE::is_Limit_min_xState_allowed()
- *	Description : Execution allowed for Limit_min_x attribute.
+ *	Method      : LiberaSinglePassE::is_LimitMinXState_allowed()
+ *	Description : Execution allowed for LimitMinX attribute.
  */
 //--------------------------------------------------------
 
-bool LiberaSinglePassE::is_Limit_min_x_allowed(Tango::AttReqType type)
+bool LiberaSinglePassE::is_LimitMinX_allowed(Tango::AttReqType type)
 {
 	//	Check if access type.
 	if ( type!=Tango::READ_REQ )
 	{
-			//	Not any excluded states for Limit_min_x attribute in WRITE access.
+			//	Not any excluded states for LimitMinX attribute in WRITE access.
+		
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::LimitMinXStateAllowed_WRITE) ENABLED START -----*/
 
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::Limit_min_xStateAllowed_WRITE) ENABLED START -----*/
-
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::Limit_min_xStateAllowed_WRITE
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::LimitMinXStateAllowed_WRITE
 
 		return true;
 	}
 	else
-		//	Not any excluded states for Limit_min_x attribute in READ access.
+		//	Not any excluded states for LimitMinX attribute in READ access.
+	
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_LimitMinXStateAllowed_READ) ENABLED START -----*/
 
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_Limit_min_xStateAllowed_READ) ENABLED START -----*/
-
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_Limit_min_xStateAllowed_READ
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_LimitMinXStateAllowed_READ
 
 	return true;
 }
 
 //--------------------------------------------------------
 /**
- *	Method      : LiberaSinglePassE::is_Limit_min_yState_allowed()
- *	Description : Execution allowed for Limit_min_y attribute.
+ *	Method      : LiberaSinglePassE::is_LimitMinYState_allowed()
+ *	Description : Execution allowed for LimitMinY attribute.
  */
 //--------------------------------------------------------
 
-bool LiberaSinglePassE::is_Limit_min_y_allowed(Tango::AttReqType type)
+bool LiberaSinglePassE::is_LimitMinY_allowed(Tango::AttReqType type)
 {
 	//	Check if access type.
 	if ( type!=Tango::READ_REQ )
 	{
-			//	Not any excluded states for Limit_min_y attribute in WRITE access.
+			//	Not any excluded states for LimitMinY attribute in WRITE access.
+		
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::LimitMinYStateAllowed_WRITE) ENABLED START -----*/
 
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::Limit_min_yStateAllowed_WRITE) ENABLED START -----*/
-
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::Limit_min_yStateAllowed_WRITE
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::LimitMinYStateAllowed_WRITE
 
 		return true;
 	}
 	else
-		//	Not any excluded states for Limit_min_y attribute in READ access.
+		//	Not any excluded states for LimitMinY attribute in READ access.
+	
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_LimitMinYStateAllowed_READ) ENABLED START -----*/
 
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_Limit_min_yStateAllowed_READ) ENABLED START -----*/
-
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_Limit_min_yStateAllowed_READ
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_LimitMinYStateAllowed_READ
 
 	return true;
 }
 
 //--------------------------------------------------------
 /**
- *	Method      : LiberaSinglePassE::is_Limit_max_xState_allowed()
- *	Description : Execution allowed for Limit_max_x attribute.
+ *	Method      : LiberaSinglePassE::is_LimitMaxXState_allowed()
+ *	Description : Execution allowed for LimitMaxX attribute.
  */
 //--------------------------------------------------------
 
-bool LiberaSinglePassE::is_Limit_max_x_allowed(Tango::AttReqType type)
+bool LiberaSinglePassE::is_LimitMaxX_allowed(Tango::AttReqType type)
 {
 	//	Check if access type.
 	if ( type!=Tango::READ_REQ )
 	{
-			//	Not any excluded states for Limit_max_x attribute in WRITE access.
+			//	Not any excluded states for LimitMaxX attribute in WRITE access.
+		
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::LimitMaxXStateAllowed_WRITE) ENABLED START -----*/
 
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::Limit_max_xStateAllowed_WRITE) ENABLED START -----*/
-
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::Limit_max_xStateAllowed_WRITE
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::LimitMaxXStateAllowed_WRITE
 
 		return true;
 	}
 	else
-		//	Not any excluded states for Limit_max_x attribute in READ access.
+		//	Not any excluded states for LimitMaxX attribute in READ access.
+	
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_LimitMaxXStateAllowed_READ) ENABLED START -----*/
 
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_Limit_max_xStateAllowed_READ) ENABLED START -----*/
-
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_Limit_max_xStateAllowed_READ
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_LimitMaxXStateAllowed_READ
 
 	return true;
 }
 
 //--------------------------------------------------------
 /**
- *	Method      : LiberaSinglePassE::is_Limit_max_yState_allowed()
- *	Description : Execution allowed for Limit_max_y attribute.
+ *	Method      : LiberaSinglePassE::is_LimitMaxYState_allowed()
+ *	Description : Execution allowed for LimitMaxY attribute.
  */
 //--------------------------------------------------------
 
-bool LiberaSinglePassE::is_Limit_max_y_allowed(Tango::AttReqType type)
+bool LiberaSinglePassE::is_LimitMaxY_allowed(Tango::AttReqType type)
 {
 	//	Check if access type.
 	if ( type!=Tango::READ_REQ )
 	{
-			//	Not any excluded states for Limit_max_y attribute in WRITE access.
+			//	Not any excluded states for LimitMaxY attribute in WRITE access.
+		
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::LimitMaxYStateAllowed_WRITE) ENABLED START -----*/
 
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::Limit_max_yStateAllowed_WRITE) ENABLED START -----*/
-
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::Limit_max_yStateAllowed_WRITE
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::LimitMaxYStateAllowed_WRITE
 
 		return true;
 	}
 	else
-		//	Not any excluded states for Limit_max_y attribute in READ access.
+		//	Not any excluded states for LimitMaxY attribute in READ access.
+	
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_LimitMaxYStateAllowed_READ) ENABLED START -----*/
 
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_Limit_max_yStateAllowed_READ) ENABLED START -----*/
-
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_Limit_max_yStateAllowed_READ
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_LimitMaxYStateAllowed_READ
 
 	return true;
 }
 
 //--------------------------------------------------------
 /**
- *	Method      : LiberaSinglePassE::is_Overflow_thresholdState_allowed()
- *	Description : Execution allowed for Overflow_threshold attribute.
+ *	Method      : LiberaSinglePassE::is_OverflowThresholdState_allowed()
+ *	Description : Execution allowed for OverflowThreshold attribute.
  */
 //--------------------------------------------------------
 
-bool LiberaSinglePassE::is_Overflow_threshold_allowed(Tango::AttReqType type)
+bool LiberaSinglePassE::is_OverflowThreshold_allowed(Tango::AttReqType type)
 {
 	//	Check if access type.
 	if ( type!=Tango::READ_REQ )
 	{
-			//	Not any excluded states for Overflow_threshold attribute in WRITE access.
+			//	Not any excluded states for OverflowThreshold attribute in WRITE access.
+		
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::OverflowThresholdStateAllowed_WRITE) ENABLED START -----*/
 
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::Overflow_thresholdStateAllowed_WRITE) ENABLED START -----*/
-
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::Overflow_thresholdStateAllowed_WRITE
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::OverflowThresholdStateAllowed_WRITE
 
 		return true;
 	}
 	else
-		//	Not any excluded states for Overflow_threshold attribute in READ access.
+		//	Not any excluded states for OverflowThreshold attribute in READ access.
+	
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_OverflowThresholdStateAllowed_READ) ENABLED START -----*/
 
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_Overflow_thresholdStateAllowed_READ) ENABLED START -----*/
-
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_Overflow_thresholdStateAllowed_READ
-
-	return true;
-}
-
-//--------------------------------------------------------
-/**
- *	Method      : LiberaSinglePassE::is_Interlock_statusState_allowed()
- *	Description : Execution allowed for Interlock_status attribute.
- */
-//--------------------------------------------------------
-
-bool LiberaSinglePassE::is_Interlock_status_allowed(Tango::AttReqType type)
-{
-		//	Not any excluded states for Interlock_status attribute in READ access.
-
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_Interlock_statusStateAllowed_READ) ENABLED START -----*/
-
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_Interlock_statusStateAllowed_READ
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_OverflowThresholdStateAllowed_READ
 
 	return true;
 }
 
 //--------------------------------------------------------
 /**
- *	Method      : LiberaSinglePassE::is_Status_xState_allowed()
- *	Description : Execution allowed for Status_x attribute.
+ *	Method      : LiberaSinglePassE::is_InterlockStatusState_allowed()
+ *	Description : Execution allowed for InterlockStatus attribute.
  */
 //--------------------------------------------------------
 
-bool LiberaSinglePassE::is_Status_x_allowed(Tango::AttReqType type)
+bool LiberaSinglePassE::is_InterlockStatus_allowed(Tango::AttReqType type)
 {
-		//	Not any excluded states for Status_x attribute in READ access.
+		//	Not any excluded states for InterlockStatus attribute in READ access.
+	
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_InterlockStatusStateAllowed_READ) ENABLED START -----*/
 
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_Status_xStateAllowed_READ) ENABLED START -----*/
-
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_Status_xStateAllowed_READ
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_InterlockStatusStateAllowed_READ
 
 	return true;
 }
 
 //--------------------------------------------------------
 /**
- *	Method      : LiberaSinglePassE::is_Status_yState_allowed()
- *	Description : Execution allowed for Status_y attribute.
+ *	Method      : LiberaSinglePassE::is_StatusXState_allowed()
+ *	Description : Execution allowed for StatusX attribute.
  */
 //--------------------------------------------------------
 
-bool LiberaSinglePassE::is_Status_y_allowed(Tango::AttReqType type)
+bool LiberaSinglePassE::is_StatusX_allowed(Tango::AttReqType type)
 {
-		//	Not any excluded states for Status_y attribute in READ access.
+		//	Not any excluded states for StatusX attribute in READ access.
+	
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_StatusXStateAllowed_READ) ENABLED START -----*/
 
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_Status_yStateAllowed_READ) ENABLED START -----*/
-
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_Status_yStateAllowed_READ
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_StatusXStateAllowed_READ
 
 	return true;
 }
 
 //--------------------------------------------------------
 /**
- *	Method      : LiberaSinglePassE::is_Status_adc_overflowState_allowed()
- *	Description : Execution allowed for Status_adc_overflow attribute.
+ *	Method      : LiberaSinglePassE::is_StatusYState_allowed()
+ *	Description : Execution allowed for StatusY attribute.
  */
 //--------------------------------------------------------
 
-bool LiberaSinglePassE::is_Status_adc_overflow_allowed(Tango::AttReqType type)
+bool LiberaSinglePassE::is_StatusY_allowed(Tango::AttReqType type)
 {
-		//	Not any excluded states for Status_adc_overflow attribute in READ access.
+		//	Not any excluded states for StatusY attribute in READ access.
+	
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_StatusYStateAllowed_READ) ENABLED START -----*/
 
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_Status_adc_overflowStateAllowed_READ) ENABLED START -----*/
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_StatusYStateAllowed_READ
 
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_Status_adc_overflowStateAllowed_READ
+	return true;
+}
+
+//--------------------------------------------------------
+/**
+ *	Method      : LiberaSinglePassE::is_StatusAdcOverflowState_allowed()
+ *	Description : Execution allowed for StatusAdcOverflow attribute.
+ */
+//--------------------------------------------------------
+
+bool LiberaSinglePassE::is_StatusAdcOverflow_allowed(Tango::AttReqType type)
+{
+		//	Not any excluded states for StatusAdcOverflow attribute in READ access.
+	
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_StatusAdcOverflowStateAllowed_READ) ENABLED START -----*/
+
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_StatusAdcOverflowStateAllowed_READ
 
 	return true;
 }
@@ -893,7 +893,7 @@ bool LiberaSinglePassE::is_Status_adc_overflow_allowed(Tango::AttReqType type)
 bool LiberaSinglePassE::is_A_allowed(Tango::AttReqType type)
 {
 		//	Not any excluded states for A attribute in READ access.
-
+	
 	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_AStateAllowed_READ) ENABLED START -----*/
 
 	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_AStateAllowed_READ
@@ -911,7 +911,7 @@ bool LiberaSinglePassE::is_A_allowed(Tango::AttReqType type)
 bool LiberaSinglePassE::is_B_allowed(Tango::AttReqType type)
 {
 		//	Not any excluded states for B attribute in READ access.
-
+	
 	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_BStateAllowed_READ) ENABLED START -----*/
 
 	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_BStateAllowed_READ
@@ -929,7 +929,7 @@ bool LiberaSinglePassE::is_B_allowed(Tango::AttReqType type)
 bool LiberaSinglePassE::is_C_allowed(Tango::AttReqType type)
 {
 		//	Not any excluded states for C attribute in READ access.
-
+	
 	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_CStateAllowed_READ) ENABLED START -----*/
 
 	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_CStateAllowed_READ
@@ -947,7 +947,7 @@ bool LiberaSinglePassE::is_C_allowed(Tango::AttReqType type)
 bool LiberaSinglePassE::is_D_allowed(Tango::AttReqType type)
 {
 		//	Not any excluded states for D attribute in READ access.
-
+	
 	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_DStateAllowed_READ) ENABLED START -----*/
 
 	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_DStateAllowed_READ
@@ -965,7 +965,7 @@ bool LiberaSinglePassE::is_D_allowed(Tango::AttReqType type)
 bool LiberaSinglePassE::is_AT_allowed(Tango::AttReqType type)
 {
 		//	Not any excluded states for AT attribute in READ access.
-
+	
 	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_ATStateAllowed_READ) ENABLED START -----*/
 
 	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_ATStateAllowed_READ
@@ -983,7 +983,7 @@ bool LiberaSinglePassE::is_AT_allowed(Tango::AttReqType type)
 bool LiberaSinglePassE::is_BT_allowed(Tango::AttReqType type)
 {
 		//	Not any excluded states for BT attribute in READ access.
-
+	
 	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_BTStateAllowed_READ) ENABLED START -----*/
 
 	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_BTStateAllowed_READ
@@ -1001,7 +1001,7 @@ bool LiberaSinglePassE::is_BT_allowed(Tango::AttReqType type)
 bool LiberaSinglePassE::is_CT_allowed(Tango::AttReqType type)
 {
 		//	Not any excluded states for CT attribute in READ access.
-
+	
 	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_CTStateAllowed_READ) ENABLED START -----*/
 
 	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_CTStateAllowed_READ
@@ -1019,7 +1019,7 @@ bool LiberaSinglePassE::is_CT_allowed(Tango::AttReqType type)
 bool LiberaSinglePassE::is_DT_allowed(Tango::AttReqType type)
 {
 		//	Not any excluded states for DT attribute in READ access.
-
+	
 	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_DTStateAllowed_READ) ENABLED START -----*/
 
 	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_DTStateAllowed_READ
@@ -1037,7 +1037,7 @@ bool LiberaSinglePassE::is_DT_allowed(Tango::AttReqType type)
 bool LiberaSinglePassE::is_Yposition_allowed(Tango::AttReqType type)
 {
 		//	Not any excluded states for Yposition attribute in READ access.
-
+	
 	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_YpositionStateAllowed_READ) ENABLED START -----*/
 
 	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_YpositionStateAllowed_READ
@@ -1055,7 +1055,7 @@ bool LiberaSinglePassE::is_Yposition_allowed(Tango::AttReqType type)
 bool LiberaSinglePassE::is_Xposition_allowed(Tango::AttReqType type)
 {
 		//	Not any excluded states for Xposition attribute in READ access.
-
+	
 	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_XpositionStateAllowed_READ) ENABLED START -----*/
 
 	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_XpositionStateAllowed_READ
@@ -1072,10 +1072,10 @@ bool LiberaSinglePassE::is_Xposition_allowed(Tango::AttReqType type)
 
 bool LiberaSinglePassE::is_Current_allowed(Tango::AttReqType type)
 {
-	if (	//	Compare device state with not allowed states for READ
+	if (	//	Compare device state with not allowed states for READ 
 		get_state() == Tango::UNKNOWN)
 	{
-
+	
 	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_CurrentStateAllowed_READ) ENABLED START -----*/
 
 	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_CurrentStateAllowed_READ
@@ -1094,10 +1094,10 @@ bool LiberaSinglePassE::is_Current_allowed(Tango::AttReqType type)
 
 bool LiberaSinglePassE::is_SumT_allowed(Tango::AttReqType type)
 {
-	if (	//	Compare device state with not allowed states for READ
+	if (	//	Compare device state with not allowed states for READ 
 		get_state() == Tango::UNKNOWN)
 	{
-
+	
 	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_SumTStateAllowed_READ) ENABLED START -----*/
 
 	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_SumTStateAllowed_READ
@@ -1129,8 +1129,8 @@ bool LiberaSinglePassE::is_SumT_allowed(Tango::AttReqType type)
 
 bool LiberaSinglePassE::is_Reset_allowed(const CORBA::Any &any)
 {
-	if (	//	Compare device state with not allowed states for command
-		get_state() == Tango::ON	||
+	if (	//	Compare device state with not allowed states for command 
+		get_state() == Tango::ON	|| 
 		get_state() == Tango::UNKNOWN)
 	{
 
@@ -1152,8 +1152,8 @@ bool LiberaSinglePassE::is_Reset_allowed(const CORBA::Any &any)
 
 bool LiberaSinglePassE::is_ResetTrigger_allowed(const CORBA::Any &any)
 {
-	if (	//	Compare device state with not allowed states for command
-		get_state() == Tango::UNKNOWN	||
+	if (	//	Compare device state with not allowed states for command 
+		get_state() == Tango::UNKNOWN	|| 
 		get_state() == Tango::FAULT)
 	{
 

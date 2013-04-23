@@ -99,29 +99,29 @@ LiberaSinglePassE::LiberaSinglePassE(Tango::DeviceClass *cl, string &s)
 		attr_Xposition_read(NULL),
 		attr_Current_read(NULL),
 		attr_SumT_read(NULL),
-		attr_Calibration_ka_read(NULL),
-		attr_Calibration_kb_read(NULL),
-		attr_Calibration_kc_read(NULL),
-		attr_Calibration_kd_read(NULL),
-		attr_Linear_x_k_read(NULL),
-		attr_Linear_x_offs_read(NULL),
-		attr_Linear_y_k_read(NULL),
-		attr_Linear_y_offs_read(NULL),
-		attr_Linear_q_k_read(NULL),
-		attr_Linear_q_offs_read(NULL),
-		attr_Linear_sum_k_read(NULL),
-		attr_Linear_sum_offs_read(NULL),
-		attr_Signal_expansion_read(NULL),
-		attr_Interlock_enabled_read(NULL),
-		attr_Limit_min_x_read(NULL),
-		attr_Limit_min_y_read(NULL),
-		attr_Limit_max_x_read(NULL),
-		attr_Limit_max_y_read(NULL),
-		attr_Overflow_threshold_read(NULL),
-		attr_Interlock_status_read(NULL),
-		attr_Status_x_read(NULL),
-		attr_Status_y_read(NULL),
-		attr_Status_adc_overflow_read(NULL)
+		attr_CalibrationKa_read(NULL),
+		attr_CalibrationKb_read(NULL),
+		attr_CalibrationKc_read(NULL),
+		attr_CalibrationKd_read(NULL),
+		attr_LinearXK_read(NULL),
+		attr_LinearXOffs_read(NULL),
+		attr_LinearYK_read(NULL),
+		attr_LinearYOffs_read(NULL),
+		attr_LinearQK_read(NULL),
+		attr_LinearQOffs_read(NULL),
+		attr_LinearSumK_read(NULL),
+		attr_LinearSumOffs_read(NULL),
+		attr_SignalExpansion_read(NULL),
+		attr_InterlockEnabled_read(NULL),
+		attr_LimitMinX_read(NULL),
+		attr_LimitMinY_read(NULL),
+		attr_LimitMaxX_read(NULL),
+		attr_LimitMaxY_read(NULL),
+		attr_OverflowThreshold_read(NULL),
+		attr_InterlockStatus_read(NULL),
+		attr_StatusX_read(NULL),
+		attr_StatusY_read(NULL),
+		attr_StatusAdcOverflow_read(NULL)
 {
 	/*----- PROTECTED REGION ID(LiberaSinglePassE::constructor_1) ENABLED START -----*/
 
@@ -152,29 +152,29 @@ LiberaSinglePassE::LiberaSinglePassE(Tango::DeviceClass *cl, const char *s)
 		attr_Xposition_read(NULL),
 		attr_Current_read(NULL),
 		attr_SumT_read(NULL),
-		attr_Calibration_ka_read(NULL),
-		attr_Calibration_kb_read(NULL),
-		attr_Calibration_kc_read(NULL),
-		attr_Calibration_kd_read(NULL),
-		attr_Linear_x_k_read(NULL),
-		attr_Linear_x_offs_read(NULL),
-		attr_Linear_y_k_read(NULL),
-		attr_Linear_y_offs_read(NULL),
-		attr_Linear_q_k_read(NULL),
-		attr_Linear_q_offs_read(NULL),
-		attr_Linear_sum_k_read(NULL),
-		attr_Linear_sum_offs_read(NULL),
-		attr_Signal_expansion_read(NULL),
-		attr_Interlock_enabled_read(NULL),
-		attr_Limit_min_x_read(NULL),
-		attr_Limit_min_y_read(NULL),
-		attr_Limit_max_x_read(NULL),
-		attr_Limit_max_y_read(NULL),
-		attr_Overflow_threshold_read(NULL),
-		attr_Interlock_status_read(NULL),
-		attr_Status_x_read(NULL),
-		attr_Status_y_read(NULL),
-		attr_Status_adc_overflow_read(NULL)
+        attr_CalibrationKa_read(NULL),
+        attr_CalibrationKb_read(NULL),
+        attr_CalibrationKc_read(NULL),
+        attr_CalibrationKd_read(NULL),
+        attr_LinearXK_read(NULL),
+        attr_LinearXOffs_read(NULL),
+        attr_LinearYK_read(NULL),
+        attr_LinearYOffs_read(NULL),
+        attr_LinearQK_read(NULL),
+        attr_LinearQOffs_read(NULL),
+        attr_LinearSumK_read(NULL),
+        attr_LinearSumOffs_read(NULL),
+        attr_SignalExpansion_read(NULL),
+        attr_InterlockEnabled_read(NULL),
+        attr_LimitMinX_read(NULL),
+        attr_LimitMinY_read(NULL),
+        attr_LimitMaxX_read(NULL),
+        attr_LimitMaxY_read(NULL),
+        attr_OverflowThreshold_read(NULL),
+        attr_InterlockStatus_read(NULL),
+        attr_StatusX_read(NULL),
+        attr_StatusY_read(NULL),
+        attr_StatusAdcOverflow_read(NULL)
 {
 	/*----- PROTECTED REGION ID(LiberaSinglePassE::constructor_2) ENABLED START -----*/
 
@@ -205,29 +205,29 @@ LiberaSinglePassE::LiberaSinglePassE(Tango::DeviceClass *cl, const char *s, cons
 		attr_Xposition_read(NULL),
 		attr_Current_read(NULL),
 		attr_SumT_read(NULL),
-		attr_Calibration_ka_read(NULL),
-		attr_Calibration_kb_read(NULL),
-		attr_Calibration_kc_read(NULL),
-		attr_Calibration_kd_read(NULL),
-		attr_Linear_x_k_read(NULL),
-		attr_Linear_x_offs_read(NULL),
-		attr_Linear_y_k_read(NULL),
-		attr_Linear_y_offs_read(NULL),
-		attr_Linear_q_k_read(NULL),
-		attr_Linear_q_offs_read(NULL),
-		attr_Linear_sum_k_read(NULL),
-		attr_Linear_sum_offs_read(NULL),
-		attr_Signal_expansion_read(NULL),
-		attr_Interlock_enabled_read(NULL),
-		attr_Limit_min_x_read(NULL),
-		attr_Limit_min_y_read(NULL),
-		attr_Limit_max_x_read(NULL),
-		attr_Limit_max_y_read(NULL),
-		attr_Overflow_threshold_read(NULL),
-		attr_Interlock_status_read(NULL),
-		attr_Status_x_read(NULL),
-		attr_Status_y_read(NULL),
-		attr_Status_adc_overflow_read(NULL)
+		attr_CalibrationKa_read(NULL),
+		attr_CalibrationKb_read(NULL),
+		attr_CalibrationKc_read(NULL),
+		attr_CalibrationKd_read(NULL),
+		attr_LinearXK_read(NULL),
+		attr_LinearXOffs_read(NULL),
+		attr_LinearYK_read(NULL),
+		attr_LinearYOffs_read(NULL),
+		attr_LinearQK_read(NULL),
+		attr_LinearQOffs_read(NULL),
+		attr_LinearSumK_read(NULL),
+		attr_LinearSumOffs_read(NULL),
+		attr_SignalExpansion_read(NULL),
+		attr_InterlockEnabled_read(NULL),
+		attr_LimitMinX_read(NULL),
+		attr_LimitMinY_read(NULL),
+		attr_LimitMaxX_read(NULL),
+		attr_LimitMaxY_read(NULL),
+		attr_OverflowThreshold_read(NULL),
+		attr_InterlockStatus_read(NULL),
+		attr_StatusX_read(NULL),
+		attr_StatusY_read(NULL),
+		attr_StatusAdcOverflow_read(NULL)
 {
 	/*----- PROTECTED REGION ID(LiberaSinglePassE::constructor_3) ENABLED START -----*/
 
@@ -316,52 +316,52 @@ void LiberaSinglePassE::delete_device()
 	attr_C_read = NULL;
 	delete [] attr_D_read;
 	attr_D_read = NULL;
-	delete attr_Calibration_ka_read;
-	attr_Calibration_ka_read = NULL;
-	delete attr_Calibration_kb_read;
-	attr_Calibration_kb_read = NULL;
-	delete attr_Calibration_kc_read;
-	attr_Calibration_kc_read = NULL;
-	delete attr_Calibration_kd_read;
-	attr_Calibration_kd_read = NULL;
-	delete attr_Linear_x_k_read;
-	attr_Linear_x_k_read = NULL;
-	delete attr_Linear_x_offs_read;
-	attr_Linear_x_offs_read = NULL;
-	delete attr_Linear_y_k_read;
-	attr_Linear_y_k_read = NULL;
-	delete attr_Linear_y_offs_read;
-	attr_Linear_y_offs_read = NULL;
-	delete attr_Linear_q_k_read;
-	attr_Linear_q_k_read = NULL;
-	delete attr_Linear_q_offs_read;
-	attr_Linear_q_offs_read = NULL;
-	delete attr_Linear_sum_k_read;
-	attr_Linear_sum_k_read = NULL;
-	delete attr_Linear_sum_offs_read;
-	attr_Linear_sum_offs_read = NULL;
-	delete attr_Signal_expansion_read;
-	attr_Signal_expansion_read = NULL;
-	delete attr_Interlock_enabled_read;
-	attr_Interlock_enabled_read = NULL;
-	delete attr_Limit_min_x_read;
-	attr_Limit_min_x_read = NULL;
-	delete attr_Limit_min_y_read;
-	attr_Limit_min_y_read = NULL;
-	delete attr_Limit_max_x_read;
-	attr_Limit_max_x_read = NULL;
-	delete attr_Limit_max_y_read;
-	attr_Limit_max_y_read = NULL;
-	delete attr_Overflow_threshold_read;
-	attr_Overflow_threshold_read = NULL;
-	delete attr_Interlock_status_read;
-	attr_Interlock_status_read = NULL;
-	delete attr_Status_x_read;
-	attr_Status_x_read = NULL;
-	delete attr_Status_y_read;
-	attr_Status_y_read = NULL;
-	delete attr_Status_adc_overflow_read;
-	attr_Status_adc_overflow_read = NULL;
+	delete attr_CalibrationKa_read;
+	attr_CalibrationKa_read = NULL;
+	delete attr_CalibrationKb_read;
+	attr_CalibrationKb_read = NULL;
+	delete attr_CalibrationKc_read;
+	attr_CalibrationKc_read = NULL;
+	delete attr_CalibrationKd_read;
+	attr_CalibrationKd_read = NULL;
+	delete attr_LinearXK_read;
+	attr_LinearXK_read = NULL;
+	delete attr_LinearXOffs_read;
+	attr_LinearXOffs_read = NULL;
+	delete attr_LinearYK_read;
+	attr_LinearYK_read = NULL;
+	delete attr_LinearYOffs_read;
+	attr_LinearYOffs_read = NULL;
+	delete attr_LinearQK_read;
+	attr_LinearQK_read = NULL;
+	delete attr_LinearQOffs_read;
+	attr_LinearQOffs_read = NULL;
+	delete attr_LinearSumK_read;
+	attr_LinearSumK_read = NULL;
+	delete attr_LinearSumOffs_read;
+	attr_LinearSumOffs_read = NULL;
+	delete attr_SignalExpansion_read;
+	attr_SignalExpansion_read = NULL;
+	delete attr_InterlockEnabled_read;
+	attr_InterlockEnabled_read = NULL;
+	delete attr_LimitMinX_read;
+	attr_LimitMinX_read = NULL;
+	delete attr_LimitMinY_read;
+	attr_LimitMinY_read = NULL;
+	delete attr_LimitMaxX_read;
+	attr_LimitMaxX_read = NULL;
+	delete attr_LimitMaxY_read;
+	attr_LimitMaxY_read = NULL;
+	delete attr_OverflowThreshold_read;
+	attr_OverflowThreshold_read = NULL;
+	delete attr_InterlockStatus_read;
+	attr_InterlockStatus_read = NULL;
+	delete attr_StatusX_read;
+	attr_StatusX_read = NULL;
+	delete attr_StatusY_read;
+	attr_StatusY_read = NULL;
+	delete attr_StatusAdcOverflow_read;
+	attr_StatusAdcOverflow_read = NULL;
 
 	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::delete_device
 
@@ -440,74 +440,74 @@ void LiberaSinglePassE::init_device()
 	attr_Current_read = new Tango::DevDouble[MAX_CURRENT_BUF_SIZE];
 	CHECK_ALLOC(attr_Current_read)
 
-	attr_Calibration_ka_read = new Tango::DevDouble(0);
-	CHECK_ALLOC(attr_Calibration_ka_read)
+	attr_CalibrationKa_read = new Tango::DevDouble(0);
+	CHECK_ALLOC(attr_CalibrationKa_read)
 
-	attr_Calibration_kb_read = new Tango::DevDouble(0);
-	CHECK_ALLOC(attr_Calibration_kb_read)
+	attr_CalibrationKb_read = new Tango::DevDouble(0);
+	CHECK_ALLOC(attr_CalibrationKb_read)
 
-	attr_Calibration_kc_read = new Tango::DevDouble(0);
-	CHECK_ALLOC(attr_Calibration_kc_read)
+	attr_CalibrationKc_read = new Tango::DevDouble(0);
+	CHECK_ALLOC(attr_CalibrationKc_read)
 
-	attr_Calibration_kd_read = new Tango::DevDouble(0);
-	CHECK_ALLOC(attr_Calibration_kd_read)
+	attr_CalibrationKd_read = new Tango::DevDouble(0);
+	CHECK_ALLOC(attr_CalibrationKd_read)
 
-	attr_Linear_x_k_read = new Tango::DevDouble(0);
-	CHECK_ALLOC(attr_Linear_x_k_read)
+	attr_LinearXK_read = new Tango::DevDouble(0);
+	CHECK_ALLOC(attr_LinearXK_read)
 
-	attr_Linear_x_offs_read = new Tango::DevDouble(0);
-	CHECK_ALLOC(attr_Linear_x_offs_read)
+	attr_LinearXOffs_read = new Tango::DevDouble(0);
+	CHECK_ALLOC(attr_LinearXOffs_read)
 
-	attr_Linear_y_k_read = new Tango::DevDouble(0);
-	CHECK_ALLOC(attr_Linear_y_k_read)
+	attr_LinearYK_read = new Tango::DevDouble(0);
+	CHECK_ALLOC(attr_LinearYK_read)
 
-	attr_Linear_y_offs_read = new Tango::DevDouble(0);
-	CHECK_ALLOC(attr_Linear_y_offs_read)
+	attr_LinearYOffs_read = new Tango::DevDouble(0);
+	CHECK_ALLOC(attr_LinearYOffs_read)
 
-	attr_Linear_q_k_read = new Tango::DevDouble(0);
-	CHECK_ALLOC(attr_Linear_q_k_read)
+	attr_LinearQK_read = new Tango::DevDouble(0);
+	CHECK_ALLOC(attr_LinearQK_read)
 
-	attr_Linear_q_offs_read = new Tango::DevDouble(0);
-	CHECK_ALLOC(attr_Linear_q_offs_read)
+	attr_LinearQOffs_read = new Tango::DevDouble(0);
+	CHECK_ALLOC(attr_LinearQOffs_read)
 
-	attr_Linear_sum_k_read = new Tango::DevDouble(0);
-	CHECK_ALLOC(attr_Linear_sum_k_read)
+	attr_LinearSumK_read = new Tango::DevDouble(0);
+	CHECK_ALLOC(attr_LinearSumK_read)
 
-	attr_Linear_sum_offs_read = new Tango::DevDouble(0);
-	CHECK_ALLOC(attr_Linear_sum_offs_read)
+	attr_LinearSumOffs_read = new Tango::DevDouble(0);
+	CHECK_ALLOC(attr_LinearSumOffs_read)
 
-	attr_Signal_expansion_read = new Tango::DevDouble(0);
-	CHECK_ALLOC(attr_Signal_expansion_read)
+	attr_SignalExpansion_read = new Tango::DevDouble(0);
+	CHECK_ALLOC(attr_SignalExpansion_read)
 
-	attr_Interlock_enabled_read = new Tango::DevBoolean(0);
-	CHECK_ALLOC(attr_Interlock_enabled_read)
+	attr_InterlockEnabled_read = new Tango::DevBoolean(0);
+	CHECK_ALLOC(attr_InterlockEnabled_read)
 
-	attr_Limit_min_x_read = new Tango::DevDouble(0);
-	CHECK_ALLOC(attr_Limit_min_x_read)
+	attr_LimitMinX_read = new Tango::DevDouble(0);
+	CHECK_ALLOC(attr_LimitMinX_read)
 
-	attr_Limit_min_y_read = new Tango::DevDouble(0);
-	CHECK_ALLOC(attr_Limit_min_y_read)
+	attr_LimitMinY_read = new Tango::DevDouble(0);
+	CHECK_ALLOC(attr_LimitMinY_read)
 
-	attr_Limit_max_x_read = new Tango::DevDouble(0);
-	CHECK_ALLOC(attr_Limit_max_x_read)
+	attr_LimitMaxX_read = new Tango::DevDouble(0);
+	CHECK_ALLOC(attr_LimitMaxX_read)
 
-	attr_Limit_max_y_read = new Tango::DevDouble(0);
-	CHECK_ALLOC(attr_Limit_max_y_read)
+	attr_LimitMaxY_read = new Tango::DevDouble(0);
+	CHECK_ALLOC(attr_LimitMaxY_read)
 
-	attr_Overflow_threshold_read = new Tango::DevULong(0);
-	CHECK_ALLOC(attr_Overflow_threshold_read)
+	attr_OverflowThreshold_read = new Tango::DevULong(0);
+	CHECK_ALLOC(attr_OverflowThreshold_read)
 
-	attr_Interlock_status_read = new Tango::DevULong(0);
-	CHECK_ALLOC(attr_Interlock_status_read)
+	attr_InterlockStatus_read = new Tango::DevULong(0);
+	CHECK_ALLOC(attr_InterlockStatus_read)
 
-	attr_Status_x_read = new Tango::DevBoolean(0);
-	CHECK_ALLOC(attr_Status_x_read)
+	attr_StatusX_read = new Tango::DevBoolean(0);
+	CHECK_ALLOC(attr_StatusX_read)
 
-	attr_Status_y_read = new Tango::DevBoolean(0);
-	CHECK_ALLOC(attr_Status_y_read)
+	attr_StatusY_read = new Tango::DevBoolean(0);
+	CHECK_ALLOC(attr_StatusY_read)
 
-	attr_Status_adc_overflow_read = new Tango::DevBoolean(0);
-	CHECK_ALLOC(attr_Status_adc_overflow_read)
+	attr_StatusAdcOverflow_read = new Tango::DevBoolean(0);
+	CHECK_ALLOC(attr_StatusAdcOverflow_read)
 
 	// Attributes that have local storage
 	attr_TriggerCounter_read = &trig_ctr;
@@ -1027,8 +1027,13 @@ void LiberaSinglePassE::write_BufferSize(Tango::WAttribute &attr)
 //--------------------------------------------------------
 /**
  *	Read AttenuationLevel attribute
- *	Description: The analog channels level. This attribute allows the user to tune the analog channels
- *	             attenuator. The input is an index within a lookup table in the Libera box
+ *	Description: Each analogue channel on one processor module in
+ *	             Libera Single Pass E has one 5-bit programmable
+ *	             attenuator. The attenuation can be controlled in the
+ *	             range from 0 to 31dB in steps of 1dB. Gain control serves
+ *	             to set the attenuators according to the input RF signal
+ *	             level. Writing to this attribute serves to set the input
+ *	             RF signal attenuators in dB.
  *
  *	Data type:	Tango::DevLong
  *	Attr type:	Scalar
@@ -1120,7 +1125,10 @@ void LiberaSinglePassE::read_TriggerCounter(Tango::Attribute &attr)
 //--------------------------------------------------------
 /**
  *	Read Fan1Speed attribute
- *	Description: First fan speed
+ *	Description: Provides minimal fan speed reading of all three� fans on
+ *	             the left side of the chassis in order to identify if the fan
+ *	             module (consisting of 3 fans) is broken - returned value
+ *	             0 means that at least one fan has stopped.
  *
  *	Data type:	Tango::DevUShort
  *	Attr type:	Scalar
@@ -1162,7 +1170,10 @@ void LiberaSinglePassE::read_Fan1Speed(Tango::Attribute &attr)
 //--------------------------------------------------------
 /**
  *	Read Fan2Speed attribute
- *	Description: Second fan speed
+ *	Description: Provides minimal fan speed reading of all three� fans on
+ *	             the right side of the chassis in order to identify if the
+ *	             fan module (consisting of 3 fans) is broken - returned
+ *	             value 0 means that at least one fan has stopped.
  *
  *	Data type:	Tango::DevUShort
  *	Attr type:	Scalar
@@ -1204,7 +1215,8 @@ void LiberaSinglePassE::read_Fan2Speed(Tango::Attribute &attr)
 //--------------------------------------------------------
 /**
  *	Read Temp1 attribute
- *	Description: The Libera box first temperature
+ *	Description: Temperature of the hottest component on the BPM
+ *	             module is returned.
  *
  *	Data type:	Tango::DevUShort
  *	Attr type:	Scalar
@@ -1233,7 +1245,8 @@ void LiberaSinglePassE::read_Temp1(Tango::Attribute &attr)
 //--------------------------------------------------------
 /**
  *	Read Temp2 attribute
- *	Description: The Libera box second temperature
+ *	Description: Temperature of the hottest component on the chassis
+ *	             interconnection board is returned.
  *
  *	Data type:	Tango::DevUShort
  *	Attr type:	Scalar
@@ -1262,7 +1275,8 @@ void LiberaSinglePassE::read_Temp2(Tango::Attribute &attr)
 //--------------------------------------------------------
 /**
  *	Read Temp3 attribute
- *	Description: The Libera box third temperature
+ *	Description: Temperature of the hottest component on the timing
+ *	             module is returned.
  *
  *	Data type:	Tango::DevUShort
  *	Attr type:	Scalar
@@ -1289,1287 +1303,1332 @@ void LiberaSinglePassE::read_Temp3(Tango::Attribute &attr)
 }
 //--------------------------------------------------------
 /**
- *	Read Calibration_ka attribute
- *	Description: Correction coefficient used for input signal amplitude
- *	             calibration
+ *	Read CalibrationKa attribute
+ *	Description: Correction coefficient of the pickup sensor for channel A.
  *
  *	Data type:	Tango::DevDouble
  *	Attr type:	Scalar
  */
 //--------------------------------------------------------
-void LiberaSinglePassE::read_Calibration_ka(Tango::Attribute &attr)
+void LiberaSinglePassE::read_CalibrationKa(Tango::Attribute &attr)
 {
-	DEBUG_STREAM << "LiberaSinglePassE::read_Calibration_ka(Tango::Attribute &attr) entering... " << endl;
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_Calibration_ka) ENABLED START -----*/
+	DEBUG_STREAM << "LiberaSinglePassE::read_CalibrationKa(Tango::Attribute &attr) entering... " << endl;
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_CalibrationKa) ENABLED START -----*/
 
 	try {
 			double ka;
 			mci_Calibration_ka.Get(ka);
-			*attr_Calibration_ka_read = static_cast<Tango::DevDouble>(ka);
+			*attr_CalibrationKa_read = static_cast<Tango::DevDouble>(ka);
 		} catch (istd::Exception &e) {
-			ERROR_STREAM << "LiberaSinglePassE::read_Calibration_ka failed "
+			ERROR_STREAM << "LiberaSinglePassE::read_CalibrationKa failed "
 					<< device_name << e.what() << endl;
 			return;
 		}
 	//	Set the attribute value
-	attr.set_value(attr_Calibration_ka_read);
+	attr.set_value(attr_CalibrationKa_read);
 
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_Calibration_ka
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_CalibrationKa
 }
 
 //--------------------------------------------------------
 /**
- *	Write Calibration_ka attribute values to hardware.
+ *	Write CalibrationKa attribute values to hardware.
  *
  *	Data type:	Tango::DevDouble
  *	Attr type:	Scalar
  */
 //--------------------------------------------------------
-void LiberaSinglePassE::write_Calibration_ka(Tango::WAttribute &attr)
+void LiberaSinglePassE::write_CalibrationKa(Tango::WAttribute &attr)
 {
-	DEBUG_STREAM << "LiberaSinglePassE::write_Calibration_ka(Tango::Attribute &attr) entering... " << endl;
+	DEBUG_STREAM << "LiberaSinglePassE::write_CalibrationKa(Tango::Attribute &attr) entering... " << endl;
 
 	//	Retrieve write value
 	Tango::DevDouble	w_val;
 	attr.get_write_value(w_val);
 
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::write_Calibration_ka) ENABLED START -----*/
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::write_CalibrationKa) ENABLED START -----*/
 
 	try {
-		*attr_Calibration_ka_read = w_val;
+		*attr_CalibrationKa_read = w_val;
 		double val = static_cast<double>(w_val);
 		mci_Calibration_ka.Set(val);
 	} catch (istd::Exception &e) {
-		ERROR_STREAM << "LiberaSinglePassE::write_Calibration_ka failed "
+		ERROR_STREAM << "LiberaSinglePassE::write_CalibrationKa failed "
 				<< device_name << e.what() << endl;
 		return;
 	}
 
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::write_Calibration_ka
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::write_CalibrationKa
 }
 
 //--------------------------------------------------------
 /**
- *	Read Calibration_kb attribute
- *	Description: Correction coefficient used for input signal amplitude
- *	             calibration
+ *	Read CalibrationKb attribute
+ *	Description: Correction coefficient of the pickup sensor for channel B.
  *
  *	Data type:	Tango::DevDouble
  *	Attr type:	Scalar
  */
 //--------------------------------------------------------
-void LiberaSinglePassE::read_Calibration_kb(Tango::Attribute &attr)
+void LiberaSinglePassE::read_CalibrationKb(Tango::Attribute &attr)
 {
-	DEBUG_STREAM << "LiberaSinglePassE::read_Calibration_kb(Tango::Attribute &attr) entering... " << endl;
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_Calibration_kb) ENABLED START -----*/
+	DEBUG_STREAM << "LiberaSinglePassE::read_CalibrationKb(Tango::Attribute &attr) entering... " << endl;
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_CalibrationKb) ENABLED START -----*/
 
 	try {
 		double kb;
 		mci_Calibration_kb.Get(kb);
-		*attr_Calibration_kb_read = static_cast<Tango::DevDouble>(kb);
+		*attr_CalibrationKb_read = static_cast<Tango::DevDouble>(kb);
 	} catch (istd::Exception &e) {
-		ERROR_STREAM << "LiberaSinglePassE::read_Calibration_kb failed "
+		ERROR_STREAM << "LiberaSinglePassE::read_CalibrationKb failed "
 				<< device_name << e.what() << endl;
 		return;
 	}
 
 	//	Set the attribute value
-	attr.set_value(attr_Calibration_kb_read);
+	attr.set_value(attr_CalibrationKb_read);
 
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_Calibration_kb
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_CalibrationKb
 }
 
 //--------------------------------------------------------
 /**
- *	Write Calibration_kb attribute values to hardware.
+ *	Write CalibrationKb attribute values to hardware.
  *
  *	Data type:	Tango::DevDouble
  *	Attr type:	Scalar
  */
 //--------------------------------------------------------
-void LiberaSinglePassE::write_Calibration_kb(Tango::WAttribute &attr)
+void LiberaSinglePassE::write_CalibrationKb(Tango::WAttribute &attr)
 {
-	DEBUG_STREAM << "LiberaSinglePassE::write_Calibration_kb(Tango::Attribute &attr) entering... " << endl;
+	DEBUG_STREAM << "LiberaSinglePassE::write_CalibrationKb(Tango::Attribute &attr) entering... " << endl;
 
 	//	Retrieve write value
 	Tango::DevDouble	w_val;
 	attr.get_write_value(w_val);
 
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::write_Calibration_kb) ENABLED START -----*/
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::write_CalibrationKb) ENABLED START -----*/
 
 	try {
-		*attr_Calibration_kb_read = w_val;
+		*attr_CalibrationKb_read = w_val;
 		double val = static_cast<double>(w_val);
 		mci_Calibration_kb.Set(val);
 	} catch (istd::Exception &e) {
-		ERROR_STREAM << "LiberaSinglePassE::write_Calibration_kb failed "
+		ERROR_STREAM << "LiberaSinglePassE::write_CalibrationKb failed "
 				<< device_name << e.what() << endl;
 		return;
 	}
 
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::write_Calibration_kb
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::write_CalibrationKb
 }
 
 //--------------------------------------------------------
 /**
- *	Read Calibration_kc attribute
- *	Description: Correction coefficient used for input signal amplitude
- *	             calibration
+ *	Read CalibrationKc attribute
+ *	Description: Correction coefficient of the pickup sensor for channel C.
  *
  *	Data type:	Tango::DevDouble
  *	Attr type:	Scalar
  */
 //--------------------------------------------------------
-void LiberaSinglePassE::read_Calibration_kc(Tango::Attribute &attr)
+void LiberaSinglePassE::read_CalibrationKc(Tango::Attribute &attr)
 {
-	DEBUG_STREAM << "LiberaSinglePassE::read_Calibration_kc(Tango::Attribute &attr) entering... " << endl;
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_Calibration_kc) ENABLED START -----*/
+	DEBUG_STREAM << "LiberaSinglePassE::read_CalibrationKc(Tango::Attribute &attr) entering... " << endl;
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_CalibrationKc) ENABLED START -----*/
 
 	try {
 		double kc;
 		mci_Calibration_kc.Get(kc);
-		*attr_Calibration_kc_read = static_cast<Tango::DevDouble>(kc);
+		*attr_CalibrationKc_read = static_cast<Tango::DevDouble>(kc);
 	} catch (istd::Exception &e) {
-		ERROR_STREAM << "LiberaSinglePassE::read_Calibration_kc failed "
+		ERROR_STREAM << "LiberaSinglePassE::read_CalibrationKc failed "
 				<< device_name << e.what() << endl;
 		return;
 	}
 
 	//	Set the attribute value
-	attr.set_value(attr_Calibration_kc_read);
+	attr.set_value(attr_CalibrationKc_read);
 
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_Calibration_kc
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_CalibrationKc
 }
 
 //--------------------------------------------------------
 /**
- *	Write Calibration_kc attribute values to hardware.
+ *	Write CalibrationKc attribute values to hardware.
  *
  *	Data type:	Tango::DevDouble
  *	Attr type:	Scalar
  */
 //--------------------------------------------------------
-void LiberaSinglePassE::write_Calibration_kc(Tango::WAttribute &attr)
+void LiberaSinglePassE::write_CalibrationKc(Tango::WAttribute &attr)
 {
-	DEBUG_STREAM << "LiberaSinglePassE::write_Calibration_kc(Tango::Attribute &attr) entering... " << endl;
+	DEBUG_STREAM << "LiberaSinglePassE::write_CalibrationKc(Tango::Attribute &attr) entering... " << endl;
 
 	//	Retrieve write value
 	Tango::DevDouble	w_val;
 	attr.get_write_value(w_val);
 
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::write_Calibration_kc) ENABLED START -----*/
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::write_CalibrationKc) ENABLED START -----*/
 
 	try {
-		*attr_Calibration_kc_read = w_val;
+		*attr_CalibrationKc_read = w_val;
 		double val = static_cast<double>(w_val);
 		mci_Calibration_kc.Set(val);
 	} catch (istd::Exception &e) {
-		ERROR_STREAM << "LiberaSinglePassE::write_Calibration_kc failed "
+		ERROR_STREAM << "LiberaSinglePassE::write_CalibrationKc failed "
 				<< device_name << e.what() << endl;
 		return;
 	}
 
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::write_Calibration_kc
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::write_CalibrationKc
 }
 
 //--------------------------------------------------------
 /**
- *	Read Calibration_kd attribute
- *	Description: Correction coefficient used for input signal amplitude
- *	             calibration
+ *	Read CalibrationKd attribute
+ *	Description: Correction coefficient of the pickup sensor for channel D.
  *
  *	Data type:	Tango::DevDouble
  *	Attr type:	Scalar
  */
 //--------------------------------------------------------
-void LiberaSinglePassE::read_Calibration_kd(Tango::Attribute &attr)
+void LiberaSinglePassE::read_CalibrationKd(Tango::Attribute &attr)
 {
-	DEBUG_STREAM << "LiberaSinglePassE::read_Calibration_kd(Tango::Attribute &attr) entering... " << endl;
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_Calibration_kd) ENABLED START -----*/
+	DEBUG_STREAM << "LiberaSinglePassE::read_CalibrationKd(Tango::Attribute &attr) entering... " << endl;
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_CalibrationKd) ENABLED START -----*/
 
 	try {
 		double kd;
-		mci_Calibration_ka.Get(kd);
-		*attr_Calibration_kd_read = static_cast<Tango::DevDouble>(kd);
+		mci_Calibration_kd.Get(kd);
+		*attr_CalibrationKd_read = static_cast<Tango::DevDouble>(kd);
 	} catch (istd::Exception &e) {
-		ERROR_STREAM << "LiberaSinglePassE::read_Calibration_kd failed "
+		ERROR_STREAM << "LiberaSinglePassE::read_CalibrationKd failed "
 				<< device_name << e.what() << endl;
 		return;
 	}
 
 	//	Set the attribute value
-	attr.set_value(attr_Calibration_kd_read);
+	attr.set_value(attr_CalibrationKd_read);
 
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_Calibration_kd
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_CalibrationKd
 }
 
 //--------------------------------------------------------
 /**
- *	Write Calibration_kd attribute values to hardware.
+ *	Write CalibrationKd attribute values to hardware.
  *
  *	Data type:	Tango::DevDouble
  *	Attr type:	Scalar
  */
 //--------------------------------------------------------
-void LiberaSinglePassE::write_Calibration_kd(Tango::WAttribute &attr)
+void LiberaSinglePassE::write_CalibrationKd(Tango::WAttribute &attr)
 {
-	DEBUG_STREAM << "LiberaSinglePassE::write_Calibration_kd(Tango::Attribute &attr) entering... " << endl;
+	DEBUG_STREAM << "LiberaSinglePassE::write_CalibrationKd(Tango::Attribute &attr) entering... " << endl;
 
 	//	Retrieve write value
 	Tango::DevDouble	w_val;
 	attr.get_write_value(w_val);
 
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::write_Calibration_kd) ENABLED START -----*/
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::write_CalibrationKd) ENABLED START -----*/
 
 	try {
-		*attr_Calibration_kd_read = w_val;
+		*attr_CalibrationKd_read = w_val;
 		double val = static_cast<double>(w_val);
 		mci_Calibration_kd.Set(val);
 	} catch (istd::Exception &e) {
-		ERROR_STREAM << "LiberaSinglePassE::write_Calibration_kd failed "
+		ERROR_STREAM << "LiberaSinglePassE::write_CalibrationKd failed "
 				<< device_name << e.what() << endl;
 		return;
 	}
 
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::write_Calibration_kd
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::write_CalibrationKd
 }
 
 //--------------------------------------------------------
 /**
- *	Read Linear_x_k attribute
- *	Description: Pickup inverse sensitivity coefficient
- *
+ *	Read LinearXK attribute
+ *	Description: Setting the correction coefficient of the linear equation
+ *	             for the x position calculation. See chapter 2.6.1 in
+ *	             Libera Single Pass E User manual for details.
  *
  *	Data type:	Tango::DevDouble
  *	Attr type:	Scalar
  */
 //--------------------------------------------------------
-void LiberaSinglePassE::read_Linear_x_k(Tango::Attribute &attr)
+void LiberaSinglePassE::read_LinearXK(Tango::Attribute &attr)
 {
-	DEBUG_STREAM << "LiberaSinglePassE::read_Linear_x_k(Tango::Attribute &attr) entering... " << endl;
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_Linear_x_k) ENABLED START -----*/
+	DEBUG_STREAM << "LiberaSinglePassE::read_LinearXK(Tango::Attribute &attr) entering... " << endl;
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_LinearXK) ENABLED START -----*/
 
 	try {
 		double x_k;
 		mci_Linear_x_k.Get(x_k);
-		*attr_Linear_x_k_read = static_cast<Tango::DevDouble>(x_k);
+		*attr_LinearXK_read = static_cast<Tango::DevDouble>(x_k);
 	} catch (istd::Exception &e) {
-		ERROR_STREAM << "LiberaSinglePassE::read_Linear_x_k failed "
+		ERROR_STREAM << "LiberaSinglePassE::read_LinearXK failed "
 				<< device_name << e.what() << endl;
 		return;
 	}
 
 	//	Set the attribute value
-	attr.set_value(attr_Linear_x_k_read);
+	attr.set_value(attr_LinearXK_read);
 
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_Linear_x_k
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_LinearXK
 }
 
 //--------------------------------------------------------
 /**
- *	Write Linear_x_k attribute values to hardware.
+ *	Write LinearXK attribute values to hardware.
  *
  *	Data type:	Tango::DevDouble
  *	Attr type:	Scalar
  */
 //--------------------------------------------------------
-void LiberaSinglePassE::write_Linear_x_k(Tango::WAttribute &attr)
+void LiberaSinglePassE::write_LinearXK(Tango::WAttribute &attr)
 {
-	DEBUG_STREAM << "LiberaSinglePassE::write_Linear_x_k(Tango::Attribute &attr) entering... " << endl;
+	DEBUG_STREAM << "LiberaSinglePassE::write_LinearXK(Tango::Attribute &attr) entering... " << endl;
 
 	//	Retrieve write value
 	Tango::DevDouble	w_val;
 	attr.get_write_value(w_val);
 
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::write_Linear_x_k) ENABLED START -----*/
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::write_LinearXK) ENABLED START -----*/
 
 	try {
-		*attr_Linear_x_k_read = w_val;
+		*attr_LinearXK_read = w_val;
 		double val = static_cast<double>(w_val);
 		mci_Linear_x_k.Set(val);
 	} catch (istd::Exception &e) {
-		ERROR_STREAM << "LiberaSinglePassE::write_Linear_x_k failed "
+		ERROR_STREAM << "LiberaSinglePassE::write_LinearXK failed "
 				<< device_name << e.what() << endl;
 		return;
 	}
 
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::write_Linear_x_k
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::write_LinearXK
 }
 
 //--------------------------------------------------------
 /**
- *	Read Linear_x_offs attribute
- *	Description: Calibrates position offsets
- *
+ *	Read LinearXOffs attribute
+ *	Description: Used to calibrate position offsets expressed in nm.
+ *	             Please refer to Chapter 2.6 in Libera Single Pass E
+ *	             User manual for details.
  *
  *	Data type:	Tango::DevDouble
  *	Attr type:	Scalar
  */
 //--------------------------------------------------------
-void LiberaSinglePassE::read_Linear_x_offs(Tango::Attribute &attr)
+void LiberaSinglePassE::read_LinearXOffs(Tango::Attribute &attr)
 {
-	DEBUG_STREAM << "LiberaSinglePassE::read_Linear_x_offs(Tango::Attribute &attr) entering... " << endl;
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_Linear_x_offs) ENABLED START -----*/
+	DEBUG_STREAM << "LiberaSinglePassE::read_LinearXOffs(Tango::Attribute &attr) entering... " << endl;
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_LinearXOffs) ENABLED START -----*/
 
 	try {
 		double x_offs;
-		mci_Linear_x_k.Get(x_offs);
-		*attr_Linear_x_offs_read = static_cast<Tango::DevDouble>(x_offs);
+		mci_Linear_x_offs.Get(x_offs);
+		*attr_LinearXOffs_read = static_cast<Tango::DevDouble>(x_offs);
 	} catch (istd::Exception &e) {
-		ERROR_STREAM << "LiberaSinglePassE::read_Linear_x_offs failed "
+		ERROR_STREAM << "LiberaSinglePassE::read_LinearXOffs failed "
 				<< device_name << e.what() << endl;
 		return;
 	}
 
 	//	Set the attribute value
-	attr.set_value(attr_Linear_x_offs_read);
+	attr.set_value(attr_LinearXOffs_read);
 
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_Linear_x_offs
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_LinearXOffs
 }
 
 //--------------------------------------------------------
 /**
- *	Write Linear_x_offs attribute values to hardware.
+ *	Write LinearXOffs attribute values to hardware.
  *
  *	Data type:	Tango::DevDouble
  *	Attr type:	Scalar
  */
 //--------------------------------------------------------
-void LiberaSinglePassE::write_Linear_x_offs(Tango::WAttribute &attr)
+void LiberaSinglePassE::write_LinearXOffs(Tango::WAttribute &attr)
 {
-	DEBUG_STREAM << "LiberaSinglePassE::write_Linear_x_offs(Tango::Attribute &attr) entering... " << endl;
+	DEBUG_STREAM << "LiberaSinglePassE::write_LinearXOffs(Tango::Attribute &attr) entering... " << endl;
 
 	//	Retrieve write value
 	Tango::DevDouble	w_val;
 	attr.get_write_value(w_val);
 
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::write_Linear_x_offs) ENABLED START -----*/
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::write_LinearXOffs) ENABLED START -----*/
 
 	try {
-		*attr_Linear_x_offs_read = w_val;
+		*attr_LinearXOffs_read = w_val;
 		double val = static_cast<double>(w_val);
 		mci_Linear_x_offs.Set(val);
 	} catch (istd::Exception &e) {
-		ERROR_STREAM << "LiberaSinglePassE::write_Linear_x_offs failed "
+		ERROR_STREAM << "LiberaSinglePassE::write_LinearXOffs failed "
 				<< device_name << e.what() << endl;
 		return;
 	}
 
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::write_Linear_x_offs
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::write_LinearXOffs
 }
 
 //--------------------------------------------------------
 /**
- *	Read Linear_y_k attribute
- *	Description: Pickup inverse sensitivity coefficient.
+ *	Read LinearYK attribute
+ *	Description: Setting the correction coefficient of the linear equation
+ *	             for the y position calculation. See chapter 2.6.1 in
+ *	             Libera Single Pass E User manual for details.
  *
  *	Data type:	Tango::DevDouble
  *	Attr type:	Scalar
  */
 //--------------------------------------------------------
-void LiberaSinglePassE::read_Linear_y_k(Tango::Attribute &attr)
+void LiberaSinglePassE::read_LinearYK(Tango::Attribute &attr)
 {
-	DEBUG_STREAM << "LiberaSinglePassE::read_Linear_y_k(Tango::Attribute &attr) entering... " << endl;
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_Linear_y_k) ENABLED START -----*/
+	DEBUG_STREAM << "LiberaSinglePassE::read_LinearYK(Tango::Attribute &attr) entering... " << endl;
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_LinearYK) ENABLED START -----*/
 
 	try {
 		double y_k;
 		mci_Linear_y_k.Get(y_k);
-		*attr_Linear_y_k_read = static_cast<Tango::DevDouble>(y_k);
+		*attr_LinearYK_read = static_cast<Tango::DevDouble>(y_k);
 	} catch (istd::Exception &e) {
-		ERROR_STREAM << "LiberaSinglePassE::read_Linear_y_k failed "
+		ERROR_STREAM << "LiberaSinglePassE::read_LinearYK failed "
 				<< device_name << e.what() << endl;
 		return;
 	}
 
 	//	Set the attribute value
-	attr.set_value(attr_Linear_y_k_read);
+	attr.set_value(attr_LinearYK_read);
 
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_Linear_y_k
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_LinearYK
 }
 
 //--------------------------------------------------------
 /**
- *	Write Linear_y_k attribute values to hardware.
+ *	Write LinearYK attribute values to hardware.
  *
  *	Data type:	Tango::DevDouble
  *	Attr type:	Scalar
  */
 //--------------------------------------------------------
-void LiberaSinglePassE::write_Linear_y_k(Tango::WAttribute &attr)
+void LiberaSinglePassE::write_LinearYK(Tango::WAttribute &attr)
 {
-	DEBUG_STREAM << "LiberaSinglePassE::write_Linear_y_k(Tango::Attribute &attr) entering... " << endl;
+	DEBUG_STREAM << "LiberaSinglePassE::write_LinearYK(Tango::Attribute &attr) entering... " << endl;
 
 	//	Retrieve write value
 	Tango::DevDouble	w_val;
 	attr.get_write_value(w_val);
 
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::write_Linear_y_k) ENABLED START -----*/
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::write_LinearYK) ENABLED START -----*/
 
 	try {
-		*attr_Linear_y_k_read = w_val;
+		*attr_LinearYK_read = w_val;
 		double val = static_cast<double>(w_val);
 		mci_Linear_y_k.Set(val);
 	} catch (istd::Exception &e) {
-		ERROR_STREAM << "LiberaSinglePassE::write_Linear_y_k failed "
+		ERROR_STREAM << "LiberaSinglePassE::write_LinearYK failed "
 				<< device_name << e.what() << endl;
 		return;
 	}
 
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::write_Linear_y_k
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::write_LinearYK
 }
 
 //--------------------------------------------------------
 /**
- *	Read Linear_y_offs attribute
- *	Description: Calibrates position offsets
+ *	Read LinearYOffs attribute
+ *	Description: Used to calibrate position offsets expressed in nm.
+ *	             Please refer to Chapter 2.6 in Libera Single Pass E
+ *	             User manual for details.
  *
  *	Data type:	Tango::DevDouble
  *	Attr type:	Scalar
  */
 //--------------------------------------------------------
-void LiberaSinglePassE::read_Linear_y_offs(Tango::Attribute &attr)
+void LiberaSinglePassE::read_LinearYOffs(Tango::Attribute &attr)
 {
-	DEBUG_STREAM << "LiberaSinglePassE::read_Linear_y_offs(Tango::Attribute &attr) entering... " << endl;
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_Linear_y_offs) ENABLED START -----*/
+	DEBUG_STREAM << "LiberaSinglePassE::read_LinearYOffs(Tango::Attribute &attr) entering... " << endl;
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_LinearYOffs) ENABLED START -----*/
 
 	try {
 		double y_offs;
 		mci_Linear_y_offs.Get(y_offs);
-		*attr_Linear_y_offs_read = static_cast<Tango::DevDouble>(y_offs);
+		*attr_LinearYOffs_read = static_cast<Tango::DevDouble>(y_offs);
 	} catch (istd::Exception &e) {
-		ERROR_STREAM << "LiberaSinglePassE::read_Linear_y_offs failed "
+		ERROR_STREAM << "LiberaSinglePassE::read_LinearYOffs failed "
 				<< device_name << e.what() << endl;
 		return;
 	}
 
 	//	Set the attribute value
-	attr.set_value(attr_Linear_y_offs_read);
+	attr.set_value(attr_LinearYOffs_read);
 
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_Linear_y_offs
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_LinearYOffs
 }
 
 //--------------------------------------------------------
 /**
- *	Write Linear_y_offs attribute values to hardware.
+ *	Write LinearYOffs attribute values to hardware.
  *
  *	Data type:	Tango::DevDouble
  *	Attr type:	Scalar
  */
 //--------------------------------------------------------
-void LiberaSinglePassE::write_Linear_y_offs(Tango::WAttribute &attr)
+void LiberaSinglePassE::write_LinearYOffs(Tango::WAttribute &attr)
 {
-	DEBUG_STREAM << "LiberaSinglePassE::write_Linear_y_offs(Tango::Attribute &attr) entering... " << endl;
+	DEBUG_STREAM << "LiberaSinglePassE::write_LinearYOffs(Tango::Attribute &attr) entering... " << endl;
 
 	//	Retrieve write value
 	Tango::DevDouble	w_val;
 	attr.get_write_value(w_val);
 
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::write_Linear_y_offs) ENABLED START -----*/
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::write_LinearYOffs) ENABLED START -----*/
 
 	try {
-		*attr_Linear_y_offs_read = w_val;
+		*attr_LinearYOffs_read = w_val;
 		double val = static_cast<double>(w_val);
 		mci_Linear_y_offs.Set(val);
 	} catch (istd::Exception &e) {
-		ERROR_STREAM << "LiberaSinglePassE::write_Linear_y_offs failed "
+		ERROR_STREAM << "LiberaSinglePassE::write_LinearYOffs failed "
 				<< device_name << e.what() << endl;
 		return;
 	}
 
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::write_Linear_y_offs
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::write_LinearYOffs
 }
 
 //--------------------------------------------------------
 /**
- *	Read Linear_q_k attribute
- *	Description: Scaling coefficient for q factor.
- *
+ *	Read LinearQK attribute
+ *	Description: Setting the correction coefficient of the linear equation
+ *	             for the q calculation. See chapter 2.6.1 in Libera Single
+ *	             Pass E User manual for details.
  *
  *	Data type:	Tango::DevDouble
  *	Attr type:	Scalar
  */
 //--------------------------------------------------------
-void LiberaSinglePassE::read_Linear_q_k(Tango::Attribute &attr)
+void LiberaSinglePassE::read_LinearQK(Tango::Attribute &attr)
 {
-	DEBUG_STREAM << "LiberaSinglePassE::read_Linear_q_k(Tango::Attribute &attr) entering... " << endl;
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_Linear_q_k) ENABLED START -----*/
+	DEBUG_STREAM << "LiberaSinglePassE::read_LinearQK(Tango::Attribute &attr) entering... " << endl;
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_LinearQK) ENABLED START -----*/
 
 	try {
 		double q_k;
 		mci_Linear_q_k.Get(q_k);
-		*attr_Linear_q_k_read = static_cast<Tango::DevDouble>(q_k);
+		*attr_LinearQK_read = static_cast<Tango::DevDouble>(q_k);
 	} catch (istd::Exception &e) {
-		ERROR_STREAM << "LiberaSinglePassE::read_Linear_q_k failed "
+		ERROR_STREAM << "LiberaSinglePassE::read_LinearQK failed "
 				<< device_name << e.what() << endl;
 		return;
 	}
 
 	//	Set the attribute value
-	attr.set_value(attr_Linear_q_k_read);
+	attr.set_value(attr_LinearQK_read);
 
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_Linear_q_k
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_LinearQK
 }
 
 //--------------------------------------------------------
 /**
- *	Write Linear_q_k attribute values to hardware.
+ *	Write LinearQK attribute values to hardware.
  *
  *	Data type:	Tango::DevDouble
  *	Attr type:	Scalar
  */
 //--------------------------------------------------------
-void LiberaSinglePassE::write_Linear_q_k(Tango::WAttribute &attr)
+void LiberaSinglePassE::write_LinearQK(Tango::WAttribute &attr)
 {
-	DEBUG_STREAM << "LiberaSinglePassE::write_Linear_q_k(Tango::Attribute &attr) entering... " << endl;
+	DEBUG_STREAM << "LiberaSinglePassE::write_LinearQK(Tango::Attribute &attr) entering... " << endl;
 
 	//	Retrieve write value
 	Tango::DevDouble	w_val;
 	attr.get_write_value(w_val);
 
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::write_Linear_q_k) ENABLED START -----*/
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::write_LinearQK) ENABLED START -----*/
 
 	try {
-		*attr_Linear_q_k_read = w_val;
+		*attr_LinearQK_read = w_val;
 		double val = static_cast<double>(w_val);
 		mci_Linear_q_k.Set(val);
 	} catch (istd::Exception &e) {
-		ERROR_STREAM << "LiberaSinglePassE::write_Linear_q_k failed "
+		ERROR_STREAM << "LiberaSinglePassE::write_LinearQK failed "
 				<< device_name << e.what() << endl;
 		return;
 	}
 
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::write_Linear_q_k
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::write_LinearQK
 }
 
 //--------------------------------------------------------
 /**
- *	Read Linear_q_offs attribute
- *	Description: Sets the offset for q factor.
- *
+ *	Read LinearQOffs attribute
+ *	Description: Sets the offset for q factor. Default value is 0.
+ *	             See Chapter 2.6 in Libera Single Pass E User manual
+ *	             for details.
  *
  *	Data type:	Tango::DevDouble
  *	Attr type:	Scalar
  */
 //--------------------------------------------------------
-void LiberaSinglePassE::read_Linear_q_offs(Tango::Attribute &attr)
+void LiberaSinglePassE::read_LinearQOffs(Tango::Attribute &attr)
 {
-	DEBUG_STREAM << "LiberaSinglePassE::read_Linear_q_offs(Tango::Attribute &attr) entering... " << endl;
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_Linear_q_offs) ENABLED START -----*/
+	DEBUG_STREAM << "LiberaSinglePassE::read_LinearQOffs(Tango::Attribute &attr) entering... " << endl;
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_LinearQOffs) ENABLED START -----*/
 
 	try {
 		double q_offs;
 		mci_Linear_q_offs.Get(q_offs);
-		*attr_Linear_q_offs_read = static_cast<Tango::DevDouble>(q_offs);
+		*attr_LinearQOffs_read = static_cast<Tango::DevDouble>(q_offs);
 	} catch (istd::Exception &e) {
-		ERROR_STREAM << "LiberaSinglePassE::read_Linear_q_offs failed "
+		ERROR_STREAM << "LiberaSinglePassE::read_LinearQOffs failed "
 				<< device_name << e.what() << endl;
 		return;
 	}
 
 	//	Set the attribute value
-	attr.set_value(attr_Linear_q_offs_read);
+	attr.set_value(attr_LinearQOffs_read);
 
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_Linear_q_offs
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_LinearQOffs
 }
 
 //--------------------------------------------------------
 /**
- *	Write Linear_q_offs attribute values to hardware.
+ *	Write LinearQOffs attribute values to hardware.
  *
  *	Data type:	Tango::DevDouble
  *	Attr type:	Scalar
  */
 //--------------------------------------------------------
-void LiberaSinglePassE::write_Linear_q_offs(Tango::WAttribute &attr)
+void LiberaSinglePassE::write_LinearQOffs(Tango::WAttribute &attr)
 {
-	DEBUG_STREAM << "LiberaSinglePassE::write_Linear_q_offs(Tango::Attribute &attr) entering... " << endl;
+	DEBUG_STREAM << "LiberaSinglePassE::write_LinearQOffs(Tango::Attribute &attr) entering... " << endl;
 
 	//	Retrieve write value
 	Tango::DevDouble	w_val;
 	attr.get_write_value(w_val);
 
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::write_Linear_q_offs) ENABLED START -----*/
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::write_LinearQOffs) ENABLED START -----*/
 
 	try {
-		*attr_Linear_q_offs_read = w_val;
+		*attr_LinearQOffs_read = w_val;
 		double val = static_cast<double>(w_val);
 		mci_Linear_q_offs.Set(val);
 	} catch (istd::Exception &e) {
-		ERROR_STREAM << "LiberaSinglePassE::write_Linear_q_offs failed "
+		ERROR_STREAM << "LiberaSinglePassE::write_LinearQOffs failed "
 				<< device_name << e.what() << endl;
 		return;
 	}
 
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::write_Linear_q_offs
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::write_LinearQOffs
 }
 
 //--------------------------------------------------------
 /**
- *	Read Linear_sum_k attribute
- *	Description: Coefficient for sum value
+ *	Read LinearSumK attribute
+ *	Description: Coefficient for sum value. Default is 67108864 (2^26).
+ *	             Please refer to Chapter 2.6 in the Libera Single Pass E
+ *	             User manual for details.
  *
  *	Data type:	Tango::DevDouble
  *	Attr type:	Scalar
  */
 //--------------------------------------------------------
-void LiberaSinglePassE::read_Linear_sum_k(Tango::Attribute &attr)
+void LiberaSinglePassE::read_LinearSumK(Tango::Attribute &attr)
 {
-	DEBUG_STREAM << "LiberaSinglePassE::read_Linear_sum_k(Tango::Attribute &attr) entering... " << endl;
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_Linear_sum_k) ENABLED START -----*/
+	DEBUG_STREAM << "LiberaSinglePassE::read_LinearSumK(Tango::Attribute &attr) entering... " << endl;
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_LinearSumK) ENABLED START -----*/
 
 	try {
 		double sum_k;
 		mci_Linear_sum_k.Get(sum_k);
-		*attr_Linear_sum_k_read = static_cast<Tango::DevDouble>(sum_k);
+		*attr_LinearSumK_read = static_cast<Tango::DevDouble>(sum_k);
 	} catch (istd::Exception &e) {
-		ERROR_STREAM << "LiberaSinglePassE::read_Linear_sum_k failed "
+		ERROR_STREAM << "LiberaSinglePassE::read_LinearSumK failed "
 				<< device_name << e.what() << endl;
 		return;
 	}
 
 	//	Set the attribute value
-	attr.set_value(attr_Linear_sum_k_read);
+	attr.set_value(attr_LinearSumK_read);
 
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_Linear_sum_k
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_LinearSumK
 }
 
 //--------------------------------------------------------
 /**
- *	Write Linear_sum_k attribute values to hardware.
+ *	Write LinearSumK attribute values to hardware.
  *
  *	Data type:	Tango::DevDouble
  *	Attr type:	Scalar
  */
 //--------------------------------------------------------
-void LiberaSinglePassE::write_Linear_sum_k(Tango::WAttribute &attr)
+void LiberaSinglePassE::write_LinearSumK(Tango::WAttribute &attr)
 {
-	DEBUG_STREAM << "LiberaSinglePassE::write_Linear_sum_k(Tango::Attribute &attr) entering... " << endl;
+	DEBUG_STREAM << "LiberaSinglePassE::write_LinearSumK(Tango::Attribute &attr) entering... " << endl;
 
 	//	Retrieve write value
 	Tango::DevDouble	w_val;
 	attr.get_write_value(w_val);
 
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::write_Linear_sum_k) ENABLED START -----*/
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::write_LinearSumK) ENABLED START -----*/
 
 	try {
-		*attr_Linear_sum_k_read = w_val;
+		*attr_LinearSumK_read = w_val;
 		double val = static_cast<double>(w_val);
 		mci_Linear_sum_k.Set(val);
 	} catch (istd::Exception &e) {
-		ERROR_STREAM << "LiberaSinglePassE::write_Linear_sum_k failed "
+		ERROR_STREAM << "LiberaSinglePassE::write_LinearSumK failed "
 				<< device_name << e.what() << endl;
 		return;
 	}
 
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::write_Linear_sum_k
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::write_LinearSumK
 }
 
 //--------------------------------------------------------
 /**
- *	Read Linear_sum_offs attribute
- *	Description: Coefficient for offsetting the sum value
+ *	Read LinearSumOffs attribute
+ *	Description: Coefficient for offsetting the sum value.
+ *	             Default value is 0. Please refer to Chapter 2.6 of Libera
+ *	             Single Pass E User manual for details.
  *
+ *	             NOTE: The Libera Single Pass E has the possibility to
+ *	             support also the polynomial equations for calculation
+ *	             of position, however it is not supported in Tango as the
+ *	             Libera Brilliance Single Pass supports only the linear
+ *	             equation. Polynomial equation is providing more
+ *	             accurate results of measurements as it is
+ *	             compensating for the nonlinear anomalies for the
+ *	             pick-up sensor. Please see the chapter 2.6.2 in the
+ *	             Libera Single Pass E user manual for details.
  *
  *	Data type:	Tango::DevDouble
  *	Attr type:	Scalar
  */
 //--------------------------------------------------------
-void LiberaSinglePassE::read_Linear_sum_offs(Tango::Attribute &attr)
+void LiberaSinglePassE::read_LinearSumOffs(Tango::Attribute &attr)
 {
-	DEBUG_STREAM << "LiberaSinglePassE::read_Linear_sum_offs(Tango::Attribute &attr) entering... " << endl;
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_Linear_sum_offs) ENABLED START -----*/
+	DEBUG_STREAM << "LiberaSinglePassE::read_LinearSumOffs(Tango::Attribute &attr) entering... " << endl;
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_LinearSumOffs) ENABLED START -----*/
 
 	try {
 		double sum_offs;
 		mci_Linear_sum_offs.Get(sum_offs);
-		*attr_Linear_sum_offs_read = static_cast<Tango::DevDouble>(sum_offs);
+		*attr_LinearSumOffs_read = static_cast<Tango::DevDouble>(sum_offs);
 	} catch (istd::Exception &e) {
-		ERROR_STREAM << "LiberaSinglePassE::read_Linear_sum_offs failed "
+		ERROR_STREAM << "LiberaSinglePassE::read_LinearSumOffs failed "
 				<< device_name << e.what() << endl;
 		return;
 	}
 
 	//	Set the attribute value
-	attr.set_value(attr_Linear_sum_offs_read);
+	attr.set_value(attr_LinearSumOffs_read);
 
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_Linear_sum_offs
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_LinearSumOffs
 }
 
 //--------------------------------------------------------
 /**
- *	Write Linear_sum_offs attribute values to hardware.
+ *	Write LinearSumOffs attribute values to hardware.
  *
  *	Data type:	Tango::DevDouble
  *	Attr type:	Scalar
  */
 //--------------------------------------------------------
-void LiberaSinglePassE::write_Linear_sum_offs(Tango::WAttribute &attr)
+void LiberaSinglePassE::write_LinearSumOffs(Tango::WAttribute &attr)
 {
-	DEBUG_STREAM << "LiberaSinglePassE::write_Linear_sum_offs(Tango::Attribute &attr) entering... " << endl;
+	DEBUG_STREAM << "LiberaSinglePassE::write_LinearSumOffs(Tango::Attribute &attr) entering... " << endl;
 
 	//	Retrieve write value
 	Tango::DevDouble	w_val;
 	attr.get_write_value(w_val);
 
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::write_Linear_sum_offs) ENABLED START -----*/
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::write_LinearSumOffs) ENABLED START -----*/
 
 	try {
-		*attr_Linear_sum_offs_read = w_val;
+		*attr_LinearSumOffs_read = w_val;
 		double val = static_cast<double>(w_val);
 		mci_Linear_sum_offs.Set(val);
 	} catch (istd::Exception &e) {
-		ERROR_STREAM << "LiberaSinglePassE::write_Linear_sum_offs failed "
+		ERROR_STREAM << "LiberaSinglePassE::write_LinearSumOffs failed "
 				<< device_name << e.what() << endl;
 		return;
 	}
 
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::write_Linear_sum_offs
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::write_LinearSumOffs
 }
 
 //--------------------------------------------------------
 /**
- *	Read Signal_expansion attribute
- *	Description: Interlock output signal duration.
+ *	Read SignalExpansion attribute
+ *	Description: Interlock output is active for all the time the Interlock
+ *	             conditions are fulfilled (ADC overflow and position
+ *	             monitoring). The Interlock output remains active for a
+ *	             certain time after the conditions have been cleared
+ *	             (mono-stable cell). The time is defined in ADC clock
+ *	             cycles with ireg parameter signal_expansion.
  *
  *	Data type:	Tango::DevDouble
  *	Attr type:	Scalar
  */
 //--------------------------------------------------------
-void LiberaSinglePassE::read_Signal_expansion(Tango::Attribute &attr)
+void LiberaSinglePassE::read_SignalExpansion(Tango::Attribute &attr)
 {
-	DEBUG_STREAM << "LiberaSinglePassE::read_Signal_expansion(Tango::Attribute &attr) entering... " << endl;
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_Signal_expansion) ENABLED START -----*/
+	DEBUG_STREAM << "LiberaSinglePassE::read_SignalExpansion(Tango::Attribute &attr) entering... " << endl;
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_SignalExpansion) ENABLED START -----*/
 
 	try {
 		double Sig_exp;
 		mci_SignalExpansion.Get(Sig_exp);
-		*attr_Signal_expansion_read = static_cast<Tango::DevDouble>(Sig_exp);
+		*attr_SignalExpansion_read = static_cast<Tango::DevDouble>(Sig_exp);
 	} catch (istd::Exception &e) {
-		ERROR_STREAM << "LiberaSinglePassE::read_Signal_expansion failed "
+		ERROR_STREAM << "LiberaSinglePassE::read_SignalExpansion failed "
 				<< device_name << e.what() << endl;
 		return;
 	}
 
 	//	Set the attribute value
-	attr.set_value(attr_Signal_expansion_read);
+	attr.set_value(attr_SignalExpansion_read);
 
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_Signal_expansion
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_SignalExpansion
 }
 
 //--------------------------------------------------------
 /**
- *	Write Signal_expansion attribute values to hardware.
+ *	Write SignalExpansion attribute values to hardware.
  *
  *	Data type:	Tango::DevDouble
  *	Attr type:	Scalar
  */
 //--------------------------------------------------------
-void LiberaSinglePassE::write_Signal_expansion(Tango::WAttribute &attr)
+void LiberaSinglePassE::write_SignalExpansion(Tango::WAttribute &attr)
 {
-	DEBUG_STREAM << "LiberaSinglePassE::write_Signal_expansion(Tango::Attribute &attr) entering... " << endl;
+	DEBUG_STREAM << "LiberaSinglePassE::write_SignalExpansion(Tango::Attribute &attr) entering... " << endl;
 
 	//	Retrieve write value
 	Tango::DevDouble	w_val;
 	attr.get_write_value(w_val);
 
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::write_Signal_expansion) ENABLED START -----*/
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::write_SignalExpansion) ENABLED START -----*/
 
 	try {
-		*attr_Signal_expansion_read = w_val;
+		*attr_SignalExpansion_read = w_val;
 		double val = static_cast<double>(w_val);
 		mci_SignalExpansion.Set(val);
 	} catch (istd::Exception &e) {
-		ERROR_STREAM << "LiberaSinglePassE::write_Signal_expansion failed "
+		ERROR_STREAM << "LiberaSinglePassE::write_SignalExpansion failed "
 				<< device_name << e.what() << endl;
 		return;
 	}
 
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::write_Signal_expansion
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::write_SignalExpansion
 }
 
 //--------------------------------------------------------
 /**
- *	Read Interlock_enabled attribute
- *	Description: Enable / disable interlock functionality.
+ *	Read InterlockEnabled attribute
+ *	Description: Enables/disables the interlock functionality. If it is set to
+ *	             true, interlock is enabled, if set to false, interlock is
+ *	             disabled. More details are in the chapter 2.12 in the
+ *	             Libera Single Pass E User manual.
  *
  *	Data type:	Tango::DevBoolean
  *	Attr type:	Scalar
  */
 //--------------------------------------------------------
-void LiberaSinglePassE::read_Interlock_enabled(Tango::Attribute &attr)
+void LiberaSinglePassE::read_InterlockEnabled(Tango::Attribute &attr)
 {
-	DEBUG_STREAM << "LiberaSinglePassE::read_Interlock_enabled(Tango::Attribute &attr) entering... " << endl;
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_Interlock_enabled) ENABLED START -----*/
+	DEBUG_STREAM << "LiberaSinglePassE::read_InterlockEnabled(Tango::Attribute &attr) entering... " << endl;
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_InterlockEnabled) ENABLED START -----*/
 
 	try {
 		bool intr_enab;
 		mci_InterlockEnabled.Get(intr_enab);
-		*attr_Signal_expansion_read = static_cast<Tango::DevBoolean>(intr_enab);
+		*attr_SignalExpansion_read = static_cast<Tango::DevBoolean>(intr_enab);
 	} catch (istd::Exception &e) {
-		ERROR_STREAM << "LiberaSinglePassE::read_Interlock_enabled failed "
+		ERROR_STREAM << "LiberaSinglePassE::read_InterlockEnabled failed "
 				<< device_name << e.what() << endl;
 		return;
 	}
 
 	//	Set the attribute value
-	attr.set_value(attr_Interlock_enabled_read);
+	attr.set_value(attr_InterlockEnabled_read);
 
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_Interlock_enabled
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_InterlockEnabled
 }
 
 //--------------------------------------------------------
 /**
- *	Write Interlock_enabled attribute values to hardware.
+ *	Write InterlockEnabled attribute values to hardware.
  *
  *	Data type:	Tango::DevBoolean
  *	Attr type:	Scalar
  */
 //--------------------------------------------------------
-void LiberaSinglePassE::write_Interlock_enabled(Tango::WAttribute &attr)
+void LiberaSinglePassE::write_InterlockEnabled(Tango::WAttribute &attr)
 {
-	DEBUG_STREAM << "LiberaSinglePassE::write_Interlock_enabled(Tango::Attribute &attr) entering... " << endl;
+	DEBUG_STREAM << "LiberaSinglePassE::write_InterlockEnabled(Tango::Attribute &attr) entering... " << endl;
 
 	//	Retrieve write value
 	Tango::DevBoolean	w_val;
 	attr.get_write_value(w_val);
 
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::write_Interlock_enabled) ENABLED START -----*/
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::write_InterlockEnabled) ENABLED START -----*/
 
 	try {
-		*attr_Interlock_enabled_read = w_val;
+		*attr_InterlockEnabled_read = w_val;
 		bool val = static_cast<bool>(w_val);
 		mci_InterlockEnabled.Set(val);
 	} catch (istd::Exception &e) {
-		ERROR_STREAM << "LiberaSinglePassE::write_Interlock_enabled failed "
+		ERROR_STREAM << "LiberaSinglePassE::write_InterlockEnabled failed "
 				<< device_name << e.what() << endl;
 		return;
 	}
 
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::write_Interlock_enabled
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::write_InterlockEnabled
 }
 
 //--------------------------------------------------------
 /**
- *	Read Limit_min_x attribute
- *	Description: Interlock limits parameter.
- *
+ *	Read LimitMinX attribute
+ *	Description: Interlock lower limit parameter for x position in nm.
+ *	             See Chapter 2.12.1 in the Libera Single Pass E User
+ *	             manual for details.
  *
  *	Data type:	Tango::DevDouble
  *	Attr type:	Scalar
  */
 //--------------------------------------------------------
-void LiberaSinglePassE::read_Limit_min_x(Tango::Attribute &attr)
+void LiberaSinglePassE::read_LimitMinX(Tango::Attribute &attr)
 {
-	DEBUG_STREAM << "LiberaSinglePassE::read_Limit_min_x(Tango::Attribute &attr) entering... " << endl;
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_Limit_min_x) ENABLED START -----*/
+	DEBUG_STREAM << "LiberaSinglePassE::read_LimitMinX(Tango::Attribute &attr) entering... " << endl;
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_LimitMinX) ENABLED START -----*/
 
 	try {
 		double min_x;
 		mci_LimitMinX.Get(min_x);
-		*attr_Limit_min_x_read = static_cast<Tango::DevDouble>(min_x);
+		*attr_LimitMinX_read = static_cast<Tango::DevDouble>(min_x);
 	} catch (istd::Exception &e) {
-		ERROR_STREAM << "LiberaSinglePassE::read_Limit_min_x failed "
+		ERROR_STREAM << "LiberaSinglePassE::read_LimitMinX failed "
 				<< device_name << e.what() << endl;
 		return;
 	}
 
 	//	Set the attribute value
-	attr.set_value(attr_Limit_min_x_read);
+	attr.set_value(attr_LimitMinX_read);
 
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_Limit_min_x
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_LimitMinX
 }
 
 //--------------------------------------------------------
 /**
- *	Write Limit_min_x attribute values to hardware.
+ *	Write LimitMinX attribute values to hardware.
  *
  *	Data type:	Tango::DevDouble
  *	Attr type:	Scalar
  */
 //--------------------------------------------------------
-void LiberaSinglePassE::write_Limit_min_x(Tango::WAttribute &attr)
+void LiberaSinglePassE::write_LimitMinX(Tango::WAttribute &attr)
 {
-	DEBUG_STREAM << "LiberaSinglePassE::write_Limit_min_x(Tango::Attribute &attr) entering... " << endl;
+	DEBUG_STREAM << "LiberaSinglePassE::write_LimitMinX(Tango::Attribute &attr) entering... " << endl;
 
 	//	Retrieve write value
 	Tango::DevDouble	w_val;
 	attr.get_write_value(w_val);
 
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::write_Limit_min_x) ENABLED START -----*/
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::write_LimitMinX) ENABLED START -----*/
 
 	try {
-		*attr_Limit_min_x_read = w_val;
+		*attr_LimitMinX_read = w_val;
 		double val = static_cast<double>(w_val);
 		mci_LimitMinX.Set(val);
 	} catch (istd::Exception &e) {
-		ERROR_STREAM << "LiberaSinglePassE::write_Limit_min_x failed "
+		ERROR_STREAM << "LiberaSinglePassE::write_LimitMinX failed "
 				<< device_name << e.what() << endl;
 		return;
 	}
 
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::write_Limit_min_x
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::write_LimitMinX
 }
 
 //--------------------------------------------------------
 /**
- *	Read Limit_min_y attribute
- *	Description: Interlock limits parameter.
+ *	Read LimitMinY attribute
+ *	Description: Interlock lower limit parameter for y position in nm.
+ *	             See Chapter 2.12.1 in the Libera Single Pass E User
+ *	             manual for details.
  *
  *	Data type:	Tango::DevDouble
  *	Attr type:	Scalar
  */
 //--------------------------------------------------------
-void LiberaSinglePassE::read_Limit_min_y(Tango::Attribute &attr)
+void LiberaSinglePassE::read_LimitMinY(Tango::Attribute &attr)
 {
-	DEBUG_STREAM << "LiberaSinglePassE::read_Limit_min_y(Tango::Attribute &attr) entering... " << endl;
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_Limit_min_y) ENABLED START -----*/
+	DEBUG_STREAM << "LiberaSinglePassE::read_LimitMinY(Tango::Attribute &attr) entering... " << endl;
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_LimitMinY) ENABLED START -----*/
 
 	try {
 		double min_y;
 		mci_LimitMinY.Get(min_y);
-		*attr_Limit_min_y_read = static_cast<Tango::DevDouble>(min_y);
+		*attr_LimitMinY_read = static_cast<Tango::DevDouble>(min_y);
 	} catch (istd::Exception &e) {
-		ERROR_STREAM << "LiberaSinglePassE::read_Limit_min_y failed "
+		ERROR_STREAM << "LiberaSinglePassE::read_LimitMinY failed "
 				<< device_name << e.what() << endl;
 		return;
 	}
 
 	//	Set the attribute value
-	attr.set_value(attr_Limit_min_y_read);
+	attr.set_value(attr_LimitMinY_read);
 
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_Limit_min_y
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_LimitMinY
 }
 
 //--------------------------------------------------------
 /**
- *	Write Limit_min_y attribute values to hardware.
+ *	Write LimitMinY attribute values to hardware.
  *
  *	Data type:	Tango::DevDouble
  *	Attr type:	Scalar
  */
 //--------------------------------------------------------
-void LiberaSinglePassE::write_Limit_min_y(Tango::WAttribute &attr)
+void LiberaSinglePassE::write_LimitMinY(Tango::WAttribute &attr)
 {
-	DEBUG_STREAM << "LiberaSinglePassE::write_Limit_min_y(Tango::Attribute &attr) entering... " << endl;
+	DEBUG_STREAM << "LiberaSinglePassE::write_LimitMinY(Tango::Attribute &attr) entering... " << endl;
 
 	//	Retrieve write value
 	Tango::DevDouble	w_val;
 	attr.get_write_value(w_val);
 
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::write_Limit_min_y) ENABLED START -----*/
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::write_LimitMinY) ENABLED START -----*/
 
 	try {
-		*attr_Limit_min_y_read = w_val;
+		*attr_LimitMinY_read = w_val;
 		double val = static_cast<double>(w_val);
 		mci_LimitMinY.Set(val);
 	} catch (istd::Exception &e) {
-		ERROR_STREAM << "LiberaSinglePassE::write_Limit_min_y failed "
+		ERROR_STREAM << "LiberaSinglePassE::write_LimitMinY failed "
 				<< device_name << e.what() << endl;
 		return;
 	}
 
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::write_Limit_min_y
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::write_LimitMinY
 }
 
 //--------------------------------------------------------
 /**
- *	Read Limit_max_x attribute
- *	Description: Interlock limits parameter.
+ *	Read LimitMaxX attribute
+ *	Description: Interlock upper limit parameter for x position in nm.
+ *	             See Chapter 2.12.1 in the Libera Single Pass E User
+ *	             manual for details.
  *
  *	Data type:	Tango::DevDouble
  *	Attr type:	Scalar
  */
 //--------------------------------------------------------
-void LiberaSinglePassE::read_Limit_max_x(Tango::Attribute &attr)
+void LiberaSinglePassE::read_LimitMaxX(Tango::Attribute &attr)
 {
-	DEBUG_STREAM << "LiberaSinglePassE::read_Limit_max_x(Tango::Attribute &attr) entering... " << endl;
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_Limit_max_x) ENABLED START -----*/
+	DEBUG_STREAM << "LiberaSinglePassE::read_LimitMaxX(Tango::Attribute &attr) entering... " << endl;
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_LimitMaxX) ENABLED START -----*/
 
 	try {
 		double max_x;
 		mci_LimitMaxX.Get(max_x);
-		*attr_Limit_max_x_read = static_cast<Tango::DevDouble>(max_x);
+		*attr_LimitMaxX_read = static_cast<Tango::DevDouble>(max_x);
 	} catch (istd::Exception &e) {
-		ERROR_STREAM << "LiberaSinglePassE::read_Limit_max_x failed "
+		ERROR_STREAM << "LiberaSinglePassE::read_LimitMaxX failed "
 				<< device_name << e.what() << endl;
 		return;
 	}
 
 	//	Set the attribute value
-	attr.set_value(attr_Limit_max_x_read);
+	attr.set_value(attr_LimitMaxX_read);
 
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_Limit_max_x
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_LimitMaxX
 }
 
 //--------------------------------------------------------
 /**
- *	Write Limit_max_x attribute values to hardware.
+ *	Write LimitMaxX attribute values to hardware.
  *
  *	Data type:	Tango::DevDouble
  *	Attr type:	Scalar
  */
 //--------------------------------------------------------
-void LiberaSinglePassE::write_Limit_max_x(Tango::WAttribute &attr)
+void LiberaSinglePassE::write_LimitMaxX(Tango::WAttribute &attr)
 {
-	DEBUG_STREAM << "LiberaSinglePassE::write_Limit_max_x(Tango::Attribute &attr) entering... " << endl;
+	DEBUG_STREAM << "LiberaSinglePassE::write_LimitMaxX(Tango::Attribute &attr) entering... " << endl;
 
 	//	Retrieve write value
 	Tango::DevDouble	w_val;
 	attr.get_write_value(w_val);
 
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::write_Limit_max_x) ENABLED START -----*/
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::write_LimitMaxX) ENABLED START -----*/
 
 	try {
-		*attr_Limit_max_x_read = w_val;
+		*attr_LimitMaxX_read = w_val;
 		double val = static_cast<double>(w_val);
 		mci_LimitMaxX.Set(val);
 	} catch (istd::Exception &e) {
-		ERROR_STREAM << "LiberaSinglePassE::write_Limit_max_x failed "
+		ERROR_STREAM << "LiberaSinglePassE::write_LimitMaxX failed "
 				<< device_name << e.what() << endl;
 		return;
 	}
 
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::write_Limit_max_x
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::write_LimitMaxX
 }
 
 //--------------------------------------------------------
 /**
- *	Read Limit_max_y attribute
- *	Description: Interlock limits parameter.
+ *	Read LimitMaxY attribute
+ *	Description: Interlock upper limit parameter for y position in nm.
+ *	             See Chapter 2.12.1 in the Libera Single Pass E User
+ *	             manual for details.
  *
  *	Data type:	Tango::DevDouble
  *	Attr type:	Scalar
  */
 //--------------------------------------------------------
-void LiberaSinglePassE::read_Limit_max_y(Tango::Attribute &attr)
+void LiberaSinglePassE::read_LimitMaxY(Tango::Attribute &attr)
 {
-	DEBUG_STREAM << "LiberaSinglePassE::read_Limit_max_y(Tango::Attribute &attr) entering... " << endl;
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_Limit_max_y) ENABLED START -----*/
+	DEBUG_STREAM << "LiberaSinglePassE::read_LimitMaxY(Tango::Attribute &attr) entering... " << endl;
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_LimitMaxY) ENABLED START -----*/
 
 	try {
 		double max_y;
 		mci_LimitMaxY.Get(max_y);
-		*attr_Limit_max_y_read = static_cast<Tango::DevDouble>(max_y);
+		*attr_LimitMaxY_read = static_cast<Tango::DevDouble>(max_y);
 	} catch (istd::Exception &e) {
-		ERROR_STREAM << "LiberaSinglePassE::read_Limit_max_y failed "
+		ERROR_STREAM << "LiberaSinglePassE::read_LimitMaxY failed "
 				<< device_name << e.what() << endl;
 		return;
 	}
 
 	//	Set the attribute value
-	attr.set_value(attr_Limit_max_y_read);
+	attr.set_value(attr_LimitMaxY_read);
 
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_Limit_max_y
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_LimitMaxY
 }
 
 //--------------------------------------------------------
 /**
- *	Write Limit_max_y attribute values to hardware.
+ *	Write LimitMaxY attribute values to hardware.
  *
  *	Data type:	Tango::DevDouble
  *	Attr type:	Scalar
  */
 //--------------------------------------------------------
-void LiberaSinglePassE::write_Limit_max_y(Tango::WAttribute &attr)
+void LiberaSinglePassE::write_LimitMaxY(Tango::WAttribute &attr)
 {
-	DEBUG_STREAM << "LiberaSinglePassE::write_Limit_max_y(Tango::Attribute &attr) entering... " << endl;
+	DEBUG_STREAM << "LiberaSinglePassE::write_LimitMaxY(Tango::Attribute &attr) entering... " << endl;
 
 	//	Retrieve write value
 	Tango::DevDouble	w_val;
 	attr.get_write_value(w_val);
 
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::write_Limit_max_y) ENABLED START -----*/
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::write_LimitMaxY) ENABLED START -----*/
 
 	try {
-		*attr_Limit_max_y_read = w_val;
+		*attr_LimitMaxY_read = w_val;
 		double val = static_cast<double>(w_val);
 		mci_LimitMaxY.Set(val);
 	} catch (istd::Exception &e) {
-		ERROR_STREAM << "LiberaSinglePassE::write_Limit_max_y failed "
+		ERROR_STREAM << "LiberaSinglePassE::write_LimitMaxY failed "
 				<< device_name << e.what() << endl;
 		return;
 	}
 
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::write_Limit_max_y
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::write_LimitMaxY
 }
 
 //--------------------------------------------------------
 /**
- *	Read Overflow_threshold attribute
- *	Description: Interlock limits parameter.
+ *	Read OverflowThreshold attribute
+ *	Description: Interlock upper limit parameter for the ADC overflow
+ *	             buffer (ADC saturation) parameter which is in ADC
+ *	             counts. See Chapter 2.12.2 in the Libera Single Pass E
+ *	             User manual for details.
  *
  *	Data type:	Tango::DevULong
  *	Attr type:	Scalar
  */
 //--------------------------------------------------------
-void LiberaSinglePassE::read_Overflow_threshold(Tango::Attribute &attr)
+void LiberaSinglePassE::read_OverflowThreshold(Tango::Attribute &attr)
 {
-	DEBUG_STREAM << "LiberaSinglePassE::read_Overflow_threshold(Tango::Attribute &attr) entering... " << endl;
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_Overflow_threshold) ENABLED START -----*/
+	DEBUG_STREAM << "LiberaSinglePassE::read_OverflowThreshold(Tango::Attribute &attr) entering... " << endl;
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_OverflowThreshold) ENABLED START -----*/
 
 	try {
 		uint32_t thr;
 		mci_OverflowThreshold.Get(thr);
-		*attr_Overflow_threshold_read = static_cast<Tango::DevULong>(thr);
+		*attr_OverflowThreshold_read = static_cast<Tango::DevULong>(thr);
 	} catch (istd::Exception &e) {
-		ERROR_STREAM << "LiberaSinglePassE::read_Overflow_threshold failed "
+		ERROR_STREAM << "LiberaSinglePassE::read_OverflowThreshold failed "
 				<< device_name << e.what() << endl;
 		return;
 	}
 
 	//	Set the attribute value
-	attr.set_value(attr_Overflow_threshold_read);
+	attr.set_value(attr_OverflowThreshold_read);
 
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_Overflow_threshold
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_OverflowThreshold
 }
 
 //--------------------------------------------------------
 /**
- *	Write Overflow_threshold attribute values to hardware.
+ *	Write OverflowThreshold attribute values to hardware.
  *
  *	Data type:	Tango::DevULong
  *	Attr type:	Scalar
  */
 //--------------------------------------------------------
-void LiberaSinglePassE::write_Overflow_threshold(Tango::WAttribute &attr)
+void LiberaSinglePassE::write_OverflowThreshold(Tango::WAttribute &attr)
 {
-	DEBUG_STREAM << "LiberaSinglePassE::write_Overflow_threshold(Tango::Attribute &attr) entering... " << endl;
+	DEBUG_STREAM << "LiberaSinglePassE::write_OverflowThreshold(Tango::Attribute &attr) entering... " << endl;
 
 	//	Retrieve write value
 	Tango::DevULong	w_val;
 	attr.get_write_value(w_val);
 
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::write_Overflow_threshold) ENABLED START -----*/
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::write_OverflowThreshold) ENABLED START -----*/
 
 	try {
-		*attr_Overflow_threshold_read = w_val;
+		*attr_OverflowThreshold_read = w_val;
 		uint32_t val = static_cast<uint32_t>(w_val);
 		mci_OverflowThreshold.Set(val);
 	} catch (istd::Exception &e) {
-		ERROR_STREAM << "LiberaSinglePassE::write_Overflow_threshold failed "
+		ERROR_STREAM << "LiberaSinglePassE::write_OverflowThreshold failed "
 				<< device_name << e.what() << endl;
 		return;
 	}
 
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::write_Overflow_threshold
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::write_OverflowThreshold
 }
 
 //--------------------------------------------------------
 /**
- *	Read Interlock_status attribute
- *	Description: Interlock status parameter.
+ *	Read InterlockStatus attribute
+ *	Description: Issuing this command tells you which was the cause of
+ *	             the interlock. Number is 5 bit expressed in the decimal
+ *	             value. If no interlock was triggered, the returned value
+ *	             is 0. See the chapter 2.12.3 in the Libera Single Pass E
+ *	             User manual for details.
  *
  *	Data type:	Tango::DevULong
  *	Attr type:	Scalar
  */
 //--------------------------------------------------------
-void LiberaSinglePassE::read_Interlock_status(Tango::Attribute &attr)
+void LiberaSinglePassE::read_InterlockStatus(Tango::Attribute &attr)
 {
-	DEBUG_STREAM << "LiberaSinglePassE::read_Interlock_status(Tango::Attribute &attr) entering... " << endl;
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_Interlock_status) ENABLED START -----*/
+	DEBUG_STREAM << "LiberaSinglePassE::read_InterlockStatus(Tango::Attribute &attr) entering... " << endl;
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_InterlockStatus) ENABLED START -----*/
 
 	try {
 		uint32_t stat;
 		mci_InterlockStatus.Get(stat);
-		*attr_Interlock_status_read = static_cast<Tango::DevULong>(stat);
+		*attr_InterlockStatus_read = static_cast<Tango::DevULong>(stat);
 	} catch (istd::Exception &e) {
-		ERROR_STREAM << "LiberaSinglePassE::read_Interlock_status failed "
+		ERROR_STREAM << "LiberaSinglePassE::read_InterlockStatus failed "
 				<< device_name << e.what() << endl;
 		return;
 	}
 
 	//	Set the attribute value
-	attr.set_value(attr_Interlock_status_read);
+	attr.set_value(attr_InterlockStatus_read);
 
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_Interlock_status
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_InterlockStatus
 }
 //--------------------------------------------------------
 /**
- *	Read Status_x attribute
- *	Description: Interlock status parameter.
+ *	Read StatusX attribute
+ *	Description: Checking the status of the interlock for the x position.
+ *	             Returned value 'false' means that x position wasn't out
+ *	             of set limit.
  *
  *	Data type:	Tango::DevBoolean
  *	Attr type:	Scalar
  */
 //--------------------------------------------------------
-void LiberaSinglePassE::read_Status_x(Tango::Attribute &attr)
+void LiberaSinglePassE::read_StatusX(Tango::Attribute &attr)
 {
-	DEBUG_STREAM << "LiberaSinglePassE::read_Status_x(Tango::Attribute &attr) entering... " << endl;
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_Status_x) ENABLED START -----*/
+	DEBUG_STREAM << "LiberaSinglePassE::read_StatusX(Tango::Attribute &attr) entering... " << endl;
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_StatusX) ENABLED START -----*/
 
 	try {
 		bool statX;
 		mci_InterlockStatusX.Get(statX);
-		*attr_Status_x_read = static_cast<Tango::DevBoolean>(statX);
+		*attr_StatusX_read = static_cast<Tango::DevBoolean>(statX);
 	} catch (istd::Exception &e) {
-		ERROR_STREAM << "LiberaSinglePassE::read_Status_x failed "
+		ERROR_STREAM << "LiberaSinglePassE::read_StatusX failed "
 				<< device_name << e.what() << endl;
 		return;
 	}
 
 	//	Set the attribute value
-	attr.set_value(attr_Status_x_read);
+	attr.set_value(attr_StatusX_read);
 
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_Status_x
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_StatusX
 }
 //--------------------------------------------------------
 /**
- *	Read Status_y attribute
- *	Description: Interlock status parameter.
+ *	Read StatusY attribute
+ *	Description: Checking the status of the interlock for the y position.
+ *	             Returned value 'false' means that y position wasn't out
+ *	             of set limit.
  *
  *	Data type:	Tango::DevBoolean
  *	Attr type:	Scalar
  */
 //--------------------------------------------------------
-void LiberaSinglePassE::read_Status_y(Tango::Attribute &attr)
+void LiberaSinglePassE::read_StatusY(Tango::Attribute &attr)
 {
-	DEBUG_STREAM << "LiberaSinglePassE::read_Status_y(Tango::Attribute &attr) entering... " << endl;
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_Status_y) ENABLED START -----*/
+	DEBUG_STREAM << "LiberaSinglePassE::read_StatusY(Tango::Attribute &attr) entering... " << endl;
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_StatusY) ENABLED START -----*/
 
 	try {
 		bool statY;
 		mci_InterlockStatusY.Get(statY);
-		*attr_Status_y_read = static_cast<Tango::DevBoolean>(statY);
+		*attr_StatusY_read = static_cast<Tango::DevBoolean>(statY);
 	} catch (istd::Exception &e) {
-		ERROR_STREAM << "LiberaSinglePassE::read_Status_y failed "
+		ERROR_STREAM << "LiberaSinglePassE::read_StatusY failed "
 				<< device_name << e.what() << endl;
 		return;
 	}
 
 	//	Set the attribute value
-	attr.set_value(attr_Status_y_read);
+	attr.set_value(attr_StatusY_read);
 
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_Status_y
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_StatusY
 }
 //--------------------------------------------------------
 /**
- *	Read Status_adc_overflow attribute
- *	Description: Interlock status parameter.
+ *	Read StatusAdcOverflow attribute
+ *	Description: Checking the status of the interlock for the ADC
+ *	             saturation. Returned value 'false' means that ADC
+ *	             wasn't in saturation.
  *
  *	Data type:	Tango::DevBoolean
  *	Attr type:	Scalar
  */
 //--------------------------------------------------------
-void LiberaSinglePassE::read_Status_adc_overflow(Tango::Attribute &attr)
+void LiberaSinglePassE::read_StatusAdcOverflow(Tango::Attribute &attr)
 {
-	DEBUG_STREAM << "LiberaSinglePassE::read_Status_adc_overflow(Tango::Attribute &attr) entering... " << endl;
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_Status_adc_overflow) ENABLED START -----*/
+	DEBUG_STREAM << "LiberaSinglePassE::read_StatusAdcOverflow(Tango::Attribute &attr) entering... " << endl;
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_StatusAdcOverflow) ENABLED START -----*/
 
 	try {
 		bool adcOvfl;
 		mci_InterlockStatusADCOverflow.Get(adcOvfl);
-		*attr_Status_adc_overflow_read = static_cast<Tango::DevBoolean>(adcOvfl);
+		*attr_StatusAdcOverflow_read = static_cast<Tango::DevBoolean>(adcOvfl);
 	} catch (istd::Exception &e) {
-		ERROR_STREAM << "LiberaSinglePassE::read_Status_adc_overflow failed "
+		ERROR_STREAM << "LiberaSinglePassE::read_StatusAdcOverflow failed "
 				<< device_name << e.what() << endl;
 		return;
 	}
 
 	//	Set the attribute value
-	attr.set_value(attr_Status_adc_overflow_read);
+	attr.set_value(attr_StatusAdcOverflow_read);
 
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_Status_adc_overflow
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_StatusAdcOverflow
 }
 //--------------------------------------------------------
 /**
@@ -2922,6 +2981,8 @@ void LiberaSinglePassE::reset_trigger()
 /**
  *	Execute the ResetInterlockStatus command:
  *	Description: Resets the status register after the interlock was enabled.
+ *	             See chapter 2.12.3 in the Libera Single Pass E
+ *	             User manual.
  *
  *	@param argin
  *	@returns
