@@ -54,20 +54,19 @@ if (ptr == NULL) \
 			"LiberaSinglePassE::init_device"); \
 }
 
-/*----- PROTECTED REGION END -----*/
-
+/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE.h
 
 /**
- *	LiberaSinglePassE class Description:
- *	This Tango class is the interface of the Instrumentation Technologies (IT) Libera
- *	Brilliance Single Pass E equipment. This class supports only a subset of all the
- *	equipment features. It is the basic equipment for a Injection and Transfer Efficiency
- *	Measurement System
+ *  LiberaSinglePassE class description:
+ *    This Tango class is the interface of the Instrumentation Technologies (IT) Libera
+ *    Brilliance Single Pass E equipment. This class supports only a subset of all the
+ *    equipment features. It is the basic equipment for a Injection and Transfer Efficiency
+ *    Measurement System
  */
 
 namespace LiberaSinglePassE_ns
 {
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::Additional Class Declarations) ENABLED START -----*/
+/*----- PROTECTED REGION ID(LiberaSinglePassE::Additional Class Declarations) ENABLED START -----*/
 
 #define FATAL_STREAM_DS \
 	if (get_logger()->is_fatal_enabled()) \
@@ -112,29 +111,29 @@ class LiberaSinglePassEDataTask;
 
 	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::Additional Class Declarations
 
-
-class LiberaSinglePassE : public Tango::Device_4Impl
+class LiberaSinglePassE : public TANGO_BASE_CLASS
 {
 
-
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::Data Members) ENABLED START -----*/
+/*----- PROTECTED REGION ID(LiberaSinglePassE::Data Members) ENABLED START -----*/
 
 	//		Add your own data members
 
 	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::Data Members
 
-
 //	Device property data members
-public:		//	LiberaIpAddr:	Libera IP address
+public:
+	//	LiberaIpAddr:	Libera IP address
 	string	liberaIpAddr;
 	//	LiberaBoard:	The board name (and index) used by the Libera box for multi board setup
 	string	liberaBoard;
 	//	Location:	The libera box physical place (TL1, BOOSTER,....)
 	string	location;
+	//	ServiceTaskSleep:	Sleep time (in mS) for the class task between libera boxes request
+	Tango::DevLong	serviceTaskSleep;
 	//	DataTaskHeartbeat:	Heartbeat time (in mS) for the data task
 	Tango::DevLong	dataTaskHeartbeat;
 	//	BeamThreshold:	Threshold to decide if there is some beam at a given time
-	//	(at a given index in the ADC buffers)
+	//  (at a given index in the ADC buffers)
 	Tango::DevDouble	beamThreshold;
 	//	PositionK:	Multiplicative coefficient to compute beam position
 	Tango::DevDouble	positionK;
@@ -145,26 +144,14 @@ public:		//	LiberaIpAddr:	Libera IP address
 
 //	Attribute data members
 public:
-	Tango::DevLong		*attr_BufferSize_read;
-	Tango::DevLong		*attr_AttenuationLevel_read;
-	Tango::DevULong		*attr_TriggerCounter_read;
+	Tango::DevLong	*attr_BufferSize_read;
+	Tango::DevLong	*attr_AttenuationLevel_read;
+	Tango::DevULong	*attr_TriggerCounter_read;
 	Tango::DevUShort	*attr_Fan1Speed_read;
 	Tango::DevUShort	*attr_Fan2Speed_read;
 	Tango::DevUShort	*attr_Temp1_read;
 	Tango::DevUShort	*attr_Temp2_read;
 	Tango::DevUShort	*attr_Temp3_read;
-	Tango::DevShort		*attr_A_read;
-	Tango::DevShort		*attr_B_read;
-	Tango::DevShort		*attr_C_read;
-	Tango::DevShort		*attr_D_read;
-	Tango::DevDouble	*attr_AT_read;
-	Tango::DevDouble	*attr_BT_read;
-	Tango::DevDouble	*attr_CT_read;
-	Tango::DevDouble	*attr_DT_read;
-	Tango::DevDouble	*attr_Yposition_read;
-	Tango::DevDouble	*attr_Xposition_read;
-	Tango::DevDouble	*attr_Current_read;
-	Tango::DevDouble	*attr_SumT_read;
 	Tango::DevDouble	*attr_Calibration_ka_read;
 	Tango::DevDouble	*attr_Calibration_kb_read;
 	Tango::DevDouble	*attr_Calibration_kc_read;
@@ -183,32 +170,44 @@ public:
 	Tango::DevDouble	*attr_Limit_min_y_read;
 	Tango::DevDouble	*attr_Limit_max_x_read;
 	Tango::DevDouble	*attr_Limit_max_y_read;
-	Tango::DevULong		*attr_Overflow_threshold_read;
-	Tango::DevULong		*attr_Interlock_status_read;
+	Tango::DevULong	*attr_Overflow_threshold_read;
+	Tango::DevULong	*attr_Interlock_status_read;
 	Tango::DevBoolean	*attr_Status_x_read;
 	Tango::DevBoolean	*attr_Status_y_read;
 	Tango::DevBoolean	*attr_Status_adc_overflow_read;
-
-
+	Tango::DevDouble	*attr_XPosition_read;
+	Tango::DevDouble	*attr_YPosition_read;
+	Tango::DevDouble	*attr_Sum_read;
+	Tango::DevDouble	*attr_Quad_read;
+	Tango::DevShort	*attr_ADCChannelA_read;
+	Tango::DevShort	*attr_ADCChannelB_read;
+	Tango::DevShort	*attr_ADCChannelC_read;
+	Tango::DevShort	*attr_ADCChannelD_read;
+	Tango::DevDouble	*attr_AT_read;
+	Tango::DevDouble	*attr_BT_read;
+	Tango::DevDouble	*attr_CT_read;
+	Tango::DevDouble	*attr_DT_read;
+	Tango::DevDouble	*attr_Current_read;
+	Tango::DevDouble	*attr_SumT_read;
 
 //	Constructors and destructors
 public:
 	/**
-	 * Constructs a newly allocated Command object.
+	 * Constructs a newly device object.
 	 *
 	 *	@param cl	Class.
 	 *	@param s 	Device Name
 	 */
 	LiberaSinglePassE(Tango::DeviceClass *cl,string &s);
 	/**
-	 * Constructs a newly allocated Command object.
+	 * Constructs a newly device object.
 	 *
 	 *	@param cl	Class.
 	 *	@param s 	Device Name
 	 */
 	LiberaSinglePassE(Tango::DeviceClass *cl,const char *s);
 	/**
-	 * Constructs a newly allocated Command object.
+	 * Constructs a newly device object.
 	 *
 	 *	@param cl	Class.
 	 *	@param s 	Device name
@@ -216,27 +215,26 @@ public:
 	 */
 	LiberaSinglePassE(Tango::DeviceClass *cl,const char *s,const char *d);
 	/**
-	 * The object destructor.
-	 */
+	 * The device object destructor.
+	 */	
 	~LiberaSinglePassE() {delete_device();};
-
 
 
 //	Miscellaneous methods
 public:
-	/**
+	/*
 	 *	will be called at device destruction or at init command.
 	 */
 	void delete_device();
-	/**
+	/*
 	 *	Initialize the device
 	 */
 	virtual void init_device();
-	/**
+	/*
 	 *	Read the device properties from database
 	 */
-	 void get_device_property();
-	/**
+	void get_device_property();
+	/*
 	 *	Always executed method before execution command method.
 	 */
 	virtual void always_executed_hook();
@@ -244,602 +242,507 @@ public:
 
 //	Attribute methods
 public:
-	/**
+	//--------------------------------------------------------
+	/*
 	 *	Method      : LiberaSinglePassE::read_attr_hardware()
 	 *	Description : Hardware acquisition for attributes.
 	 */
+	//--------------------------------------------------------
 	virtual void read_attr_hardware(vector<long> &attr_list);
-
-
-	/**
-	 *	BufferSize attribute related methods.
-	 *	Description: The Libera box ADC buffer size (between 10 and 8192)
-	 *
-	 *	Data type:	Tango::DevLong
-	 *	Attr type:	Scalar
+	//--------------------------------------------------------
+	/*
+	 *	Method      : LiberaSinglePassE::write_attr_hardware()
+	 *	Description : Hardware writing for attributes.
 	 */
+	//--------------------------------------------------------
+	virtual void write_attr_hardware(vector<long> &attr_list);
+
+/**
+ *	Attribute BufferSize related methods
+ *	Description: The Libera box ADC buffer size (between 10 and 8192)
+ *
+ *	Data type:	Tango::DevLong
+ *	Attr type:	Scalar
+ */
 	virtual void read_BufferSize(Tango::Attribute &attr);
 	virtual void write_BufferSize(Tango::WAttribute &attr);
 	virtual bool is_BufferSize_allowed(Tango::AttReqType type);
-
-
-
-	/**
-	 *	AttenuationLevel attribute related methods.
-	 *	Description: The analog channels level. This attribute allows the user to tune the analog channels
-	 *	             attenuator. The input is an index within a lookup table in the Libera box
-	 *
-	 *	Data type:	Tango::DevLong
-	 *	Attr type:	Scalar
-	 */
+/**
+ *	Attribute AttenuationLevel related methods
+ *	Description: The analog channels level. This attribute allows the user to tune the analog channels
+ *               attenuator. The input is an index within a lookup table in the Libera box
+ *
+ *	Data type:	Tango::DevLong
+ *	Attr type:	Scalar
+ */
 	virtual void read_AttenuationLevel(Tango::Attribute &attr);
 	virtual void write_AttenuationLevel(Tango::WAttribute &attr);
 	virtual bool is_AttenuationLevel_allowed(Tango::AttReqType type);
-
-
-
-	/**
-	 *	TriggerCounter attribute related methods.
-	 *	Description: Trigger counter. Incremented at each trigger
-	 *
-	 *	Data type:	Tango::DevULong
-	 *	Attr type:	Scalar 
-	 */
+/**
+ *	Attribute TriggerCounter related methods
+ *	Description: Trigger counter. Incremented at each trigger
+ *
+ *	Data type:	Tango::DevULong
+ *	Attr type:	Scalar
+ */
 	virtual void read_TriggerCounter(Tango::Attribute &attr);
 	virtual bool is_TriggerCounter_allowed(Tango::AttReqType type);
-
-
-
-	/**
-	 *	Fan1Speed attribute related methods.
-	 *	Description: First fan speed
-	 *
-	 *	Data type:	Tango::DevUShort
-	 *	Attr type:	Scalar 
-	 */
+/**
+ *	Attribute Fan1Speed related methods
+ *	Description: First fan speed
+ *
+ *	Data type:	Tango::DevUShort
+ *	Attr type:	Scalar
+ */
 	virtual void read_Fan1Speed(Tango::Attribute &attr);
 	virtual bool is_Fan1Speed_allowed(Tango::AttReqType type);
-
-
-
-	/**
-	 *	Fan2Speed attribute related methods.
-	 *	Description: Second fan speed
-	 *
-	 *	Data type:	Tango::DevUShort
-	 *	Attr type:	Scalar 
-	 */
+/**
+ *	Attribute Fan2Speed related methods
+ *	Description: Second fan speed
+ *
+ *	Data type:	Tango::DevUShort
+ *	Attr type:	Scalar
+ */
 	virtual void read_Fan2Speed(Tango::Attribute &attr);
 	virtual bool is_Fan2Speed_allowed(Tango::AttReqType type);
-
-
-
-	/**
-	 *	Temp1 attribute related methods.
-	 *	Description: The Libera box first temperature
-	 *
-	 *	Data type:	Tango::DevUShort
-	 *	Attr type:	Scalar 
-	 */
+/**
+ *	Attribute Temp1 related methods
+ *	Description: The Libera box first temperature
+ *
+ *	Data type:	Tango::DevUShort
+ *	Attr type:	Scalar
+ */
 	virtual void read_Temp1(Tango::Attribute &attr);
 	virtual bool is_Temp1_allowed(Tango::AttReqType type);
-
-
-
-	/**
-	 *	Temp2 attribute related methods.
-	 *	Description: The Libera box second temperature
-	 *
-	 *	Data type:	Tango::DevUShort
-	 *	Attr type:	Scalar 
-	 */
+/**
+ *	Attribute Temp2 related methods
+ *	Description: The Libera box second temperature
+ *
+ *	Data type:	Tango::DevUShort
+ *	Attr type:	Scalar
+ */
 	virtual void read_Temp2(Tango::Attribute &attr);
 	virtual bool is_Temp2_allowed(Tango::AttReqType type);
-
-
-
-	/**
-	 *	Temp3 attribute related methods.
-	 *	Description: The Libera box third temperature
-	 *
-	 *	Data type:	Tango::DevUShort
-	 *	Attr type:	Scalar 
-	 */
+/**
+ *	Attribute Temp3 related methods
+ *	Description: The Libera box third temperature
+ *
+ *	Data type:	Tango::DevUShort
+ *	Attr type:	Scalar
+ */
 	virtual void read_Temp3(Tango::Attribute &attr);
 	virtual bool is_Temp3_allowed(Tango::AttReqType type);
-
-
-
-	/**
-	 *	Calibration_ka attribute related methods.
-	 *	Description: Correction coefficient used for input signal amplitude
- 	 *	             calibration
-	 *
-	 *	Data type:	Tango::DevDouble
-	 *	Attr type:	Scalar 
-	 */
+/**
+ *	Attribute Calibration_ka related methods
+ *	Description: Matjaz.....
+ *
+ *	Data type:	Tango::DevDouble
+ *	Attr type:	Scalar
+ */
 	virtual void read_Calibration_ka(Tango::Attribute &attr);
 	virtual void write_Calibration_ka(Tango::WAttribute &attr);
 	virtual bool is_Calibration_ka_allowed(Tango::AttReqType type);
-
-
-
-	/**
-	 *	Calibration_kb attribute related methods.
-	 *	Description: Correction coefficient used for input signal amplitude
- 	 *	             calibration
-	 *
-	 *	Data type:	Tango::DevDouble
-	 *	Attr type:	Scalar 
-	 */
+/**
+ *	Attribute Calibration_kb related methods
+ *	Description: Matjaz.....
+ *
+ *	Data type:	Tango::DevDouble
+ *	Attr type:	Scalar
+ */
 	virtual void read_Calibration_kb(Tango::Attribute &attr);
 	virtual void write_Calibration_kb(Tango::WAttribute &attr);
 	virtual bool is_Calibration_kb_allowed(Tango::AttReqType type);
-
-
-
-	/**
-	 *	Calibration_kc attribute related methods.
-	 *	Description: Correction coefficient used for input signal amplitude
- 	 *	             calibration
-	 *
-	 *	Data type:	Tango::DevDouble
-	 *	Attr type:	Scalar 
-	 */
+/**
+ *	Attribute Calibration_kc related methods
+ *	Description: Matjaz.....
+ *
+ *	Data type:	Tango::DevDouble
+ *	Attr type:	Scalar
+ */
 	virtual void read_Calibration_kc(Tango::Attribute &attr);
 	virtual void write_Calibration_kc(Tango::WAttribute &attr);
 	virtual bool is_Calibration_kc_allowed(Tango::AttReqType type);
-
-
-
-	/**
-	 *	Calibration_kd attribute related methods.
-	 *	Description: Correction coefficient used for input signal amplitude
- 	 *	             calibration
-	 *
-	 *	Data type:	Tango::DevDouble
-	 *	Attr type:	Scalar 
-	 */
+/**
+ *	Attribute Calibration_kd related methods
+ *	Description: Matjaz.....
+ *
+ *	Data type:	Tango::DevDouble
+ *	Attr type:	Scalar
+ */
 	virtual void read_Calibration_kd(Tango::Attribute &attr);
 	virtual void write_Calibration_kd(Tango::WAttribute &attr);
 	virtual bool is_Calibration_kd_allowed(Tango::AttReqType type);
-
-
-
-	/**
-	 *	Linear_x_k attribute related methods.
-	 *	Description: Pickup inverse sensitivity coefficient
- 	 *	             
-	 *
-	 *	Data type:	Tango::DevDouble
-	 *	Attr type:	Scalar 
-	 */
+/**
+ *	Attribute Linear_x_k related methods
+ *	Description: Matjaz.....
+ *
+ *	Data type:	Tango::DevDouble
+ *	Attr type:	Scalar
+ */
 	virtual void read_Linear_x_k(Tango::Attribute &attr);
 	virtual void write_Linear_x_k(Tango::WAttribute &attr);
 	virtual bool is_Linear_x_k_allowed(Tango::AttReqType type);
-
-
-
-	/**
-	 *	Linear_x_offs attribute related methods.
-	 *	Description: Calibrates position offsets
- 	 *	             
-	 *
-	 *	Data type:	Tango::DevDouble
-	 *	Attr type:	Scalar 
-	 */
+/**
+ *	Attribute Linear_x_offs related methods
+ *	Description: Matjaz.....
+ *
+ *	Data type:	Tango::DevDouble
+ *	Attr type:	Scalar
+ */
 	virtual void read_Linear_x_offs(Tango::Attribute &attr);
 	virtual void write_Linear_x_offs(Tango::WAttribute &attr);
 	virtual bool is_Linear_x_offs_allowed(Tango::AttReqType type);
-
-
-
-	/**
-	 *	Linear_y_k attribute related methods.
-	 *	Description: Pickup inverse sensitivity coefficient.
-	 *
-	 *	Data type:	Tango::DevDouble
-	 *	Attr type:	Scalar 
-	 */
+/**
+ *	Attribute Linear_y_k related methods
+ *	Description: Matjaz.....
+ *
+ *	Data type:	Tango::DevDouble
+ *	Attr type:	Scalar
+ */
 	virtual void read_Linear_y_k(Tango::Attribute &attr);
 	virtual void write_Linear_y_k(Tango::WAttribute &attr);
 	virtual bool is_Linear_y_k_allowed(Tango::AttReqType type);
-
-
-
-	/**
-	 *	Linear_y_offs attribute related methods.
-	 *	Description: Calibrates position offsets
-	 *
-	 *	Data type:	Tango::DevDouble
-	 *	Attr type:	Scalar 
-	 */
+/**
+ *	Attribute Linear_y_offs related methods
+ *	Description: Matjaz.....
+ *
+ *	Data type:	Tango::DevDouble
+ *	Attr type:	Scalar
+ */
 	virtual void read_Linear_y_offs(Tango::Attribute &attr);
 	virtual void write_Linear_y_offs(Tango::WAttribute &attr);
 	virtual bool is_Linear_y_offs_allowed(Tango::AttReqType type);
-
-
-
-	/**
-	 *	Linear_q_k attribute related methods.
-	 *	Description: Scaling coefficient for q factor.
- 	 *	             
-	 *
-	 *	Data type:	Tango::DevDouble
-	 *	Attr type:	Scalar 
-	 */
+/**
+ *	Attribute Linear_q_k related methods
+ *	Description: Matjaz.....
+ *
+ *	Data type:	Tango::DevDouble
+ *	Attr type:	Scalar
+ */
 	virtual void read_Linear_q_k(Tango::Attribute &attr);
 	virtual void write_Linear_q_k(Tango::WAttribute &attr);
 	virtual bool is_Linear_q_k_allowed(Tango::AttReqType type);
-
-
-
-	/**
-	 *	Linear_q_offs attribute related methods.
-	 *	Description: Sets the offset for q factor.
- 	 *	             
-	 *
-	 *	Data type:	Tango::DevDouble
-	 *	Attr type:	Scalar 
-	 */
+/**
+ *	Attribute Linear_q_offs related methods
+ *	Description: Matjaz.....
+ *
+ *	Data type:	Tango::DevDouble
+ *	Attr type:	Scalar
+ */
 	virtual void read_Linear_q_offs(Tango::Attribute &attr);
 	virtual void write_Linear_q_offs(Tango::WAttribute &attr);
 	virtual bool is_Linear_q_offs_allowed(Tango::AttReqType type);
-
-
-
-	/**
-	 *	Linear_sum_k attribute related methods.
-	 *	Description: Coefficient for sum value
-	 *
-	 *	Data type:	Tango::DevDouble
-	 *	Attr type:	Scalar 
-	 */
+/**
+ *	Attribute Linear_sum_k related methods
+ *	Description: Matjaz.....
+ *
+ *	Data type:	Tango::DevDouble
+ *	Attr type:	Scalar
+ */
 	virtual void read_Linear_sum_k(Tango::Attribute &attr);
 	virtual void write_Linear_sum_k(Tango::WAttribute &attr);
 	virtual bool is_Linear_sum_k_allowed(Tango::AttReqType type);
-
-
-
-	/**
-	 *	Linear_sum_offs attribute related methods.
-	 *	Description: Coefficient for offsetting the sum value
- 	 *	             
-	 *
-	 *	Data type:	Tango::DevDouble
-	 *	Attr type:	Scalar 
-	 */
+/**
+ *	Attribute Linear_sum_offs related methods
+ *	Description: Matjaz.....
+ *
+ *	Data type:	Tango::DevDouble
+ *	Attr type:	Scalar
+ */
 	virtual void read_Linear_sum_offs(Tango::Attribute &attr);
 	virtual void write_Linear_sum_offs(Tango::WAttribute &attr);
 	virtual bool is_Linear_sum_offs_allowed(Tango::AttReqType type);
-
-
-
-	/**
-	 *	Signal_expansion attribute related methods.
-	 *	Description: Interlock output signal duration.
-	 *
-	 *	Data type:	Tango::DevDouble
-	 *	Attr type:	Scalar 
-	 */
+/**
+ *	Attribute Signal_expansion related methods
+ *	Description: Matjaz.....
+ *
+ *	Data type:	Tango::DevDouble
+ *	Attr type:	Scalar
+ */
 	virtual void read_Signal_expansion(Tango::Attribute &attr);
 	virtual void write_Signal_expansion(Tango::WAttribute &attr);
 	virtual bool is_Signal_expansion_allowed(Tango::AttReqType type);
-
-
-
-	/**
-	 *	Interlock_enabled attribute related methods.
-	 *	Description: Enable / disable interlock functionality.
-	 *
-	 *	Data type:	Tango::DevBoolean
-	 *	Attr type:	Scalar 
-	 */
+/**
+ *	Attribute Interlock_enabled related methods
+ *	Description: Matjaz.....
+ *
+ *	Data type:	Tango::DevBoolean
+ *	Attr type:	Scalar
+ */
 	virtual void read_Interlock_enabled(Tango::Attribute &attr);
 	virtual void write_Interlock_enabled(Tango::WAttribute &attr);
 	virtual bool is_Interlock_enabled_allowed(Tango::AttReqType type);
-
-
-
-	/**
-	 *	Limit_min_x attribute related methods.
-	 *	Description: Interlock limits parameter.
-	 *	             
-	 *
-	 *	Data type:	Tango::DevDouble
-	 *	Attr type:	Scalar 
-	 */
+/**
+ *	Attribute Limit_min_x related methods
+ *	Description: Matjaz.....
+ *
+ *	Data type:	Tango::DevDouble
+ *	Attr type:	Scalar
+ */
 	virtual void read_Limit_min_x(Tango::Attribute &attr);
 	virtual void write_Limit_min_x(Tango::WAttribute &attr);
 	virtual bool is_Limit_min_x_allowed(Tango::AttReqType type);
-
-
-
-	/**
-	 *	Limit_min_y attribute related methods.
-	 *	Description: Interlock limits parameter.
-	 *
-	 *	Data type:	Tango::DevDouble
-	 *	Attr type:	Scalar 
-	 */
+/**
+ *	Attribute Limit_min_y related methods
+ *	Description: Matjaz.....
+ *
+ *	Data type:	Tango::DevDouble
+ *	Attr type:	Scalar
+ */
 	virtual void read_Limit_min_y(Tango::Attribute &attr);
 	virtual void write_Limit_min_y(Tango::WAttribute &attr);
 	virtual bool is_Limit_min_y_allowed(Tango::AttReqType type);
-
-
-
-	/**
-	 *	Limit_max_x attribute related methods.
-	 *	Description: Interlock limits parameter.
-	 *
-	 *	Data type:	Tango::DevDouble
-	 *	Attr type:	Scalar 
-	 */
+/**
+ *	Attribute Limit_max_x related methods
+ *	Description: Matjaz.....
+ *
+ *	Data type:	Tango::DevDouble
+ *	Attr type:	Scalar
+ */
 	virtual void read_Limit_max_x(Tango::Attribute &attr);
 	virtual void write_Limit_max_x(Tango::WAttribute &attr);
 	virtual bool is_Limit_max_x_allowed(Tango::AttReqType type);
-
-
-
-	/**
-	 *	Limit_max_y attribute related methods.
-	 *	Description: Interlock limits parameter.
-	 *
-	 *	Data type:	Tango::DevDouble
-	 *	Attr type:	Scalar 
-	 */
+/**
+ *	Attribute Limit_max_y related methods
+ *	Description: Matjaz.....
+ *
+ *	Data type:	Tango::DevDouble
+ *	Attr type:	Scalar
+ */
 	virtual void read_Limit_max_y(Tango::Attribute &attr);
 	virtual void write_Limit_max_y(Tango::WAttribute &attr);
 	virtual bool is_Limit_max_y_allowed(Tango::AttReqType type);
-
-
-
-	/**
-	 *	Overflow_threshold attribute related methods.
-	 *	Description: Interlock limits parameter.
-	 *
-	 *	Data type:	Tango::DevULong
-	 *	Attr type:	Scalar 
-	 */
+/**
+ *	Attribute Overflow_threshold related methods
+ *	Description: Matjaz.....
+ *
+ *	Data type:	Tango::DevULong
+ *	Attr type:	Scalar
+ */
 	virtual void read_Overflow_threshold(Tango::Attribute &attr);
 	virtual void write_Overflow_threshold(Tango::WAttribute &attr);
 	virtual bool is_Overflow_threshold_allowed(Tango::AttReqType type);
-
-
-
-	/**
-	 *	Interlock_status attribute related methods.
-	 *	Description: Interlock status parameter.
-	 *
-	 *	Data type:	Tango::DevULong
-	 *	Attr type:	Scalar 
-	 */
+/**
+ *	Attribute Interlock_status related methods
+ *	Description: Matjaz.....
+ *
+ *	Data type:	Tango::DevULong
+ *	Attr type:	Scalar
+ */
 	virtual void read_Interlock_status(Tango::Attribute &attr);
 	virtual bool is_Interlock_status_allowed(Tango::AttReqType type);
-
-
-
-	/**
-	 *	Status_x attribute related methods.
-	 *	Description: Interlock status parameter.
-	 *
-	 *	Data type:	Tango::DevBoolean
-	 *	Attr type:	Scalar 
-	 */
+/**
+ *	Attribute Status_x related methods
+ *	Description: Matjaz.....
+ *
+ *	Data type:	Tango::DevBoolean
+ *	Attr type:	Scalar
+ */
 	virtual void read_Status_x(Tango::Attribute &attr);
 	virtual bool is_Status_x_allowed(Tango::AttReqType type);
-
-
-
-	/**
-	 *	Status_y attribute related methods.
-	 *	Description: Interlock status parameter.
-	 *
-	 *	Data type:	Tango::DevBoolean
-	 *	Attr type:	Scalar 
-	 */
+/**
+ *	Attribute Status_y related methods
+ *	Description: Matjaz.....
+ *
+ *	Data type:	Tango::DevBoolean
+ *	Attr type:	Scalar
+ */
 	virtual void read_Status_y(Tango::Attribute &attr);
 	virtual bool is_Status_y_allowed(Tango::AttReqType type);
-
-
-
-	/**
-	 *	Status_adc_overflow attribute related methods.
-	 *	Description: Interlock status parameter.
-	 *
-	 *	Data type:	Tango::DevBoolean
-	 *	Attr type:	Scalar 
-	 */
+/**
+ *	Attribute Status_adc_overflow related methods
+ *	Description: Matjaz.....
+ *
+ *	Data type:	Tango::DevBoolean
+ *	Attr type:	Scalar
+ */
 	virtual void read_Status_adc_overflow(Tango::Attribute &attr);
 	virtual bool is_Status_adc_overflow_allowed(Tango::AttReqType type);
-
-
-
-	/**
-	 *	A attribute related methods.
-	 *	Description: The A StripLine ADC buffer
-	 *
-	 *	Data type:	Tango::DevShort
-	 *	Attr type:	Spectrum  max = 10000
-	 */
-	virtual void read_A(Tango::Attribute &attr);
-	virtual bool is_A_allowed(Tango::AttReqType type);
-
-
-
-	/**
-	 *	B attribute related methods.
-	 *	Description: The B StripLine ADC buffer
-	 *
-	 *	Data type:	Tango::DevShort
-	 *	Attr type:	Spectrum  max = 10000
-	 */
-	virtual void read_B(Tango::Attribute &attr);
-	virtual bool is_B_allowed(Tango::AttReqType type);
-
-
-
-	/**
-	 *	C attribute related methods.
-	 *	Description: The C StripLine ADC buffer
-	 *
-	 *	Data type:	Tango::DevShort
-	 *	Attr type:	Spectrum  max = 10000
-	 */
-	virtual void read_C(Tango::Attribute &attr);
-	virtual bool is_C_allowed(Tango::AttReqType type);
-
-
-
-	/**
-	 *	D attribute related methods.
-	 *	Description: The D StripLine ADC buffer
-	 *
-	 *	Data type:	Tango::DevShort
-	 *	Attr type:	Spectrum  max = 10000
-	 */
-	virtual void read_D(Tango::Attribute &attr);
-	virtual bool is_D_allowed(Tango::AttReqType type);
-
-
-
-	/**
-	 *	AT attribute related methods.
-	 *	Description: The A StripLine ADC buffer after some computation:
- *	             square - double averaging filter - square root
-	 *
-	 *	Data type:	Tango::DevDouble
-	 *	Attr type:	Spectrum  max = 10000
-	 */
+/**
+ *	Attribute XPosition related methods
+ *	Description: 
+ *
+ *	Data type:	Tango::DevDouble
+ *	Attr type:	Scalar
+ */
+	virtual void read_XPosition(Tango::Attribute &attr);
+	virtual bool is_XPosition_allowed(Tango::AttReqType type);
+/**
+ *	Attribute YPosition related methods
+ *	Description: 
+ *
+ *	Data type:	Tango::DevDouble
+ *	Attr type:	Scalar
+ */
+	virtual void read_YPosition(Tango::Attribute &attr);
+	virtual bool is_YPosition_allowed(Tango::AttReqType type);
+/**
+ *	Attribute Sum related methods
+ *	Description: 
+ *
+ *	Data type:	Tango::DevDouble
+ *	Attr type:	Scalar
+ */
+	virtual void read_Sum(Tango::Attribute &attr);
+	virtual bool is_Sum_allowed(Tango::AttReqType type);
+/**
+ *	Attribute Quad related methods
+ *	Description: 
+ *
+ *	Data type:	Tango::DevDouble
+ *	Attr type:	Scalar
+ */
+	virtual void read_Quad(Tango::Attribute &attr);
+	virtual bool is_Quad_allowed(Tango::AttReqType type);
+/**
+ *	Attribute ADCChannelA related methods
+ *	Description: The A StripLine ADC buffer
+ *
+ *	Data type:	Tango::DevShort
+ *	Attr type:	Spectrum max = 10000
+ */
+	virtual void read_ADCChannelA(Tango::Attribute &attr);
+	virtual bool is_ADCChannelA_allowed(Tango::AttReqType type);
+/**
+ *	Attribute ADCChannelB related methods
+ *	Description: The B StripLine ADC buffer
+ *
+ *	Data type:	Tango::DevShort
+ *	Attr type:	Spectrum max = 10000
+ */
+	virtual void read_ADCChannelB(Tango::Attribute &attr);
+	virtual bool is_ADCChannelB_allowed(Tango::AttReqType type);
+/**
+ *	Attribute ADCChannelC related methods
+ *	Description: The C StripLine ADC buffer
+ *
+ *	Data type:	Tango::DevShort
+ *	Attr type:	Spectrum max = 10000
+ */
+	virtual void read_ADCChannelC(Tango::Attribute &attr);
+	virtual bool is_ADCChannelC_allowed(Tango::AttReqType type);
+/**
+ *	Attribute ADCChannelD related methods
+ *	Description: The D StripLine ADC buffer
+ *
+ *	Data type:	Tango::DevShort
+ *	Attr type:	Spectrum max = 10000
+ */
+	virtual void read_ADCChannelD(Tango::Attribute &attr);
+	virtual bool is_ADCChannelD_allowed(Tango::AttReqType type);
+/**
+ *	Attribute AT related methods
+ *	Description: The A StripLine ADC buffer after some computation:
+ *               square - double averaging filter - square root
+ *
+ *	Data type:	Tango::DevDouble
+ *	Attr type:	Spectrum max = 10000
+ */
 	virtual void read_AT(Tango::Attribute &attr);
 	virtual bool is_AT_allowed(Tango::AttReqType type);
-
-
-
-	/**
-	 *	BT attribute related methods.
-	 *	Description: The B StripLine ADC buffer after some computation:
- *	             square - double averaging filter - square root
-	 *
-	 *	Data type:	Tango::DevDouble
-	 *	Attr type:	Spectrum  max = 10000
-	 */
+/**
+ *	Attribute BT related methods
+ *	Description: The B StripLine ADC buffer after some computation:
+ *               square - double averaging filter - square root
+ *
+ *	Data type:	Tango::DevDouble
+ *	Attr type:	Spectrum max = 10000
+ */
 	virtual void read_BT(Tango::Attribute &attr);
 	virtual bool is_BT_allowed(Tango::AttReqType type);
-
-
-
-	/**
-	 *	CT attribute related methods.
-	 *	Description: The C StripLine ADC buffer after some computation:
- 	 *	             square - double averaging filter - square root
-	 *
-	 *	Data type:	Tango::DevDouble
-	 *	Attr type:	Spectrum  max = 10000
-	 */
+/**
+ *	Attribute CT related methods
+ *	Description: The C StripLine ADC buffer after some computation:
+ *               square - double averaging filter - square root
+ *
+ *	Data type:	Tango::DevDouble
+ *	Attr type:	Spectrum max = 10000
+ */
 	virtual void read_CT(Tango::Attribute &attr);
 	virtual bool is_CT_allowed(Tango::AttReqType type);
-
-
-
-	/**
-	 *	DT attribute related methods.
-	 *	Description: The D StripLine ADC buffer after some computation:
- 	 *	             square - double averaging filter - square root
-	 *
-	 *	Data type:	Tango::DevDouble
-	 *	Attr type:	Spectrum  max = 10000
-	 */
+/**
+ *	Attribute DT related methods
+ *	Description: The D StripLine ADC buffer after some computation:
+ *               square - double averaging filter - square root
+ *
+ *	Data type:	Tango::DevDouble
+ *	Attr type:	Spectrum max = 10000
+ */
 	virtual void read_DT(Tango::Attribute &attr);
 	virtual bool is_DT_allowed(Tango::AttReqType type);
-
-
-
-	/**
-	 *	Yposition attribute related methods.
-	 *	Description: Beam Y position (vertical)
-	 *
-	 *	Data type:	Tango::DevDouble
-	 *	Attr type:	Spectrum  max = 10000
-	 */
-	virtual void read_Yposition(Tango::Attribute &attr);
-	virtual bool is_Yposition_allowed(Tango::AttReqType type);
-
-
-
-	/**
-	 *	Xposition attribute related methods.
-	 *	Description: Beam X position (horizontal)
-	 *
-	 *	Data type:	Tango::DevDouble
-	 *	Attr type:	Spectrum  max = 10000
-	 */
-	virtual void read_Xposition(Tango::Attribute &attr);
-	virtual bool is_Xposition_allowed(Tango::AttReqType type);
-
-
-
-	/**
-	 *	Current attribute related methods.
-	 *	Description: Beam current computed from strip lines data
-	 *
-	 *	Data type:	Tango::DevDouble
-	 *	Attr type:	Spectrum  max = 100
-	 */
+/**
+ *	Attribute Current related methods
+ *	Description: Beam current computed from strip lines data
+ *
+ *	Data type:	Tango::DevDouble
+ *	Attr type:	Spectrum max = 100
+ */
 	virtual void read_Current(Tango::Attribute &attr);
 	virtual bool is_Current_allowed(Tango::AttReqType type);
-
-
-
-	/**
-	 *	SumT attribute related methods.
-	 *	Description: Sum of the 4 computed ADC outputs (the xxxT attributes)
-	 *
-	 *	Data type:	Tango::DevDouble
-	 *	Attr type:	Spectrum  max = 10000
-	 */
+/**
+ *	Attribute SumT related methods
+ *	Description: Sum of the 4 computed ADC outputs (the xxxT attributes)
+ *
+ *	Data type:	Tango::DevDouble
+ *	Attr type:	Spectrum max = 10000
+ */
 	virtual void read_SumT(Tango::Attribute &attr);
 	virtual bool is_SumT_allowed(Tango::AttReqType type);
 
 
-
+	//--------------------------------------------------------
 	/**
 	 *	Method      : LiberaSinglePassE::add_dynamic_attributes()
 	 *	Description : Add dynamic attributes if any.
 	 */
-		void add_dynamic_attributes();
+	//--------------------------------------------------------
+	void add_dynamic_attributes();
+
+
 
 //	Command related methods
-public: 
-
-
+public:
 	/**
-	 *	Command Reset related methods.
+	 *	Command Reset related method
+	 *	Description: Reset the device in case of fault
+	 *
 	 */
-	void reset();
+	virtual void reset();
 	virtual bool is_Reset_allowed(const CORBA::Any &any);
-
 	/**
-	 *	Command ResetTrigger related methods.
+	 *	Command ResetTrigger related method
+	 *	Description: Reset the trigger counter
+	 *
 	 */
-	void reset_trigger();
+	virtual void reset_trigger();
 	virtual bool is_ResetTrigger_allowed(const CORBA::Any &any);
-
 	/**
-	 *	Command ResetInterlockStatus related methods.
+	 *	Command ResetInterlockStatus related method
+	 *	Description: Matjaz.....
+	 *
 	 */
-	void reset_interlock_status();
+	virtual void reset_interlock_status();
 	virtual bool is_ResetInterlockStatus_allowed(const CORBA::Any &any);
-
 	/**
-	 *	Command MagicCommand related methods.
+	 *	Command MagicCommand related method
+	 *	Description: 
+	 *
+	 *	@param argin 
+	 *	@returns 
 	 */
-	Tango::DevVarStringArray *magic_command(Tango::DevString argin);
+	virtual Tango::DevVarStringArray *magic_command(Tango::DevString argin);
 	virtual bool is_MagicCommand_allowed(const CORBA::Any &any);
 
 
+	//--------------------------------------------------------
+	/**
+	 *	Method      : LiberaSinglePassE::add_dynamic_commands()
+	 *	Description : Add dynamic commands if any.
+	 */
+	//--------------------------------------------------------
+	void add_dynamic_commands();
 
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::Additional Method prototypes) ENABLED START -----*/
+/*----- PROTECTED REGION ID(LiberaSinglePassE::Additional Method prototypes) ENABLED START -----*/
 
 	//	Additional Method prototypes
 protected:
@@ -912,15 +815,14 @@ public:
 	int current_buf_size;
 
 	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::Additional Method prototypes
-
 };
 
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::Additional Classes Definitions) ENABLED START -----*/
+/*----- PROTECTED REGION ID(LiberaSinglePassE::Additional Classes Definitions) ENABLED START -----*/
 
 	//	Additional Classes definitions
 
 	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::Additional Classes Definitions
 
-} //	namespace
+}	//	End of namespace
 
-#endif	//	LIBERASINGLEPASSE_H
+#endif   //	LiberaSinglePassE_H

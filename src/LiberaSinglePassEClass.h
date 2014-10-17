@@ -35,15 +35,14 @@
 #include <tango.h>
 #include <LiberaSinglePassE.h>
 
-/*----- PROTECTED REGION END -----*/
+/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassEClass.h
+
 
 namespace LiberaSinglePassE_ns
 {
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::classes for dynamic creation) ENABLED START -----*/
+/*----- PROTECTED REGION ID(LiberaSinglePassEClass::classes for dynamic creation) ENABLED START -----*/
 
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::classes for dynamic creation
-
-
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassEClass::classes for dynamic creation
 
 //=========================================
 //	Define classes for attributes
@@ -53,9 +52,8 @@ class BufferSizeAttrib: public Tango::Attr
 {
 public:
 	BufferSizeAttrib():Attr("BufferSize",
-	                   Tango::DEV_LONG, Tango::READ_WRITE) {};
+			Tango::DEV_LONG, Tango::READ_WRITE) {};
 	~BufferSizeAttrib() {};
-
 	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
 		{(static_cast<LiberaSinglePassE *>(dev))->read_BufferSize(att);}
 	virtual void write(Tango::DeviceImpl *dev,Tango::WAttribute &att)
@@ -69,9 +67,8 @@ class AttenuationLevelAttrib: public Tango::Attr
 {
 public:
 	AttenuationLevelAttrib():Attr("AttenuationLevel",
-	                   Tango::DEV_LONG, Tango::READ_WRITE) {};
+			Tango::DEV_LONG, Tango::READ_WRITE) {};
 	~AttenuationLevelAttrib() {};
-
 	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
 		{(static_cast<LiberaSinglePassE *>(dev))->read_AttenuationLevel(att);}
 	virtual void write(Tango::DeviceImpl *dev,Tango::WAttribute &att)
@@ -85,9 +82,8 @@ class TriggerCounterAttrib: public Tango::Attr
 {
 public:
 	TriggerCounterAttrib():Attr("TriggerCounter",
-	                   Tango::DEV_ULONG, Tango::READ) {};
+			Tango::DEV_ULONG, Tango::READ) {};
 	~TriggerCounterAttrib() {};
-
 	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
 		{(static_cast<LiberaSinglePassE *>(dev))->read_TriggerCounter(att);}
 	virtual bool is_allowed(Tango::DeviceImpl *dev,Tango::AttReqType ty)
@@ -99,9 +95,8 @@ class Fan1SpeedAttrib: public Tango::Attr
 {
 public:
 	Fan1SpeedAttrib():Attr("Fan1Speed",
-	                   Tango::DEV_USHORT, Tango::READ) {};
+			Tango::DEV_USHORT, Tango::READ) {};
 	~Fan1SpeedAttrib() {};
-
 	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
 		{(static_cast<LiberaSinglePassE *>(dev))->read_Fan1Speed(att);}
 	virtual bool is_allowed(Tango::DeviceImpl *dev,Tango::AttReqType ty)
@@ -113,9 +108,8 @@ class Fan2SpeedAttrib: public Tango::Attr
 {
 public:
 	Fan2SpeedAttrib():Attr("Fan2Speed",
-	                   Tango::DEV_USHORT, Tango::READ) {};
+			Tango::DEV_USHORT, Tango::READ) {};
 	~Fan2SpeedAttrib() {};
-
 	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
 		{(static_cast<LiberaSinglePassE *>(dev))->read_Fan2Speed(att);}
 	virtual bool is_allowed(Tango::DeviceImpl *dev,Tango::AttReqType ty)
@@ -127,9 +121,8 @@ class Temp1Attrib: public Tango::Attr
 {
 public:
 	Temp1Attrib():Attr("Temp1",
-	                   Tango::DEV_USHORT, Tango::READ) {};
+			Tango::DEV_USHORT, Tango::READ) {};
 	~Temp1Attrib() {};
-
 	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
 		{(static_cast<LiberaSinglePassE *>(dev))->read_Temp1(att);}
 	virtual bool is_allowed(Tango::DeviceImpl *dev,Tango::AttReqType ty)
@@ -141,9 +134,8 @@ class Temp2Attrib: public Tango::Attr
 {
 public:
 	Temp2Attrib():Attr("Temp2",
-	                   Tango::DEV_USHORT, Tango::READ) {};
+			Tango::DEV_USHORT, Tango::READ) {};
 	~Temp2Attrib() {};
-
 	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
 		{(static_cast<LiberaSinglePassE *>(dev))->read_Temp2(att);}
 	virtual bool is_allowed(Tango::DeviceImpl *dev,Tango::AttReqType ty)
@@ -155,9 +147,8 @@ class Temp3Attrib: public Tango::Attr
 {
 public:
 	Temp3Attrib():Attr("Temp3",
-	                   Tango::DEV_USHORT, Tango::READ) {};
+			Tango::DEV_USHORT, Tango::READ) {};
 	~Temp3Attrib() {};
-
 	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
 		{(static_cast<LiberaSinglePassE *>(dev))->read_Temp3(att);}
 	virtual bool is_allowed(Tango::DeviceImpl *dev,Tango::AttReqType ty)
@@ -169,9 +160,8 @@ class Calibration_kaAttrib: public Tango::Attr
 {
 public:
 	Calibration_kaAttrib():Attr("Calibration_ka",
-	                   Tango::DEV_DOUBLE, Tango::READ_WRITE) {};
+			Tango::DEV_DOUBLE, Tango::READ_WRITE) {};
 	~Calibration_kaAttrib() {};
-
 	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
 		{(static_cast<LiberaSinglePassE *>(dev))->read_Calibration_ka(att);}
 	virtual void write(Tango::DeviceImpl *dev,Tango::WAttribute &att)
@@ -185,9 +175,8 @@ class Calibration_kbAttrib: public Tango::Attr
 {
 public:
 	Calibration_kbAttrib():Attr("Calibration_kb",
-	                   Tango::DEV_DOUBLE, Tango::READ_WRITE) {};
+			Tango::DEV_DOUBLE, Tango::READ_WRITE) {};
 	~Calibration_kbAttrib() {};
-
 	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
 		{(static_cast<LiberaSinglePassE *>(dev))->read_Calibration_kb(att);}
 	virtual void write(Tango::DeviceImpl *dev,Tango::WAttribute &att)
@@ -201,9 +190,8 @@ class Calibration_kcAttrib: public Tango::Attr
 {
 public:
 	Calibration_kcAttrib():Attr("Calibration_kc",
-	                   Tango::DEV_DOUBLE, Tango::READ_WRITE) {};
+			Tango::DEV_DOUBLE, Tango::READ_WRITE) {};
 	~Calibration_kcAttrib() {};
-
 	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
 		{(static_cast<LiberaSinglePassE *>(dev))->read_Calibration_kc(att);}
 	virtual void write(Tango::DeviceImpl *dev,Tango::WAttribute &att)
@@ -217,9 +205,8 @@ class Calibration_kdAttrib: public Tango::Attr
 {
 public:
 	Calibration_kdAttrib():Attr("Calibration_kd",
-	                   Tango::DEV_DOUBLE, Tango::READ_WRITE) {};
+			Tango::DEV_DOUBLE, Tango::READ_WRITE) {};
 	~Calibration_kdAttrib() {};
-
 	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
 		{(static_cast<LiberaSinglePassE *>(dev))->read_Calibration_kd(att);}
 	virtual void write(Tango::DeviceImpl *dev,Tango::WAttribute &att)
@@ -233,9 +220,8 @@ class Linear_x_kAttrib: public Tango::Attr
 {
 public:
 	Linear_x_kAttrib():Attr("Linear_x_k",
-	                   Tango::DEV_DOUBLE, Tango::READ_WRITE) {};
+			Tango::DEV_DOUBLE, Tango::READ_WRITE) {};
 	~Linear_x_kAttrib() {};
-
 	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
 		{(static_cast<LiberaSinglePassE *>(dev))->read_Linear_x_k(att);}
 	virtual void write(Tango::DeviceImpl *dev,Tango::WAttribute &att)
@@ -249,9 +235,8 @@ class Linear_x_offsAttrib: public Tango::Attr
 {
 public:
 	Linear_x_offsAttrib():Attr("Linear_x_offs",
-	                   Tango::DEV_DOUBLE, Tango::READ_WRITE) {};
+			Tango::DEV_DOUBLE, Tango::READ_WRITE) {};
 	~Linear_x_offsAttrib() {};
-
 	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
 		{(static_cast<LiberaSinglePassE *>(dev))->read_Linear_x_offs(att);}
 	virtual void write(Tango::DeviceImpl *dev,Tango::WAttribute &att)
@@ -265,9 +250,8 @@ class Linear_y_kAttrib: public Tango::Attr
 {
 public:
 	Linear_y_kAttrib():Attr("Linear_y_k",
-	                   Tango::DEV_DOUBLE, Tango::READ_WRITE) {};
+			Tango::DEV_DOUBLE, Tango::READ_WRITE) {};
 	~Linear_y_kAttrib() {};
-
 	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
 		{(static_cast<LiberaSinglePassE *>(dev))->read_Linear_y_k(att);}
 	virtual void write(Tango::DeviceImpl *dev,Tango::WAttribute &att)
@@ -281,9 +265,8 @@ class Linear_y_offsAttrib: public Tango::Attr
 {
 public:
 	Linear_y_offsAttrib():Attr("Linear_y_offs",
-	                   Tango::DEV_DOUBLE, Tango::READ_WRITE) {};
+			Tango::DEV_DOUBLE, Tango::READ_WRITE) {};
 	~Linear_y_offsAttrib() {};
-
 	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
 		{(static_cast<LiberaSinglePassE *>(dev))->read_Linear_y_offs(att);}
 	virtual void write(Tango::DeviceImpl *dev,Tango::WAttribute &att)
@@ -297,9 +280,8 @@ class Linear_q_kAttrib: public Tango::Attr
 {
 public:
 	Linear_q_kAttrib():Attr("Linear_q_k",
-	                   Tango::DEV_DOUBLE, Tango::READ_WRITE) {};
+			Tango::DEV_DOUBLE, Tango::READ_WRITE) {};
 	~Linear_q_kAttrib() {};
-
 	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
 		{(static_cast<LiberaSinglePassE *>(dev))->read_Linear_q_k(att);}
 	virtual void write(Tango::DeviceImpl *dev,Tango::WAttribute &att)
@@ -313,9 +295,8 @@ class Linear_q_offsAttrib: public Tango::Attr
 {
 public:
 	Linear_q_offsAttrib():Attr("Linear_q_offs",
-	                   Tango::DEV_DOUBLE, Tango::READ_WRITE) {};
+			Tango::DEV_DOUBLE, Tango::READ_WRITE) {};
 	~Linear_q_offsAttrib() {};
-
 	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
 		{(static_cast<LiberaSinglePassE *>(dev))->read_Linear_q_offs(att);}
 	virtual void write(Tango::DeviceImpl *dev,Tango::WAttribute &att)
@@ -329,9 +310,8 @@ class Linear_sum_kAttrib: public Tango::Attr
 {
 public:
 	Linear_sum_kAttrib():Attr("Linear_sum_k",
-	                   Tango::DEV_DOUBLE, Tango::READ_WRITE) {};
+			Tango::DEV_DOUBLE, Tango::READ_WRITE) {};
 	~Linear_sum_kAttrib() {};
-
 	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
 		{(static_cast<LiberaSinglePassE *>(dev))->read_Linear_sum_k(att);}
 	virtual void write(Tango::DeviceImpl *dev,Tango::WAttribute &att)
@@ -345,9 +325,8 @@ class Linear_sum_offsAttrib: public Tango::Attr
 {
 public:
 	Linear_sum_offsAttrib():Attr("Linear_sum_offs",
-	                   Tango::DEV_DOUBLE, Tango::READ_WRITE) {};
+			Tango::DEV_DOUBLE, Tango::READ_WRITE) {};
 	~Linear_sum_offsAttrib() {};
-
 	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
 		{(static_cast<LiberaSinglePassE *>(dev))->read_Linear_sum_offs(att);}
 	virtual void write(Tango::DeviceImpl *dev,Tango::WAttribute &att)
@@ -361,9 +340,8 @@ class Signal_expansionAttrib: public Tango::Attr
 {
 public:
 	Signal_expansionAttrib():Attr("Signal_expansion",
-	                   Tango::DEV_DOUBLE, Tango::READ_WRITE) {};
+			Tango::DEV_DOUBLE, Tango::READ_WRITE) {};
 	~Signal_expansionAttrib() {};
-
 	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
 		{(static_cast<LiberaSinglePassE *>(dev))->read_Signal_expansion(att);}
 	virtual void write(Tango::DeviceImpl *dev,Tango::WAttribute &att)
@@ -377,9 +355,8 @@ class Interlock_enabledAttrib: public Tango::Attr
 {
 public:
 	Interlock_enabledAttrib():Attr("Interlock_enabled",
-	                   Tango::DEV_BOOLEAN, Tango::READ_WRITE) {};
+			Tango::DEV_BOOLEAN, Tango::READ_WRITE) {};
 	~Interlock_enabledAttrib() {};
-
 	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
 		{(static_cast<LiberaSinglePassE *>(dev))->read_Interlock_enabled(att);}
 	virtual void write(Tango::DeviceImpl *dev,Tango::WAttribute &att)
@@ -393,9 +370,8 @@ class Limit_min_xAttrib: public Tango::Attr
 {
 public:
 	Limit_min_xAttrib():Attr("Limit_min_x",
-	                   Tango::DEV_DOUBLE, Tango::READ_WRITE) {};
+			Tango::DEV_DOUBLE, Tango::READ_WRITE) {};
 	~Limit_min_xAttrib() {};
-
 	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
 		{(static_cast<LiberaSinglePassE *>(dev))->read_Limit_min_x(att);}
 	virtual void write(Tango::DeviceImpl *dev,Tango::WAttribute &att)
@@ -409,9 +385,8 @@ class Limit_min_yAttrib: public Tango::Attr
 {
 public:
 	Limit_min_yAttrib():Attr("Limit_min_y",
-	                   Tango::DEV_DOUBLE, Tango::READ_WRITE) {};
+			Tango::DEV_DOUBLE, Tango::READ_WRITE) {};
 	~Limit_min_yAttrib() {};
-
 	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
 		{(static_cast<LiberaSinglePassE *>(dev))->read_Limit_min_y(att);}
 	virtual void write(Tango::DeviceImpl *dev,Tango::WAttribute &att)
@@ -425,9 +400,8 @@ class Limit_max_xAttrib: public Tango::Attr
 {
 public:
 	Limit_max_xAttrib():Attr("Limit_max_x",
-	                   Tango::DEV_DOUBLE, Tango::READ_WRITE) {};
+			Tango::DEV_DOUBLE, Tango::READ_WRITE) {};
 	~Limit_max_xAttrib() {};
-
 	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
 		{(static_cast<LiberaSinglePassE *>(dev))->read_Limit_max_x(att);}
 	virtual void write(Tango::DeviceImpl *dev,Tango::WAttribute &att)
@@ -441,9 +415,8 @@ class Limit_max_yAttrib: public Tango::Attr
 {
 public:
 	Limit_max_yAttrib():Attr("Limit_max_y",
-	                   Tango::DEV_DOUBLE, Tango::READ_WRITE) {};
+			Tango::DEV_DOUBLE, Tango::READ_WRITE) {};
 	~Limit_max_yAttrib() {};
-
 	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
 		{(static_cast<LiberaSinglePassE *>(dev))->read_Limit_max_y(att);}
 	virtual void write(Tango::DeviceImpl *dev,Tango::WAttribute &att)
@@ -457,9 +430,8 @@ class Overflow_thresholdAttrib: public Tango::Attr
 {
 public:
 	Overflow_thresholdAttrib():Attr("Overflow_threshold",
-	                   Tango::DEV_ULONG, Tango::READ_WRITE) {};
+			Tango::DEV_ULONG, Tango::READ_WRITE) {};
 	~Overflow_thresholdAttrib() {};
-
 	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
 		{(static_cast<LiberaSinglePassE *>(dev))->read_Overflow_threshold(att);}
 	virtual void write(Tango::DeviceImpl *dev,Tango::WAttribute &att)
@@ -473,9 +445,8 @@ class Interlock_statusAttrib: public Tango::Attr
 {
 public:
 	Interlock_statusAttrib():Attr("Interlock_status",
-	                   Tango::DEV_ULONG, Tango::READ) {};
+			Tango::DEV_ULONG, Tango::READ) {};
 	~Interlock_statusAttrib() {};
-
 	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
 		{(static_cast<LiberaSinglePassE *>(dev))->read_Interlock_status(att);}
 	virtual bool is_allowed(Tango::DeviceImpl *dev,Tango::AttReqType ty)
@@ -487,9 +458,8 @@ class Status_xAttrib: public Tango::Attr
 {
 public:
 	Status_xAttrib():Attr("Status_x",
-	                   Tango::DEV_BOOLEAN, Tango::READ) {};
+			Tango::DEV_BOOLEAN, Tango::READ) {};
 	~Status_xAttrib() {};
-
 	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
 		{(static_cast<LiberaSinglePassE *>(dev))->read_Status_x(att);}
 	virtual bool is_allowed(Tango::DeviceImpl *dev,Tango::AttReqType ty)
@@ -501,9 +471,8 @@ class Status_yAttrib: public Tango::Attr
 {
 public:
 	Status_yAttrib():Attr("Status_y",
-	                   Tango::DEV_BOOLEAN, Tango::READ) {};
+			Tango::DEV_BOOLEAN, Tango::READ) {};
 	~Status_yAttrib() {};
-
 	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
 		{(static_cast<LiberaSinglePassE *>(dev))->read_Status_y(att);}
 	virtual bool is_allowed(Tango::DeviceImpl *dev,Tango::AttReqType ty)
@@ -515,69 +484,116 @@ class Status_adc_overflowAttrib: public Tango::Attr
 {
 public:
 	Status_adc_overflowAttrib():Attr("Status_adc_overflow",
-	                   Tango::DEV_BOOLEAN, Tango::READ) {};
+			Tango::DEV_BOOLEAN, Tango::READ) {};
 	~Status_adc_overflowAttrib() {};
-
 	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
 		{(static_cast<LiberaSinglePassE *>(dev))->read_Status_adc_overflow(att);}
 	virtual bool is_allowed(Tango::DeviceImpl *dev,Tango::AttReqType ty)
 		{return (static_cast<LiberaSinglePassE *>(dev))->is_Status_adc_overflow_allowed(ty);}
 };
 
-//	Attribute A class definition
-class AAttrib: public Tango::SpectrumAttr
+//	Attribute XPosition class definition
+class XPositionAttrib: public Tango::Attr
 {
 public:
-	AAttrib():SpectrumAttr("A",
-	                   Tango::DEV_SHORT, Tango::READ, 10000) {};
-	~AAttrib() {};
-
+	XPositionAttrib():Attr("XPosition",
+			Tango::DEV_DOUBLE, Tango::READ) {};
+	~XPositionAttrib() {};
 	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
-		{(static_cast<LiberaSinglePassE *>(dev))->read_A(att);}
+		{(static_cast<LiberaSinglePassE *>(dev))->read_XPosition(att);}
 	virtual bool is_allowed(Tango::DeviceImpl *dev,Tango::AttReqType ty)
-		{return (static_cast<LiberaSinglePassE *>(dev))->is_A_allowed(ty);}
+		{return (static_cast<LiberaSinglePassE *>(dev))->is_XPosition_allowed(ty);}
 };
 
-//	Attribute B class definition
-class BAttrib: public Tango::SpectrumAttr
+//	Attribute YPosition class definition
+class YPositionAttrib: public Tango::Attr
 {
 public:
-	BAttrib():SpectrumAttr("B",
-	                   Tango::DEV_SHORT, Tango::READ, 10000) {};
-	~BAttrib() {};
-
+	YPositionAttrib():Attr("YPosition",
+			Tango::DEV_DOUBLE, Tango::READ) {};
+	~YPositionAttrib() {};
 	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
-		{(static_cast<LiberaSinglePassE *>(dev))->read_B(att);}
+		{(static_cast<LiberaSinglePassE *>(dev))->read_YPosition(att);}
 	virtual bool is_allowed(Tango::DeviceImpl *dev,Tango::AttReqType ty)
-		{return (static_cast<LiberaSinglePassE *>(dev))->is_B_allowed(ty);}
+		{return (static_cast<LiberaSinglePassE *>(dev))->is_YPosition_allowed(ty);}
 };
 
-//	Attribute C class definition
-class CAttrib: public Tango::SpectrumAttr
+//	Attribute Sum class definition
+class SumAttrib: public Tango::Attr
 {
 public:
-	CAttrib():SpectrumAttr("C",
-	                   Tango::DEV_SHORT, Tango::READ, 10000) {};
-	~CAttrib() {};
-
+	SumAttrib():Attr("Sum",
+			Tango::DEV_DOUBLE, Tango::READ) {};
+	~SumAttrib() {};
 	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
-		{(static_cast<LiberaSinglePassE *>(dev))->read_C(att);}
+		{(static_cast<LiberaSinglePassE *>(dev))->read_Sum(att);}
 	virtual bool is_allowed(Tango::DeviceImpl *dev,Tango::AttReqType ty)
-		{return (static_cast<LiberaSinglePassE *>(dev))->is_C_allowed(ty);}
+		{return (static_cast<LiberaSinglePassE *>(dev))->is_Sum_allowed(ty);}
 };
 
-//	Attribute D class definition
-class DAttrib: public Tango::SpectrumAttr
+//	Attribute Quad class definition
+class QuadAttrib: public Tango::Attr
 {
 public:
-	DAttrib():SpectrumAttr("D",
-	                   Tango::DEV_SHORT, Tango::READ, 10000) {};
-	~DAttrib() {};
-
+	QuadAttrib():Attr("Quad",
+			Tango::DEV_DOUBLE, Tango::READ) {};
+	~QuadAttrib() {};
 	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
-		{(static_cast<LiberaSinglePassE *>(dev))->read_D(att);}
+		{(static_cast<LiberaSinglePassE *>(dev))->read_Quad(att);}
 	virtual bool is_allowed(Tango::DeviceImpl *dev,Tango::AttReqType ty)
-		{return (static_cast<LiberaSinglePassE *>(dev))->is_D_allowed(ty);}
+		{return (static_cast<LiberaSinglePassE *>(dev))->is_Quad_allowed(ty);}
+};
+
+//	Attribute ADCChannelA class definition
+class ADCChannelAAttrib: public Tango::SpectrumAttr
+{
+public:
+	ADCChannelAAttrib():SpectrumAttr("ADCChannelA",
+			Tango::DEV_SHORT, Tango::READ, 10000) {};
+	~ADCChannelAAttrib() {};
+	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
+		{(static_cast<LiberaSinglePassE *>(dev))->read_ADCChannelA(att);}
+	virtual bool is_allowed(Tango::DeviceImpl *dev,Tango::AttReqType ty)
+		{return (static_cast<LiberaSinglePassE *>(dev))->is_ADCChannelA_allowed(ty);}
+};
+
+//	Attribute ADCChannelB class definition
+class ADCChannelBAttrib: public Tango::SpectrumAttr
+{
+public:
+	ADCChannelBAttrib():SpectrumAttr("ADCChannelB",
+			Tango::DEV_SHORT, Tango::READ, 10000) {};
+	~ADCChannelBAttrib() {};
+	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
+		{(static_cast<LiberaSinglePassE *>(dev))->read_ADCChannelB(att);}
+	virtual bool is_allowed(Tango::DeviceImpl *dev,Tango::AttReqType ty)
+		{return (static_cast<LiberaSinglePassE *>(dev))->is_ADCChannelB_allowed(ty);}
+};
+
+//	Attribute ADCChannelC class definition
+class ADCChannelCAttrib: public Tango::SpectrumAttr
+{
+public:
+	ADCChannelCAttrib():SpectrumAttr("ADCChannelC",
+			Tango::DEV_SHORT, Tango::READ, 10000) {};
+	~ADCChannelCAttrib() {};
+	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
+		{(static_cast<LiberaSinglePassE *>(dev))->read_ADCChannelC(att);}
+	virtual bool is_allowed(Tango::DeviceImpl *dev,Tango::AttReqType ty)
+		{return (static_cast<LiberaSinglePassE *>(dev))->is_ADCChannelC_allowed(ty);}
+};
+
+//	Attribute ADCChannelD class definition
+class ADCChannelDAttrib: public Tango::SpectrumAttr
+{
+public:
+	ADCChannelDAttrib():SpectrumAttr("ADCChannelD",
+			Tango::DEV_SHORT, Tango::READ, 10000) {};
+	~ADCChannelDAttrib() {};
+	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
+		{(static_cast<LiberaSinglePassE *>(dev))->read_ADCChannelD(att);}
+	virtual bool is_allowed(Tango::DeviceImpl *dev,Tango::AttReqType ty)
+		{return (static_cast<LiberaSinglePassE *>(dev))->is_ADCChannelD_allowed(ty);}
 };
 
 //	Attribute AT class definition
@@ -585,9 +601,8 @@ class ATAttrib: public Tango::SpectrumAttr
 {
 public:
 	ATAttrib():SpectrumAttr("AT",
-	                   Tango::DEV_DOUBLE, Tango::READ, 10000) {};
+			Tango::DEV_DOUBLE, Tango::READ, 10000) {};
 	~ATAttrib() {};
-
 	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
 		{(static_cast<LiberaSinglePassE *>(dev))->read_AT(att);}
 	virtual bool is_allowed(Tango::DeviceImpl *dev,Tango::AttReqType ty)
@@ -599,9 +614,8 @@ class BTAttrib: public Tango::SpectrumAttr
 {
 public:
 	BTAttrib():SpectrumAttr("BT",
-	                   Tango::DEV_DOUBLE, Tango::READ, 10000) {};
+			Tango::DEV_DOUBLE, Tango::READ, 10000) {};
 	~BTAttrib() {};
-
 	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
 		{(static_cast<LiberaSinglePassE *>(dev))->read_BT(att);}
 	virtual bool is_allowed(Tango::DeviceImpl *dev,Tango::AttReqType ty)
@@ -613,9 +627,8 @@ class CTAttrib: public Tango::SpectrumAttr
 {
 public:
 	CTAttrib():SpectrumAttr("CT",
-	                   Tango::DEV_DOUBLE, Tango::READ, 10000) {};
+			Tango::DEV_DOUBLE, Tango::READ, 10000) {};
 	~CTAttrib() {};
-
 	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
 		{(static_cast<LiberaSinglePassE *>(dev))->read_CT(att);}
 	virtual bool is_allowed(Tango::DeviceImpl *dev,Tango::AttReqType ty)
@@ -627,41 +640,12 @@ class DTAttrib: public Tango::SpectrumAttr
 {
 public:
 	DTAttrib():SpectrumAttr("DT",
-	                   Tango::DEV_DOUBLE, Tango::READ, 10000) {};
+			Tango::DEV_DOUBLE, Tango::READ, 10000) {};
 	~DTAttrib() {};
-
 	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
 		{(static_cast<LiberaSinglePassE *>(dev))->read_DT(att);}
 	virtual bool is_allowed(Tango::DeviceImpl *dev,Tango::AttReqType ty)
 		{return (static_cast<LiberaSinglePassE *>(dev))->is_DT_allowed(ty);}
-};
-
-//	Attribute Yposition class definition
-class YpositionAttrib: public Tango::SpectrumAttr
-{
-public:
-	YpositionAttrib():SpectrumAttr("Yposition",
-	                   Tango::DEV_DOUBLE, Tango::READ, 10000) {};
-	~YpositionAttrib() {};
-
-	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
-		{(static_cast<LiberaSinglePassE *>(dev))->read_Yposition(att);}
-	virtual bool is_allowed(Tango::DeviceImpl *dev,Tango::AttReqType ty)
-		{return (static_cast<LiberaSinglePassE *>(dev))->is_Yposition_allowed(ty);}
-};
-
-//	Attribute Xposition class definition
-class XpositionAttrib: public Tango::SpectrumAttr
-{
-public:
-	XpositionAttrib():SpectrumAttr("Xposition",
-	                   Tango::DEV_DOUBLE, Tango::READ, 10000) {};
-	~XpositionAttrib() {};
-
-	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
-		{(static_cast<LiberaSinglePassE *>(dev))->read_Xposition(att);}
-	virtual bool is_allowed(Tango::DeviceImpl *dev,Tango::AttReqType ty)
-		{return (static_cast<LiberaSinglePassE *>(dev))->is_Xposition_allowed(ty);}
 };
 
 //	Attribute Current class definition
@@ -669,9 +653,8 @@ class CurrentAttrib: public Tango::SpectrumAttr
 {
 public:
 	CurrentAttrib():SpectrumAttr("Current",
-	                   Tango::DEV_DOUBLE, Tango::READ, 100) {};
+			Tango::DEV_DOUBLE, Tango::READ, 100) {};
 	~CurrentAttrib() {};
-
 	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
 		{(static_cast<LiberaSinglePassE *>(dev))->read_Current(att);}
 	virtual bool is_allowed(Tango::DeviceImpl *dev,Tango::AttReqType ty)
@@ -683,17 +666,13 @@ class SumTAttrib: public Tango::SpectrumAttr
 {
 public:
 	SumTAttrib():SpectrumAttr("SumT",
-	                   Tango::DEV_DOUBLE, Tango::READ, 10000) {};
+			Tango::DEV_DOUBLE, Tango::READ, 10000) {};
 	~SumTAttrib() {};
-
 	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
 		{(static_cast<LiberaSinglePassE *>(dev))->read_SumT(att);}
 	virtual bool is_allowed(Tango::DeviceImpl *dev,Tango::AttReqType ty)
 		{return (static_cast<LiberaSinglePassE *>(dev))->is_SumT_allowed(ty);}
 };
-
-
-
 
 
 //=========================================
@@ -716,7 +695,7 @@ public:
 				   Tango::CmdArgType out)
 	:Command(name,in,out)	{};
 	~ResetClass() {};
-
+	
 	virtual CORBA::Any *execute (Tango::DeviceImpl *dev, const CORBA::Any &any);
 	virtual bool is_allowed (Tango::DeviceImpl *dev, const CORBA::Any &any)
 	{return (static_cast<LiberaSinglePassE *>(dev))->is_Reset_allowed(any);}
@@ -739,7 +718,7 @@ public:
 				   Tango::CmdArgType out)
 	:Command(name,in,out)	{};
 	~ResetTriggerClass() {};
-
+	
 	virtual CORBA::Any *execute (Tango::DeviceImpl *dev, const CORBA::Any &any);
 	virtual bool is_allowed (Tango::DeviceImpl *dev, const CORBA::Any &any)
 	{return (static_cast<LiberaSinglePassE *>(dev))->is_ResetTrigger_allowed(any);}
@@ -762,7 +741,7 @@ public:
 				   Tango::CmdArgType out)
 	:Command(name,in,out)	{};
 	~ResetInterlockStatusClass() {};
-
+	
 	virtual CORBA::Any *execute (Tango::DeviceImpl *dev, const CORBA::Any &any);
 	virtual bool is_allowed (Tango::DeviceImpl *dev, const CORBA::Any &any)
 	{return (static_cast<LiberaSinglePassE *>(dev))->is_ResetInterlockStatus_allowed(any);}
@@ -785,74 +764,66 @@ public:
 				   Tango::CmdArgType out)
 	:Command(name,in,out)	{};
 	~MagicCommandClass() {};
-
+	
 	virtual CORBA::Any *execute (Tango::DeviceImpl *dev, const CORBA::Any &any);
 	virtual bool is_allowed (Tango::DeviceImpl *dev, const CORBA::Any &any)
 	{return (static_cast<LiberaSinglePassE *>(dev))->is_MagicCommand_allowed(any);}
 };
 
 
-
-
-
 /**
- *	The TemplateDevServClass singleton definition
+ *	The LiberaSinglePassEClass singleton definition
  */
 
-class
 #ifdef _TG_WINDOWS_
-	__declspec(dllexport)
+class __declspec(dllexport)  LiberaSinglePassEClass : public Tango::DeviceClass
+#else
+class LiberaSinglePassEClass : public Tango::DeviceClass
 #endif
-	LiberaSinglePassEClass : public Tango::DeviceClass
 {
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::Additionnal DServer data members) ENABLED START -----*/
+	/*----- PROTECTED REGION ID(LiberaSinglePassEClass::Additionnal DServer data members) ENABLED START -----*/
 
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::Additionnal DServer data members
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassEClass::Additionnal DServer data members
 
-
-
-
-//	Class properties data members
-public:
-	//	ServiceTaskSleep:	Sleep time (in mS) for the service task between libera boxes request
-	Tango::DevLong	serviceTaskSleep;
-	//	DataTaskHeartbeat:	Heartbeat time (in mS) for the data task
-	Tango::DevLong	dataTaskHeartbeat;
-public:
-//	write class properties data members
-	Tango::DbData	cl_prop;
-	Tango::DbData	cl_def_prop;
-	Tango::DbData	dev_def_prop;
-
-//	Method prototypes
-	static LiberaSinglePassEClass *init(const char *);
-	static LiberaSinglePassEClass *instance();
-	~LiberaSinglePassEClass();
-	Tango::DbDatum	get_class_property(string &);
-	Tango::DbDatum	get_default_device_property(string &);
-	Tango::DbDatum	get_default_class_property(string &);
-
-protected:
-	LiberaSinglePassEClass(string &);
-	static LiberaSinglePassEClass *_instance;
-	void command_factory();
-	void attribute_factory(vector<Tango::Attr *> &);
-	void write_class_property();
-	void set_default_property();
-	void get_class_property();
-	string get_cvstag();
-	string get_cvsroot();
-
-private:
-	void device_factory(const Tango::DevVarStringArray *);
-	void create_static_attribute_list(vector<Tango::Attr *> &);
-	void erase_dynamic_attributes(const Tango::DevVarStringArray *,vector<Tango::Attr *> &);
-	vector<string>	defaultAttList;
-
-
+	//	Class properties data members
+	public:
+		//	ServiceTaskSleep:	Sleep time (in mS) for the service task between libera boxes request
+		Tango::DevLong	serviceTaskSleep;
+		//	DataTaskHeartbeat:	Heartbeat time (in mS) for the data task
+		Tango::DevLong	dataTaskHeartbeat;
+	public:
+		//	write class properties data members
+		Tango::DbData	cl_prop;
+		Tango::DbData	cl_def_prop;
+		Tango::DbData	dev_def_prop;
+	
+		//	Method prototypes
+		static LiberaSinglePassEClass *init(const char *);
+		static LiberaSinglePassEClass *instance();
+		~LiberaSinglePassEClass();
+		Tango::DbDatum	get_class_property(string &);
+		Tango::DbDatum	get_default_device_property(string &);
+		Tango::DbDatum	get_default_class_property(string &);
+	
+	protected:
+		LiberaSinglePassEClass(string &);
+		static LiberaSinglePassEClass *_instance;
+		void command_factory();
+		void attribute_factory(vector<Tango::Attr *> &);
+		void write_class_property();
+		void set_default_property();
+		void get_class_property();
+		string get_cvstag();
+		string get_cvsroot();
+	
+	private:
+		void device_factory(const Tango::DevVarStringArray *);
+		void create_static_attribute_list(vector<Tango::Attr *> &);
+		void erase_dynamic_attributes(const Tango::DevVarStringArray *,vector<Tango::Attr *> &);
+		vector<string>	defaultAttList;
+		Tango::Attr *get_attr_object_by_name(vector<Tango::Attr *> &att_list, string attname);
 };
 
-}	//	namespace
+}	//	End of namespace
 
-#endif	//	LIBERASINGLEPASSECLASS_H
-
+#endif   //	LiberaSinglePassE_H

@@ -102,5 +102,4 @@ int main(int argc,char *argv[])
 
 	return(0);
 }
-/*PROTECTED REGION END*/
-//========================================================
+/*PROTECTED REGION END*/	//	LiberaSinglePassE::main.cpp

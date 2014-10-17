@@ -46,4 +46,4 @@ void Tango::DServer::class_factory()
 	add_class(LiberaSinglePassE_ns::LiberaSinglePassEClass::init("LiberaSinglePassE"));
 }
 
-/*----- PROTECTED REGION END -----*/
+/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::ClassFactory.cpp
