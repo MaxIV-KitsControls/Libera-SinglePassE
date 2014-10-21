@@ -101,7 +101,7 @@ LFLAGS_USR+= -lliberamci2.6 \
 #
 # -DACE_HAS_EXCEPTIONS -D__ACE_INLINE__ for ACE
 #
-CXXFLAGS_USR+= -Wall -std=gnu++0x
+CXXFLAGS_USR+= -Wall -std=gnu++0x -D_GLIBCXX_USE_NANOSLEEP
 
 
 #=============================================================================
@@ -134,7 +134,6 @@ SVC_INCL =  $(PACKAGE_NAME).h $(PACKAGE_NAME)Class.h $(PACKAGE_NAME)DataTask.h
 
 SVC_OBJS =      \
             $(OBJDIR)/$(PACKAGE_NAME).o \
-            $(OBJDIR)/$(PACKAGE_NAME)DataTask.o \
             $(OBJDIR)/$(PACKAGE_NAME)Class.o \
             $(OBJDIR)/$(PACKAGE_NAME)StateMachine.o \
             $(OBJDIR)/ClassFactory.o  \
@@ -143,7 +142,12 @@ SVC_OBJS =      \
 
 
 #------------  Object files for additional files  ------------
-ADDITIONAL_OBJS = 
+ADDITIONAL_OBJS = \
+            $(OBJDIR)/LiberaClient.o \
+            $(OBJDIR)/LiberaAttr.o   \
+            $(OBJDIR)/LiberaLogsAttr.o   \
+            $(OBJDIR)/LiberaSignal.o     \
+            $(OBJDIR)/LiberaSignalSAHistory.o
 
 #=============================================================================
 #	include common targets

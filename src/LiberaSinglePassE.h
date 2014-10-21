@@ -54,6 +54,9 @@ if (ptr == NULL) \
 			"LiberaSinglePassE::init_device"); \
 }
 
+class LiberaClient;
+class LiberaSignal;
+
 /*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE.h
 
 /**
@@ -107,7 +110,7 @@ namespace LiberaSinglePassE_ns
 	log4tango::LogSeparator::_end_log
 
 //		Additional Class Declarations
-class LiberaSinglePassEDataTask;
+// class LiberaSinglePassEDataTask;
 
 	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::Additional Class Declarations
 
@@ -746,66 +749,77 @@ public:
 
 	//	Additional Method prototypes
 protected:
-	mci::Node mci_application_root;
-	mci::Node mci_platform_root;
+        LiberaClient *m_libera;
+
+        LiberaSignal *m_signalADC;
+        LiberaSignal *m_signalSPE;
+        std::string m_spe;
+        
+        Tango::DevLong *m_spe_buffer_size;
+        
+        Tango::DevBoolean *m_spe_enabled;
+        Tango::DevBoolean *m_adc_enabled;
+        
+//	mci::Node mci_application_root;
+//	mci::Node mci_platform_root;
 
 	/* Application daemon nodes */
-	mci::Node mci_Calibration_ka;
-	mci::Node mci_Calibration_kb;
-	mci::Node mci_Calibration_kc;
-	mci::Node mci_Calibration_kd;
-	mci::Node mci_Linear_x_k;
-	mci::Node mci_Linear_x_offs;
-	mci::Node mci_Linear_y_k;
-	mci::Node mci_Linear_y_offs;
-	mci::Node mci_Linear_q_k;
-	mci::Node mci_Linear_q_offs;
-	mci::Node mci_Linear_sum_k;
-	mci::Node mci_Linear_sum_offs;
-	mci::Node mci_SignalExpansion;
-	mci::Node mci_InterlockEnabled;
-	mci::Node mci_LimitMinX;
-	mci::Node mci_LimitMinY;
-	mci::Node mci_LimitMaxX;
-	mci::Node mci_LimitMaxY;
-	mci::Node mci_OverflowThreshold;
-	mci::Node mci_InterlockStatus;
-	mci::Node mci_InterlockStatusX;
-	mci::Node mci_InterlockStatusY;
-	mci::Node mci_InterlockStatusADCOverflow;
-	mci::Node mci_InterlockStatusTimestamp;
-	mci::Node mci_InterlockStatusReset;
-	mci::Node mci_LevelNodeGet;
-	mci::Node mci_adc_signal;
-	mci::Node mci_LevelNodeSet;
+//	mci::Node mci_Calibration_ka;
+//	mci::Node mci_Calibration_kb;
+//	mci::Node mci_Calibration_kc;
+//	mci::Node mci_Calibration_kd;
+//	mci::Node mci_Linear_x_k;
+//	mci::Node mci_Linear_x_offs;
+//	mci::Node mci_Linear_y_k;
+//	mci::Node mci_Linear_y_offs;
+//	mci::Node mci_Linear_q_k;
+//	mci::Node mci_Linear_q_offs;
+//	mci::Node mci_Linear_sum_k;
+//	mci::Node mci_Linear_sum_offs;
+//	mci::Node mci_SignalExpansion;
+//	mci::Node mci_InterlockEnabled;
+//	mci::Node mci_LimitMinX;
+//	mci::Node mci_LimitMinY;
+//	mci::Node mci_LimitMaxX;
+//	mci::Node mci_LimitMaxY;
+//	mci::Node mci_OverflowThreshold;
+//	mci::Node mci_InterlockStatus;
+//	mci::Node mci_InterlockStatusX;
+//	mci::Node mci_InterlockStatusY;
+//	mci::Node mci_InterlockStatusADCOverflow;
+//	mci::Node mci_InterlockStatusTimestamp;
+//	mci::Node mci_InterlockStatusReset;
+//	mci::Node mci_LevelNodeGet;
+//	mci::Node mci_adc_signal;
+//	mci::Node mci_LevelNodeSet;
 
 	/* Level enumeration node */
-	mci::Node mci_level_gt;
-
-	std::map<uint32_t, string> level_enumeration;
+//	mci::Node mci_level_gt;
+//
+//	std::map<uint32_t, string> level_enumeration;
 
 
 	/* Platform daemon nodes */
-	mci::Node mci_temp1;
-	mci::Node mci_temp2;
-	mci::Node mci_temp3;
-	mci::Node mci_fan_left_front;
-	mci::Node mci_fan_left_rear;
-	mci::Node mci_fan_left_middle;
-	mci::Node mci_fan_right_front;
-	mci::Node mci_fan_right_middle;
-	mci::Node mci_fan_right_rear;
+//	mci::Node mci_temp1;
+//	mci::Node mci_temp2;
+//	mci::Node mci_temp3;
+//	mci::Node mci_fan_left_front;
+//	mci::Node mci_fan_left_rear;
+//	mci::Node mci_fan_left_middle;
+//	mci::Node mci_fan_right_front;
+//	mci::Node mci_fan_right_middle;
+//	mci::Node mci_fan_right_rear;
 
 
-	LiberaSinglePassEDataTask *data_thread;
+//	LiberaSinglePassEDataTask *data_thread;
 
-	struct timeval now;
-
-	void compute();
-	void compute_T_attr(Tango::DevShort *,Tango::DevDouble *);
-	void compute_pos_attr();
-	void compute_current_attr();
-	void dump_mci_tree(const mci::Node &node, Tango::DevVarStringArray *store, CORBA::ULong *count);
+//	struct timeval now;
+//
+//	void compute();
+//	void compute_T_attr(Tango::DevShort *,Tango::DevDouble *);
+//	void compute_pos_attr();
+//	void compute_current_attr();
+//	void dump_mci_tree(const mci::Node &node, Tango::DevVarStringArray *store, CORBA::ULong *count);
 
 public:
 	time_t heartbeat_sec;
