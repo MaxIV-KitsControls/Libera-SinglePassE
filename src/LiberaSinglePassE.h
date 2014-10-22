@@ -131,25 +131,11 @@ public:
 	string	liberaBoard;
 	//	Location:	The libera box physical place (TL1, BOOSTER,....)
 	string	location;
-	//	ServiceTaskSleep:	Sleep time (in mS) for the class task between libera boxes request
-	Tango::DevLong	serviceTaskSleep;
-	//	DataTaskHeartbeat:	Heartbeat time (in mS) for the data task
-	Tango::DevLong	dataTaskHeartbeat;
-	//	BeamThreshold:	Threshold to decide if there is some beam at a given time
-	//  (at a given index in the ADC buffers)
-	Tango::DevDouble	beamThreshold;
-	//	PositionK:	Multiplicative coefficient to compute beam position
-	Tango::DevDouble	positionK;
-	//	CurrentK:	Multiplicative coefficient to compute beam current
-	Tango::DevDouble	currentK;
-	//	CurrentTimeOffset:	Time coefficient used in current computation
-	Tango::DevLong	currentTimeOffset;
 
 //	Attribute data members
 public:
-	Tango::DevLong	*attr_BufferSize_read;
-	Tango::DevLong	*attr_AttenuationLevel_read;
-	Tango::DevULong	*attr_TriggerCounter_read;
+	Tango::DevLong	*attr_ADCBufferSize_read;
+	Tango::DevULong64	*attr_TriggerCounter_read;
 	Tango::DevUShort	*attr_Fan1Speed_read;
 	Tango::DevUShort	*attr_Fan2Speed_read;
 	Tango::DevUShort	*attr_Temp1_read;
@@ -178,20 +164,15 @@ public:
 	Tango::DevBoolean	*attr_Status_x_read;
 	Tango::DevBoolean	*attr_Status_y_read;
 	Tango::DevBoolean	*attr_Status_adc_overflow_read;
-	Tango::DevDouble	*attr_XPosition_read;
-	Tango::DevDouble	*attr_YPosition_read;
+	Tango::DevDouble	*attr_X_read;
+	Tango::DevDouble	*attr_Y_read;
 	Tango::DevDouble	*attr_Sum_read;
-	Tango::DevDouble	*attr_Quad_read;
+	Tango::DevBoolean	*attr_EnableADC_read;
+	Tango::DevDouble	*attr_Q_read;
 	Tango::DevShort	*attr_ADCChannelA_read;
 	Tango::DevShort	*attr_ADCChannelB_read;
 	Tango::DevShort	*attr_ADCChannelC_read;
 	Tango::DevShort	*attr_ADCChannelD_read;
-	Tango::DevDouble	*attr_AT_read;
-	Tango::DevDouble	*attr_BT_read;
-	Tango::DevDouble	*attr_CT_read;
-	Tango::DevDouble	*attr_DT_read;
-	Tango::DevDouble	*attr_Current_read;
-	Tango::DevDouble	*attr_SumT_read;
 
 //	Constructors and destructors
 public:
@@ -261,31 +242,20 @@ public:
 	virtual void write_attr_hardware(vector<long> &attr_list);
 
 /**
- *	Attribute BufferSize related methods
+ *	Attribute ADCBufferSize related methods
  *	Description: The Libera box ADC buffer size (between 10 and 8192)
  *
  *	Data type:	Tango::DevLong
  *	Attr type:	Scalar
  */
-	virtual void read_BufferSize(Tango::Attribute &attr);
-	virtual void write_BufferSize(Tango::WAttribute &attr);
-	virtual bool is_BufferSize_allowed(Tango::AttReqType type);
-/**
- *	Attribute AttenuationLevel related methods
- *	Description: The analog channels level. This attribute allows the user to tune the analog channels
- *               attenuator. The input is an index within a lookup table in the Libera box
- *
- *	Data type:	Tango::DevLong
- *	Attr type:	Scalar
- */
-	virtual void read_AttenuationLevel(Tango::Attribute &attr);
-	virtual void write_AttenuationLevel(Tango::WAttribute &attr);
-	virtual bool is_AttenuationLevel_allowed(Tango::AttReqType type);
+	virtual void read_ADCBufferSize(Tango::Attribute &attr);
+	virtual void write_ADCBufferSize(Tango::WAttribute &attr);
+	virtual bool is_ADCBufferSize_allowed(Tango::AttReqType type);
 /**
  *	Attribute TriggerCounter related methods
  *	Description: Trigger counter. Incremented at each trigger
  *
- *	Data type:	Tango::DevULong
+ *	Data type:	Tango::DevULong64
  *	Attr type:	Scalar
  */
 	virtual void read_TriggerCounter(Tango::Attribute &attr);
@@ -562,23 +532,23 @@ public:
 	virtual void read_Status_adc_overflow(Tango::Attribute &attr);
 	virtual bool is_Status_adc_overflow_allowed(Tango::AttReqType type);
 /**
- *	Attribute XPosition related methods
+ *	Attribute X related methods
  *	Description: 
  *
  *	Data type:	Tango::DevDouble
  *	Attr type:	Scalar
  */
-	virtual void read_XPosition(Tango::Attribute &attr);
-	virtual bool is_XPosition_allowed(Tango::AttReqType type);
+	virtual void read_X(Tango::Attribute &attr);
+	virtual bool is_X_allowed(Tango::AttReqType type);
 /**
- *	Attribute YPosition related methods
+ *	Attribute Y related methods
  *	Description: 
  *
  *	Data type:	Tango::DevDouble
  *	Attr type:	Scalar
  */
-	virtual void read_YPosition(Tango::Attribute &attr);
-	virtual bool is_YPosition_allowed(Tango::AttReqType type);
+	virtual void read_Y(Tango::Attribute &attr);
+	virtual bool is_Y_allowed(Tango::AttReqType type);
 /**
  *	Attribute Sum related methods
  *	Description: 
@@ -589,14 +559,24 @@ public:
 	virtual void read_Sum(Tango::Attribute &attr);
 	virtual bool is_Sum_allowed(Tango::AttReqType type);
 /**
- *	Attribute Quad related methods
+ *	Attribute EnableADC related methods
+ *	Description: 
+ *
+ *	Data type:	Tango::DevBoolean
+ *	Attr type:	Scalar
+ */
+	virtual void read_EnableADC(Tango::Attribute &attr);
+	virtual void write_EnableADC(Tango::WAttribute &attr);
+	virtual bool is_EnableADC_allowed(Tango::AttReqType type);
+/**
+ *	Attribute Q related methods
  *	Description: 
  *
  *	Data type:	Tango::DevDouble
  *	Attr type:	Scalar
  */
-	virtual void read_Quad(Tango::Attribute &attr);
-	virtual bool is_Quad_allowed(Tango::AttReqType type);
+	virtual void read_Q(Tango::Attribute &attr);
+	virtual bool is_Q_allowed(Tango::AttReqType type);
 /**
  *	Attribute ADCChannelA related methods
  *	Description: The A StripLine ADC buffer
@@ -633,64 +613,6 @@ public:
  */
 	virtual void read_ADCChannelD(Tango::Attribute &attr);
 	virtual bool is_ADCChannelD_allowed(Tango::AttReqType type);
-/**
- *	Attribute AT related methods
- *	Description: The A StripLine ADC buffer after some computation:
- *               square - double averaging filter - square root
- *
- *	Data type:	Tango::DevDouble
- *	Attr type:	Spectrum max = 10000
- */
-	virtual void read_AT(Tango::Attribute &attr);
-	virtual bool is_AT_allowed(Tango::AttReqType type);
-/**
- *	Attribute BT related methods
- *	Description: The B StripLine ADC buffer after some computation:
- *               square - double averaging filter - square root
- *
- *	Data type:	Tango::DevDouble
- *	Attr type:	Spectrum max = 10000
- */
-	virtual void read_BT(Tango::Attribute &attr);
-	virtual bool is_BT_allowed(Tango::AttReqType type);
-/**
- *	Attribute CT related methods
- *	Description: The C StripLine ADC buffer after some computation:
- *               square - double averaging filter - square root
- *
- *	Data type:	Tango::DevDouble
- *	Attr type:	Spectrum max = 10000
- */
-	virtual void read_CT(Tango::Attribute &attr);
-	virtual bool is_CT_allowed(Tango::AttReqType type);
-/**
- *	Attribute DT related methods
- *	Description: The D StripLine ADC buffer after some computation:
- *               square - double averaging filter - square root
- *
- *	Data type:	Tango::DevDouble
- *	Attr type:	Spectrum max = 10000
- */
-	virtual void read_DT(Tango::Attribute &attr);
-	virtual bool is_DT_allowed(Tango::AttReqType type);
-/**
- *	Attribute Current related methods
- *	Description: Beam current computed from strip lines data
- *
- *	Data type:	Tango::DevDouble
- *	Attr type:	Spectrum max = 100
- */
-	virtual void read_Current(Tango::Attribute &attr);
-	virtual bool is_Current_allowed(Tango::AttReqType type);
-/**
- *	Attribute SumT related methods
- *	Description: Sum of the 4 computed ADC outputs (the xxxT attributes)
- *
- *	Data type:	Tango::DevDouble
- *	Attr type:	Spectrum max = 10000
- */
-	virtual void read_SumT(Tango::Attribute &attr);
-	virtual bool is_SumT_allowed(Tango::AttReqType type);
 
 
 	//--------------------------------------------------------
@@ -712,13 +634,6 @@ public:
 	 */
 	virtual void reset();
 	virtual bool is_Reset_allowed(const CORBA::Any &any);
-	/**
-	 *	Command ResetTrigger related method
-	 *	Description: Reset the trigger counter
-	 *
-	 */
-	virtual void reset_trigger();
-	virtual bool is_ResetTrigger_allowed(const CORBA::Any &any);
 	/**
 	 *	Command ResetInterlockStatus related method
 	 *	Description: Matjaz.....
@@ -753,81 +668,37 @@ protected:
 
         LiberaSignal *m_signalADC;
         LiberaSignal *m_signalSPE;
+        LiberaSignal *m_signalEvent;
         std::string m_spe;
         
         Tango::DevLong *m_spe_buffer_size;
-        
         Tango::DevBoolean *m_spe_enabled;
-        Tango::DevBoolean *m_adc_enabled;
+                
+        Tango::DevDouble *m_spe_va;
+        Tango::DevDouble *m_spe_vb;
+        Tango::DevDouble *m_spe_vc;
+        Tango::DevDouble *m_spe_vd;
+        Tango::DevDouble *m_spe_sum;
+        Tango::DevDouble *m_spe_q;
+        Tango::DevDouble *m_spe_x;
+        Tango::DevDouble *m_spe_y;
+        Tango::DevDouble *m_spe_trigger_cnt;
+        Tango::DevDouble *m_spe_bunch_cnt;
+        Tango::DevDouble *m_spe_status;
+        Tango::DevDouble *m_spe_mode;
+        Tango::DevDouble *m_spe_r2;
+        Tango::DevDouble *m_spe_r3;
+        Tango::DevDouble *m_spe_timestamp_h;
+        Tango::DevDouble *m_spe_timestamp_l;
         
-//	mci::Node mci_application_root;
-//	mci::Node mci_platform_root;
-
-	/* Application daemon nodes */
-//	mci::Node mci_Calibration_ka;
-//	mci::Node mci_Calibration_kb;
-//	mci::Node mci_Calibration_kc;
-//	mci::Node mci_Calibration_kd;
-//	mci::Node mci_Linear_x_k;
-//	mci::Node mci_Linear_x_offs;
-//	mci::Node mci_Linear_y_k;
-//	mci::Node mci_Linear_y_offs;
-//	mci::Node mci_Linear_q_k;
-//	mci::Node mci_Linear_q_offs;
-//	mci::Node mci_Linear_sum_k;
-//	mci::Node mci_Linear_sum_offs;
-//	mci::Node mci_SignalExpansion;
-//	mci::Node mci_InterlockEnabled;
-//	mci::Node mci_LimitMinX;
-//	mci::Node mci_LimitMinY;
-//	mci::Node mci_LimitMaxX;
-//	mci::Node mci_LimitMaxY;
-//	mci::Node mci_OverflowThreshold;
-//	mci::Node mci_InterlockStatus;
-//	mci::Node mci_InterlockStatusX;
-//	mci::Node mci_InterlockStatusY;
-//	mci::Node mci_InterlockStatusADCOverflow;
-//	mci::Node mci_InterlockStatusTimestamp;
-//	mci::Node mci_InterlockStatusReset;
-//	mci::Node mci_LevelNodeGet;
-//	mci::Node mci_adc_signal;
-//	mci::Node mci_LevelNodeSet;
-
-	/* Level enumeration node */
-//	mci::Node mci_level_gt;
-//
-//	std::map<uint32_t, string> level_enumeration;
-
-
-	/* Platform daemon nodes */
-//	mci::Node mci_temp1;
-//	mci::Node mci_temp2;
-//	mci::Node mci_temp3;
-//	mci::Node mci_fan_left_front;
-//	mci::Node mci_fan_left_rear;
-//	mci::Node mci_fan_left_middle;
-//	mci::Node mci_fan_right_front;
-//	mci::Node mci_fan_right_middle;
-//	mci::Node mci_fan_right_rear;
-
-
-//	LiberaSinglePassEDataTask *data_thread;
-
-//	struct timeval now;
-//
-//	void compute();
-//	void compute_T_attr(Tango::DevShort *,Tango::DevDouble *);
-//	void compute_pos_attr();
-//	void compute_current_attr();
-//	void dump_mci_tree(const mci::Node &node, Tango::DevVarStringArray *store, CORBA::ULong *count);
-
-public:
-	time_t heartbeat_sec;
-	Tango::DevULong trig_ctr;
-	Tango::DevULong old_trig_ctr;
-	int computed_buf_size;
-	int current_buf_size;
-
+        Tango::DevLong *m_event_buffer_size;
+        Tango::DevBoolean *m_event_enabled;
+        
+        Tango::DevULong64 *m_event_id;
+        Tango::DevULong64 *m_event_count;
+        Tango::DevULong64 *m_event_timestamp;
+        Tango::DevULong64 *m_event_data;
+        
 	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::Additional Method prototypes
 };
 

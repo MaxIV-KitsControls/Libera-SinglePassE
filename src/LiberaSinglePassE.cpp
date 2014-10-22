@@ -55,7 +55,6 @@ static const char *RcsId = "$Id:  $";
 //  State                 |  Inherited (no method)
 //  Status                |  Inherited (no method)
 //  Reset                 |  reset
-//  ResetTrigger          |  reset_trigger
 //  ResetInterlockStatus  |  reset_interlock_status
 //  MagicCommand          |  magic_command
 //================================================================
@@ -63,9 +62,8 @@ static const char *RcsId = "$Id:  $";
 //================================================================
 //  Attributes managed are:
 //================================================================
-//  BufferSize           |  Tango::DevLong	Scalar
-//  AttenuationLevel     |  Tango::DevLong	Scalar
-//  TriggerCounter       |  Tango::DevULong	Scalar
+//  ADCBufferSize        |  Tango::DevLong	Scalar
+//  TriggerCounter       |  Tango::DevULong64	Scalar
 //  Fan1Speed            |  Tango::DevUShort	Scalar
 //  Fan2Speed            |  Tango::DevUShort	Scalar
 //  Temp1                |  Tango::DevUShort	Scalar
@@ -94,20 +92,15 @@ static const char *RcsId = "$Id:  $";
 //  Status_x             |  Tango::DevBoolean	Scalar
 //  Status_y             |  Tango::DevBoolean	Scalar
 //  Status_adc_overflow  |  Tango::DevBoolean	Scalar
-//  XPosition            |  Tango::DevDouble	Scalar
-//  YPosition            |  Tango::DevDouble	Scalar
+//  X                    |  Tango::DevDouble	Scalar
+//  Y                    |  Tango::DevDouble	Scalar
 //  Sum                  |  Tango::DevDouble	Scalar
-//  Quad                 |  Tango::DevDouble	Scalar
+//  EnableADC            |  Tango::DevBoolean	Scalar
+//  Q                    |  Tango::DevDouble	Scalar
 //  ADCChannelA          |  Tango::DevShort	Spectrum  ( max = 10000)
 //  ADCChannelB          |  Tango::DevShort	Spectrum  ( max = 10000)
 //  ADCChannelC          |  Tango::DevShort	Spectrum  ( max = 10000)
 //  ADCChannelD          |  Tango::DevShort	Spectrum  ( max = 10000)
-//  AT                   |  Tango::DevDouble	Spectrum  ( max = 10000)
-//  BT                   |  Tango::DevDouble	Spectrum  ( max = 10000)
-//  CT                   |  Tango::DevDouble	Spectrum  ( max = 10000)
-//  DT                   |  Tango::DevDouble	Spectrum  ( max = 10000)
-//  Current              |  Tango::DevDouble	Spectrum  ( max = 100)
-//  SumT                 |  Tango::DevDouble	Spectrum  ( max = 10000)
 //================================================================
 
 namespace LiberaSinglePassE_ns
@@ -166,126 +159,12 @@ void LiberaSinglePassE::delete_device()
 	DEBUG_STREAM << "LiberaSinglePassE::delete_device() " << device_name << endl;
 	/*----- PROTECTED REGION ID(LiberaSinglePassE::delete_device) ENABLED START -----*/
 
-	//	Delete device allocated objects
-
-	// Get rid of threads first
-//	delete data_thread;
-//	data_thread = NULL;
-
-	// Disconnect from MCI application daemon
-//	try {
-//		mci_application_root.Destroy();
-//		mci::Disconnect(liberaIpAddr, mci::Root::Application);
-//	} catch (istd::Exception &e) {
-//		ERROR_STREAM_DS << "MCI application daemon disconnect failed: "
-//				<< e.what() << endl;
-//	}
-
-	// Disconnect from MCI platform daemon
-//	try {
-//		mci_platform_root.Destroy();
-//		mci::Disconnect(liberaIpAddr, mci::Root::Platform);
-//	} catch (istd::Exception &e) {
-//		ERROR_STREAM_DS << "MCI platform daemon disconnect failed: "
-//				<< e.what() << endl;
-//	}
-
-	// Attributes
-//	delete attr_BufferSize_read;
-//	attr_BufferSize_read = NULL;
-	delete attr_AttenuationLevel_read;
-	attr_AttenuationLevel_read = NULL;
-//	delete attr_Fan1Speed_read;
-//	attr_Fan1Speed_read = NULL;
-//	delete attr_Fan2Speed_read;
-//	attr_Fan2Speed_read = NULL;
-//	delete attr_Temp1_read;
-//	attr_Temp1_read = NULL;
-//	delete attr_Temp2_read;
-//	attr_Temp2_read = NULL;
-//	delete attr_Temp3_read;
-//	attr_Temp3_read = NULL;
-
-	// Just reset attribute pointer
-	attr_TriggerCounter_read = NULL;
-
-	// Get rid of the data buffers
-	delete [] attr_AT_read;
-	attr_AT_read = NULL;
-	delete [] attr_BT_read;
-	attr_BT_read = NULL;
-	delete [] attr_CT_read;
-	attr_CT_read = NULL;
-	delete [] attr_DT_read;
-	attr_DT_read = NULL;
-	delete [] attr_SumT_read;
-	attr_SumT_read = NULL;
-	delete [] attr_Current_read;
-	attr_Current_read = NULL;
-//	delete [] attr_ADCChannelA_read;
-//	attr_ADCChannelA_read = NULL;
-//	delete [] attr_ADCChannelB_read;
-//	attr_ADCChannelB_read = NULL;
-//	delete [] attr_ADCChannelC_read;
-//	attr_ADCChannelC_read = NULL;
-//	delete [] attr_ADCChannelD_read;
-//	attr_ADCChannelD_read = NULL;
-//	delete attr_YPosition_read;
-//	attr_YPosition_read = NULL;
-//	delete attr_XPosition_read;
-//	attr_XPosition_read = NULL;
-//	delete attr_Calibration_ka_read;
-//	attr_Calibration_ka_read = NULL;
-//	delete attr_Calibration_kb_read;
-//	attr_Calibration_kb_read = NULL;
-//	delete attr_Calibration_kc_read;
-//	attr_Calibration_kc_read = NULL;
-//	delete attr_Calibration_kd_read;
-//	attr_Calibration_kd_read = NULL;
-//	delete attr_Linear_x_k_read;
-//	attr_Linear_x_k_read = NULL;
-//	delete attr_Linear_x_offs_read;
-//	attr_Linear_x_offs_read = NULL;
-//	delete attr_Linear_y_k_read;
-//	attr_Linear_y_k_read = NULL;
-//	delete attr_Linear_y_offs_read;
-//	attr_Linear_y_offs_read = NULL;
-//	delete attr_Linear_q_k_read;
-//	attr_Linear_q_k_read = NULL;
-//	delete attr_Linear_q_offs_read;
-//	attr_Linear_q_offs_read = NULL;
-//	delete attr_Linear_sum_k_read;
-//	attr_Linear_sum_k_read = NULL;
-//	delete attr_Linear_sum_offs_read;
-//	attr_Linear_sum_offs_read = NULL;
-//	delete attr_Signal_expansion_read;
-//	attr_Signal_expansion_read = NULL;
-//	delete attr_Interlock_enabled_read;
-//	attr_Interlock_enabled_read = NULL;
-//	delete attr_Limit_min_x_read;
-//	attr_Limit_min_x_read = NULL;
-//	delete attr_Limit_min_y_read;
-//	attr_Limit_min_y_read = NULL;
-//	delete attr_Limit_max_x_read;
-//	attr_Limit_max_x_read = NULL;
-//	delete attr_Limit_max_y_read;
-//	attr_Limit_max_y_read = NULL;
-//	delete attr_Overflow_threshold_read;
-//	attr_Overflow_threshold_read = NULL;
-//	delete attr_Interlock_status_read;
-//	attr_Interlock_status_read = NULL;
-//	delete attr_Status_x_read;
-//	attr_Status_x_read = NULL;
-//	delete attr_Status_y_read;
-//	attr_Status_y_read = NULL;
-//	delete attr_Status_adc_overflow_read;
-//	attr_Status_adc_overflow_read = NULL;
-
         if (m_libera) {
             m_libera->Disconnect();
             delete m_libera;
             m_libera = NULL;
         }    
+
 	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::delete_device
 }
 
@@ -301,136 +180,6 @@ void LiberaSinglePassE::init_device()
 	/*----- PROTECTED REGION ID(LiberaSinglePassE::init_device_before) ENABLED START -----*/
 
 	//	Initialization before get_device_property() call
-
-	//	Initialize attributes
-//	attr_BufferSize_read = new Tango::DevLong(0);
-//	CHECK_ALLOC(attr_BufferSize_read);
-
-	attr_AttenuationLevel_read = new Tango::DevLong(0);
-	CHECK_ALLOC(attr_AttenuationLevel_read);
-
-//	attr_Temp1_read = new Tango::DevUShort(0);
-//	CHECK_ALLOC(attr_Temp1_read);
-//
-//	attr_Temp2_read = new Tango::DevUShort(0);
-//	CHECK_ALLOC(attr_Temp2_read);
-//
-//	attr_Temp3_read = new Tango::DevUShort(0);
-//	CHECK_ALLOC(attr_Temp3_read);
-
-//	attr_Fan1Speed_read = new Tango::DevUShort(0);
-//	CHECK_ALLOC(attr_Fan1Speed_read);
-//
-//	attr_Fan2Speed_read = new Tango::DevUShort(0);
-//	CHECK_ALLOC(attr_Fan2Speed_read);
-
-//	attr_ADCChannelA_read = new Tango::DevShort[MAX_BUF_SIZE];
-//	CHECK_ALLOC(attr_ADCChannelA_read)
-//
-//	attr_ADCChannelB_read = new Tango::DevShort[MAX_BUF_SIZE];
-//	CHECK_ALLOC(attr_ADCChannelB_read)
-//
-//	attr_ADCChannelC_read = new Tango::DevShort[MAX_BUF_SIZE];
-//	CHECK_ALLOC(attr_ADCChannelC_read)
-//
-//	attr_ADCChannelD_read = new Tango::DevShort[MAX_BUF_SIZE];
-//	CHECK_ALLOC(attr_ADCChannelD_read)
-
-	attr_AT_read = new Tango::DevDouble[MAX_BUF_SIZE];
-	CHECK_ALLOC(attr_AT_read)
-
-	attr_BT_read = new Tango::DevDouble[MAX_BUF_SIZE];
-	CHECK_ALLOC(attr_BT_read)
-
-	attr_CT_read = new Tango::DevDouble[MAX_BUF_SIZE];
-	CHECK_ALLOC(attr_CT_read)
-
-	attr_DT_read = new Tango::DevDouble[MAX_BUF_SIZE];
-	CHECK_ALLOC(attr_DT_read)
-
-	attr_SumT_read = new Tango::DevDouble[MAX_BUF_SIZE];
-	CHECK_ALLOC(attr_SumT_read)
-
-	attr_Current_read = new Tango::DevDouble[MAX_CURRENT_BUF_SIZE];
-	CHECK_ALLOC(attr_Current_read)
-
-//	attr_YPosition_read = new Tango::DevDouble(0);
-//	CHECK_ALLOC(attr_YPosition_read)
-//
-//	attr_XPosition_read = new Tango::DevDouble(0);
-//	CHECK_ALLOC(attr_XPosition_read)
-
-//	attr_Calibration_ka_read = new Tango::DevDouble(0);
-//	CHECK_ALLOC(attr_Calibration_ka_read)
-//
-//	attr_Calibration_kb_read = new Tango::DevDouble(0);
-//	CHECK_ALLOC(attr_Calibration_kb_read)
-//
-//	attr_Calibration_kc_read = new Tango::DevDouble(0);
-//	CHECK_ALLOC(attr_Calibration_kc_read)
-//
-//	attr_Calibration_kd_read = new Tango::DevDouble(0);
-//	CHECK_ALLOC(attr_Calibration_kd_read)
-
-//	attr_Linear_x_k_read = new Tango::DevDouble(0);
-//	CHECK_ALLOC(attr_Linear_x_k_read)
-//
-//	attr_Linear_x_offs_read = new Tango::DevDouble(0);
-//	CHECK_ALLOC(attr_Linear_x_offs_read)
-//
-//	attr_Linear_y_k_read = new Tango::DevDouble(0);
-//	CHECK_ALLOC(attr_Linear_y_k_read)
-//
-//	attr_Linear_y_offs_read = new Tango::DevDouble(0);
-//	CHECK_ALLOC(attr_Linear_y_offs_read)
-//
-//	attr_Linear_q_k_read = new Tango::DevDouble(0);
-//	CHECK_ALLOC(attr_Linear_q_k_read)
-//
-//	attr_Linear_q_offs_read = new Tango::DevDouble(0);
-//	CHECK_ALLOC(attr_Linear_q_offs_read)
-//
-//	attr_Linear_sum_k_read = new Tango::DevDouble(0);
-//	CHECK_ALLOC(attr_Linear_sum_k_read)
-//
-//	attr_Linear_sum_offs_read = new Tango::DevDouble(0);
-//	CHECK_ALLOC(attr_Linear_sum_offs_read)
-
-//	attr_Signal_expansion_read = new Tango::DevDouble(0);
-//	CHECK_ALLOC(attr_Signal_expansion_read)
-//
-//	attr_Interlock_enabled_read = new Tango::DevBoolean(0);
-//	CHECK_ALLOC(attr_Interlock_enabled_read)
-
-//	attr_Limit_min_x_read = new Tango::DevDouble(0);
-//	CHECK_ALLOC(attr_Limit_min_x_read)
-//
-//	attr_Limit_min_y_read = new Tango::DevDouble(0);
-//	CHECK_ALLOC(attr_Limit_min_y_read)
-//
-//	attr_Limit_max_x_read = new Tango::DevDouble(0);
-//	CHECK_ALLOC(attr_Limit_max_x_read)
-//
-//	attr_Limit_max_y_read = new Tango::DevDouble(0);
-//	CHECK_ALLOC(attr_Limit_max_y_read)
-//
-//	attr_Overflow_threshold_read = new Tango::DevULong(0);
-//	CHECK_ALLOC(attr_Overflow_threshold_read)
-//
-//	attr_Interlock_status_read = new Tango::DevULong(0);
-//	CHECK_ALLOC(attr_Interlock_status_read)
-
-//	attr_Status_x_read = new Tango::DevBoolean(0);
-//	CHECK_ALLOC(attr_Status_x_read)
-//
-//	attr_Status_y_read = new Tango::DevBoolean(0);
-//	CHECK_ALLOC(attr_Status_y_read)
-//
-//	attr_Status_adc_overflow_read = new Tango::DevBoolean(0);
-//	CHECK_ALLOC(attr_Status_adc_overflow_read)
-
-	// Attributes that have local storage
-	attr_TriggerCounter_read = &trig_ctr;
 
 	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::init_device_before
 	
@@ -540,35 +289,69 @@ void LiberaSinglePassE::init_device()
             "boards.evrx2.sensors.ID_6.value",
             attr_Temp3_read,
             LiberaAttr::DBL2USHORT);
-        
+  
         m_signalSPE = m_libera->AddSignal<Tango::DevDouble>(
             m_spe + "signals.spe",
-            512,
+            1,
             m_spe_enabled,
             m_spe_buffer_size,
-            attr_XPosition_read,
-            attr_YPosition_read,
-            attr_Sum_read);
+            m_spe_va,
+            m_spe_vb,
+            m_spe_vc,
+            m_spe_vd,
+            m_spe_sum,
+            m_spe_q,
+            m_spe_x,
+            m_spe_y,
+            m_spe_trigger_cnt,
+            m_spe_bunch_cnt,
+            m_spe_status,
+            m_spe_mode,
+            m_spe_r2,
+            m_spe_r3,
+            m_spe_timestamp_h,
+            m_spe_timestamp_l);
+
         m_signalSPE->SetPeriod(0); // stream waits in read
         m_signalSPE->Enable();
+ 
+        attr_Sum_read = m_spe_sum;
+        attr_Q_read = m_spe_q;
+        attr_X_read = m_spe_x;
+        attr_Y_read = m_spe_y;
 
-        m_signalADC  = m_libera->AddSignal<Tango::DevShort>(
+        m_signalEvent = m_libera->AddSignal<Tango::DevULong64>(
+            m_spe + "signals.event",
+            1,
+            m_event_enabled,
+            m_event_buffer_size,
+            m_event_id,
+            m_event_count,
+            m_event_timestamp,
+            m_event_data);
+
+        m_signalEvent->SetPeriod(0); // stream waits in read
+        m_signalEvent->Enable();
+
+        attr_TriggerCounter_read = m_event_count;
+
+        m_signalADC = m_libera->AddSignal<Tango::DevShort>(
             m_spe + "signals.adc",
-            1000,
-            m_adc_enabled,
-            attr_BufferSize_read,
+            512,
+            attr_EnableADC_read,
+            attr_ADCBufferSize_read,
             attr_ADCChannelA_read,
             attr_ADCChannelB_read,
             attr_ADCChannelC_read,
             attr_ADCChannelD_read);
+
         m_signalADC->SetPeriod(500);
         m_signalADC->Enable();
-        
+
         if (m_libera->Connect()) {
             set_state(Tango::ON);
             set_status(ON_STATUS);
         }
-
 	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::init_device
 }
 
@@ -586,11 +369,6 @@ void LiberaSinglePassE::get_device_property()
 	liberaIpAddr = "127.0.0.1";
 	liberaBoard = "";
 
-	positionK = 0.0;
-	currentK = 0.0;
-	currentTimeOffset = -1;
-	beamThreshold = 0.0;
-
 	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::get_device_property_before
 
 
@@ -599,12 +377,6 @@ void LiberaSinglePassE::get_device_property()
 	dev_prop.push_back(Tango::DbDatum("LiberaIpAddr"));
 	dev_prop.push_back(Tango::DbDatum("LiberaBoard"));
 	dev_prop.push_back(Tango::DbDatum("Location"));
-	dev_prop.push_back(Tango::DbDatum("ServiceTaskSleep"));
-	dev_prop.push_back(Tango::DbDatum("DataTaskHeartbeat"));
-	dev_prop.push_back(Tango::DbDatum("BeamThreshold"));
-	dev_prop.push_back(Tango::DbDatum("PositionK"));
-	dev_prop.push_back(Tango::DbDatum("CurrentK"));
-	dev_prop.push_back(Tango::DbDatum("CurrentTimeOffset"));
 
 	//	is there at least one property to be read ?
 	if (dev_prop.size()>0)
@@ -652,104 +424,11 @@ void LiberaSinglePassE::get_device_property()
 		//	And try to extract Location value from database
 		if (dev_prop[i].is_empty()==false)	dev_prop[i]  >>  location;
 
-		//	Try to initialize ServiceTaskSleep from class property
-		cl_prop = ds_class->get_class_property(dev_prop[++i].name);
-		if (cl_prop.is_empty()==false)	cl_prop  >>  serviceTaskSleep;
-		else {
-			//	Try to initialize ServiceTaskSleep from default device value
-			def_prop = ds_class->get_default_device_property(dev_prop[i].name);
-			if (def_prop.is_empty()==false)	def_prop  >>  serviceTaskSleep;
-		}
-		//	And try to extract ServiceTaskSleep value from database
-		if (dev_prop[i].is_empty()==false)	dev_prop[i]  >>  serviceTaskSleep;
-
-		//	Try to initialize DataTaskHeartbeat from class property
-		cl_prop = ds_class->get_class_property(dev_prop[++i].name);
-		if (cl_prop.is_empty()==false)	cl_prop  >>  dataTaskHeartbeat;
-		else {
-			//	Try to initialize DataTaskHeartbeat from default device value
-			def_prop = ds_class->get_default_device_property(dev_prop[i].name);
-			if (def_prop.is_empty()==false)	def_prop  >>  dataTaskHeartbeat;
-		}
-		//	And try to extract DataTaskHeartbeat value from database
-		if (dev_prop[i].is_empty()==false)	dev_prop[i]  >>  dataTaskHeartbeat;
-
-		//	Try to initialize BeamThreshold from class property
-		cl_prop = ds_class->get_class_property(dev_prop[++i].name);
-		if (cl_prop.is_empty()==false)	cl_prop  >>  beamThreshold;
-		else {
-			//	Try to initialize BeamThreshold from default device value
-			def_prop = ds_class->get_default_device_property(dev_prop[i].name);
-			if (def_prop.is_empty()==false)	def_prop  >>  beamThreshold;
-		}
-		//	And try to extract BeamThreshold value from database
-		if (dev_prop[i].is_empty()==false)	dev_prop[i]  >>  beamThreshold;
-
-		//	Try to initialize PositionK from class property
-		cl_prop = ds_class->get_class_property(dev_prop[++i].name);
-		if (cl_prop.is_empty()==false)	cl_prop  >>  positionK;
-		else {
-			//	Try to initialize PositionK from default device value
-			def_prop = ds_class->get_default_device_property(dev_prop[i].name);
-			if (def_prop.is_empty()==false)	def_prop  >>  positionK;
-		}
-		//	And try to extract PositionK value from database
-		if (dev_prop[i].is_empty()==false)	dev_prop[i]  >>  positionK;
-
-		//	Try to initialize CurrentK from class property
-		cl_prop = ds_class->get_class_property(dev_prop[++i].name);
-		if (cl_prop.is_empty()==false)	cl_prop  >>  currentK;
-		else {
-			//	Try to initialize CurrentK from default device value
-			def_prop = ds_class->get_default_device_property(dev_prop[i].name);
-			if (def_prop.is_empty()==false)	def_prop  >>  currentK;
-		}
-		//	And try to extract CurrentK value from database
-		if (dev_prop[i].is_empty()==false)	dev_prop[i]  >>  currentK;
-
-		//	Try to initialize CurrentTimeOffset from class property
-		cl_prop = ds_class->get_class_property(dev_prop[++i].name);
-		if (cl_prop.is_empty()==false)	cl_prop  >>  currentTimeOffset;
-		else {
-			//	Try to initialize CurrentTimeOffset from default device value
-			def_prop = ds_class->get_default_device_property(dev_prop[i].name);
-			if (def_prop.is_empty()==false)	def_prop  >>  currentTimeOffset;
-		}
-		//	And try to extract CurrentTimeOffset value from database
-		if (dev_prop[i].is_empty()==false)	dev_prop[i]  >>  currentTimeOffset;
-
 	}
 
 	/*----- PROTECTED REGION ID(LiberaSinglePassE::get_device_property_after) ENABLED START -----*/
 
 	//	Check device property data members init
-
-	if (positionK == 0.0) {
-		cerr << "WARNING: Property PositionK for device " << get_name() << " not defined, default value of 1.0 taken!!" << endl;
-		positionK = 1.0;
-	}
-
-	if (currentK == 0.0) {
-		cerr << "WARNING: Property CurrentK for device " << get_name() << " not defined, default value of 1.0 taken!!" << endl;
-		currentK = 1.0;
-	}
-
-	if (currentTimeOffset == -1) {
-		cerr << "WARNING: Property CurrentTimeOffset for device " << get_name() << " not defined, default value of 0 taken!!" << endl;
-		currentTimeOffset = 0;
-	} else if (currentTimeOffset > (MAX_BUF_SIZE - POINTS_AVERAGING)) {
-		cerr << "ERROR: Value too high for CurrentTimeOffset property" << endl;
-		cerr << "Max possible value = " << MAX_BUF_SIZE - POINTS_AVERAGING << endl;
-		Tango::Except::throw_exception("LiberaSinglePassE_BadProperty",
-				"Value too high for CurrentTimeOffset property. Max value = 8188",
-				"LiberaSinglePassE::get_device_property");
-	}
-
-	if (beamThreshold == 0.0) {
-		cerr << "WARNING: Property BeamThreshold for device " << get_name() << " not defined, default value of 0.0 taken!!" << endl;
-		beamThreshold = 0.0;
-	}
-
 
 	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::get_device_property_after
 }
@@ -771,12 +450,14 @@ void LiberaSinglePassE::always_executed_hook()
                 set_status(ON_STATUS);
 
                 m_signalSPE->GetData();
+                m_signalEvent->GetData();
                 m_signalADC->GetData();
         }
         else {
                 set_state(Tango::FAULT);
                 set_status("Not connected to Libera MCI daemon");
         } 
+
 	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::always_executed_hook
 }
 
@@ -792,21 +473,6 @@ void LiberaSinglePassE::read_attr_hardware(TANGO_UNUSED(vector<long> &attr_list)
 	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_attr_hardware) ENABLED START -----*/
 
 	//	Add your own code
-
-	//
-	// Compute attributes from raw ADC data
-	//
-
-//	struct timeval start, stop;
-//
-//	gettimeofday(&start,NULL);
-//	if ((trig_ctr != old_trig_ctr) && (*attr_BufferSize_read >= MIN_POINTS)) {
-//		compute();
-//		old_trig_ctr = trig_ctr;
-//	}
-//	gettimeofday(&stop,NULL);
-//	float diff = (stop.tv_sec - start.tv_sec) + ((stop.tv_usec - start.tv_usec) / 1000000.0);
-// 	INFO_STREAM << "LiberaSinglePassE::read_attr_hardware(vector<long> &attr_list) Attribute computation took "<< diff << " sec"  << endl;
 
 	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_attr_hardware
 }
@@ -828,122 +494,49 @@ void LiberaSinglePassE::write_attr_hardware(TANGO_UNUSED(vector<long> &attr_list
 
 //--------------------------------------------------------
 /**
- *	Read attribute BufferSize related method
+ *	Read attribute ADCBufferSize related method
  *	Description: The Libera box ADC buffer size (between 10 and 8192)
  *
  *	Data type:	Tango::DevLong
  *	Attr type:	Scalar
  */
 //--------------------------------------------------------
-void LiberaSinglePassE::read_BufferSize(Tango::Attribute &attr)
+void LiberaSinglePassE::read_ADCBufferSize(Tango::Attribute &attr)
 {
-	DEBUG_STREAM << "LiberaSinglePassE::read_BufferSize(Tango::Attribute &attr) entering... " << endl;
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_BufferSize) ENABLED START -----*/
-
+	DEBUG_STREAM << "LiberaSinglePassE::read_ADCBufferSize(Tango::Attribute &attr) entering... " << endl;
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_ADCBufferSize) ENABLED START -----*/
 	//	Set the attribute value
-	attr.set_value(attr_BufferSize_read);
-
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_BufferSize
+	attr.set_value(attr_ADCBufferSize_read);
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_ADCBufferSize
 }
 //--------------------------------------------------------
 /**
- *	Write attribute BufferSize related method
+ *	Write attribute ADCBufferSize related method
  *	Description: The Libera box ADC buffer size (between 10 and 8192)
  *
  *	Data type:	Tango::DevLong
  *	Attr type:	Scalar
  */
 //--------------------------------------------------------
-void LiberaSinglePassE::write_BufferSize(Tango::WAttribute &attr)
+void LiberaSinglePassE::write_ADCBufferSize(Tango::WAttribute &attr)
 {
-	DEBUG_STREAM << "LiberaSinglePassE::write_BufferSize(Tango::WAttribute &attr) entering... " << endl;
+	DEBUG_STREAM << "LiberaSinglePassE::write_ADCBufferSize(Tango::WAttribute &attr) entering... " << endl;
 	//	Retrieve write value
 	Tango::DevLong	w_val;
 	attr.get_write_value(w_val);
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::write_BufferSize) ENABLED START -----*/
-
-	// Set the value of the attribute
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::write_ADCBufferSize) ENABLED START -----*/
+	
+        // Set the value of the attribute
         m_signalADC->Realloc(w_val);
-
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::write_BufferSize
-}
-//--------------------------------------------------------
-/**
- *	Read attribute AttenuationLevel related method
- *	Description: The analog channels level. This attribute allows the user to tune the analog channels
- *               attenuator. The input is an index within a lookup table in the Libera box
- *
- *	Data type:	Tango::DevLong
- *	Attr type:	Scalar
- */
-//--------------------------------------------------------
-void LiberaSinglePassE::read_AttenuationLevel(Tango::Attribute &attr)
-{
-	DEBUG_STREAM << "LiberaSinglePassE::read_AttenuationLevel(Tango::Attribute &attr) entering... " << endl;
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_AttenuationLevel) ENABLED START -----*/
-
-//	try {
-//		std::string board = "boards.";
-//		std::string level_enum;
-//		mci_LevelNodeSet.Get(level_enum);
-//		std::string levelG = ".attenuation.gain_table.";
-//		std::string dB = ".dB";
-//		std::string mci_LevelGNodeString = board + liberaBoard + levelG
-//				+ level_enum + dB;
-//		mci_LevelNodeGet = mci_application_root.GetNode(
-//				mci::Tokenize(mci_LevelGNodeString));
-//		uint32_t v;
-//		mci_LevelNodeGet.Get(v);
-//		*attr_AttenuationLevel_read = static_cast<Tango::DevLong>(v);
-//	} catch (istd::Exception &e) {
-//		ERROR_STREAM << "LiberaSinglePassE::read_AttenuationLevel failed "
-//				<< device_name << e.what() << endl;
-//		return;
-//	}
-
-	//	Set the attribute value
-	attr.set_value(attr_AttenuationLevel_read);
-
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_AttenuationLevel
-}
-//--------------------------------------------------------
-/**
- *	Write attribute AttenuationLevel related method
- *	Description: The analog channels level. This attribute allows the user to tune the analog channels
- *               attenuator. The input is an index within a lookup table in the Libera box
- *
- *	Data type:	Tango::DevLong
- *	Attr type:	Scalar
- */
-//--------------------------------------------------------
-void LiberaSinglePassE::write_AttenuationLevel(Tango::WAttribute &attr)
-{
-	DEBUG_STREAM << "LiberaSinglePassE::write_AttenuationLevel(Tango::WAttribute &attr) entering... " << endl;
-	//	Retrieve write value
-	Tango::DevLong	w_val;
-	attr.get_write_value(w_val);
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::write_AttenuationLevel) ENABLED START -----*/
-
-//	try {
-//		*attr_AttenuationLevel_read = w_val;
-//		uint32_t val = static_cast<uint32_t>(w_val);
-//		std::string set = level_enumeration[val];
-//		mci_LevelNodeSet.Set(set);
-//	} catch (istd::Exception &e) {
-//		ERROR_STREAM << "LiberaSinglePassE::write_AttenuationLevel failed "
-//				<< device_name << e.what() << endl;
-//		ERROR_STREAM << "MCI ERROR caught : " << e.what() << endl;
-//		return;
-//	}
-
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::write_AttenuationLevel
+	
+        /*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::write_ADCBufferSize
 }
 //--------------------------------------------------------
 /**
  *	Read attribute TriggerCounter related method
  *	Description: Trigger counter. Incremented at each trigger
  *
- *	Data type:	Tango::DevULong
+ *	Data type:	Tango::DevULong64
  *	Attr type:	Scalar
  */
 //--------------------------------------------------------
@@ -953,8 +546,8 @@ void LiberaSinglePassE::read_TriggerCounter(Tango::Attribute &attr)
 	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_TriggerCounter) ENABLED START -----*/
 
 	//	Set the attribute value
-	attr.set_value(attr_TriggerCounter_read);
-
+        attr.set_value(attr_TriggerCounter_read);
+        
 	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_TriggerCounter
 }
 //--------------------------------------------------------
@@ -1890,39 +1483,39 @@ void LiberaSinglePassE::read_Status_adc_overflow(Tango::Attribute &attr)
 }
 //--------------------------------------------------------
 /**
- *	Read attribute XPosition related method
+ *	Read attribute X related method
  *	Description: 
  *
  *	Data type:	Tango::DevDouble
  *	Attr type:	Scalar
  */
 //--------------------------------------------------------
-void LiberaSinglePassE::read_XPosition(Tango::Attribute &attr)
+void LiberaSinglePassE::read_X(Tango::Attribute &attr)
 {
-	DEBUG_STREAM << "LiberaSinglePassE::read_XPosition(Tango::Attribute &attr) entering... " << endl;
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_XPosition) ENABLED START -----*/
+	DEBUG_STREAM << "LiberaSinglePassE::read_X(Tango::Attribute &attr) entering... " << endl;
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_X) ENABLED START -----*/
 	//	Set the attribute value
-	attr.set_value(attr_XPosition_read);
+	attr.set_value(attr_X_read);
 	
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_XPosition
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_X
 }
 //--------------------------------------------------------
 /**
- *	Read attribute YPosition related method
+ *	Read attribute Y related method
  *	Description: 
  *
  *	Data type:	Tango::DevDouble
  *	Attr type:	Scalar
  */
 //--------------------------------------------------------
-void LiberaSinglePassE::read_YPosition(Tango::Attribute &attr)
+void LiberaSinglePassE::read_Y(Tango::Attribute &attr)
 {
-	DEBUG_STREAM << "LiberaSinglePassE::read_YPosition(Tango::Attribute &attr) entering... " << endl;
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_YPosition) ENABLED START -----*/
+	DEBUG_STREAM << "LiberaSinglePassE::read_Y(Tango::Attribute &attr) entering... " << endl;
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_Y) ENABLED START -----*/
 	//	Set the attribute value
-	attr.set_value(attr_YPosition_read);
+	attr.set_value(attr_Y_read);
 	
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_YPosition
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_Y
 }
 //--------------------------------------------------------
 /**
@@ -1944,21 +1537,63 @@ void LiberaSinglePassE::read_Sum(Tango::Attribute &attr)
 }
 //--------------------------------------------------------
 /**
- *	Read attribute Quad related method
+ *	Read attribute EnableADC related method
+ *	Description: 
+ *
+ *	Data type:	Tango::DevBoolean
+ *	Attr type:	Scalar
+ */
+//--------------------------------------------------------
+void LiberaSinglePassE::read_EnableADC(Tango::Attribute &attr)
+{
+	DEBUG_STREAM << "LiberaSinglePassE::read_EnableADC(Tango::Attribute &attr) entering... " << endl;
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_EnableADC) ENABLED START -----*/
+	//	Set the attribute value
+	attr.set_value(attr_EnableADC_read);
+	
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_EnableADC
+}
+//--------------------------------------------------------
+/**
+ *	Write attribute EnableADC related method
+ *	Description: 
+ *
+ *	Data type:	Tango::DevBoolean
+ *	Attr type:	Scalar
+ */
+//--------------------------------------------------------
+void LiberaSinglePassE::write_EnableADC(Tango::WAttribute &attr)
+{
+	DEBUG_STREAM << "LiberaSinglePassE::write_EnableADC(Tango::WAttribute &attr) entering... " << endl;
+	//	Retrieve write value
+	Tango::DevBoolean	w_val;
+	attr.get_write_value(w_val);
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::write_EnableADC) ENABLED START -----*/
+	
+        if (w_val)
+            m_signalADC->Enable();
+        else
+            m_signalADC->Disable();
+        
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::write_EnableADC
+}
+//--------------------------------------------------------
+/**
+ *	Read attribute Q related method
  *	Description: 
  *
  *	Data type:	Tango::DevDouble
  *	Attr type:	Scalar
  */
 //--------------------------------------------------------
-void LiberaSinglePassE::read_Quad(Tango::Attribute &attr)
+void LiberaSinglePassE::read_Q(Tango::Attribute &attr)
 {
-	DEBUG_STREAM << "LiberaSinglePassE::read_Quad(Tango::Attribute &attr) entering... " << endl;
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_Quad) ENABLED START -----*/
+	DEBUG_STREAM << "LiberaSinglePassE::read_Q(Tango::Attribute &attr) entering... " << endl;
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_Q) ENABLED START -----*/
 	//	Set the attribute value
-	attr.set_value(attr_Quad_read);
+	attr.set_value(attr_Q_read);
 	
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_Quad
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_Q
 }
 //--------------------------------------------------------
 /**
@@ -1975,7 +1610,7 @@ void LiberaSinglePassE::read_ADCChannelA(Tango::Attribute &attr)
 	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_ADCChannelA) ENABLED START -----*/
 	//	Set the attribute value
         
-	attr.set_value(attr_ADCChannelA_read, *attr_BufferSize_read);
+	attr.set_value(attr_ADCChannelA_read, *attr_ADCBufferSize_read);
 	
 	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_ADCChannelA
 }
@@ -1993,7 +1628,7 @@ void LiberaSinglePassE::read_ADCChannelB(Tango::Attribute &attr)
 	DEBUG_STREAM << "LiberaSinglePassE::read_ADCChannelB(Tango::Attribute &attr) entering... " << endl;
 	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_ADCChannelB) ENABLED START -----*/
 	//	Set the attribute value
-	attr.set_value(attr_ADCChannelB_read, *attr_BufferSize_read);
+	attr.set_value(attr_ADCChannelB_read, *attr_ADCBufferSize_read);
 	
 	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_ADCChannelB
 }
@@ -2011,7 +1646,7 @@ void LiberaSinglePassE::read_ADCChannelC(Tango::Attribute &attr)
 	DEBUG_STREAM << "LiberaSinglePassE::read_ADCChannelC(Tango::Attribute &attr) entering... " << endl;
 	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_ADCChannelC) ENABLED START -----*/
 	//	Set the attribute value
-	attr.set_value(attr_ADCChannelC_read, *attr_BufferSize_read);
+	attr.set_value(attr_ADCChannelC_read, *attr_ADCBufferSize_read);
 	
 	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_ADCChannelC
 }
@@ -2029,163 +1664,9 @@ void LiberaSinglePassE::read_ADCChannelD(Tango::Attribute &attr)
 	DEBUG_STREAM << "LiberaSinglePassE::read_ADCChannelD(Tango::Attribute &attr) entering... " << endl;
 	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_ADCChannelD) ENABLED START -----*/
 	//	Set the attribute value
-	attr.set_value(attr_ADCChannelD_read, *attr_BufferSize_read);
+	attr.set_value(attr_ADCChannelD_read, *attr_ADCBufferSize_read);
 	
 	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_ADCChannelD
-}
-//--------------------------------------------------------
-/**
- *	Read attribute AT related method
- *	Description: The A StripLine ADC buffer after some computation:
- *               square - double averaging filter - square root
- *
- *	Data type:	Tango::DevDouble
- *	Attr type:	Spectrum max = 10000
- */
-//--------------------------------------------------------
-void LiberaSinglePassE::read_AT(Tango::Attribute &attr)
-{
-	DEBUG_STREAM << "LiberaSinglePassE::read_AT(Tango::Attribute &attr) entering... " << endl;
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_AT) ENABLED START -----*/
-
-	if (*attr_BufferSize_read < MIN_POINTS) {
-		Tango::Except::throw_exception("LiberaSinglePassE_NotEnoughPoints",
-				"Not enough points read from Libera box",
-				"LiberaSinglePassE::read_AT");
-	}
-
-	//	Set the attribute value
-	attr.set_value(attr_AT_read, computed_buf_size);
-
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_AT
-}
-//--------------------------------------------------------
-/**
- *	Read attribute BT related method
- *	Description: The B StripLine ADC buffer after some computation:
- *               square - double averaging filter - square root
- *
- *	Data type:	Tango::DevDouble
- *	Attr type:	Spectrum max = 10000
- */
-//--------------------------------------------------------
-void LiberaSinglePassE::read_BT(Tango::Attribute &attr)
-{
-	DEBUG_STREAM << "LiberaSinglePassE::read_BT(Tango::Attribute &attr) entering... " << endl;
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_BT) ENABLED START -----*/
-
-	if (*attr_BufferSize_read < MIN_POINTS) {
-		Tango::Except::throw_exception("LiberaSinglePassE_NotEnoughPoints",
-				"Not enough points read from Libera box",
-				"LiberaSinglePassE::read_BT");
-	}
-
-	//	Set the attribute value
-	attr.set_value(attr_BT_read, computed_buf_size);
-
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_BT
-}
-//--------------------------------------------------------
-/**
- *	Read attribute CT related method
- *	Description: The C StripLine ADC buffer after some computation:
- *               square - double averaging filter - square root
- *
- *	Data type:	Tango::DevDouble
- *	Attr type:	Spectrum max = 10000
- */
-//--------------------------------------------------------
-void LiberaSinglePassE::read_CT(Tango::Attribute &attr)
-{
-	DEBUG_STREAM << "LiberaSinglePassE::read_CT(Tango::Attribute &attr) entering... " << endl;
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_CT) ENABLED START -----*/
-
-	if (*attr_BufferSize_read < MIN_POINTS) {
-		Tango::Except::throw_exception("LiberaSinglePassE_NotEnoughPoints",
-				"Not enough points read from Libera box",
-				"LiberaSinglePassE::read_CT");
-	}
-
-	//	Set the attribute value
-	attr.set_value(attr_CT_read, computed_buf_size);
-
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_CT
-}
-//--------------------------------------------------------
-/**
- *	Read attribute DT related method
- *	Description: The D StripLine ADC buffer after some computation:
- *               square - double averaging filter - square root
- *
- *	Data type:	Tango::DevDouble
- *	Attr type:	Spectrum max = 10000
- */
-//--------------------------------------------------------
-void LiberaSinglePassE::read_DT(Tango::Attribute &attr)
-{
-	DEBUG_STREAM << "LiberaSinglePassE::read_DT(Tango::Attribute &attr) entering... " << endl;
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_DT) ENABLED START -----*/
-
-	if (*attr_BufferSize_read < MIN_POINTS) {
-		Tango::Except::throw_exception("LiberaSinglePassE_NotEnoughPoints",
-				"Not enough points read from Libera box",
-				"LiberaSinglePassE::read_DT");
-	}
-
-	//	Set the attribute value
-	attr.set_value(attr_DT_read, computed_buf_size);
-
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_DT
-}
-//--------------------------------------------------------
-/**
- *	Read attribute Current related method
- *	Description: Beam current computed from strip lines data
- *
- *	Data type:	Tango::DevDouble
- *	Attr type:	Spectrum max = 100
- */
-//--------------------------------------------------------
-void LiberaSinglePassE::read_Current(Tango::Attribute &attr)
-{
-	DEBUG_STREAM << "LiberaSinglePassE::read_Current(Tango::Attribute &attr) entering... " << endl;
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_Current) ENABLED START -----*/
-
-	if (*attr_BufferSize_read < MIN_POINTS) {
-		Tango::Except::throw_exception("LiberaSinglePassE_NotEnoughPoints",
-				"Not enough points read from Libera box",
-				"LiberaSinglePassE::read_Current");
-	}
-
-	//	Set the attribute value
-	attr.set_value(attr_Current_read, current_buf_size);
-
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_Current
-}
-//--------------------------------------------------------
-/**
- *	Read attribute SumT related method
- *	Description: Sum of the 4 computed ADC outputs (the xxxT attributes)
- *
- *	Data type:	Tango::DevDouble
- *	Attr type:	Spectrum max = 10000
- */
-//--------------------------------------------------------
-void LiberaSinglePassE::read_SumT(Tango::Attribute &attr)
-{
-	DEBUG_STREAM << "LiberaSinglePassE::read_SumT(Tango::Attribute &attr) entering... " << endl;
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_SumT) ENABLED START -----*/
-
-	if (*attr_BufferSize_read < MIN_POINTS) {
-		Tango::Except::throw_exception("LiberaSinglePassE_NotEnoughPoints",
-				"Not enough points read from Libera box",
-				"LiberaSinglePassE::read_SumT");
-	}
-
-	//	Set the attribute value
-	attr.set_value(attr_SumT_read, computed_buf_size);
-
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_SumT
 }
 
 //--------------------------------------------------------
@@ -2224,23 +1705,6 @@ void LiberaSinglePassE::reset()
 }
 //--------------------------------------------------------
 /**
- *	Command ResetTrigger related method
- *	Description: Reset the trigger counter
- *
- */
-//--------------------------------------------------------
-void LiberaSinglePassE::reset_trigger()
-{
-	DEBUG_STREAM << "LiberaSinglePassE::ResetTrigger()  - " << device_name << endl;
-	/*----- PROTECTED REGION ID(LiberaSinglePassE::reset_trigger) ENABLED START -----*/
-
-	//	Add your own code
-	*attr_TriggerCounter_read=0;
-
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::reset_trigger
-}
-//--------------------------------------------------------
-/**
  *	Command ResetInterlockStatus related method
  *	Description: Matjaz.....
  *
@@ -2251,13 +1715,7 @@ void LiberaSinglePassE::reset_interlock_status()
 	DEBUG_STREAM << "LiberaSinglePassE::ResetInterlockStatus()  - " << device_name << endl;
 	/*----- PROTECTED REGION ID(LiberaSinglePassE::reset_interlock_status) ENABLED START -----*/
 
-//	try {
-//		mci_InterlockStatusReset.Set("Execute");
-//	} catch (istd::Exception &e) {
-//		ERROR_STREAM << "LiberaSinglePassE::reset_status failed " << device_name
-//				<< e.what() << endl;
-//		return;
-//	}
+        m_libera->Execute(m_spe + "interlock.status.reset");
         return;
 	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::reset_interlock_status
 }
@@ -2277,166 +1735,17 @@ Tango::DevVarStringArray *LiberaSinglePassE::magic_command(Tango::DevString argi
 	/*----- PROTECTED REGION ID(LiberaSinglePassE::magic_command) ENABLED START -----*/
 
 	//	Add your own code
-//	CORBA::ULong count = 0;
-	argout = new Tango::DevVarStringArray(1);
-//	argout->length(1);
-//	try {
-//
-//		if (std::string(argin) == "dump") {
-//			// recursively traverse the whole MCI tree
-//			dump_mci_tree(mci_application_root, argout, &count);
-//		} else {
-//			// handle a single MCI node
-//			mci::Node node = mci_application_root.GetNode(mci::Tokenize(std::string(argin)));
-//			std::string s = mci::ToString(node.GetRelPath());
-//			if (node.GetValueType() != mci::eNvUndefined && node.IsReadable()) {
-//				s = s + "=" + node.ToString(0);
-//			}
-//			(*argout)[0] = CORBA::string_dup(s.c_str());
-//		}
-//	} catch (istd::Exception &e) {
-//		ERROR_STREAM << "LiberaSinglePassE::magic command failed " << device_name
-//						<< e.what() << endl;
-//		std::string s = "LiberaSinglePassE::magic command failed " + device_name + "\n" + e.what();
-//		(*argout)[0] = CORBA::string_dup(s.c_str());
-//	}
+        argout = new Tango::DevVarStringArray(1);
+        argout->length(1);
 
+        if (!m_libera->MagicCommand(argin, argout)) {
+            INFO_STREAM << "magic_command() failed!" << endl;
+        }
 	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::magic_command
 	return argout;
 }
 
 /*----- PROTECTED REGION ID(LiberaSinglePassE::namespace_ending) ENABLED START -----*/
 
-	//	Additional Methods
-
-//void LiberaSinglePassE::dump_mci_tree(const mci::Node &node, Tango::DevVarStringArray *store, CORBA::ULong *count) {
-//
-//	for (size_t i = 0; i < node.GetNodeCount(); ++i) {
-//		mci::Node child = node.GetNode(i);
-//
-//		CORBA::ULong len = store->length();
-//		if (*count >= len) {
-//			store->length(len + 1);
-//		}
-//
-//		// get the MCI node path
-//		std::string s = mci::ToString(child.GetRelPath());
-//
-//		// get the MCI node value if it is readable
-//		if (child.GetValueType() != mci::eNvUndefined && child.IsReadable()) {
-//			s = s + "=" + child.ToString(0);
-//		}
-//
-//		// store the string
-//		(*store)[*count] = CORBA::string_dup(s.c_str());
-//		// next position
-//		*count = *count + 1;
-//
-//		// call recursively
-//		dump_mci_tree(child, store, count);
-//	}
-//}
-
-//+----------------------------------------------------------------------------
-//
-// method : 		LiberaSinglePassE::compute
-//
-// description : 	Compute the computed attributes:
-//					UpT, DownT, LeftT, RightT
-//					X and Z position
-//					Current
-//
-//-----------------------------------------------------------------------------
-//void LiberaSinglePassE::compute()
-//{
-////
-//// Computed attribute size
-////
-//
-//	computed_buf_size = *attr_BufferSize_read - POINTS_AVERAGING;
-//
-////
-//// Compute xxxT attributes
-////
-//
-//	compute_T_attr(attr_ADCChannelA_read, attr_AT_read);
-//	compute_T_attr(attr_ADCChannelB_read, attr_BT_read);
-//	compute_T_attr(attr_ADCChannelC_read, attr_CT_read);
-//	compute_T_attr(attr_ADCChannelD_read, attr_DT_read);
-//
-////
-//// Compute data sum
-////
-//
-//	int loop;
-//	for (loop = 0; loop < computed_buf_size; loop++) {
-//		attr_SumT_read[loop] = attr_AT_read[loop] + \
-//				attr_BT_read[loop] + \
-//				attr_CT_read[loop] + \
-//				attr_DT_read[loop];
-//	}
-//
-////
-//// Compute current attribute
-////
-//
-//	compute_current_attr();
-//
-//}
-
-//+----------------------------------------------------------------------------
-//
-// method : 		LiberaSinglePassE::compute_T_attr
-//
-// description : Compute one xxxT attribute
-//
-// in : - raw_data: The read raw data
-//		- comp_data: Buffer where the computed data must be stored
-//
-//-----------------------------------------------------------------------------
-//void LiberaSinglePassE::compute_T_attr(Tango::DevShort *raw_data,Tango::DevDouble *comp_data)
-//{
-//	//when calculating num, the sum of squares can be larger than Long data type
-//	Tango::DevDouble square[MAX_BUF_SIZE];
-//	int loop;
-//
-//	for (loop = 0; loop < *attr_BufferSize_read; loop++) {
-//		square[loop] = raw_data[loop] * raw_data[loop];
-//	}
-//
-//	for (loop = 0; loop < computed_buf_size; loop++) {
-//		Tango::DevDouble num = Tango::DevDouble(square[loop] + \
-//			2 * (square[loop + 1] + square[loop + 2] + \
-//				square[loop + 3]) + square[loop + 4]);
-//		comp_data[loop] = sqrt(num / 8.0);
-//	}
-//}
-
-//+----------------------------------------------------------------------------
-//
-// method : 		LiberaSinglePassE::compute_current_attr
-//
-// description : Compute the current attributes
-//
-//-----------------------------------------------------------------------------
-//void LiberaSinglePassE::compute_current_attr()
-//{
-//	current_buf_size = (computed_buf_size - currentTimeOffset) / POINTS_PER_US;
-//
-//	int loop,ctr;
-//
-//	for (loop = 0; loop < current_buf_size; loop++) {
-//		double tmp_sum = 0.0;
-//		for (ctr = 0; ctr < POINTS_PER_US; ctr++) {
-//			int ind = ctr + currentTimeOffset + (POINTS_PER_US * loop);
-//			if (attr_SumT_read[ind] >= beamThreshold) {
-//				tmp_sum = tmp_sum + attr_SumT_read[ind];
-//			}
-//		}
-//		attr_Current_read[loop] = currentK * tmp_sum;
-//	}
-//}
-
-
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::namespace_ending
+/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::namespace_ending
 } //	namespace

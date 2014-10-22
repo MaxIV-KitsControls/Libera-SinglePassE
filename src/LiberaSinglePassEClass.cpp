@@ -74,7 +74,6 @@ LiberaSinglePassEClass::LiberaSinglePassEClass(string &s):Tango::DeviceClass(s)
 {
 	cout2 << "Entering LiberaSinglePassEClass constructor" << endl;
 	set_default_property();
-	get_class_property();
 	write_class_property();
 
 	/*----- PROTECTED REGION ID(LiberaSinglePassEClass::constructor) ENABLED START -----*/
@@ -168,24 +167,6 @@ CORBA::Any *ResetClass::execute(Tango::DeviceImpl *device, TANGO_UNUSED(const CO
 
 //--------------------------------------------------------
 /**
- * method : 		ResetTriggerClass::execute()
- * description : 	method to trigger the execution of the command.
- *
- * @param	device	The device on which the command must be executed
- * @param	in_any	The command input data
- *
- *	returns The command output data (packed in the Any object)
- */
-//--------------------------------------------------------
-CORBA::Any *ResetTriggerClass::execute(Tango::DeviceImpl *device, TANGO_UNUSED(const CORBA::Any &in_any))
-{
-	cout2 << "ResetTriggerClass::execute(): arrived" << endl;
-	((static_cast<LiberaSinglePassE *>(device))->reset_trigger());
-	return new CORBA::Any();
-}
-
-//--------------------------------------------------------
-/**
  * method : 		ResetInterlockStatusClass::execute()
  * description : 	method to trigger the execution of the command.
  *
@@ -270,60 +251,6 @@ Tango::DbDatum LiberaSinglePassEClass::get_default_class_property(string &prop_n
 	return Tango::DbDatum(prop_name);
 }
 
-//--------------------------------------------------------
-/**
- *	Method      : LiberaSinglePassEClass::get_class_property()
- *	Description : Read database to initialize class property data members.
- */
-//--------------------------------------------------------
-void LiberaSinglePassEClass::get_class_property()
-{
-	/*----- PROTECTED REGION ID(LiberaSinglePassEClass::get_class_property_before) ENABLED START -----*/
-
-	//	Initialize class property data members
-
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassEClass::get_class_property_before
-	//	Read class properties from database.
-	cl_prop.push_back(Tango::DbDatum("ServiceTaskSleep"));
-	cl_prop.push_back(Tango::DbDatum("DataTaskHeartbeat"));
-	
-	//	Call database and extract values
-	if (Tango::Util::instance()->_UseDb==true)
-		get_db_class()->get_property(cl_prop);
-	Tango::DbDatum	def_prop;
-	int	i = -1;
-
-	//	Try to extract ServiceTaskSleep value
-	if (cl_prop[++i].is_empty()==false)	cl_prop[i]  >>  serviceTaskSleep;
-	else
-	{
-		//	Check default value for ServiceTaskSleep
-		def_prop = get_default_class_property(cl_prop[i].name);
-		if (def_prop.is_empty()==false)
-		{
-			def_prop    >>  serviceTaskSleep;
-			cl_prop[i]  <<  serviceTaskSleep;
-		}
-	}
-	//	Try to extract DataTaskHeartbeat value
-	if (cl_prop[++i].is_empty()==false)	cl_prop[i]  >>  dataTaskHeartbeat;
-	else
-	{
-		//	Check default value for DataTaskHeartbeat
-		def_prop = get_default_class_property(cl_prop[i].name);
-		if (def_prop.is_empty()==false)
-		{
-			def_prop    >>  dataTaskHeartbeat;
-			cl_prop[i]  <<  dataTaskHeartbeat;
-		}
-	}
-	/*----- PROTECTED REGION ID(LiberaSinglePassEClass::get_class_property_after) ENABLED START -----*/
-
-	//	Check class property data members init
-
-	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassEClass::get_class_property_after
-
-}
 
 //--------------------------------------------------------
 /**
@@ -342,34 +269,6 @@ void LiberaSinglePassEClass::set_default_property()
 	vector<string>	vect_data;
 
 	//	Set Default Class Properties
-	prop_name = "ServiceTaskSleep";
-	prop_desc = "Sleep time (in mS) for the service task between libera boxes request";
-	prop_def  = "2000";
-	vect_data.clear();
-	vect_data.push_back("2000");
-	if (prop_def.length()>0)
-	{
-		Tango::DbDatum	data(prop_name);
-		data << vect_data ;
-		cl_def_prop.push_back(data);
-		add_wiz_class_prop(prop_name, prop_desc,  prop_def);
-	}
-	else
-		add_wiz_class_prop(prop_name, prop_desc);
-	prop_name = "DataTaskHeartbeat";
-	prop_desc = "Heartbeat time (in mS) for the data task";
-	prop_def  = "2000";
-	vect_data.clear();
-	vect_data.push_back("2000");
-	if (prop_def.length()>0)
-	{
-		Tango::DbDatum	data(prop_name);
-		data << vect_data ;
-		cl_def_prop.push_back(data);
-		add_wiz_class_prop(prop_name, prop_desc,  prop_def);
-	}
-	else
-		add_wiz_class_prop(prop_name, prop_desc);
 
 	//	Set Default device Properties
 	prop_name = "LiberaIpAddr";
@@ -400,86 +299,6 @@ void LiberaSinglePassEClass::set_default_property()
 		add_wiz_dev_prop(prop_name, prop_desc);
 	prop_name = "Location";
 	prop_desc = "The libera box physical place (TL1, BOOSTER,....)";
-	prop_def  = "";
-	vect_data.clear();
-	if (prop_def.length()>0)
-	{
-		Tango::DbDatum	data(prop_name);
-		data << vect_data ;
-		dev_def_prop.push_back(data);
-		add_wiz_dev_prop(prop_name, prop_desc,  prop_def);
-	}
-	else
-		add_wiz_dev_prop(prop_name, prop_desc);
-	prop_name = "ServiceTaskSleep";
-	prop_desc = "Sleep time (in mS) for the class task between libera boxes request";
-	prop_def  = "2000";
-	vect_data.clear();
-	vect_data.push_back("2000");
-	if (prop_def.length()>0)
-	{
-		Tango::DbDatum	data(prop_name);
-		data << vect_data ;
-		dev_def_prop.push_back(data);
-		add_wiz_dev_prop(prop_name, prop_desc,  prop_def);
-	}
-	else
-		add_wiz_dev_prop(prop_name, prop_desc);
-	prop_name = "DataTaskHeartbeat";
-	prop_desc = "Heartbeat time (in mS) for the data task";
-	prop_def  = "2000";
-	vect_data.clear();
-	vect_data.push_back("2000");
-	if (prop_def.length()>0)
-	{
-		Tango::DbDatum	data(prop_name);
-		data << vect_data ;
-		dev_def_prop.push_back(data);
-		add_wiz_dev_prop(prop_name, prop_desc,  prop_def);
-	}
-	else
-		add_wiz_dev_prop(prop_name, prop_desc);
-	prop_name = "BeamThreshold";
-	prop_desc = "Threshold to decide if there is some beam at a given time\n(at a given index in the ADC buffers)";
-	prop_def  = "";
-	vect_data.clear();
-	if (prop_def.length()>0)
-	{
-		Tango::DbDatum	data(prop_name);
-		data << vect_data ;
-		dev_def_prop.push_back(data);
-		add_wiz_dev_prop(prop_name, prop_desc,  prop_def);
-	}
-	else
-		add_wiz_dev_prop(prop_name, prop_desc);
-	prop_name = "PositionK";
-	prop_desc = "Multiplicative coefficient to compute beam position";
-	prop_def  = "";
-	vect_data.clear();
-	if (prop_def.length()>0)
-	{
-		Tango::DbDatum	data(prop_name);
-		data << vect_data ;
-		dev_def_prop.push_back(data);
-		add_wiz_dev_prop(prop_name, prop_desc,  prop_def);
-	}
-	else
-		add_wiz_dev_prop(prop_name, prop_desc);
-	prop_name = "CurrentK";
-	prop_desc = "Multiplicative coefficient to compute beam current";
-	prop_def  = "";
-	vect_data.clear();
-	if (prop_def.length()>0)
-	{
-		Tango::DbDatum	data(prop_name);
-		data << vect_data ;
-		dev_def_prop.push_back(data);
-		add_wiz_dev_prop(prop_name, prop_desc,  prop_def);
-	}
-	else
-		add_wiz_dev_prop(prop_name, prop_desc);
-	prop_name = "CurrentTimeOffset";
-	prop_desc = "Time coefficient used in current computation";
 	prop_def  = "";
 	vect_data.clear();
 	if (prop_def.length()>0)
@@ -698,54 +517,30 @@ void LiberaSinglePassEClass::attribute_factory(vector<Tango::Attr *> &att_list)
 	//	Add your own code
 
 	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassEClass::attribute_factory_before
-	//	Attribute : BufferSize
-	BufferSizeAttrib	*buffersize = new BufferSizeAttrib();
-	Tango::UserDefaultAttrProp	buffersize_prop;
-	buffersize_prop.set_description("The Libera box ADC buffer size (between 10 and 8192)");
-	buffersize_prop.set_label("Buffer Size");
-	buffersize_prop.set_unit("samples");
-	//	standard_unit	not set for BufferSize
-	//	display_unit	not set for BufferSize
-	buffersize_prop.set_format("%4d");
-	buffersize_prop.set_max_value("8192");
-	buffersize_prop.set_min_value("10");
-	//	max_alarm	not set for BufferSize
-	//	min_alarm	not set for BufferSize
-	//	max_warning	not set for BufferSize
-	//	min_warning	not set for BufferSize
-	//	delta_t	not set for BufferSize
-	//	delta_val	not set for BufferSize
+	//	Attribute : ADCBufferSize
+	ADCBufferSizeAttrib	*adcbuffersize = new ADCBufferSizeAttrib();
+	Tango::UserDefaultAttrProp	adcbuffersize_prop;
+	adcbuffersize_prop.set_description("The Libera box ADC buffer size (between 10 and 8192)");
+	adcbuffersize_prop.set_label("Buffer Size");
+	adcbuffersize_prop.set_unit("samples");
+	//	standard_unit	not set for ADCBufferSize
+	//	display_unit	not set for ADCBufferSize
+	adcbuffersize_prop.set_format("%4d");
+	adcbuffersize_prop.set_max_value("8192");
+	adcbuffersize_prop.set_min_value("10");
+	//	max_alarm	not set for ADCBufferSize
+	//	min_alarm	not set for ADCBufferSize
+	//	max_warning	not set for ADCBufferSize
+	//	min_warning	not set for ADCBufferSize
+	//	delta_t	not set for ADCBufferSize
+	//	delta_val	not set for ADCBufferSize
 	
-	buffersize->set_default_properties(buffersize_prop);
+	adcbuffersize->set_default_properties(adcbuffersize_prop);
 	//	Not Polled
-	buffersize->set_disp_level(Tango::OPERATOR);
-	buffersize->set_memorized();
-	buffersize->set_memorized_init(true);
-	att_list.push_back(buffersize);
-
-	//	Attribute : AttenuationLevel
-	AttenuationLevelAttrib	*attenuationlevel = new AttenuationLevelAttrib();
-	Tango::UserDefaultAttrProp	attenuationlevel_prop;
-	attenuationlevel_prop.set_description("The analog channels level. This attribute allows the user to tune the analog channels\nattenuator. The input is an index within a lookup table in the Libera box");
-	attenuationlevel_prop.set_label("AttenuationLevel");
-	attenuationlevel_prop.set_unit("dBm");
-	//	standard_unit	not set for AttenuationLevel
-	//	display_unit	not set for AttenuationLevel
-	attenuationlevel_prop.set_format("%2d");
-	attenuationlevel_prop.set_max_value("31");
-	attenuationlevel_prop.set_min_value("0");
-	//	max_alarm	not set for AttenuationLevel
-	//	min_alarm	not set for AttenuationLevel
-	//	max_warning	not set for AttenuationLevel
-	//	min_warning	not set for AttenuationLevel
-	//	delta_t	not set for AttenuationLevel
-	//	delta_val	not set for AttenuationLevel
-	
-	attenuationlevel->set_default_properties(attenuationlevel_prop);
-	//	Not Polled
-	attenuationlevel->set_disp_level(Tango::OPERATOR);
-	//	Not Memorized
-	att_list.push_back(attenuationlevel);
+	adcbuffersize->set_disp_level(Tango::OPERATOR);
+	adcbuffersize->set_memorized();
+	adcbuffersize->set_memorized_init(true);
+	att_list.push_back(adcbuffersize);
 
 	//	Attribute : TriggerCounter
 	TriggerCounterAttrib	*triggercounter = new TriggerCounterAttrib();
@@ -1008,7 +803,8 @@ void LiberaSinglePassEClass::attribute_factory(vector<Tango::Attr *> &att_list)
 	linear_x_k->set_default_properties(linear_x_k_prop);
 	//	Not Polled
 	linear_x_k->set_disp_level(Tango::EXPERT);
-	//	Not Memorized
+	linear_x_k->set_memorized();
+	linear_x_k->set_memorized_init(true);
 	att_list.push_back(linear_x_k);
 
 	//	Attribute : Linear_x_offs
@@ -1032,7 +828,8 @@ void LiberaSinglePassEClass::attribute_factory(vector<Tango::Attr *> &att_list)
 	linear_x_offs->set_default_properties(linear_x_offs_prop);
 	//	Not Polled
 	linear_x_offs->set_disp_level(Tango::EXPERT);
-	//	Not Memorized
+	linear_x_offs->set_memorized();
+	linear_x_offs->set_memorized_init(true);
 	att_list.push_back(linear_x_offs);
 
 	//	Attribute : Linear_y_k
@@ -1056,7 +853,8 @@ void LiberaSinglePassEClass::attribute_factory(vector<Tango::Attr *> &att_list)
 	linear_y_k->set_default_properties(linear_y_k_prop);
 	//	Not Polled
 	linear_y_k->set_disp_level(Tango::EXPERT);
-	//	Not Memorized
+	linear_y_k->set_memorized();
+	linear_y_k->set_memorized_init(true);
 	att_list.push_back(linear_y_k);
 
 	//	Attribute : Linear_y_offs
@@ -1080,7 +878,8 @@ void LiberaSinglePassEClass::attribute_factory(vector<Tango::Attr *> &att_list)
 	linear_y_offs->set_default_properties(linear_y_offs_prop);
 	//	Not Polled
 	linear_y_offs->set_disp_level(Tango::EXPERT);
-	//	Not Memorized
+	linear_y_offs->set_memorized();
+	linear_y_offs->set_memorized_init(true);
 	att_list.push_back(linear_y_offs);
 
 	//	Attribute : Linear_q_k
@@ -1104,7 +903,8 @@ void LiberaSinglePassEClass::attribute_factory(vector<Tango::Attr *> &att_list)
 	linear_q_k->set_default_properties(linear_q_k_prop);
 	//	Not Polled
 	linear_q_k->set_disp_level(Tango::EXPERT);
-	//	Not Memorized
+	linear_q_k->set_memorized();
+	linear_q_k->set_memorized_init(true);
 	att_list.push_back(linear_q_k);
 
 	//	Attribute : Linear_q_offs
@@ -1112,7 +912,7 @@ void LiberaSinglePassEClass::attribute_factory(vector<Tango::Attr *> &att_list)
 	Tango::UserDefaultAttrProp	linear_q_offs_prop;
 	linear_q_offs_prop.set_description("Matjaz.....");
 	linear_q_offs_prop.set_label("linear_q_offs");
-	linear_q_offs_prop.set_unit("nano meters");
+	linear_q_offs_prop.set_unit("nm");
 	//	standard_unit	not set for Linear_q_offs
 	//	display_unit	not set for Linear_q_offs
 	//	format	not set for Linear_q_offs
@@ -1128,7 +928,8 @@ void LiberaSinglePassEClass::attribute_factory(vector<Tango::Attr *> &att_list)
 	linear_q_offs->set_default_properties(linear_q_offs_prop);
 	//	Not Polled
 	linear_q_offs->set_disp_level(Tango::EXPERT);
-	//	Not Memorized
+	linear_q_offs->set_memorized();
+	linear_q_offs->set_memorized_init(true);
 	att_list.push_back(linear_q_offs);
 
 	//	Attribute : Linear_sum_k
@@ -1152,7 +953,8 @@ void LiberaSinglePassEClass::attribute_factory(vector<Tango::Attr *> &att_list)
 	linear_sum_k->set_default_properties(linear_sum_k_prop);
 	//	Not Polled
 	linear_sum_k->set_disp_level(Tango::EXPERT);
-	//	Not Memorized
+	linear_sum_k->set_memorized();
+	linear_sum_k->set_memorized_init(true);
 	att_list.push_back(linear_sum_k);
 
 	//	Attribute : Linear_sum_offs
@@ -1176,7 +978,8 @@ void LiberaSinglePassEClass::attribute_factory(vector<Tango::Attr *> &att_list)
 	linear_sum_offs->set_default_properties(linear_sum_offs_prop);
 	//	Not Polled
 	linear_sum_offs->set_disp_level(Tango::EXPERT);
-	//	Not Memorized
+	linear_sum_offs->set_memorized();
+	linear_sum_offs->set_memorized_init(true);
 	att_list.push_back(linear_sum_offs);
 
 	//	Attribute : Signal_expansion
@@ -1443,53 +1246,53 @@ void LiberaSinglePassEClass::attribute_factory(vector<Tango::Attr *> &att_list)
 	//	Not Memorized
 	att_list.push_back(status_adc_overflow);
 
-	//	Attribute : XPosition
-	XPositionAttrib	*xposition = new XPositionAttrib();
-	Tango::UserDefaultAttrProp	xposition_prop;
-	//	description	not set for XPosition
-	//	label	not set for XPosition
-	//	unit	not set for XPosition
-	//	standard_unit	not set for XPosition
-	//	display_unit	not set for XPosition
-	//	format	not set for XPosition
-	//	max_value	not set for XPosition
-	//	min_value	not set for XPosition
-	//	max_alarm	not set for XPosition
-	//	min_alarm	not set for XPosition
-	//	max_warning	not set for XPosition
-	//	min_warning	not set for XPosition
-	//	delta_t	not set for XPosition
-	//	delta_val	not set for XPosition
+	//	Attribute : X
+	XAttrib	*x = new XAttrib();
+	Tango::UserDefaultAttrProp	x_prop;
+	//	description	not set for X
+	//	label	not set for X
+	x_prop.set_unit("nm");
+	//	standard_unit	not set for X
+	//	display_unit	not set for X
+	//	format	not set for X
+	//	max_value	not set for X
+	//	min_value	not set for X
+	//	max_alarm	not set for X
+	//	min_alarm	not set for X
+	//	max_warning	not set for X
+	//	min_warning	not set for X
+	//	delta_t	not set for X
+	//	delta_val	not set for X
 	
-	xposition->set_default_properties(xposition_prop);
+	x->set_default_properties(x_prop);
 	//	Not Polled
-	xposition->set_disp_level(Tango::OPERATOR);
+	x->set_disp_level(Tango::OPERATOR);
 	//	Not Memorized
-	att_list.push_back(xposition);
+	att_list.push_back(x);
 
-	//	Attribute : YPosition
-	YPositionAttrib	*yposition = new YPositionAttrib();
-	Tango::UserDefaultAttrProp	yposition_prop;
-	//	description	not set for YPosition
-	//	label	not set for YPosition
-	//	unit	not set for YPosition
-	//	standard_unit	not set for YPosition
-	//	display_unit	not set for YPosition
-	//	format	not set for YPosition
-	//	max_value	not set for YPosition
-	//	min_value	not set for YPosition
-	//	max_alarm	not set for YPosition
-	//	min_alarm	not set for YPosition
-	//	max_warning	not set for YPosition
-	//	min_warning	not set for YPosition
-	//	delta_t	not set for YPosition
-	//	delta_val	not set for YPosition
+	//	Attribute : Y
+	YAttrib	*y = new YAttrib();
+	Tango::UserDefaultAttrProp	y_prop;
+	//	description	not set for Y
+	//	label	not set for Y
+	y_prop.set_unit("nm");
+	//	standard_unit	not set for Y
+	//	display_unit	not set for Y
+	//	format	not set for Y
+	//	max_value	not set for Y
+	//	min_value	not set for Y
+	//	max_alarm	not set for Y
+	//	min_alarm	not set for Y
+	//	max_warning	not set for Y
+	//	min_warning	not set for Y
+	//	delta_t	not set for Y
+	//	delta_val	not set for Y
 	
-	yposition->set_default_properties(yposition_prop);
+	y->set_default_properties(y_prop);
 	//	Not Polled
-	yposition->set_disp_level(Tango::OPERATOR);
+	y->set_disp_level(Tango::OPERATOR);
 	//	Not Memorized
-	att_list.push_back(yposition);
+	att_list.push_back(y);
 
 	//	Attribute : Sum
 	SumAttrib	*sum = new SumAttrib();
@@ -1515,29 +1318,53 @@ void LiberaSinglePassEClass::attribute_factory(vector<Tango::Attr *> &att_list)
 	//	Not Memorized
 	att_list.push_back(sum);
 
-	//	Attribute : Quad
-	QuadAttrib	*quad = new QuadAttrib();
-	Tango::UserDefaultAttrProp	quad_prop;
-	//	description	not set for Quad
-	//	label	not set for Quad
-	//	unit	not set for Quad
-	//	standard_unit	not set for Quad
-	//	display_unit	not set for Quad
-	//	format	not set for Quad
-	//	max_value	not set for Quad
-	//	min_value	not set for Quad
-	//	max_alarm	not set for Quad
-	//	min_alarm	not set for Quad
-	//	max_warning	not set for Quad
-	//	min_warning	not set for Quad
-	//	delta_t	not set for Quad
-	//	delta_val	not set for Quad
+	//	Attribute : EnableADC
+	EnableADCAttrib	*enableadc = new EnableADCAttrib();
+	Tango::UserDefaultAttrProp	enableadc_prop;
+	//	description	not set for EnableADC
+	//	label	not set for EnableADC
+	//	unit	not set for EnableADC
+	//	standard_unit	not set for EnableADC
+	//	display_unit	not set for EnableADC
+	//	format	not set for EnableADC
+	//	max_value	not set for EnableADC
+	//	min_value	not set for EnableADC
+	//	max_alarm	not set for EnableADC
+	//	min_alarm	not set for EnableADC
+	//	max_warning	not set for EnableADC
+	//	min_warning	not set for EnableADC
+	//	delta_t	not set for EnableADC
+	//	delta_val	not set for EnableADC
 	
-	quad->set_default_properties(quad_prop);
+	enableadc->set_default_properties(enableadc_prop);
 	//	Not Polled
-	quad->set_disp_level(Tango::OPERATOR);
+	enableadc->set_disp_level(Tango::OPERATOR);
 	//	Not Memorized
-	att_list.push_back(quad);
+	att_list.push_back(enableadc);
+
+	//	Attribute : Q
+	QAttrib	*q = new QAttrib();
+	Tango::UserDefaultAttrProp	q_prop;
+	//	description	not set for Q
+	//	label	not set for Q
+	//	unit	not set for Q
+	//	standard_unit	not set for Q
+	//	display_unit	not set for Q
+	//	format	not set for Q
+	//	max_value	not set for Q
+	//	min_value	not set for Q
+	//	max_alarm	not set for Q
+	//	min_alarm	not set for Q
+	//	max_warning	not set for Q
+	//	min_warning	not set for Q
+	//	delta_t	not set for Q
+	//	delta_val	not set for Q
+	
+	q->set_default_properties(q_prop);
+	//	Not Polled
+	q->set_disp_level(Tango::OPERATOR);
+	//	Not Memorized
+	att_list.push_back(q);
 
 	//	Attribute : ADCChannelA
 	ADCChannelAAttrib	*adcchannela = new ADCChannelAAttrib();
@@ -1635,150 +1462,6 @@ void LiberaSinglePassEClass::attribute_factory(vector<Tango::Attr *> &att_list)
 	//	Not Memorized
 	att_list.push_back(adcchanneld);
 
-	//	Attribute : AT
-	ATAttrib	*at = new ATAttrib();
-	Tango::UserDefaultAttrProp	at_prop;
-	at_prop.set_description("The A StripLine ADC buffer after some computation:\nsquare - double averaging filter - square root");
-	at_prop.set_label("Computed A ADC buffer");
-	at_prop.set_unit("a.u");
-	//	standard_unit	not set for AT
-	//	display_unit	not set for AT
-	at_prop.set_format("%8.2f");
-	//	max_value	not set for AT
-	//	min_value	not set for AT
-	//	max_alarm	not set for AT
-	//	min_alarm	not set for AT
-	//	max_warning	not set for AT
-	//	min_warning	not set for AT
-	//	delta_t	not set for AT
-	//	delta_val	not set for AT
-	
-	at->set_default_properties(at_prop);
-	//	Not Polled
-	at->set_disp_level(Tango::OPERATOR);
-	//	Not Memorized
-	att_list.push_back(at);
-
-	//	Attribute : BT
-	BTAttrib	*bt = new BTAttrib();
-	Tango::UserDefaultAttrProp	bt_prop;
-	bt_prop.set_description("The B StripLine ADC buffer after some computation:\nsquare - double averaging filter - square root");
-	bt_prop.set_label("Computed B ADC buffer");
-	bt_prop.set_unit("a.u");
-	//	standard_unit	not set for BT
-	//	display_unit	not set for BT
-	bt_prop.set_format("%8.2f");
-	//	max_value	not set for BT
-	//	min_value	not set for BT
-	//	max_alarm	not set for BT
-	//	min_alarm	not set for BT
-	//	max_warning	not set for BT
-	//	min_warning	not set for BT
-	//	delta_t	not set for BT
-	//	delta_val	not set for BT
-	
-	bt->set_default_properties(bt_prop);
-	//	Not Polled
-	bt->set_disp_level(Tango::OPERATOR);
-	//	Not Memorized
-	att_list.push_back(bt);
-
-	//	Attribute : CT
-	CTAttrib	*ct = new CTAttrib();
-	Tango::UserDefaultAttrProp	ct_prop;
-	ct_prop.set_description("The C StripLine ADC buffer after some computation:\nsquare - double averaging filter - square root");
-	ct_prop.set_label("Computed C ADC buffer");
-	ct_prop.set_unit("a.u");
-	//	standard_unit	not set for CT
-	//	display_unit	not set for CT
-	ct_prop.set_format("%8.2f");
-	//	max_value	not set for CT
-	//	min_value	not set for CT
-	//	max_alarm	not set for CT
-	//	min_alarm	not set for CT
-	//	max_warning	not set for CT
-	//	min_warning	not set for CT
-	//	delta_t	not set for CT
-	//	delta_val	not set for CT
-	
-	ct->set_default_properties(ct_prop);
-	//	Not Polled
-	ct->set_disp_level(Tango::OPERATOR);
-	//	Not Memorized
-	att_list.push_back(ct);
-
-	//	Attribute : DT
-	DTAttrib	*dt = new DTAttrib();
-	Tango::UserDefaultAttrProp	dt_prop;
-	dt_prop.set_description("The D StripLine ADC buffer after some computation:\nsquare - double averaging filter - square root");
-	dt_prop.set_label("Computed D ADC buffer");
-	dt_prop.set_unit("a.u");
-	//	standard_unit	not set for DT
-	//	display_unit	not set for DT
-	dt_prop.set_format("%8.2f");
-	//	max_value	not set for DT
-	//	min_value	not set for DT
-	//	max_alarm	not set for DT
-	//	min_alarm	not set for DT
-	//	max_warning	not set for DT
-	//	min_warning	not set for DT
-	//	delta_t	not set for DT
-	//	delta_val	not set for DT
-	
-	dt->set_default_properties(dt_prop);
-	//	Not Polled
-	dt->set_disp_level(Tango::OPERATOR);
-	//	Not Memorized
-	att_list.push_back(dt);
-
-	//	Attribute : Current
-	CurrentAttrib	*current = new CurrentAttrib();
-	Tango::UserDefaultAttrProp	current_prop;
-	current_prop.set_description("Beam current computed from strip lines data");
-	current_prop.set_label("Computed beam current");
-	current_prop.set_unit("mA");
-	current_prop.set_standard_unit("0.001");
-	//	display_unit	not set for Current
-	current_prop.set_format("%6.2f");
-	//	max_value	not set for Current
-	//	min_value	not set for Current
-	//	max_alarm	not set for Current
-	//	min_alarm	not set for Current
-	//	max_warning	not set for Current
-	//	min_warning	not set for Current
-	//	delta_t	not set for Current
-	//	delta_val	not set for Current
-	
-	current->set_default_properties(current_prop);
-	//	Not Polled
-	current->set_disp_level(Tango::OPERATOR);
-	//	Not Memorized
-	att_list.push_back(current);
-
-	//	Attribute : SumT
-	SumTAttrib	*sumt = new SumTAttrib();
-	Tango::UserDefaultAttrProp	sumt_prop;
-	sumt_prop.set_description("Sum of the 4 computed ADC outputs (the xxxT attributes)");
-	sumt_prop.set_label("SumT");
-	sumt_prop.set_unit("a.u");
-	//	standard_unit	not set for SumT
-	//	display_unit	not set for SumT
-	sumt_prop.set_format("%8.2f");
-	//	max_value	not set for SumT
-	//	min_value	not set for SumT
-	//	max_alarm	not set for SumT
-	//	min_alarm	not set for SumT
-	//	max_warning	not set for SumT
-	//	min_warning	not set for SumT
-	//	delta_t	not set for SumT
-	//	delta_val	not set for SumT
-	
-	sumt->set_default_properties(sumt_prop);
-	//	Not Polled
-	sumt->set_disp_level(Tango::OPERATOR);
-	//	Not Memorized
-	att_list.push_back(sumt);
-
 	//	Create a list of static attributes
 	create_static_attribute_list(get_class_attr()->get_attr_list());
 	/*----- PROTECTED REGION ID(LiberaSinglePassEClass::attribute_factory_after) ENABLED START -----*/
@@ -1809,15 +1492,6 @@ void LiberaSinglePassEClass::command_factory()
 			"",
 			Tango::OPERATOR);
 	command_list.push_back(pResetCmd);
-
-	//	Command ResetTrigger
-	ResetTriggerClass	*pResetTriggerCmd =
-		new ResetTriggerClass("ResetTrigger",
-			Tango::DEV_VOID, Tango::DEV_VOID,
-			"",
-			"",
-			Tango::EXPERT);
-	command_list.push_back(pResetTriggerCmd);
 
 	//	Command ResetInterlockStatus
 	ResetInterlockStatusClass	*pResetInterlockStatusCmd =

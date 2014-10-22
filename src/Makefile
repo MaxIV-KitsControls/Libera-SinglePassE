@@ -101,8 +101,7 @@ LFLAGS_USR+= -lliberamci2.6 \
 #
 # -DACE_HAS_EXCEPTIONS -D__ACE_INLINE__ for ACE
 #
-CXXFLAGS_USR+= -Wall -std=gnu++0x -D_GLIBCXX_USE_NANOSLEEP
-
+CXXFLAGS_USR+= -D_GLIBCXX_USE_NANOSLEEP
 
 #=============================================================================
 # TANGO_REQUIRED 
@@ -129,7 +128,7 @@ include $(MAKE_ENV)/tango.opt
 #=============================================================================
 # SVC_OBJS is the list of all objects needed to make the output
 #
-SVC_INCL =  $(PACKAGE_NAME).h $(PACKAGE_NAME)Class.h $(PACKAGE_NAME)DataTask.h
+SVC_INCL =  $(PACKAGE_NAME).h $(PACKAGE_NAME)Class.h
 
 
 SVC_OBJS =      \

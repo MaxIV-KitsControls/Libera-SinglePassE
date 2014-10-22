@@ -30,6 +30,11 @@ struct TangoToTraits;
  * Define supported type mappings with template specializations.
  */
 template<>
+struct TangoToTraits<Tango::DevULong64> {
+    typedef isig::SignalTraitsVarUint64 Type;
+};
+
+template<>
 struct TangoToTraits<Tango::DevDouble> {
     typedef isig::SignalTraitsVarInt32 Type;
 };
