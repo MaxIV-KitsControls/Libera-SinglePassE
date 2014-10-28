@@ -664,6 +664,9 @@ public:
 
 	//	Additional Method prototypes
 protected:
+        static void EventCallback(void *data);
+        static void SPECallback(void *data);
+        
         LiberaClient *m_libera;
 
         LiberaSignal *m_signalADC;

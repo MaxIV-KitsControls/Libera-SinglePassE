@@ -314,6 +314,9 @@ void LiberaSinglePassE::init_device()
 
         m_signalSPE->SetPeriod(0); // stream waits in read
         m_signalSPE->Enable();
+        m_signalSPE->SetNotifier(
+            &LiberaSinglePassE::SPECallback,
+            reinterpret_cast<void*>(this));
  
         attr_Sum_read = m_spe_sum;
         attr_Q_read = m_spe_q;
@@ -332,6 +335,9 @@ void LiberaSinglePassE::init_device()
 
         m_signalEvent->SetPeriod(0); // stream waits in read
         m_signalEvent->Enable();
+        m_signalEvent->SetNotifier(
+            &LiberaSinglePassE::EventCallback,
+            reinterpret_cast<void*>(this));
 
         attr_TriggerCounter_read = m_event_count;
 
@@ -347,6 +353,10 @@ void LiberaSinglePassE::init_device()
 
         m_signalADC->SetPeriod(500);
         m_signalADC->Enable();
+
+        set_change_event("TriggerCounter", true, false);
+        set_change_event("X", true, false);
+        set_change_event("Y", true, false);
 
         if (m_libera->Connect()) {
             set_state(Tango::ON);
@@ -448,10 +458,6 @@ void LiberaSinglePassE::always_executed_hook()
                 // Set device ON state
                 set_state(Tango::ON);
                 set_status(ON_STATUS);
-
-                m_signalSPE->GetData();
-                m_signalEvent->GetData();
-                m_signalADC->GetData();
         }
         else {
                 set_state(Tango::FAULT);
@@ -1746,6 +1752,24 @@ Tango::DevVarStringArray *LiberaSinglePassE::magic_command(Tango::DevString argi
 }
 
 /*----- PROTECTED REGION ID(LiberaSinglePassE::namespace_ending) ENABLED START -----*/
+
+void LiberaSinglePassE::EventCallback(void *data)
+{
+        LiberaSinglePassE *device = reinterpret_cast<LiberaSinglePassE *>(data);
+
+        device->m_signalEvent->GetData();
+        device->m_signalADC->GetData();
+        device->push_change_event("TriggerCounter", device->attr_TriggerCounter_read);    
+}
+
+void LiberaSinglePassE::SPECallback(void *data)
+{
+        LiberaSinglePassE *device = reinterpret_cast<LiberaSinglePassE *>(data);
+
+        device->m_signalSPE->GetData();
+        device->push_change_event("X", device->attr_X_read);
+        device->push_change_event("Y", device->attr_Y_read);
+}
 
 /*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::namespace_ending
 } //	namespace
