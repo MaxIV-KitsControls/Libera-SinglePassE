@@ -132,14 +132,22 @@
       <archiveEvent fire="false" libCheckCriteria="false"/>
       <dataReadyEvent fire="false" libCheckCriteria="true"/>
       <status abstract="false" inherited="false" concrete="true" concreteHere="true"/>
+<<<<<<< HEAD
+      <properties description="Provides minimal fan speed reading of all three fans on &#xA;the left side of the chassis in order to identify if the fan &#xA;module (consisting of 3 fans) is broken &#x2013; returned value &#xA;0 means that at least one fan has stopped." label="Fan.1 speed" unit="rpm" standardUnit="" displayUnit="" format="%4d" maxValue="" minValue="" maxAlarm="" minAlarm="" maxWarning="" minWarning="" deltaTime="" deltaValue=""/>
+=======
       <properties description="Provides minimal fan speed reading of all three&#xa0; fans on &#xA;the left side of the chassis in order to identify if the fan &#xA;module (consisting of 3 fans) is broken &#x2013; returned value &#xA;0 means that at least one fan has stopped." label="Fan.1 speed" unit="rpm" standardUnit="" displayUnit="" format="%4d" maxValue="" minValue="" maxAlarm="" minAlarm="" maxWarning="" minWarning="" deltaTime="" deltaValue=""/>
+>>>>>>> c67445acda0196ffcd05861097d1d44451f8490f
     </attributes>
     <attributes name="Fan2Speed" attType="Scalar" rwType="READ" displayLevel="EXPERT" maxX="0" maxY="0" allocReadMember="false">
       <dataType xsi:type="pogoDsl:UShortType"/>
       <changeEvent fire="false" libCheckCriteria="false"/>
       <archiveEvent fire="false" libCheckCriteria="false"/>
       <status abstract="false" inherited="false" concrete="true" concreteHere="true"/>
+<<<<<<< HEAD
+      <properties description="Provides minimal fan speed reading of all three fans on &#xA;the right side of the chassis in order to identify if the &#xA;fan module (consisting of 3 fans) is broken &#x2013; returned &#xA;value 0 means that at least one fan has stopped." label="Fan.2 speed" unit="rpm" standardUnit="" displayUnit="" format="%4d" maxValue="" minValue="" maxAlarm="" minAlarm="" maxWarning="" minWarning="" deltaTime="" deltaValue=""/>
+=======
       <properties description="Provides minimal fan speed reading of all three&#xa0; fans on &#xA;the right side of the chassis in order to identify if the &#xA;fan module (consisting of 3 fans) is broken &#x2013; returned &#xA;value 0 means that at least one fan has stopped." label="Fan.2 speed" unit="rpm" standardUnit="" displayUnit="" format="%4d" maxValue="" minValue="" maxAlarm="" minAlarm="" maxWarning="" minWarning="" deltaTime="" deltaValue=""/>
+>>>>>>> c67445acda0196ffcd05861097d1d44451f8490f
       <readExcludedStates>UNKNOWN</readExcludedStates>
     </attributes>
     <attributes name="Temp1" attType="Scalar" rwType="READ" displayLevel="EXPERT" maxX="0" maxY="0" allocReadMember="false">
