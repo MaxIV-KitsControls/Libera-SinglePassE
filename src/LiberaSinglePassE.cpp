@@ -1125,7 +1125,11 @@ void LiberaSinglePassE::read_TriggerCounter(Tango::Attribute &attr)
 //--------------------------------------------------------
 /**
  *	Read Fan1Speed attribute
+<<<<<<< HEAD
+ *	Description: Provides minimal fan speed reading of all three fans on
+=======
  *	Description: Provides minimal fan speed reading of all three� fans on
+>>>>>>> c67445acda0196ffcd05861097d1d44451f8490f
  *	             the left side of the chassis in order to identify if the fan
  *	             module (consisting of 3 fans) is broken - returned value
  *	             0 means that at least one fan has stopped.
@@ -1170,7 +1174,11 @@ void LiberaSinglePassE::read_Fan1Speed(Tango::Attribute &attr)
 //--------------------------------------------------------
 /**
  *	Read Fan2Speed attribute
+<<<<<<< HEAD
+ *	Description: Provides minimal fan speed reading of all three fans on
+=======
  *	Description: Provides minimal fan speed reading of all three� fans on
+>>>>>>> c67445acda0196ffcd05861097d1d44451f8490f
  *	             the right side of the chassis in order to identify if the
  *	             fan module (consisting of 3 fans) is broken - returned
  *	             value 0 means that at least one fan has stopped.

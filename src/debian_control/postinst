@@ -1,0 +1,20 @@
+#!/bin/sh
+
+set +e
+cp -n "/usr/local/bin/LiberaSinglePass/LiberaSinglePass.sh" "/etc/init.d/LiberaSinglePass"
+
+set -e
+chmod 751 /usr/local/bin/LiberaSinglePass/LiberaSinglePassE
+chmod 751 /usr/local/bin/LiberaSinglePass/configure.sh
+chmod 751 /etc/init.d/LiberaSinglePass
+
+touch "/var/log/LiberaSinglePass.log" && chown "root" "/var/log/LiberaSinglePass.log"
+
+if [ "x$TANGO_HOST" != "x" ] && [ "x$TANGO_INSTANCE" != "x" ]; then
+    sed -i "s/TANGO_HOST_PLACEHOLDER/$TANGO_HOST/g" /etc/init.d/LiberaSinglePass
+    sed -i "s/TANGO_INSTANCE_PLACEHOLDER/$TANGO_INSTANCE/g" /etc/init.d/LiberaSinglePass
+fi
+
+update-rc.d "LiberaSinglePass" defaults 99
+
+service "LiberaSinglePass" start

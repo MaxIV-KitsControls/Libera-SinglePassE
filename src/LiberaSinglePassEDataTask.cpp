@@ -312,10 +312,17 @@ bool LiberaSinglePassEDataTask::read_data() {
 		ERROR_STREAM_TASK << "Read() failed: " << ret << std::endl;
 
 		// invalidate the data buffers
+<<<<<<< HEAD
+        memset(dev->attr_A_read, 0, sizeof(*(dev->attr_A_read)));
+        memset(dev->attr_B_read, 0, sizeof(*(dev->attr_B_read)));
+        memset(dev->attr_C_read, 0, sizeof(*(dev->attr_C_read)));
+        memset(dev->attr_D_read, 0, sizeof(*(dev->attr_D_read)));
+=======
 		memset(dev->attr_A_read, 0, sizeof(dev->attr_A_read));
 		memset(dev->attr_B_read, 0, sizeof(dev->attr_B_read));
 		memset(dev->attr_C_read, 0, sizeof(dev->attr_C_read));
 		memset(dev->attr_D_read, 0, sizeof(dev->attr_D_read));
+>>>>>>> c67445acda0196ffcd05861097d1d44451f8490f
 
 		return false;
 	}
@@ -329,10 +336,17 @@ bool LiberaSinglePassEDataTask::read_data() {
 				<< std::endl;
 
 		// invalidate the data buffers
+<<<<<<< HEAD
+        memset(dev->attr_A_read, 0, sizeof(*(dev->attr_A_read)));
+        memset(dev->attr_B_read, 0, sizeof(*(dev->attr_B_read)));
+        memset(dev->attr_C_read, 0, sizeof(*(dev->attr_C_read)));
+        memset(dev->attr_D_read, 0, sizeof(*(dev->attr_D_read)));
+=======
 		memset(dev->attr_A_read, 0, sizeof(dev->attr_A_read));
 		memset(dev->attr_B_read, 0, sizeof(dev->attr_B_read));
 		memset(dev->attr_C_read, 0, sizeof(dev->attr_C_read));
 		memset(dev->attr_D_read, 0, sizeof(dev->attr_D_read));
+>>>>>>> c67445acda0196ffcd05861097d1d44451f8490f
 
 		return false;
 	}
