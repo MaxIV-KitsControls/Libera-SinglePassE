@@ -357,6 +357,8 @@ void LiberaSinglePassE::init_device()
         set_change_event("TriggerCounter", true, false);
         set_change_event("X", true, false);
         set_change_event("Y", true, false);
+        set_change_event("Q", true, false);
+        set_change_event("Sum", true, false);
 
         if (m_libera->Connect()) {
             set_state(Tango::ON);
@@ -1773,6 +1775,8 @@ void LiberaSinglePassE::SPECallback()
 
         push_change_event("X", attr_X_read);
         push_change_event("Y", attr_Y_read);
+        push_change_event("Q", attr_Q_read);
+        push_change_event("Sum", attr_Sum_read);
 }
 
 /*
