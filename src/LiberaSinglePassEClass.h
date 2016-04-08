@@ -544,6 +544,66 @@ public:
 		{return (static_cast<LiberaSinglePassE *>(dev))->is_Q_allowed(ty);}
 };
 
+//	Attribute External_trigger_delay class definition
+class External_trigger_delayAttrib: public Tango::Attr
+{
+public:
+	External_trigger_delayAttrib():Attr("External_trigger_delay",
+			Tango::DEV_ULONG, Tango::READ_WRITE) {};
+	~External_trigger_delayAttrib() {};
+	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
+		{(static_cast<LiberaSinglePassE *>(dev))->read_External_trigger_delay(att);}
+	virtual void write(Tango::DeviceImpl *dev,Tango::WAttribute &att)
+		{(static_cast<LiberaSinglePassE *>(dev))->write_External_trigger_delay(att);}
+	virtual bool is_allowed(Tango::DeviceImpl *dev,Tango::AttReqType ty)
+		{return (static_cast<LiberaSinglePassE *>(dev))->is_External_trigger_delay_allowed(ty);}
+};
+
+//	Attribute Attenuation_id class definition
+class Attenuation_idAttrib: public Tango::Attr
+{
+public:
+	Attenuation_idAttrib():Attr("Attenuation_id",
+			Tango::DEV_SHORT, Tango::READ_WRITE) {};
+	~Attenuation_idAttrib() {};
+	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
+		{(static_cast<LiberaSinglePassE *>(dev))->read_Attenuation_id(att);}
+	virtual void write(Tango::DeviceImpl *dev,Tango::WAttribute &att)
+		{(static_cast<LiberaSinglePassE *>(dev))->write_Attenuation_id(att);}
+	virtual bool is_allowed(Tango::DeviceImpl *dev,Tango::AttReqType ty)
+		{return (static_cast<LiberaSinglePassE *>(dev))->is_Attenuation_id_allowed(ty);}
+};
+
+//	Attribute Attenuation_mode class definition
+class Attenuation_modeAttrib: public Tango::Attr
+{
+public:
+	Attenuation_modeAttrib():Attr("Attenuation_mode",
+			Tango::DEV_SHORT, Tango::READ_WRITE) {};
+	~Attenuation_modeAttrib() {};
+	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
+		{(static_cast<LiberaSinglePassE *>(dev))->read_Attenuation_mode(att);}
+	virtual void write(Tango::DeviceImpl *dev,Tango::WAttribute &att)
+		{(static_cast<LiberaSinglePassE *>(dev))->write_Attenuation_mode(att);}
+	virtual bool is_allowed(Tango::DeviceImpl *dev,Tango::AttReqType ty)
+		{return (static_cast<LiberaSinglePassE *>(dev))->is_Attenuation_mode_allowed(ty);}
+};
+
+//	Attribute Bunch_Threshold class definition
+class Bunch_ThresholdAttrib: public Tango::Attr
+{
+public:
+	Bunch_ThresholdAttrib():Attr("Bunch_Threshold",
+			Tango::DEV_ULONG, Tango::READ_WRITE) {};
+	~Bunch_ThresholdAttrib() {};
+	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
+		{(static_cast<LiberaSinglePassE *>(dev))->read_Bunch_Threshold(att);}
+	virtual void write(Tango::DeviceImpl *dev,Tango::WAttribute &att)
+		{(static_cast<LiberaSinglePassE *>(dev))->write_Bunch_Threshold(att);}
+	virtual bool is_allowed(Tango::DeviceImpl *dev,Tango::AttReqType ty)
+		{return (static_cast<LiberaSinglePassE *>(dev))->is_Bunch_Threshold_allowed(ty);}
+};
+
 //	Attribute ADCChannelA class definition
 class ADCChannelAAttrib: public Tango::SpectrumAttr
 {

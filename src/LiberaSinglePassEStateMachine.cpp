@@ -747,6 +747,104 @@ bool LiberaSinglePassE::is_Q_allowed(TANGO_UNUSED(Tango::AttReqType type))
 
 //--------------------------------------------------------
 /**
+ *	Method      : LiberaSinglePassE::is_External_trigger_delay_allowed()
+ *	Description : Execution allowed for External_trigger_delay attribute
+ */
+//--------------------------------------------------------
+bool LiberaSinglePassE::is_External_trigger_delay_allowed(TANGO_UNUSED(Tango::AttReqType type))
+{
+	//	Not any excluded states for External_trigger_delay attribute in Write access.
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::External_trigger_delayStateAllowed_WRITE) ENABLED START -----*/
+	
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::External_trigger_delayStateAllowed_WRITE
+
+	//	Not any excluded states for External_trigger_delay attribute in read access.
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::External_trigger_delayStateAllowed_READ) ENABLED START -----*/
+	
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::External_trigger_delayStateAllowed_READ
+	return true;
+}
+
+//--------------------------------------------------------
+/**
+ *	Method      : LiberaSinglePassE::is_Attenuation_id_allowed()
+ *	Description : Execution allowed for Attenuation_id attribute
+ */
+//--------------------------------------------------------
+bool LiberaSinglePassE::is_Attenuation_id_allowed(TANGO_UNUSED(Tango::AttReqType type))
+{
+	//	Not any excluded states for Attenuation_id attribute in Write access.
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::Attenuation_idStateAllowed_WRITE) ENABLED START -----*/
+	
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::Attenuation_idStateAllowed_WRITE
+
+	//	Check access type.
+	if ( type==Tango::READ_REQ )
+	{
+		//	Compare device state with not allowed states for READ 
+		if (get_state()==Tango::UNKNOWN)
+		{
+		/*----- PROTECTED REGION ID(LiberaSinglePassE::Attenuation_idStateAllowed_READ) ENABLED START -----*/
+		
+		/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::Attenuation_idStateAllowed_READ
+			return false;
+		}
+		return true;
+	}
+	return true;
+}
+
+//--------------------------------------------------------
+/**
+ *	Method      : LiberaSinglePassE::is_Attenuation_mode_allowed()
+ *	Description : Execution allowed for Attenuation_mode attribute
+ */
+//--------------------------------------------------------
+bool LiberaSinglePassE::is_Attenuation_mode_allowed(TANGO_UNUSED(Tango::AttReqType type))
+{
+	//	Not any excluded states for Attenuation_mode attribute in Write access.
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::Attenuation_modeStateAllowed_WRITE) ENABLED START -----*/
+	
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::Attenuation_modeStateAllowed_WRITE
+
+	//	Check access type.
+	if ( type==Tango::READ_REQ )
+	{
+		//	Compare device state with not allowed states for READ 
+		if (get_state()==Tango::UNKNOWN)
+		{
+		/*----- PROTECTED REGION ID(LiberaSinglePassE::Attenuation_modeStateAllowed_READ) ENABLED START -----*/
+		
+		/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::Attenuation_modeStateAllowed_READ
+			return false;
+		}
+		return true;
+	}
+	return true;
+}
+
+//--------------------------------------------------------
+/**
+ *	Method      : LiberaSinglePassE::is_Bunch_Threshold_allowed()
+ *	Description : Execution allowed for Bunch_Threshold attribute
+ */
+//--------------------------------------------------------
+bool LiberaSinglePassE::is_Bunch_Threshold_allowed(TANGO_UNUSED(Tango::AttReqType type))
+{
+	//	Not any excluded states for Bunch_Threshold attribute in Write access.
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::Bunch_ThresholdStateAllowed_WRITE) ENABLED START -----*/
+	
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::Bunch_ThresholdStateAllowed_WRITE
+
+	//	Not any excluded states for Bunch_Threshold attribute in read access.
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::Bunch_ThresholdStateAllowed_READ) ENABLED START -----*/
+	
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::Bunch_ThresholdStateAllowed_READ
+	return true;
+}
+
+//--------------------------------------------------------
+/**
  *	Method      : LiberaSinglePassE::is_ADCChannelA_allowed()
  *	Description : Execution allowed for ADCChannelA attribute
  */

@@ -62,45 +62,49 @@ static const char *RcsId = "$Id:  $";
 //================================================================
 //  Attributes managed are:
 //================================================================
-//  ADCBufferSize        |  Tango::DevLong	Scalar
-//  TriggerCounter       |  Tango::DevULong64	Scalar
-//  Fan1Speed            |  Tango::DevUShort	Scalar
-//  Fan2Speed            |  Tango::DevUShort	Scalar
-//  Temp1                |  Tango::DevUShort	Scalar
-//  Temp2                |  Tango::DevUShort	Scalar
-//  Temp3                |  Tango::DevUShort	Scalar
-//  Calibration_ka       |  Tango::DevDouble	Scalar
-//  Calibration_kb       |  Tango::DevDouble	Scalar
-//  Calibration_kc       |  Tango::DevDouble	Scalar
-//  Calibration_kd       |  Tango::DevDouble	Scalar
-//  Linear_x_k           |  Tango::DevDouble	Scalar
-//  Linear_x_offs        |  Tango::DevDouble	Scalar
-//  Linear_y_k           |  Tango::DevDouble	Scalar
-//  Linear_y_offs        |  Tango::DevDouble	Scalar
-//  Linear_q_k           |  Tango::DevDouble	Scalar
-//  Linear_q_offs        |  Tango::DevDouble	Scalar
-//  Linear_sum_k         |  Tango::DevDouble	Scalar
-//  Linear_sum_offs      |  Tango::DevDouble	Scalar
-//  Signal_expansion     |  Tango::DevDouble	Scalar
-//  Interlock_enabled    |  Tango::DevBoolean	Scalar
-//  Limit_min_x          |  Tango::DevDouble	Scalar
-//  Limit_min_y          |  Tango::DevDouble	Scalar
-//  Limit_max_x          |  Tango::DevDouble	Scalar
-//  Limit_max_y          |  Tango::DevDouble	Scalar
-//  Overflow_threshold   |  Tango::DevULong	Scalar
-//  Interlock_status     |  Tango::DevULong	Scalar
-//  Status_x             |  Tango::DevBoolean	Scalar
-//  Status_y             |  Tango::DevBoolean	Scalar
-//  Status_adc_overflow  |  Tango::DevBoolean	Scalar
-//  X                    |  Tango::DevDouble	Scalar
-//  Y                    |  Tango::DevDouble	Scalar
-//  Sum                  |  Tango::DevDouble	Scalar
-//  EnableADC            |  Tango::DevBoolean	Scalar
-//  Q                    |  Tango::DevDouble	Scalar
-//  ADCChannelA          |  Tango::DevShort	Spectrum  ( max = 10000)
-//  ADCChannelB          |  Tango::DevShort	Spectrum  ( max = 10000)
-//  ADCChannelC          |  Tango::DevShort	Spectrum  ( max = 10000)
-//  ADCChannelD          |  Tango::DevShort	Spectrum  ( max = 10000)
+//  ADCBufferSize           |  Tango::DevLong	Scalar
+//  TriggerCounter          |  Tango::DevULong64	Scalar
+//  Fan1Speed               |  Tango::DevUShort	Scalar
+//  Fan2Speed               |  Tango::DevUShort	Scalar
+//  Temp1                   |  Tango::DevUShort	Scalar
+//  Temp2                   |  Tango::DevUShort	Scalar
+//  Temp3                   |  Tango::DevUShort	Scalar
+//  Calibration_ka          |  Tango::DevDouble	Scalar
+//  Calibration_kb          |  Tango::DevDouble	Scalar
+//  Calibration_kc          |  Tango::DevDouble	Scalar
+//  Calibration_kd          |  Tango::DevDouble	Scalar
+//  Linear_x_k              |  Tango::DevDouble	Scalar
+//  Linear_x_offs           |  Tango::DevDouble	Scalar
+//  Linear_y_k              |  Tango::DevDouble	Scalar
+//  Linear_y_offs           |  Tango::DevDouble	Scalar
+//  Linear_q_k              |  Tango::DevDouble	Scalar
+//  Linear_q_offs           |  Tango::DevDouble	Scalar
+//  Linear_sum_k            |  Tango::DevDouble	Scalar
+//  Linear_sum_offs         |  Tango::DevDouble	Scalar
+//  Signal_expansion        |  Tango::DevDouble	Scalar
+//  Interlock_enabled       |  Tango::DevBoolean	Scalar
+//  Limit_min_x             |  Tango::DevDouble	Scalar
+//  Limit_min_y             |  Tango::DevDouble	Scalar
+//  Limit_max_x             |  Tango::DevDouble	Scalar
+//  Limit_max_y             |  Tango::DevDouble	Scalar
+//  Overflow_threshold      |  Tango::DevULong	Scalar
+//  Interlock_status        |  Tango::DevULong	Scalar
+//  Status_x                |  Tango::DevBoolean	Scalar
+//  Status_y                |  Tango::DevBoolean	Scalar
+//  Status_adc_overflow     |  Tango::DevBoolean	Scalar
+//  X                       |  Tango::DevDouble	Scalar
+//  Y                       |  Tango::DevDouble	Scalar
+//  Sum                     |  Tango::DevDouble	Scalar
+//  EnableADC               |  Tango::DevBoolean	Scalar
+//  Q                       |  Tango::DevDouble	Scalar
+//  External_trigger_delay  |  Tango::DevULong	Scalar
+//  Attenuation_id          |  Tango::DevShort	Scalar
+//  Attenuation_mode        |  Tango::DevShort	Scalar
+//  Bunch_Threshold         |  Tango::DevULong	Scalar
+//  ADCChannelA             |  Tango::DevShort	Spectrum  ( max = 10000)
+//  ADCChannelB             |  Tango::DevShort	Spectrum  ( max = 10000)
+//  ADCChannelC             |  Tango::DevShort	Spectrum  ( max = 10000)
+//  ADCChannelD             |  Tango::DevShort	Spectrum  ( max = 10000)
 //================================================================
 
 namespace LiberaSinglePassE_ns
@@ -263,7 +267,26 @@ void LiberaSinglePassE::init_device()
         m_libera->AddScalar(
             m_spe + "interlock.status.adc_overflow",
             attr_Status_adc_overflow_read);
-        
+
+        //Gain Control
+        m_libera->AddScalar(
+            m_spe + "attenuation.mode",
+			attr_Attenuation_mode_read);
+
+        m_libera->AddScalar(
+            m_spe + "attenuation.att_id",
+			attr_Attenuation_id_read);
+
+        //DSP Control
+        m_libera->AddScalar(
+            m_spe + "dsp_control.bunch_thr1",
+			attr_Bunch_Threshold_read);
+
+        m_libera->AddScalar(
+            m_spe + "ltim.trigger_offset",
+            attr_External_trigger_delay_read);
+
+        //Platform Fans
         m_libera->AddScalarPM(
             "fans.left_",
             attr_Fan1Speed_read,
@@ -360,6 +383,10 @@ void LiberaSinglePassE::init_device()
         set_change_event("Q", true, false);
         set_change_event("Sum", true, false);
 
+
+        //Initiate Settings from properties
+        init_settings();
+
         if (m_libera->Connect()) {
             set_state(Tango::ON);
             set_status(ON_STATUS);
@@ -389,6 +416,7 @@ void LiberaSinglePassE::get_device_property()
 	dev_prop.push_back(Tango::DbDatum("LiberaIpAddr"));
 	dev_prop.push_back(Tango::DbDatum("LiberaBoard"));
 	dev_prop.push_back(Tango::DbDatum("Location"));
+	dev_prop.push_back(Tango::DbDatum("Single_Pass_Threshold"));
 
 	//	is there at least one property to be read ?
 	if (dev_prop.size()>0)
@@ -435,6 +463,17 @@ void LiberaSinglePassE::get_device_property()
 		}
 		//	And try to extract Location value from database
 		if (dev_prop[i].is_empty()==false)	dev_prop[i]  >>  location;
+
+		//	Try to initialize Single_Pass_Threshold from class property
+		cl_prop = ds_class->get_class_property(dev_prop[++i].name);
+		if (cl_prop.is_empty()==false)	cl_prop  >>  single_Pass_Threshold;
+		else {
+			//	Try to initialize Single_Pass_Threshold from default device value
+			def_prop = ds_class->get_default_device_property(dev_prop[i].name);
+			if (def_prop.is_empty()==false)	def_prop  >>  single_Pass_Threshold;
+		}
+		//	And try to extract Single_Pass_Threshold value from database
+		if (dev_prop[i].is_empty()==false)	dev_prop[i]  >>  single_Pass_Threshold;
 
 	}
 
@@ -1605,6 +1644,155 @@ void LiberaSinglePassE::read_Q(Tango::Attribute &attr)
 }
 //--------------------------------------------------------
 /**
+ *	Read attribute External_trigger_delay related method
+ *	Description: Trigger signal is usually used to trigger acquisitions (except when synchronizing).Depending on the cable lengths and physical location of the processor module in theaccelerator, the trigger arrival to Libera Single Pass E units may be different.
+ *
+ *	Data type:	Tango::DevULong
+ *	Attr type:	Scalar
+ */
+//--------------------------------------------------------
+void LiberaSinglePassE::read_External_trigger_delay(Tango::Attribute &attr)
+{
+	DEBUG_STREAM << "LiberaSinglePassE::read_External_trigger_delay(Tango::Attribute &attr) entering... " << endl;
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_External_trigger_delay) ENABLED START -----*/
+	//	Set the attribute value
+	attr.set_value(attr_External_trigger_delay_read);
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_External_trigger_delay
+}
+//--------------------------------------------------------
+/**
+ *	Write attribute External_trigger_delay related method
+ *	Description: Trigger signal is usually used to trigger acquisitions (except when synchronizing).Depending on the cable lengths and physical location of the processor module in theaccelerator, the trigger arrival to Libera Single Pass E units may be different.
+ *
+ *	Data type:	Tango::DevULong
+ *	Attr type:	Scalar
+ */
+//--------------------------------------------------------
+void LiberaSinglePassE::write_External_trigger_delay(Tango::WAttribute &attr)
+{
+	DEBUG_STREAM << "LiberaSinglePassE::write_External_trigger_delay(Tango::WAttribute &attr) entering... " << endl;
+	//	Retrieve write value
+	Tango::DevULong	w_val;
+	attr.get_write_value(w_val);
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::write_External_trigger_delay) ENABLED START -----*/
+	m_libera->UpdateScalar(attr_External_trigger_delay_read, w_val);
+	
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::write_External_trigger_delay
+}
+//--------------------------------------------------------
+/**
+ *	Read attribute Attenuation_id related method
+ *	Description: Manual Gain control attenuation (0-31 dB)
+ *
+ *	Data type:	Tango::DevShort
+ *	Attr type:	Scalar
+ */
+//--------------------------------------------------------
+void LiberaSinglePassE::read_Attenuation_id(Tango::Attribute &attr)
+{
+	DEBUG_STREAM << "LiberaSinglePassE::read_Attenuation_id(Tango::Attribute &attr) entering... " << endl;
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_Attenuation_id) ENABLED START -----*/
+	//	Set the attribute value
+	attr.set_value(attr_Attenuation_id_read);
+	
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_Attenuation_id
+}
+//--------------------------------------------------------
+/**
+ *	Write attribute Attenuation_id related method
+ *	Description: Manual Gain control attenuation (0-31 dB)
+ *
+ *	Data type:	Tango::DevShort
+ *	Attr type:	Scalar
+ */
+//--------------------------------------------------------
+void LiberaSinglePassE::write_Attenuation_id(Tango::WAttribute &attr)
+{
+	DEBUG_STREAM << "LiberaSinglePassE::write_Attenuation_id(Tango::WAttribute &attr) entering... " << endl;
+	//	Retrieve write value
+	Tango::DevShort	w_val;
+	attr.get_write_value(w_val);
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::write_Attenuation_id) ENABLED START -----*/
+	
+	m_libera->UpdateScalar(attr_Attenuation_id_read, w_val);
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::write_Attenuation_id
+}
+//--------------------------------------------------------
+/**
+ *	Read attribute Attenuation_mode related method
+ *	Description: Manual Gain control mode (mode/automatic)
+ *
+ *	Data type:	Tango::DevShort
+ *	Attr type:	Scalar
+ */
+//--------------------------------------------------------
+void LiberaSinglePassE::read_Attenuation_mode(Tango::Attribute &attr)
+{
+	DEBUG_STREAM << "LiberaSinglePassE::read_Attenuation_mode(Tango::Attribute &attr) entering... " << endl;
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_Attenuation_mode) ENABLED START -----*/
+	//	Set the attribute value
+	attr.set_value(attr_Attenuation_mode_read);
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_Attenuation_mode
+}
+//--------------------------------------------------------
+/**
+ *	Write attribute Attenuation_mode related method
+ *	Description: Manual Gain control mode (mode/automatic)
+ *
+ *	Data type:	Tango::DevShort
+ *	Attr type:	Scalar
+ */
+//--------------------------------------------------------
+void LiberaSinglePassE::write_Attenuation_mode(Tango::WAttribute &attr)
+{
+	DEBUG_STREAM << "LiberaSinglePassE::write_Attenuation_mode(Tango::WAttribute &attr) entering... " << endl;
+	//	Retrieve write value
+	Tango::DevShort	w_val;
+	attr.get_write_value(w_val);
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::write_Attenuation_mode) ENABLED START -----*/
+	m_libera->UpdateScalar(attr_Attenuation_mode_read, w_val);
+	
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::write_Attenuation_mode
+}
+//--------------------------------------------------------
+/**
+ *	Read attribute Bunch_Threshold related method
+ *	Description: Start point of the data processing
+ *
+ *	Data type:	Tango::DevULong
+ *	Attr type:	Scalar
+ */
+//--------------------------------------------------------
+void LiberaSinglePassE::read_Bunch_Threshold(Tango::Attribute &attr)
+{
+	DEBUG_STREAM << "LiberaSinglePassE::read_Bunch_Threshold(Tango::Attribute &attr) entering... " << endl;
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::read_Bunch_Threshold) ENABLED START -----*/
+	//	Set the attribute value
+	attr.set_value(attr_Bunch_Threshold_read);
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::read_Bunch_Threshold
+}
+//--------------------------------------------------------
+/**
+ *	Write attribute Bunch_Threshold related method
+ *	Description: Start point of the data processing
+ *
+ *	Data type:	Tango::DevULong
+ *	Attr type:	Scalar
+ */
+//--------------------------------------------------------
+void LiberaSinglePassE::write_Bunch_Threshold(Tango::WAttribute &attr)
+{
+	DEBUG_STREAM << "LiberaSinglePassE::write_Bunch_Threshold(Tango::WAttribute &attr) entering... " << endl;
+	//	Retrieve write value
+	Tango::DevULong	w_val;
+	attr.get_write_value(w_val);
+	/*----- PROTECTED REGION ID(LiberaSinglePassE::write_Bunch_Threshold) ENABLED START -----*/
+	m_libera->UpdateScalar(attr_Bunch_Threshold_read, w_val);
+	
+	/*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::write_Bunch_Threshold
+}
+//--------------------------------------------------------
+/**
  *	Read attribute ADCChannelA related method
  *	Description: The A StripLine ADC buffer
  *
@@ -1796,6 +1984,20 @@ void LiberaSinglePassE::_SPECallback(void *data)
         LiberaSinglePassE *device = reinterpret_cast<LiberaSinglePassE *>(data);
         device->SPECallback();
 }
+
+void LiberaSinglePassE::init_settings()
+{
+	try
+	{
+		m_libera->UpdateScalar(attr_Bunch_Threshold_read, single_Pass_Threshold);
+	}
+	catch (...)
+	{
+		set_state(Tango::FAULT);
+		return;
+	}
+}
+
 
 /*----- PROTECTED REGION END -----*/	//	LiberaSinglePassE::namespace_ending
 } //	namespace

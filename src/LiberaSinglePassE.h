@@ -131,6 +131,8 @@ public:
 	string	liberaBoard;
 	//	Location:	The libera box physical place (TL1, BOOSTER,....)
 	string	location;
+	//	Single_Pass_Threshold:	Start point of the data processing
+	Tango::DevULong	single_Pass_Threshold;
 
 //	Attribute data members
 public:
@@ -169,6 +171,10 @@ public:
 	Tango::DevDouble	*attr_Sum_read;
 	Tango::DevBoolean	*attr_EnableADC_read;
 	Tango::DevDouble	*attr_Q_read;
+	Tango::DevULong	*attr_External_trigger_delay_read;
+	Tango::DevShort	*attr_Attenuation_id_read;
+	Tango::DevShort	*attr_Attenuation_mode_read;
+	Tango::DevULong	*attr_Bunch_Threshold_read;
 	Tango::DevShort	*attr_ADCChannelA_read;
 	Tango::DevShort	*attr_ADCChannelB_read;
 	Tango::DevShort	*attr_ADCChannelC_read;
@@ -578,6 +584,46 @@ public:
 	virtual void read_Q(Tango::Attribute &attr);
 	virtual bool is_Q_allowed(Tango::AttReqType type);
 /**
+ *	Attribute External_trigger_delay related methods
+ *	Description: Trigger signal is usually used to trigger acquisitions (except when synchronizing).Depending on the cable lengths and physical location of the processor module in theaccelerator, the trigger arrival to Libera Single Pass E units may be different.
+ *
+ *	Data type:	Tango::DevULong
+ *	Attr type:	Scalar
+ */
+	virtual void read_External_trigger_delay(Tango::Attribute &attr);
+	virtual void write_External_trigger_delay(Tango::WAttribute &attr);
+	virtual bool is_External_trigger_delay_allowed(Tango::AttReqType type);
+/**
+ *	Attribute Attenuation_id related methods
+ *	Description: Manual Gain control attenuation (0-31 dB)
+ *
+ *	Data type:	Tango::DevShort
+ *	Attr type:	Scalar
+ */
+	virtual void read_Attenuation_id(Tango::Attribute &attr);
+	virtual void write_Attenuation_id(Tango::WAttribute &attr);
+	virtual bool is_Attenuation_id_allowed(Tango::AttReqType type);
+/**
+ *	Attribute Attenuation_mode related methods
+ *	Description: Manual Gain control mode (mode/automatic)
+ *
+ *	Data type:	Tango::DevShort
+ *	Attr type:	Scalar
+ */
+	virtual void read_Attenuation_mode(Tango::Attribute &attr);
+	virtual void write_Attenuation_mode(Tango::WAttribute &attr);
+	virtual bool is_Attenuation_mode_allowed(Tango::AttReqType type);
+/**
+ *	Attribute Bunch_Threshold related methods
+ *	Description: Start point of the data processing
+ *
+ *	Data type:	Tango::DevULong
+ *	Attr type:	Scalar
+ */
+	virtual void read_Bunch_Threshold(Tango::Attribute &attr);
+	virtual void write_Bunch_Threshold(Tango::WAttribute &attr);
+	virtual bool is_Bunch_Threshold_allowed(Tango::AttReqType type);
+/**
  *	Attribute ADCChannelA related methods
  *	Description: The A StripLine ADC buffer
  *
@@ -668,6 +714,7 @@ protected:
         void SPECallback();
         static void _EventCallback(void *data);
         static void _SPECallback(void *data);
+        void init_settings();
 
         LiberaClient *m_libera;
 

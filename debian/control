@@ -1,0 +1,18 @@
+Source: tangods-liberasinglepass
+Standards-Version: 1.2.0
+Section: utils
+Maintainer: MAXIV Laboratory <kits@maxlab.lu.se>, Cosylab d.o.o. <info@cosylab.com>
+Homepage: https://github.com/MaxIV-KitsControls/Libera-SinglePassE
+Vcs-Git: https://github.com/MaxIV-KitsControls/Libera-SinglePassE.git
+Vcs-Browser: https://github.com/MaxIV-KitsControls/Libera-SinglePassE
+Priority: optional
+Build-Depends: debhelper (>= 7.0.0),
+               libtango8-dev,
+               libera-base2.8-dev,
+               libera-mci2.8-dev
+
+Package: tangods-liberasinglepass
+Architecture: i386
+Depends: libtango8, libera-base2.8, libera-mci2.8
+Description: Tango DeviceServer of the Libera SinglePass E
+

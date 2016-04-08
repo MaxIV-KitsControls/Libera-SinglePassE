@@ -29,8 +29,9 @@ MAKE_ENV = /usr/share/pogo/preferences
 #
 PACKAGE_NAME = LiberaSinglePassE
 MAJOR_VERS   = 1
-MINOR_VERS   = 0
+MINOR_VERS   = 1
 RELEASE      = Release_$(MAJOR_VERS)_$(MINOR_VERS)
+LIBERA_VERSION = 2.8
 
 # #=============================================================================
 # # RELEASE_TYPE
@@ -66,7 +67,7 @@ OUTPUT_DIR = ./bin/$(BIN_DIR)
 #   - '-I ../include' and '-I .' are automatically appended in all cases
 #
 #
-INC_DIR_USER= -I . -I /usr/include/libera-2.6
+INC_DIR_USER= -I . -I /usr/include/libera-$(LIBERA_VERSION)
 
 
 #=============================================================================
@@ -87,21 +88,21 @@ LIB_DIR_USER= -L /opt/libera/lib
 # you must use '-lA -lB' in this order as link flags, otherwise you will get
 # 'undefined reference' errors
 #
-LFLAGS_USR+= -lliberamci2.6 \
-				-lliberainet2.6 \
-				-lliberaisig2.6 \
+LFLAGS_USR+= -lliberamci$(LIBERA_VERSION) \
+				-lliberainet$(LIBERA_VERSION) \
+				-lliberaisig$(LIBERA_VERSION) \
+				-lliberaistd$(LIBERA_VERSION) \
 				-lomniORB4 \
 				-lomnithread \
 				-lm
-
-
 #=============================================================================
 # CXXFLAGS_USR lists the compilation flags specific for your library/device/exe
 # This is the place where to put your compile-time macros using '-Dmy_macro'
 #
 # -DACE_HAS_EXCEPTIONS -D__ACE_INLINE__ for ACE
 #
-CXXFLAGS_USR+= -D_GLIBCXX_USE_NANOSLEEP
+CXXFLAGS_USR+= -Wall -std=c++0x -D_GLIBCXX_USE_NANOSLEEP
+
 
 #=============================================================================
 # TANGO_REQUIRED 
@@ -156,3 +157,17 @@ include $(MAKE_ENV)/common_target.opt
 	
 
 #PROTECTED REGION END#
+
+#------------------------------------------------------------------------------
+#-- install:
+#------------------------------------------------------------------------------
+INSTALL_DIR=$(DESTDIR)/$(TANGO_HOME)/bin
+
+install:
+	@echo "Installing $(OUTPUT_DIR)/$(PROJECT_NAME)  to  $(INSTALL_DIR)"
+ifeq ($(PROJECT_TYPE),DEVICE)
+	mkdir -p $(INSTALL_DIR)
+	mv $(OUTPUT_DIR)/$(PROJECT_NAME) $(INSTALL_DIR)
+	ls -l $(INSTALL_DIR)/$(PROJECT_NAME)
+endif
+

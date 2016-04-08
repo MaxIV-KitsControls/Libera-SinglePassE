@@ -310,6 +310,20 @@ void LiberaSinglePassEClass::set_default_property()
 	}
 	else
 		add_wiz_dev_prop(prop_name, prop_desc);
+	prop_name = "Single_Pass_Threshold";
+	prop_desc = "Start point of the data processing";
+	prop_def  = "500";
+	vect_data.clear();
+	vect_data.push_back("500");
+	if (prop_def.length()>0)
+	{
+		Tango::DbDatum	data(prop_name);
+		data << vect_data ;
+		dev_def_prop.push_back(data);
+		add_wiz_dev_prop(prop_name, prop_desc,  prop_def);
+	}
+	else
+		add_wiz_dev_prop(prop_name, prop_desc);
 }
 
 //--------------------------------------------------------
@@ -1365,6 +1379,102 @@ void LiberaSinglePassEClass::attribute_factory(vector<Tango::Attr *> &att_list)
 	q->set_disp_level(Tango::OPERATOR);
 	//	Not Memorized
 	att_list.push_back(q);
+
+	//	Attribute : External_trigger_delay
+	External_trigger_delayAttrib	*external_trigger_delay = new External_trigger_delayAttrib();
+	Tango::UserDefaultAttrProp	external_trigger_delay_prop;
+	external_trigger_delay_prop.set_description("Trigger signal is usually used to trigger acquisitions (except when synchronizing).Depending on the cable lengths and physical location of the processor module in theaccelerator, the trigger arrival to Libera Single Pass E units may be different.");
+	external_trigger_delay_prop.set_label("ltim_trigger_offset");
+	//	unit	not set for External_trigger_delay
+	external_trigger_delay_prop.set_standard_unit("LMC unit");
+	//	display_unit	not set for External_trigger_delay
+	//	format	not set for External_trigger_delay
+	//	max_value	not set for External_trigger_delay
+	//	min_value	not set for External_trigger_delay
+	//	max_alarm	not set for External_trigger_delay
+	//	min_alarm	not set for External_trigger_delay
+	//	max_warning	not set for External_trigger_delay
+	//	min_warning	not set for External_trigger_delay
+	//	delta_t	not set for External_trigger_delay
+	//	delta_val	not set for External_trigger_delay
+	
+	external_trigger_delay->set_default_properties(external_trigger_delay_prop);
+	//	Not Polled
+	external_trigger_delay->set_disp_level(Tango::EXPERT);
+	//	Not Memorized
+	att_list.push_back(external_trigger_delay);
+
+	//	Attribute : Attenuation_id
+	Attenuation_idAttrib	*attenuation_id = new Attenuation_idAttrib();
+	Tango::UserDefaultAttrProp	attenuation_id_prop;
+	attenuation_id_prop.set_description("Manual Gain control attenuation (0-31 dB)");
+	attenuation_id_prop.set_label("attenuation_att_id");
+	attenuation_id_prop.set_unit("dB");
+	//	standard_unit	not set for Attenuation_id
+	//	display_unit	not set for Attenuation_id
+	//	format	not set for Attenuation_id
+	//	max_value	not set for Attenuation_id
+	//	min_value	not set for Attenuation_id
+	//	max_alarm	not set for Attenuation_id
+	//	min_alarm	not set for Attenuation_id
+	//	max_warning	not set for Attenuation_id
+	//	min_warning	not set for Attenuation_id
+	//	delta_t	not set for Attenuation_id
+	//	delta_val	not set for Attenuation_id
+	
+	attenuation_id->set_default_properties(attenuation_id_prop);
+	//	Not Polled
+	attenuation_id->set_disp_level(Tango::EXPERT);
+	//	Not Memorized
+	att_list.push_back(attenuation_id);
+
+	//	Attribute : Attenuation_mode
+	Attenuation_modeAttrib	*attenuation_mode = new Attenuation_modeAttrib();
+	Tango::UserDefaultAttrProp	attenuation_mode_prop;
+	attenuation_mode_prop.set_description("Manual Gain control mode (mode/automatic)");
+	attenuation_mode_prop.set_label("attenuation_mode");
+	//	unit	not set for Attenuation_mode
+	//	standard_unit	not set for Attenuation_mode
+	//	display_unit	not set for Attenuation_mode
+	//	format	not set for Attenuation_mode
+	//	max_value	not set for Attenuation_mode
+	//	min_value	not set for Attenuation_mode
+	//	max_alarm	not set for Attenuation_mode
+	//	min_alarm	not set for Attenuation_mode
+	//	max_warning	not set for Attenuation_mode
+	//	min_warning	not set for Attenuation_mode
+	//	delta_t	not set for Attenuation_mode
+	//	delta_val	not set for Attenuation_mode
+	
+	attenuation_mode->set_default_properties(attenuation_mode_prop);
+	//	Not Polled
+	attenuation_mode->set_disp_level(Tango::EXPERT);
+	//	Not Memorized
+	att_list.push_back(attenuation_mode);
+
+	//	Attribute : Bunch_Threshold
+	Bunch_ThresholdAttrib	*bunch_threshold = new Bunch_ThresholdAttrib();
+	Tango::UserDefaultAttrProp	bunch_threshold_prop;
+	bunch_threshold_prop.set_description("Start point of the data processing");
+	bunch_threshold_prop.set_label("dsp_control_bunch_thr1");
+	//	unit	not set for Bunch_Threshold
+	//	standard_unit	not set for Bunch_Threshold
+	//	display_unit	not set for Bunch_Threshold
+	//	format	not set for Bunch_Threshold
+	//	max_value	not set for Bunch_Threshold
+	//	min_value	not set for Bunch_Threshold
+	//	max_alarm	not set for Bunch_Threshold
+	//	min_alarm	not set for Bunch_Threshold
+	//	max_warning	not set for Bunch_Threshold
+	//	min_warning	not set for Bunch_Threshold
+	//	delta_t	not set for Bunch_Threshold
+	//	delta_val	not set for Bunch_Threshold
+	
+	bunch_threshold->set_default_properties(bunch_threshold_prop);
+	//	Not Polled
+	bunch_threshold->set_disp_level(Tango::EXPERT);
+	//	Not Memorized
+	att_list.push_back(bunch_threshold);
 
 	//	Attribute : ADCChannelA
 	ADCChannelAAttrib	*adcchannela = new ADCChannelAAttrib();

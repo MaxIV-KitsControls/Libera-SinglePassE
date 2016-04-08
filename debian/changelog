@@ -1,0 +1,7 @@
+tangods-liberasinglepass (1.2.0) unstable; urgency=low
+
+  * Initial debian packaging
+  * Change dependencies version to 2.8
+  * Added Gain Manual/Automatic control, External Trigger Delay, and Single Pass Threshold Attributes. #9492
+ 
+ -- Vasileios Martos <vasileios.martos@maxiv.lu.se>  Mon, 04 Apr 2016 17:00:00 +0200
