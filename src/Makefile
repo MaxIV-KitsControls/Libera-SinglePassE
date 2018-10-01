@@ -31,7 +31,7 @@ PACKAGE_NAME = LiberaSinglePassE
 MAJOR_VERS   = 1
 MINOR_VERS   = 1
 RELEASE      = Release_$(MAJOR_VERS)_$(MINOR_VERS)
-LIBERA_VERSION = 2.8
+LIBERA_VERSION = 2.9
 
 # #=============================================================================
 # # RELEASE_TYPE
