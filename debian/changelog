@@ -1,3 +1,9 @@
+tangods-liberasinglepass (1.3.0) unstable; urgency=low
+
+  * Add archive events for X,Y attributes
+ 
+ -- Vasileios Martos <vasileios.martos@maxiv.lu.se>  Thu, 04 Oct 2018 10:00:00 +0200
+ 
 tangods-liberasinglepass (1.2.0) unstable; urgency=low
 
   * Initial debian packaging

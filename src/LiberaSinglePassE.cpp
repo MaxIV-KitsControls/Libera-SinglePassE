@@ -382,7 +382,9 @@ void LiberaSinglePassE::init_device()
         set_change_event("Y", true, false);
         set_change_event("Q", true, false);
         set_change_event("Sum", true, false);
-
+        //
+	set_archive_event("X", true, true);
+        set_archive_event("Y", true, true);
 
         //Initiate Settings from properties
         init_settings();
@@ -1965,6 +1967,8 @@ void LiberaSinglePassE::SPECallback()
         push_change_event("Y", attr_Y_read);
         push_change_event("Q", attr_Q_read);
         push_change_event("Sum", attr_Sum_read);
+        push_archive_event("X", attr_X_read);
+        push_archive_event("Y", attr_Y_read);
 }
 
 /*
